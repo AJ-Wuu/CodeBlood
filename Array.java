@@ -13,10 +13,10 @@ class SnapshotArray {
     public SnapshotArray(int length) {
         snapID = -1;
         maps = new HashMap[length];
-        for(int i=0; i<length; i++){
+        for(int i=0; i<length; i++) {
             maps[i]=new HashMap<>();
         }
-      tempMap = new HashMap<>();
+        tempMap = new HashMap<>();
     }
     
     public void set(int index, int val) {
@@ -24,17 +24,17 @@ class SnapshotArray {
     }
     
     public int snap() {
-        snapId++;
-        for(Map.Entry<Integer,Integer>m:tempMap.entrySet()){
-            maps[m.getKey()].put(snapId,m.getValue());
+        snapID++;
+        for (Map.Entry<Integer,Integer> m : tempMap.entrySet()) {
+            maps[m.getKey()].put(snapID,m.getValue());
         }
-        tempMap=new HashMap<>();
-        return snapId;
+        tempMap = new HashMap<>();
+        return snapID;
     }
     
     public int get(int index, int snap_id) {
-        while(snap_id>=0){
-             if(maps[index].containsKey(snap_id))
+        while(snap_id >= 0){
+            if(maps[index].containsKey(snap_id))
                  return maps[index].get(snap_id);
             snap_id--;
         }
