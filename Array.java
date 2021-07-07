@@ -54,8 +54,8 @@ for (int j=0; j<8; j++) {
 }
 
 //how to copy arrays without linking their addresses
-object = Arrays.copyOf(nums,nums.length);
-temp = Arrays.copyOf(nums,nums.length);
+object = Arrays.copyOf(nums,nums.length); //used for reset()
+temp = Arrays.copyOf(nums,nums.length); //used for shuffle()
 //if we do 
 //   object = num;
 //   temp = num;
