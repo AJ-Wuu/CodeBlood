@@ -64,7 +64,7 @@ temp = Arrays.copyOf(nums,nums.length);
 public int[] shuffle() {
     Random rand = new Random();
     int index;
-    for (int i=0; i<length/2+1; i++) { //as swap moves between 2 elements, length/2+1 is enough for all possible permutations
+    for (int i=0; i<length/2; i++) { //as swap moves between 2 elements and temp never changes back to initial setting, length/2 is enough to get all possible permutations
         index = rand.nextInt(length);
         if (i != index) {
             temp = swap(temp, 0, index);
