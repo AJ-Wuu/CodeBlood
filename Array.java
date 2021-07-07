@@ -42,3 +42,12 @@ class SnapshotArray {
     }
 }
 
+//#384 - Shuffle an Array
+Random rand = new Random(); //the seed goes in the parentheses
+                               //when the seed is specified, every time we stop and re-run the code it will get the same output;
+                               //but if we don't stop and just run multiple times, the results will be different
+for (int j=0; j<8; j++) {
+    System.out.print(" " + rand.nextInt(100) + ", "); //rand.nextInt(size) generates an integer in [0, size)
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
