@@ -53,4 +53,12 @@ for (int j=0; j<8; j++) {
     System.out.print(" " + rand.nextInt(100) + ", "); //rand.nextInt(size) generates an integer in [0, size)
 }
 
+//how to copy arrays without linking their addresses
+object = Arrays.copyOf(nums,nums.length);
+temp = Arrays.copyOf(nums,nums.length);
+//if we do 
+//   object = num;
+//   temp = num;
+//then object, temp and num share the same storing address, which means changing any one of them will change the other two simutaneously
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
