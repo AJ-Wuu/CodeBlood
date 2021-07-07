@@ -60,6 +60,7 @@ temp = Arrays.copyOf(nums,nums.length);
 //   object = num;
 //   temp = num;
 //then object, temp and num share the same storing address, which means changing any one of them will change the other two simutaneously
+
 public int[] shuffle() {
     Random rand = new Random();
     int index;
