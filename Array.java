@@ -104,3 +104,7 @@ public void reverse(int[] nums, int start, int end) {
 }
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#
+//Count Sort: Put positive integers into countP[] with (valueOfInteger == index), and put the absolute value of negative integers into countN[].
+//            Then combining elements of reverse countN[] and plain countP[] to get the sorted array.
