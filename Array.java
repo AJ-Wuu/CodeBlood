@@ -86,20 +86,22 @@ int jj = (int) ((double)21/2 + 0.5); // 11
 //After reversing all numbers     : 7 6 5 4 3 2 1
 //After reversing first k numbers : 5 6 7 4 3 2 1
 //After revering last n-k numbers : 5 6 7 1 2 3 4 --> Result
-public void rotate(int[] nums, int k) {
-    k %= nums.length;
-    reverse(nums, 0, nums.length - 1);
-    reverse(nums, 0, k - 1);
-    reverse(nums, k, nums.length - 1);
-}
+class Solution {
+    public void rotate(int[] nums, int k) {
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
 
-public void reverse(int[] nums, int start, int end) {
-    while (start < end) {
-        int temp = nums[start];
-        nums[start] = nums[end];
-        nums[end] = temp;
-        start++;
-        end--;
+    public void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
     }
 }
 
@@ -108,3 +110,24 @@ public void reverse(int[] nums, int start, int end) {
 //#
 //Count Sort: Put positive integers into countP[] with (valueOfInteger == index), and put the absolute value of negative integers into countN[].
 //            Then combining elements of reverse countN[] and plain countP[] to get the sorted array.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#525 - Contiguous Array
+//If
+public class Solution {
+    public int findMaxLength(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int maxlen = 0, count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            count = count + (nums[i] == 1 ? 1 : -1);
+            if (map.containsKey(count)) {
+                maxlen = Math.max(maxlen, i - map.get(count));
+            } else {
+                map.put(count, i);
+            }
+        }
+        return maxlen;
+    }
+}
