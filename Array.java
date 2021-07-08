@@ -107,7 +107,7 @@ class Solution {
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#
+//#912 - Sort an Array
 //Count Sort: Put positive integers into countP[] with (valueOfInteger == index), and put the absolute value of negative integers into countN[].
 //            Then combining elements of reverse countN[] and plain countP[] to get the sorted array.
 
@@ -115,7 +115,7 @@ class Solution {
 
 //#525 - Contiguous Array
 //This is to count how many 0-1 are there, including 0-1 & 00-11 & 000-111, but they don't need to be joined.
-//Use a HashMap mapmap to store the entries in the form of (index, count).
+//Use a HashMap mapmap to store the entries in the form of (count, index).
 //If the nums[i] == 0, counts -1; else, counts 1.
 public class Solution {
     public int findMaxLength(int[] nums) {
