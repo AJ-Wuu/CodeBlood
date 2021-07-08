@@ -114,7 +114,8 @@ class Solution {
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#525 - Contiguous Array
-//This is to count how many 0-1 are there, including 0-1 & 00-11 & 000-111, but they don't need to be joined.
+//This is to count how many 0-1 are there, including 0-1 & 00-11 & 000-111 & etc., but they don't need to be joined nor sorted.
+//Eg. 0100101 -> 6; 0110 -> 4
 //Use a HashMap mapmap to store the entries in the form of (count, index).
 //If the nums[i] == 0, counts -1; else, counts 1.
 public class Solution {
