@@ -118,23 +118,21 @@ class Solution {
 //Eg. 0100101 -> 6; 0110 -> 4
 //Use a HashMap mapmap to store the entries in the form of (count, index).
 //If the nums[i] == 0, counts -1; else, counts 1.
-public class Solution {
-    public int findMaxLength(int[] nums) {
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);
-        int maxlen = 0, count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            count = count + (nums[i] == 1 ? 1 : -1);
-            if (map.containsKey(count)) { //already contains this key, meaning that an opposite number (a 1 after a list of 0 or vise-versa) is just caught.
-                maxlen = Math.max(maxlen, i - map.get(count)); //(i - map.get(count)) == (i - index) -> the sequence from index to i forms an array with equal number of 0-1
-            }
-            else {
-                map.put(count, i);
-            }
-        }
-        return maxlen;
-    }
-}
+public int findMaxLength(int[] nums) {
+	        Map<Integer, Integer> map = new HashMap<>();
+	        map.put(0, -1);
+	        int maxlen = 0, count = 0;
+	        for (int i = 0; i < nums.length; i++) {
+	            count = count + (nums[i] == 1 ? 1 : -1);
+	            if (map.containsKey(count)) { //already contains this key, meaning that an opposite number (a 1 after a list of 0 or vise-versa) is just caught.
+	                maxlen = Math.max(maxlen, i - map.get(count)); //(i - map.get(count)) == (i - index) -> the sequence from index to i forms an array with equal number of 0-1
+	            }
+	            else {
+	                map.put(count, i);
+	            }
+	        }
+	        return maxlen;
+	    }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -149,5 +147,29 @@ Integer.compare(A[i], A[i+1]); //equals .compareTo() with previous declarations 
 //One Pass (Simple Variant) -> set two boolean variables increasing and decreasing
 //                             if A[i] > A[i+1], increasing = false; if A[i] < A[i+1], decreasing = false
 //                             return (increasing || decreasing)
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#565 - Array Nesting
+//For questions concerning inner recycling (eg. "s[k] = {nums[k], nums[nums[k]], nums[nums[nums[k]]], ... }"), we first need to think about using boolean visited[].
+//Another method is to combine the original array with visited[] -> for example, marking the visited element as Integer.MAX_VALUE
+public int arrayNesting(int[] nums) {
+    int res = 0;
+    for (int i = 0; i < nums.length; i++) {
+        if (nums[i] != Integer.MAX_VALUE) {
+            int start = nums[i], count = 0;
+            while (nums[start] != Integer.MAX_VALUE) {
+                int temp = start;
+                start = nums[start];
+                count++;
+                nums[temp] = Integer.MAX_VALUE;
+            }
+            res = Math.max(res, count);
+        }
+    }
+    return res;
+}
+
+Arrays.sort(a); //this sorts array "a" in an increasing order -> a[0] is the minimum and a[a.length-1] is the maximum
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
