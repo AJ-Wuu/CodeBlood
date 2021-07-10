@@ -117,19 +117,19 @@ public void reverse(int[] nums, int start, int end) {
 //Use a HashMap mapmap to store the entries in the form of (count, index).
 //If the nums[i] == 0, counts -1; else, counts 1.
 public int findMaxLength(int[] nums) {
-	Map<Integer, Integer> map = new HashMap<>();
-	map.put(0, -1);
-	int maxlen = 0, count = 0;
-	for (int i = 0; i < nums.length; i++) {
-		count = count + (nums[i] == 1 ? 1 : -1);
-		if (map.containsKey(count)) { //already contains this key, meaning that an opposite number (a 1 after a list of 0 or vise-versa) is just caught.
-			maxlen = Math.max(maxlen, i - map.get(count)); //(i - map.get(count)) == (i - index) -> the sequence from index to i forms an array with equal number of 0-1
-		}
-		else {
-			map.put(count, i);
-		}
-	}
-	return maxlen;
+    Map<Integer, Integer> map = new HashMap<>();
+    map.put(0, -1);
+    int maxlen = 0, count = 0;
+    for (int i = 0; i < nums.length; i++) {
+        count = count + (nums[i] == 1 ? 1 : -1);
+        if (map.containsKey(count)) { //already contains this key, meaning that an opposite number (a 1 after a list of 0 or vise-versa) is just caught.
+            maxlen = Math.max(maxlen, i - map.get(count)); //(i - map.get(count)) == (i - index) -> the sequence from index to i forms an array with equal number of 0-1
+        }
+        else {
+            map.put(count, i);
+        }
+    }
+    return maxlen;
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
