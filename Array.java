@@ -123,11 +123,11 @@ public int findMaxLength(int[] nums) {
 	for (int i = 0; i < nums.length; i++) {
 		count = count + (nums[i] == 1 ? 1 : -1);
 		if (map.containsKey(count)) { //already contains this key, meaning that an opposite number (a 1 after a list of 0 or vise-versa) is just caught.
-	                maxlen = Math.max(maxlen, i - map.get(count)); //(i - map.get(count)) == (i - index) -> the sequence from index to i forms an array with equal number of 0-1
-	        }
-	        else {
-	                map.put(count, i);
-	        }
+			maxlen = Math.max(maxlen, i - map.get(count)); //(i - map.get(count)) == (i - index) -> the sequence from index to i forms an array with equal number of 0-1
+		}
+		else {
+			map.put(count, i);
+		}
 	}
 	return maxlen;
 }
