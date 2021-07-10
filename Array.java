@@ -141,3 +141,5 @@ public class Solution {
 //#392 - Beautiful Array
 //For questions with new concepts like this ("for every i < j, there is no k with i < k < j such that nums[k] * 2 = nums[i] + nums[j]"),
 //we should try to analyze its basic properties first, then deduce some underlined properties, and use those properties in the algorithm.
+    
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
