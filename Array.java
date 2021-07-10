@@ -144,7 +144,7 @@ public class Solution {
     
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//# - Monotonic Array
+//#896 - Monotonic Array
 Integer.compare(A[i], A[i+1]); //equals .compareTo() with previous declarations of A[i] and A[i+1] being Integer (not int)
 //One Pass (Simple Variant) -> set two boolean variables increasing and decreasing
 //                             if A[i] > A[i+1], increasing = false; if A[i] < A[i+1], decreasing = false
