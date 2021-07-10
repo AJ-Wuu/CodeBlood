@@ -86,22 +86,20 @@ int jj = (int) ((double)21/2 + 0.5); // 11
 //After reversing all numbers     : 7 6 5 4 3 2 1
 //After reversing first k numbers : 5 6 7 4 3 2 1
 //After revering last n-k numbers : 5 6 7 1 2 3 4 --> Result
-class Solution {
-    public void rotate(int[] nums, int k) {
-        k %= nums.length;
-        reverse(nums, 0, nums.length - 1);
-        reverse(nums, 0, k - 1);
-        reverse(nums, k, nums.length - 1);
-    }
+public void rotate(int[] nums, int k) {
+    k %= nums.length;
+    reverse(nums, 0, nums.length - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, nums.length - 1);
+}
 
-    public void reverse(int[] nums, int start, int end) {
-        while (start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
-        }
+public void reverse(int[] nums, int start, int end) {
+    while (start < end) {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+        start++;
+        end--;
     }
 }
 
@@ -119,20 +117,20 @@ class Solution {
 //Use a HashMap mapmap to store the entries in the form of (count, index).
 //If the nums[i] == 0, counts -1; else, counts 1.
 public int findMaxLength(int[] nums) {
-	        Map<Integer, Integer> map = new HashMap<>();
-	        map.put(0, -1);
-	        int maxlen = 0, count = 0;
-	        for (int i = 0; i < nums.length; i++) {
-	            count = count + (nums[i] == 1 ? 1 : -1);
-	            if (map.containsKey(count)) { //already contains this key, meaning that an opposite number (a 1 after a list of 0 or vise-versa) is just caught.
+	Map<Integer, Integer> map = new HashMap<>();
+	map.put(0, -1);
+	int maxlen = 0, count = 0;
+	for (int i = 0; i < nums.length; i++) {
+		count = count + (nums[i] == 1 ? 1 : -1);
+		if (map.containsKey(count)) { //already contains this key, meaning that an opposite number (a 1 after a list of 0 or vise-versa) is just caught.
 	                maxlen = Math.max(maxlen, i - map.get(count)); //(i - map.get(count)) == (i - index) -> the sequence from index to i forms an array with equal number of 0-1
-	            }
-	            else {
-	                map.put(count, i);
-	            }
 	        }
-	        return maxlen;
-	    }
+	        else {
+	                map.put(count, i);
+	        }
+	}
+	return maxlen;
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
