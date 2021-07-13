@@ -173,5 +173,9 @@ Arrays.sort(a); //this sorts array "a" in an increasing order -> a[0] is the min
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#845 - Longest Mountain in Array
+//The order in if() / while() sentence is crucial. Eg:
+if (end + 1 < arr.length && arr[end] < arr[end + 1]) {;} //this line will first evaluate (end + 1 < n), and if it's false, it will go on without problem
+if (arr[end] < arr[end + 1] && end + 1 < arr.length) {;} //however, this line will come up with an error of arr[] index out of bounds,
+                                                         //as it goes for (arr[end] < arr[end+1]) first, an (end + 1) might be larger than (arr.length - 1)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
