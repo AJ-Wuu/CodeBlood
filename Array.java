@@ -177,5 +177,20 @@ Arrays.sort(a); //this sorts array "a" in an increasing order -> a[0] is the min
 if (end + 1 < arr.length && arr[end] < arr[end + 1]) {;} //this line will first evaluate (end + 1 < n), and if it's false, it will go on without problem
 if (arr[end] < arr[end + 1] && end + 1 < arr.length) {;} //however, this line will come up with an error of arr[] index out of bounds,
                                                          //as it goes for (arr[end] < arr[end+1]) first, an (end + 1) might be larger than (arr.length - 1)
+while (base < N) {
+    int end = base; //update the end
+    if (end + 1 < N && A[end] < A[end + 1]) { //find left boundary
+        while (end + 1 < N && A[end] < A[end + 1]) { //get to the peak
+            end++;
+        }
+        if (end + 1 < N && A[end] > A[end + 1]) { //check if end is the peak now
+            while (end + 1 < N && A[end] > A[end + 1]) { //go through the right boundary
+                end++;
+            }
+            ans = Math.max(ans, end - base + 1); //after a mountain, record the current longest one
+        }
+    }
+    base = Math.max(end, base + 1); //update the base
+}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
