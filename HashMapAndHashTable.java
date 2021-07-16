@@ -6,6 +6,8 @@
  *                           not empty (collision) -> K.equals(K_existed) == true, replace (K_exisited, V_existed) with (K, V); 
  *                                                                           false, add (K, V) next to (K_exisited, V_existed)
  *
+ * Java 8 enhancements:
+ *
  * Why HashMap?
  * Its process of getting the value using key from HashMap is very very efficient & fast. The get(“key”) method of HashMap has time complexity of O(1) in general.
  * 
