@@ -1,5 +1,8 @@
 /**
+ * Bucket == LinkedList
  * Load Factor: 16 initial buckets, doubles the existing capacity every time it reaches more than 75% of its capacity
+ *
+ * Key: Not Primitive, but Object -> we need the Key.hashCode() to calculate the bucket index = Key.hashCode() & (length - 1)
  *
  * Why HashMap?
  * Its process of getting the value using key from HashMap is very very efficient & fast. The get(“key”) method of HashMap has time complexity of O(1) in general.
