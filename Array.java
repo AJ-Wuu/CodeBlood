@@ -198,3 +198,10 @@ while (base < N) {
 //#1095 - Find in Mountain Array
 //Binary Search is enough, no need for Trinary
 //1. Find peak; 2. Try to find target on the left side of the peak; 3. Try to find on the right side
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#954 - Array of Doubled Pairs
+//1. Delete the latter index element before the former one, as a dynamic data structure's index will change if a former element is removed.
+//   Eg. ArrayList -> (j=i+1; j<N; j++) -> remove(j) before remove(i)
+//2. Always choose "*" (multiplication) over "/" (division), as division will cause rounding-down results in several data type (-5/2 == -2)
