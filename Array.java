@@ -230,6 +230,7 @@ public class EmployeeSalaryComparator implements Comparator<Employee> {
 Employee[] newEmployees = new Employee[4];
 ...;
 Arrays.sort(newEmployees, new EmployeeSalaryComparator());
+Arrays.sort(B, Comparator.comparingInt(Math::abs));
 //ArrayList ->
 ArrayList<Integer> list = new ArrayList<Integer>();
 ...;
