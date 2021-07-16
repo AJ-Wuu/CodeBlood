@@ -207,3 +207,32 @@ while (base < N) {
 //2. Always choose "*" (multiplication) over "/" (division), as division will cause rounding-down results in several data type (-5/2 == -2)
 //3. Pay attention to negative-number situations
 
+//Sorting implementary Methods
+//Comparable (Arrays only):
+public class Employee implements Comparable<Employee> {
+    @Override
+    public int compareTo(Employee employee) {
+        return this.salary - employee.salary;
+    }
+}
+Employee[] employees = new Employee[4];
+...;
+Arrays.sort(employees);
+
+//Comparator (Arrays & ArrayList):
+public class EmployeeSalaryComparator implements Comparator<Employee> {
+    @Override
+    public int compare(Employee emp1, Employee emp2) {
+        return emp1.getSalary() - emp2.getSalary();
+    }
+}
+//Arrays ->
+Employee[] newEmployees = new Employee[4];
+...;
+Arrays.sort(newEmployees, new EmployeeSalaryComparator());
+//ArrayList ->
+ArrayList<Integer> list = new ArrayList<Integer>();
+...;
+Collections.sort(list, new EmployeeSalaryComparator());
+list.sort(Comparator.naturalOrder());
+list.sort(Comparator.reverseOrder());
