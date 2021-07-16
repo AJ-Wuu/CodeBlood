@@ -198,5 +198,3 @@ while (base < N) {
 //#1095 - Find in Mountain Array
 //Binary Search is enough, no need for Trinary
 //1. Find peak; 2. Try to find target on the left side of the peak; 3. Try to find on the right side
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
