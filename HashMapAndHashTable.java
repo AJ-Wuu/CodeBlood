@@ -2,9 +2,9 @@
  * Bucket == LinkedList
  * Load Factor: 16 initial buckets, doubles the existing capacity every time it reaches more than 75% of its capacity
  * Key: Not Primitive, but Object -> we need the Key.hashCode() to calculate the bucket index = Key.hashCode() & (length - 1)
- * map.put(K, V): K's bucket is empty -> put it in;
- *                           not empty -> K.equals(K_existed) == true, replace (K_exisited, V_existed) with (K, V); 
- *                                                               false, add (K, V) next to (K_exisited, V_existed)
+ * map.put(K, V): K's bucket is empty (no collision) -> put it in;
+ *                           not empty (collision) -> K.equals(K_existed) == true, replace (K_exisited, V_existed) with (K, V); 
+ *                                                                           false, add (K, V) next to (K_exisited, V_existed)
  *
  * Why HashMap?
  * Its process of getting the value using key from HashMap is very very efficient & fast. The get(“key”) method of HashMap has time complexity of O(1) in general.
