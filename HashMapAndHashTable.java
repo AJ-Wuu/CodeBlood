@@ -35,6 +35,10 @@
  * 3. (Disadvantage, maybe) Synchronized that Hashtable is thread-safe and can be shared between multiple threads (Synchronization HashTable is much slower than HashMap).
  */
 
+//Initialization
+HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(); //<K, V>
+Hashtable<Integer, Integer> table = new Hashtable<Integer, Integer>();
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#954 - Array of Doubled Pairs ????????????????????????????????????????????????????????
