@@ -78,3 +78,6 @@ public boolean checkMatch(Map intsLeft, int n) {
 start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if find c in the map, return its value; else, return 0
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#17 - Letter Combinations of a Phone Number
+int a = Integer.parseInt(String.valueOf(digits.charAt(i))); //converge char to int
