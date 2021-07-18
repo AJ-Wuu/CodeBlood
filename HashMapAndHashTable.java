@@ -81,3 +81,12 @@ start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if 
 
 //#17 - Letter Combinations of a Phone Number
 int a = Integer.parseInt(String.valueOf(digits.charAt(i))); //converge char to int
+public static List<String> combine(String digit, List<String> l) {
+    List<String> result = new ArrayList<String>();
+    for (int i=0; i<digit.length(); i++) {
+        for (String x : l) {
+            result.add(x + digit.charAt(i));
+        }
+    }
+    return result;
+}
