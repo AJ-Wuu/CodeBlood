@@ -81,6 +81,8 @@ start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if 
 
 //#17 - Letter Combinations of a Phone Number
 int a = Integer.parseInt(String.valueOf(digits.charAt(i))); //converge char to int
+
+//Method 1:
 public static List<String> combine(String digit, List<String> l) {
     List<String> result = new ArrayList<String>();
     for (int i=0; i<digit.length(); i++) {
@@ -89,4 +91,17 @@ public static List<String> combine(String digit, List<String> l) {
         }
     }
     return result;
+}
+
+//Method 2 - recursive:
+public void backtrack(List<String> combos, char[] digits, String s, String[] dict) {
+    if (s.length() == digits.length) {
+        combos.add(s);
+        return;
+    }
+    int i = s.length();
+    int digit = digits[i] - '0';
+    for (char letter : dict[digit].toCharArray()) {
+        backtrack(combos, digits, s + Character.toString(letter), dict);
+    }
 }
