@@ -73,4 +73,8 @@ public boolean checkMatch(Map intsLeft, int n) {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//#3 - Longest Substring Without Repeating Characters
+//This is an easy way to move the starting index ↓
+start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if find c in the map, return its value; else, return 0
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
