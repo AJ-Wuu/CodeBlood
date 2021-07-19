@@ -124,119 +124,121 @@ map1.putAll(map2);
 //Method 1: take advantage of the no-duplicate property of HashMap, and map1.equals(map2) is faster than array comparisons
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
     if (s == null || words == null || s.length() == 0 || words.length == 0) {
-		return new ArrayList<>();
-	}
-	HashMap<String, Integer> counts = new HashMap<>();
-	for (String word : words) {
-		counts.put(word, counts.getOrDefault(word, 0) + 1); //this makes sure that if word exists in count, it has value > 0 -> to distinguish from non-existing
-	}
+        return new ArrayList<>();
+    }
+    HashMap<String, Integer> counts = new HashMap<>();
+    for (String word : words) {
+        counts.put(word, counts.getOrDefault(word, 0) + 1); //this makes sure that if word exists in count, it has value > 0 -> to distinguish from non-existing
+    }
     
     ArrayList<Integer> r = new ArrayList<>();
-	int sLen = s.length();
-	int num = words.length;
-	int wordLen = words[0].length();
+    int sLen = s.length();
+    int num = words.length;
+    int wordLen = words[0].length();
     
     for (int i = 0; i < sLen - num * wordLen + 1; i++) {
-		String sub = s.substring(i, i + num * wordLen);
-		if (isConcat(sub, counts, wordLen)) {
-			r.add(i);
-		}
-	}
-	return r;
+        String sub = s.substring(i, i + num * wordLen);
+        if (isConcat(sub, counts, wordLen)) {
+            r.add(i);
+        }
+    }
+    return r;
 }
 
 private static boolean isConcat(String sub, HashMap<String, Integer> counts, int wordLen) {
-	HashMap<String, Integer> seen = new HashMap<>();
-	for (int i = 0; i < sub.length(); i += wordLen) {
-		String sWord = sub.substring(i, i + wordLen);
-		seen.put(sWord, seen.getOrDefault(sWord, 0) + 1);
-	}
-	return seen.equals(counts);
+    HashMap<String, Integer> seen = new HashMap<>();
+    for (int i = 0; i < sub.length(); i += wordLen) {
+        String sWord = sub.substring(i, i + wordLen);
+        seen.put(sWord, seen.getOrDefault(sWord, 0) + 1);
+    }
+    return seen.equals(counts);
 }
 
 //Method 2: inner loop matches a word, and uses checkFound() to decide whether all words are found; outer loop makes sure all possible divisions have been traversed
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
-	ArrayList<Integer> res = new ArrayList<Integer>();
-	int n = s.length(), m = words.length, k;
-	if (n == 0 || m == 0 || (k = words[0].length()) == 0) {
-		//assign value to k in if() -> avoid the possibility that words[] == null
-		return res;
-	}
+    ArrayList<Integer> res = new ArrayList<Integer>();
+    int n = s.length(), m = words.length, k;
+    if (n == 0 || m == 0 || (k = words[0].length()) == 0) {
+        //assign value to k in if() -> avoid the possibility that words[] == null
+        return res;
+    }
 
-	HashMap<String, Integer> wordDict = new HashMap<String, Integer>();
-	for (String word : words) {
-		if (wordDict.containsKey(word))
-			wordDict.put(word, wordDict.get(word) + 1);
-		else
-			wordDict.put(word, 1); //make sure that if word exists, its value > 0; distinguish from non-existing word
+    HashMap<String, Integer> wordDict = new HashMap<String, Integer>();
+    for (String word : words) {
+        if (wordDict.containsKey(word)) {
+            wordDict.put(word, wordDict.get(word) + 1);
 	}
+        else {
+            wordDict.put(word, 1); //make sure that if word exists, its value > 0; distinguish from non-existing word
+	}
+    }
 
-	int start, x, wordsLen = m * k;
-	HashMap<String, Integer> currDict = new HashMap<String, Integer>();
-	String test, temp;
-	for (int i=0; i<k; i++) { //outer loop jump from 0 to word's length
-		currDict.clear();
-		start = i;
-		if (start + wordsLen > n) {
-			return res;
-		}
+    int start, x, wordsLen = m * k;
+    HashMap<String, Integer> currDict = new HashMap<String, Integer>();
+    String test, temp;
+    for (int i=0; i<k; i++) { //outer loop jump from 0 to word's length
+        currDict.clear();
+        start = i;
+        if (start + wordsLen > n) {
+            return res;
+        }
 		
-		for (int j=i; j+k<=n; j+=k) { //inner loop skip by word's length
-			test = s.substring(j, j+k);
+        for (int j=i; j+k<=n; j+=k) { //inner loop skip by word's length
+            test = s.substring(j, j+k);
 
-			if (wordDict.containsKey(test)) {
-				x = currDict.getOrDefault(test, 0);
-				if (x < wordDict.get(test)) {
-					//currDict does not contain test OR currDict contains less times of test than wordDict
-					currDict.put(test, x + 1);
-					start = checkFound(res, start, wordsLen, j, k, currDict, s);
-					continue;
-				}
+            if (wordDict.containsKey(test)) {
+                x = currDict.getOrDefault(test, 0);
+                if (x < wordDict.get(test)) {
+                    //currDict does not contain test OR currDict contains less times of test than wordDict
+                    currDict.put(test, x + 1);
+                    start = checkFound(res, start, wordsLen, j, k, currDict, s);
+                    continue;
+                }
 
-				//currDict.get(test) == wordDict.get(test), 
-				//slide start to the next word of the first same word as test
-				while (!(temp = s.substring(start, start + k)).equals(test)) {
-					decreaseCount(currDict, temp);
-					start += k;
-				}
-				start += k;
-				if (start + wordsLen > n) {
-					break;
-				}
-				continue;
-			}
+                //currDict.get(test) == wordDict.get(test), 
+                //slide start to the next word of the first same word as test
+                while (!(temp = s.substring(start, start + k)).equals(test)) {
+                    decreaseCount(currDict, temp);
+                    start += k;
+                }
+                start += k;
+                if (start + wordsLen > n) {
+                    break;
+                }
+                continue;
+            }
 
-			//totally failed with index j+k, slide start and reset all
-			start = j + k;
-			if (start + wordsLen > n) {
-				break;
-			}
-			currDict.clear();
-		}
-	}
-	return res;
+            //totally failed with index j+k, slide start and reset all
+            start = j + k;
+            if (start + wordsLen > n) {
+                break;
+            }
+            currDict.clear();
+        }
+    }
+    return res;
 }
 
 public static int checkFound(ArrayList<Integer> res, int start, int wordsLen, int j, int k, HashMap<String, Integer> currDict, String s) {
-	//if found a substring, return its starting index; else, return the start unchanged
-	if (start + wordsLen == j + k) {
-		res.add(start);
-		//slide start to the next word
-		decreaseCount(currDict, s.substring(start, start + k));
-		return start + k;
-	}
-	return start;
+    //if found a substring, return its starting index; else, return the start unchanged
+    if (start + wordsLen == j + k) {
+        res.add(start);
+        //slide start to the next word
+        decreaseCount(currDict, s.substring(start, start + k));
+        return start + k;
+    }
+    return start;
 }
 
 public static void decreaseCount(HashMap<String, Integer> currDict, String key) {
-	//remove key if currDict.get(key)==1, otherwise decrease it by 1
-	int x = currDict.get(key);
-	if (x == 1) {
-		currDict.remove(key);
-	}
-	else {
-		currDict.put(key, x - 1);
-	}
+    //remove key if currDict.get(key)==1, otherwise decrease it by 1
+    int x = currDict.get(key);
+    if (x == 1) {
+        currDict.remove(key);
+    }
+    else {
+        currDict.put(key, x - 1);
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
