@@ -84,7 +84,12 @@ start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if 
 int a = Integer.parseInt(String.valueOf(digits.charAt(i)));
 int b = digits.charAt(i) - '0';
 
-//Method 1: Note that the very first l = "" -> so that for (String x : l) can enter new string
+//Method 1:
+result.add(""); //so that the add() can work
+for (int i=0; i<digits.length(); i++) {
+    result = combine(digitletter[digits.charAt(i)-'0'], result);
+}
+
 public static List<String> combine(String digit, List<String> l) {
     List<String> result = new ArrayList<String>();
     for (int i=0; i<digit.length(); i++) {
@@ -96,6 +101,8 @@ public static List<String> combine(String digit, List<String> l) {
 }
 
 //Method 2 - recursive:
+backtrack(combos, digits.toCharArray(), "", dict);
+
 public void backtrack(List<String> combos, char[] digits, String s, String[] dict) {
     if (s.length() == digits.length) {
         combos.add(s);
