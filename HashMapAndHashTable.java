@@ -154,7 +154,7 @@ private static boolean isConcat(String sub, HashMap<String, Integer> counts, int
 	return seen.equals(counts);
 }
 
-//Method 2: inner loop matches a word, while checkFound() decides whether have found all words; outer loop makes sure all possible divisions have been through.
+//Method 2: inner loop matches a word, and uses checkFound() to decide whether all words are found; outer loop makes sure all possible divisions have been traversed
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
 	ArrayList<Integer> res = new ArrayList<Integer>();
 	int n = s.length(), m = words.length, k;
@@ -218,7 +218,7 @@ public static ArrayList<Integer> findSubstring(String s, String[] words) {
 }
 
 public static int checkFound(ArrayList<Integer> res, int start, int wordsLen, int j, int k, HashMap<String, Integer> currDict, String s) {
-	//if found a substring, return its starting index
+	//if found a substring, return its starting index; else, return the start unchanged
 	if (start + wordsLen == j + k) {
 		res.add(start);
 		//slide start to the next word
@@ -231,10 +231,12 @@ public static int checkFound(ArrayList<Integer> res, int start, int wordsLen, in
 public static void decreaseCount(HashMap<String, Integer> currDict, String key) {
 	//remove key if currDict.get(key)==1, otherwise decrease it by 1
 	int x = currDict.get(key);
-	if (x == 1)
+	if (x == 1) {
 		currDict.remove(key);
-	else
+	}
+	else {
 		currDict.put(key, x - 1);
+	}
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
