@@ -121,7 +121,7 @@ public void backtrack(List<String> combos, char[] digits, String s, String[] dic
 //Copy a whole HashMap
 map1.putAll(map2);
 
-//This method takes advantage of the no-duplicate property of HashMap, and map1.equals(map2) is faster than array comparison
+//Method 1: take advantage of the no-duplicate property of HashMap, and map1.equals(map2) is faster than array comparison
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
     if (s == null || words == null || s.length() == 0 || words.length == 0) {
 		return new ArrayList<>();
@@ -154,7 +154,7 @@ private static boolean isConcat(String sub, HashMap<String, Integer> counts, int
 	return seen.equals(counts);
 }
 
-//Method 2:
+//Method 2: inner loop matches a word, while checkFound() decides whether have found all words; outer loop makes sure all possible divisions have been through.
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
 	ArrayList<Integer> res = new ArrayList<Integer>();
 	int n = s.length(), m = words.length, k;
@@ -174,14 +174,14 @@ public static ArrayList<Integer> findSubstring(String s, String[] words) {
 	int start, x, wordsLen = m * k;
 	HashMap<String, Integer> currDict = new HashMap<String, Integer>();
 	String test, temp;
-	for (int i=0; i<k; i++) {
+	for (int i=0; i<k; i++) { //outer loop jump from 0 to word's length
 		currDict.clear();
 		start = i;
 		if (start + wordsLen > n) {
 			return res;
 		}
 		
-		for (int j=i; j+k<=n; j+=k) {
+		for (int j=i; j+k<=n; j+=k) { //inner loop skip by word's length
 			test = s.substring(j, j+k);
 
 			if (wordDict.containsKey(test)) {
@@ -236,4 +236,5 @@ public static void decreaseCount(HashMap<String, Integer> currDict, String key) 
 	else
 		currDict.put(key, x - 1);
 }
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
