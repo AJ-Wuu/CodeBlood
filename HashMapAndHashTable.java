@@ -121,7 +121,7 @@ public void backtrack(List<String> combos, char[] digits, String s, String[] dic
 //Copy a whole HashMap
 map1.putAll(map2);
 
-//Method 1: take advantage of the no-duplicate property of HashMap, and map1.equals(map2) is faster than array comparison
+//Method 1: take advantage of the no-duplicate property of HashMap, and map1.equals(map2) is faster than array comparisons
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
     if (s == null || words == null || s.length() == 0 || words.length == 0) {
 		return new ArrayList<>();
