@@ -118,13 +118,17 @@ public void backtrack(List<String> combos, char[] digits, String s, String[] dic
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#30 - Substring with Concatenation of All Words
+//Copy a whole HashMap
+map1.putAll(map2);
+
+//This method takes advantage of the no-duplicate property of HashMap, and map1.equals(map2) is faster than array comparison
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
     if (s == null || words == null || s.length() == 0 || words.length == 0) {
 		return new ArrayList<>();
 	}
 	HashMap<String, Integer> counts = new HashMap<>();
 	for (String word : words) {
-		counts.put(word, counts.getOrDefault(word, 0) + 1);
+		counts.put(word, counts.getOrDefault(word, 0) + 1); //this makes sure that if word exists in count, it has value > 0 -> to distinguish from non-existing
 	}
     
     ArrayList<Integer> r = new ArrayList<>();
