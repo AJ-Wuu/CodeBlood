@@ -80,9 +80,11 @@ start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#17 - Letter Combinations of a Phone Number
-int a = Integer.parseInt(String.valueOf(digits.charAt(i))); //converge char to int
+//Convert char to int
+int a = Integer.parseInt(String.valueOf(digits.charAt(i)));
+int b = digits.charAt(i) - '0';
 
-//Method 1:
+//Method 1: Note that the very first l = "" -> so that for (String x : l) can enter new string
 public static List<String> combine(String digit, List<String> l) {
     List<String> result = new ArrayList<String>();
     for (int i=0; i<digit.length(); i++) {
