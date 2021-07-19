@@ -154,4 +154,86 @@ private static boolean isConcat(String sub, HashMap<String, Integer> counts, int
 	return seen.equals(counts);
 }
 
+//Method 2:
+public static ArrayList<Integer> findSubstring(String s, String[] words) {
+	ArrayList<Integer> res = new ArrayList<Integer>();
+	int n = s.length(), m = words.length, k;
+	if (n == 0 || m == 0 || (k = words[0].length()) == 0) {
+		//assign value to k in if() -> avoid the possibility that words[] == null
+		return res;
+	}
+
+	HashMap<String, Integer> wordDict = new HashMap<String, Integer>();
+	for (String word : words) {
+		if (wordDict.containsKey(word))
+			wordDict.put(word, wordDict.get(word) + 1);
+		else
+			wordDict.put(word, 1); //make sure that if word exists, its value > 0; distinguish from non-existing word
+	}
+
+	int start, x, wordsLen = m * k;
+	HashMap<String, Integer> currDict = new HashMap<String, Integer>();
+	String test, temp;
+	for (int i=0; i<k; i++) {
+		currDict.clear();
+		start = i;
+		if (start + wordsLen > n) {
+			return res;
+		}
+		
+		for (int j=i; j+k<=n; j+=k) {
+			test = s.substring(j, j+k);
+
+			if (wordDict.containsKey(test)) {
+				x = currDict.getOrDefault(test, 0);
+				if (x < wordDict.get(test)) {
+					//currDict does not contain test OR currDict contains less times of test than wordDict
+					currDict.put(test, x + 1);
+					start = checkFound(res, start, wordsLen, j, k, currDict, s);
+					continue;
+				}
+
+				//currDict.get(test) == wordDict.get(test), 
+				//slide start to the next word of the first same word as test
+				while (!(temp = s.substring(start, start + k)).equals(test)) {
+					decreaseCount(currDict, temp);
+					start += k;
+				}
+				start += k;
+				if (start + wordsLen > n) {
+					break;
+				}
+				continue;
+			}
+
+			//totally failed with index j+k, slide start and reset all
+			start = j + k;
+			if (start + wordsLen > n) {
+				break;
+			}
+			currDict.clear();
+		}
+	}
+	return res;
+}
+
+public static int checkFound(ArrayList<Integer> res, int start, int wordsLen, int j, int k, HashMap<String, Integer> currDict, String s) {
+	//if found a substring, return its starting index
+	if (start + wordsLen == j + k) {
+		res.add(start);
+		//slide start to the next word
+		decreaseCount(currDict, s.substring(start, start + k));
+		return start + k;
+	}
+	return start;
+}
+
+public static void decreaseCount(HashMap<String, Integer> currDict, String key) {
+	//remove key if currDict.get(key)==1, otherwise decrease it by 1
+	int x = currDict.get(key);
+	if (x == 1)
+		currDict.remove(key);
+	else
+		currDict.put(key, x - 1);
+}
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
