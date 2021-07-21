@@ -25,14 +25,14 @@
  * Why HashMap?
  * 1. Using key makes it very efficient: map.add() has O(1) time complexity, while map.search() and map.delete() has nearly O(1).
  * 2. Fail-fast iterator.
- * 3. Non-synchronised implementation that multiple threads accessing the hashmap do not synchroise its value among each other:
- *             -> it can be externally synchronised using Collections.synchronizedmap(),
- *             -> also internally synchronised by ConcurrentHashMap (more efficient in comparision to externally synchronising the HashMap).
+ * 3. Non-synchronized -- multiple threads accessing the hashmap do not synchroize its value among each other:
+ *             -> it can be externally synchronized using Collections.synchronizedmap(),
+ *             -> also internally synchronized by ConcurrentHashMap (more efficient in comparision to externally synchronizing the HashMap).
  *
  * Why HashTable?
  * 1. Efficiency same as HashMap.
  * 2. No null key or value (while HashMap could have).
- * 3. (Disadvantage, maybe) Synchronized that Hashtable is thread-safe and can be shared between multiple threads (Synchronization HashTable is much slower than HashMap).
+ * 3. (Disadvantage, maybe) Synchronized -- Hashtable is thread-safe and can be shared between multiple threads (Synchronization HashTable is much slower than HashMap).
  */
 
 //Initialization
