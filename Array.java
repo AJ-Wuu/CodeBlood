@@ -255,3 +255,12 @@ if (A[i] >= 1 && A[i] <= A.length && A[A[i]-1] != A[i]) {
 else {
     i++;
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#73 - Set Matrix Zeroes
+//If the problem can be solved in-place for an array, there is no need to involve a new data structure
+//Method: use the first row and the first column as the marker
+        //-> Check (and record as a flag) if the first row has 0.
+        //-> If (matrix[i][j] == 0), matrix[i][0] = matrix[0][j] = 0. Then if (matrix[i][0] == 0 || matrix[0][j] == 0), matrix[i][j] = 0.
+        //-> If the first row has 0, Arrays.fill(matrix[0], 0).
