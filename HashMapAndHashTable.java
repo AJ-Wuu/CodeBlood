@@ -298,7 +298,7 @@ public List<List<String>> groupAnagrams(String[] strs) {
         }
         map.get(keyStr).add(s);
     }
-    return new ArrayList<>(map.values());
+    return new ArrayList<>(map.values()); //Convert Map to ArrayList (object could be omitted)
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
