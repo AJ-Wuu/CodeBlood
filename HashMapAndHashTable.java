@@ -95,6 +95,7 @@ start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if 
 //Convert char to int
 int a = Integer.parseInt(String.valueOf(digits.charAt(i)));
 int b = digits.charAt(i) - '0';
+int c = Character.getNumericValue(i);
 
 //Method 1:
 result.add(""); //so that the add() can work
