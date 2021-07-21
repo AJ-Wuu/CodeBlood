@@ -16,6 +16,8 @@ str.valueOf(char[] data, int offset, int count); //representation of a specific 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//************UNFINISHED***********************
+
 //#76 - Minimum Window Substring https://leetcode.com/problems/minimum-window-substring/discuss/26808/Here-is-a-10-line-template-that-can-solve-most-'substring'-problems
 //Template for substring problems
 //Shortest Substring w/o repeating characters
