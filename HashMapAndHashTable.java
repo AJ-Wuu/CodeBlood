@@ -276,3 +276,29 @@ public static boolean isValidSudoku(char[][] board) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#49 - Group Anagrams
+//Key points: 1. Make the value of the HashMap in a special data structure; 2. Sort the characters in the string
+public List<List<String>> groupAnagrams(String[] strs) {
+    if (strs == null || strs.length == 0) {
+        return new ArrayList<>();
+    }
+    HashMap<String, List<String>> map = new HashMap<String, List<String>>();
+    for (String s : strs) {
+	//Sort the characters in s in alphabetical order
+        char[] charArray = new char[26];
+        for (char c : s.toCharArray()) {
+            charArray[c-'a'] = c;
+        }
+	
+	//Combine the charArray[] together as a new String, which has all the characters in s and is written in order
+        String keyStr = String.valueOf(charArray); //return the string representation of the char array argument.
+        if (!map.containsKey(keyStr)) {
+            map.put(keyStr, new ArrayList<>());
+        }
+        map.get(keyStr).add(s);
+    }
+    return new ArrayList<>(map.values());
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
