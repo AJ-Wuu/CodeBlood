@@ -254,3 +254,24 @@ public static void decreaseCount(HashMap<String, Integer> currDict, String key) 
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#36 - Valid Sudoku
+//Using some signal words to store a value in different strings in HashSet can save loops.
+public static boolean isValidSudoku(char[][] board) {
+    Set<String> seen = new HashSet<String>();
+        for (int i=0; i<9; ++i) {
+            for (int j=0; j<9; ++j) {
+                char number = board[i][j];
+                if (number != '.') {
+                    if (!seen.add(number + " in row " + i) ||
+                        !seen.add(number + " in column " + j) ||
+                        !seen.add(number + " in block " + i/3 + '-' + j/3)) {
+                            return false;
+		    }
+		}
+            }
+        }
+    return true;
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
