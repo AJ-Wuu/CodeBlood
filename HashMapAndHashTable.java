@@ -278,7 +278,9 @@ public static boolean isValidSudoku(char[][] board) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#49 - Group Anagrams
-//Key points: 1. Make the value of the HashMap in a special data structure; 2. Sort the characters in the string
+//Key points:
+    //1. Make the value of the HashMap in a special data structure
+    //2. Sort the characters in the string -> this is super helpful for this kind of sharing similarities question
 public List<List<String>> groupAnagrams(String[] strs) {
     if (strs == null || strs.length == 0) {
         return new ArrayList<>();
