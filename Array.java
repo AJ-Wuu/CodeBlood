@@ -248,6 +248,8 @@ list.sort(Comparator.reverseOrder());
     //3. judge if A[i] = i + 1, ignore the ones at the right place.
 //After swapping A[] to standard, we go over A[] to find the first index where A[i] != i + 1, and (i+1) is the final result.
 if (A[i] >= 1 && A[i] <= A.length && A[A[i]-1] != A[i]) {
+    //Why (A[A[i]-1] != A[i]), not (A[i]-1 != i)?
+    //We need to swap elements, so we need to make sure their indexes.
     swap(A, i, A[i]-1); //make it A[i] = i + 1
 }
 else {
