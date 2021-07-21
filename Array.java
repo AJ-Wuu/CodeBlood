@@ -242,13 +242,13 @@ list.sort(Comparator.reverseOrder());
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#41 - First Missing Positive
-//We don't care negative and duplicate numbers, so we try to make the original A[] as a positive standard array like [1,2,3,...] (Key Point: A[index] = index + 1):
+//We don't care negative and duplicate numbers, so we try to make the original A[] as a positive standard array like [1,2,3,...] (Key Point: A[i] = i + 1):
     //1. judge if A[i] is positive, ignore negative ones;
     //2. judge if A[i] is within its "capacity", ignore the outsiding ones;
     //3. judge if A[i] = i + 1, ignore the ones at the right place.
-//After swapping A[] to standard, we go over A[] to find the first index where A[index] != index + 1, and (index + 1) is the final result.
+//After swapping A[] to standard, we go over A[] to find the first index where A[i] != i + 1, and (i+1) is the final result.
 if (A[i] >= 1 && A[i] <= A.length && A[A[i]-1] != A[i]) {
-    swap(A, i, A[i]-1); //make it A[index] = index + 1
+    swap(A, i, A[i]-1); //make it A[i] = i + 1
 }
 else {
     i++;
