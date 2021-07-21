@@ -9,5 +9,10 @@ StringBuilder str1 = new StringBuilder("AAAABBBCCCC");
 StringBuilder str2 = new StringBuilder(10);
 StringBuilder str3 = new StringBuilder(str1.toString());
 
+//Return the string representation of the passed argument
+str.valueOf(int i); //all data types
+str.valueOf(char[] cc); //only for char arrays
+valueOf(char[] data, int offset, int count) //representation of a specific subarray of the char array argument
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
