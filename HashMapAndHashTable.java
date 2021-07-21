@@ -7,7 +7,7 @@
  *                                                                           false, add (K, V) next to (K_exisited, V_existed)
  *
  * Java 8 enhancements:
- * 1. map.get(Key): find Key.hashCode() -> get Key's bucket index -> go to the bucket and go through the LinkedList elements one by one until find Key
+ * 1. map.get(Key) process: find Key.hashCode() -> get Key's bucket index -> go to the bucket and go through the LinkedList elements one by one until find Key
  * 2. if there are too many elements in one bucket, they are not stored in linearity, but in a Treeify Threshold (go up/right when larger, down/left when smaller)
  *    -> use compareTo() to check the order -> it's a BST, a Self-Balancing Tree, also a Red-Black Tree
  *
@@ -22,17 +22,29 @@
  *              4. require extra memory for cloning of collection
  *              Eg. ConcurrentHashMap, CopyOnWriteArrayList
  *
+ * The following data structures all use HashCodes for keys/objects inside to improve performance.
  * Why HashMap?
- * 1. Using key makes it very efficient: map.add() has O(1) time complexity, while map.search() and map.delete() has nearly O(1).
- * 2. Fail-fast iterator.
- * 3. Non-synchronized -- multiple threads accessing the hashmap do not synchroize its value among each other:
+ * 1. Implement the Map interface.
+ * 2. Using key makes it very efficient: map.add() has O(1) time complexity, while map.search() and map.delete() has nearly O(1).
+ * 3. Fail-fast iterator.
+ * 4. Non-synchronized -- multiple threads accessing the hashmap do not synchroize its value among each other:
  *             -> it can be externally synchronized using Collections.synchronizedmap(),
  *             -> also internally synchronized by ConcurrentHashMap (more efficient in comparision to externally synchronizing the HashMap).
  *
  * Why HashTable?
- * 1. Efficiency same as HashMap.
- * 2. No null key or value (while HashMap could have).
- * 3. (Disadvantage, maybe) Synchronized -- Hashtable is thread-safe and can be shared between multiple threads (Synchronization HashTable is much slower than HashMap).
+ * 1. Implement the Map interface.
+ * 2. Efficiency same as HashMap.
+ * 3. No null key or value (while HashMap could have).
+ * 4. (Disadvantage, maybe) Synchronized -- Hashtable is thread-safe and can be shared between multiple threads (Synchronization HashTable is much slower than HashMap).
+ *
+ * Why HashSet?
+ * 1. Implement the Set interface, backed by a HashTable (actually a HashMap instance).
+ * 2. No Value needed, only Key.
+ * 3. No guarantees as to the iteration order of the set (in particular, it does not guarantee that the order will remain constant over time).
+ *
+ * Collection Types:
+ * Set -> a collection of distinct (non-equal) objects, with no other structure.
+ * Map -> a map from a set of objects (the distinct keys) to a collection of objects (the values).
  */
 
 //Initialization
