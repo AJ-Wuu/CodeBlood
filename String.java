@@ -24,7 +24,7 @@ str.valueOf(char[] data, int offset, int count); //representation of a specific 
 //            3. When a valid window is found, move start to find a smaller window.
 public String minWindow(String s, String t) {
     //Initialization
-    int[] map = new int[128];
+    int[] map = new int[128]; //ASCII
     for (char c : t.toCharArray()) {
         map[c]++; //initialize the map array
     }
