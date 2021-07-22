@@ -34,8 +34,10 @@ public String minWindow(String s, String t) {
     int counter = t.length(); //counter -> check whether the substring is valid
     
     while (end < s.length()) {
-        final char c1 = s.charAt(end);
-        if (map[c1] > 0) counter--;
+        char c1 = s.charAt(end);
+        if (map[c1] > 0) {
+            counter--;
+        }
         map[c1]--;
         end++;
         while (counter == 0) {
@@ -43,9 +45,11 @@ public String minWindow(String s, String t) {
                 minLen = end - start;
                 minStart = start;
             }
-            final char c2 = s.charAt(start);
+            char c2 = s.charAt(start);
             map[c2]++;
-            if (map[c2] > 0) counter++;
+            if (map[c2] > 0) {
+                counter++;
+            }
             start++;
         }
     }
