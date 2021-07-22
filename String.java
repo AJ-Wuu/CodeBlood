@@ -23,30 +23,35 @@ str.valueOf(char[] data, int offset, int count); //representation of a specific 
 //            2. Move end to find a valid window.
 //            3. When a valid window is found, move start to find a smaller window.
 public String minWindow(String s, String t) {
+    //Initialization
     int[] map = new int[128];
     for (char c : t.toCharArray()) {
-        map[c]++;
+        map[c]++; //initialize the map array
     }
-    int start = 0, end = 0, minStart = 0, minLen = Integer.MAX_VALUE, counter = t.length();
+    int start = 0, end = 0; //start & end -> point to the head and the tail for each substring
+    int minStart = 0; //minStart -> point to the head of the shortest substring
+    int minLen = Integer.MAX_VALUE; //minLen -> the shortest length of the valid substring
+    int counter = t.length(); //counter -> check whether the substring is valid
+    
     while (end < s.length()) {
-      final char c1 = s.charAt(end);
-      if (map[c1] > 0) counter--;
-      map[c1]--;
-      end++;
-      while (counter == 0) {
-        if (minLen > end - start) {
-          minLen = end - start;
-          minStart = start;
+        final char c1 = s.charAt(end);
+        if (map[c1] > 0) counter--;
+        map[c1]--;
+        end++;
+        while (counter == 0) {
+            if (minLen > end - start) {
+                minLen = end - start;
+                minStart = start;
+            }
+            final char c2 = s.charAt(start);
+            map[c2]++;
+            if (map[c2] > 0) counter++;
+            start++;
         }
-        final char c2 = s.charAt(start);
-        map[c2]++;
-        if (map[c2] > 0) counter++;
-        start++;
-      }
     }
-
     return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen);
-  }
+}
+
 int findSubstring(String string){
     HashMap<Object, Integer> map = new HashMap<Object, Integer>();
     int counter; // check whether the substring is valid
@@ -65,7 +70,29 @@ int findSubstring(String string){
     return d;
 }
 
-//2. Longest Substring with At Most Two Distinct Characters************************************************************
+//2. Longest Substring with At Most K Distinct Characters************************************************************
+public int lengthOfLongestSubstringKDistinct(String s, int k) {
+    int[] map = new int[256];
+    int start = 0, end = 0, maxLen = Integer.MIN_VALUE, counter = 0;
+
+    while (end < s.length()) {
+      final char c1 = s.charAt(end);
+      if (map[c1] == 0) counter++;
+      map[c1]++;
+      end++;
+
+      while (counter > k) {
+        final char c2 = s.charAt(start);
+        if (map[c2] == 1) counter--;
+        map[c2]--;
+        start++;
+      }
+
+      maxLen = Math.max(maxLen, end - start);
+    }
+
+    return maxLen;
+  }
 int lengthOfLongestSubstringTwoDistinct(string s) {
         vector<int> map(128, 0);
         int counter=0, begin=0, end=0, d=0; 
@@ -78,6 +105,28 @@ int lengthOfLongestSubstringTwoDistinct(string s) {
     }
 
 //3. Longest Substring Without Repeating Characters********************************************************************
+  public int lengthOfLongestSubstring2(String s) {
+    int[] map = new int[128];
+    int start = 0, end = 0, maxLen = 0, counter = 0;
+
+    while (end < s.length()) {
+      final char c1 = s.charAt(end);
+      if (map[c1] > 0) counter++;
+      map[c1]++;
+      end++;
+
+      while (counter > 0) {
+        final char c2 = s.charAt(start);
+        if (map[c2] > 1) counter--;
+        map[c2]--;
+        start++;
+      }
+
+      maxLen = Math.max(maxLen, end - start);
+    }
+
+    return maxLen;
+  }
 int lengthOfLongestSubstring(string s) {
         vector<int> map(128,0);
         int counter=0, begin=0, end=0, d=0; 
