@@ -1,2 +1,2 @@
 # LeetCode
-Exercises from leetcode.com and Notes while doing the exercises
+Exercises from leetcode.com and Self-Notes for the exercises
