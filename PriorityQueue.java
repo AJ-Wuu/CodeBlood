@@ -29,9 +29,9 @@
 
 //Attempt 4: Merge with Divide and Conquer (Time: O(n * log(k)), Space: O(1))
 //List0 → List0 →→ List0 →→→→→→ result
-//List1 ↗	        ↗	            ↗
-//List2 → List2 ↗	            ↗
-//List3 ↗	          	     ↗
+//List1 ↗         ↗             ↗
+//List2 → List2 ↗             ↗
+//List3 ↗                  ↗
 //List4 → List4 →→ List4 ↗
 //List5 ↗
 //1. Pair up k lists and merge each pair.
