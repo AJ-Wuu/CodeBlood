@@ -1,5 +1,8 @@
 //#21 - Merge Two Sorted Lists
 //Approach A: Iterative
+//A new ListNode for convenient storage?
+// -> Sometimes, in industrial projects, it's not trivial to create a ListNode which might require many resource allocations or inaccessible dependencies.
+// -> So ideally, we'd pick up either the head of l1 or l2 as the head rather than creating a new one, which makes the initialization step tedious (TBH).
 public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     ListNode head = new ListNode(0);
     ListNode handler = head;
@@ -26,6 +29,8 @@ public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 }
 
 //Approach B: Recursive
+//Is this a practical approach?
+// -> In real life, the length of a linked list could be much longer than we expected, in which case the recursive approach is likely to introduce a stack overflow.
 public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     if (l1 == null) {
         return l2;
