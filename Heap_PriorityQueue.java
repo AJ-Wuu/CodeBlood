@@ -13,6 +13,19 @@
  * 5. If two elements have the same priority, they are served according to their order in the queue.
  */
 
+//Comparator
+//Ascending Order -- Default
+//Descending Order --
+//Approach A:
+PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+//Approach B:
+PriorityQueue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer>() {
+    @Override
+    public int compare(Integer o1, Integer o2){
+        return o1 > o2 ? -1 : 1; //OR return o2.compare(o1);
+    }
+});
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#23 - Merge k Sorted Lists
