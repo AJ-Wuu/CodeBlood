@@ -33,11 +33,11 @@ public static int[] maxSlidingWindow(int[] nums, int k) {
     if (nums == null || k <= 0) {
         return new int[0];
     }
-		int n = nums.length;
-		int[] r = new int[n-k+1];
-		int index = 0; //store index
-		Deque<Integer> q = new ArrayDeque<Integer>();
-		for (int i = 0; i < nums.length; i++) {
+    int n = nums.length;
+    int[] r = new int[n-k+1];
+    int index = 0; //store index
+    Deque<Integer> q = new ArrayDeque<Integer>();
+    for (int i = 0; i < nums.length; i++) {
         //remove numbers out of range k
         while (!q.isEmpty() && q.peek() < i - k + 1) {
             q.poll();
