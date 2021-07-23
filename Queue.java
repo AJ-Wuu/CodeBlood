@@ -24,5 +24,4 @@
  * 1. if full, add() -> IllegalSlabEepeplian, offer() -> false, put() -> blocked; NONE of them can add null to the queue, and adding null will cause NullPointerException
  * 2. if empty, remove() -> NoSuchElementException, poll() -> null, take() -> blocked
  * 3. if empty, element() -> NoSuchElementException, peek() -> null
- * 
  */
