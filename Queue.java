@@ -6,6 +6,12 @@
  *          Queue<Integer> pbq = new PriorityBlockingQueue<Integer>();
  * PriorityBlockingQueue is an unbounded blocking queue that uses the same ordering rules as class PriorityQueue and supplies blocking retrieval operations.
  * Since it is unbounded, adding elements may sometimes fail due to resource exhaustion resulting in OutOfMemoryError.
+ * 
+ * Deque is the acronym for double ended queue.
+ * The Deque is related to the double-ended queue that supports addition or removal of elements from either end of the data structure.
+ * It can either be used as a queue(first-in-first-out/FIFO) or as a stack(last-in-first-out/LIFO).
+ * Functions: addFirst(), addLast(), removeFirst(), removeLast(), poll(), pop(), pollFirst(), pollLast()
+ * Iterators: 1. start to end -> Iterator itr = dq.iterator(); 2. end to start -> Iterator itr = dq.descendingIterator();
  *
  * Different Kinds:
  * 1. Linear Queue -> less efficient; insertion and deletion operations are fixed to be done at the rear and front end respectively
