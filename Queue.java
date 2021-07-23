@@ -8,9 +8,9 @@
  * Since it is unbounded, adding elements may sometimes fail due to resource exhaustion resulting in OutOfMemoryError.
  *
  * Different Kinds:
- * 1. Linear Queue ->
- * 2. Circular Queue ->
- * 3. Priority Queue ->
+ * 1. Linear Queue -> less efficient; insertion and deletion operations are fixed to be done at the rear and front end respectively
+ * 2. Circular Queue -> a ring buffer; items can be inserted or deleted from a queue in O(1) time; less memory; more efficient; insertion and deletion can be done anywhere
+ * 3. Priority Queue -> simple queue; allows duplicate elements; more memory; less efficient
  * 4. Deque ->
  *
  * Inserted Functions:
