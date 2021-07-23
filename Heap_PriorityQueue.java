@@ -54,6 +54,8 @@ PriorityQueue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#218 - The Skyline Problem
+//Key: 1. The use of queue, queue.compute() and the conversion between queue.compute() and queue.getOrDefault()
+//     2. TreeMap makes it faster
 public static List<List<Integer>> getSkyline(int[][] buildings) {
     int[][] buildingPoints = new int[buildings.length * 2][2];
     //Split the original input with size 1x3 into two vectors of size 1x2: e.g. [2,9,10] -> [2,-10] and [9,10], -10 shows that 2 is the start
