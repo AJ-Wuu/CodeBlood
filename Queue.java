@@ -34,23 +34,24 @@ public static int[] maxSlidingWindow(int[] nums, int k) {
         return new int[0];
     }
     int n = nums.length;
-    int[] r = new int[n-k+1];
+    int[] result = new int[n-k+1];
     int index = 0; //store index
     Deque<Integer> q = new ArrayDeque<Integer>();
     for (int i = 0; i < nums.length; i++) {
-        //remove numbers out of range k
+        //remove numbers out of range k (only keep those in [i-(k-1), i])
         while (!q.isEmpty() && q.peek() < i - k + 1) {
             q.poll();
         }
-        //remove smaller numbers in k range as they are useless
+        //discard the elements in k range smaller than a[i] from the tail, as they are useless for the future
+        //if a[x] < a[i] and x < i, then a[x] has no chance to be the "max" in [i-(k-1),i] or any other subsequent window
         while (!q.isEmpty() && nums[q.peekLast()] < nums[i]) {
             q.pollLast();
         }
-        //q contains index... r contains content
+        //q contains index and result contains content
         q.offer(i);
         if (i >= k - 1) {
-            r[index++] = nums[q.peek()];
+            result[index++] = nums[q.peek()];
         }
     }
-    return r;
+    return result;
 }
