@@ -275,8 +275,9 @@ public static int nthUglyNumber(int n) {
     int index2 = 0, index3 = 0, index5 = 0;
     int factor2 = 2, factor3 = 3, factor5 = 5;
     for (int i=1; i<n; i++) {
-        int min = Math.min(Math.min(factor2,factor3),factor5);
+        int min = Math.min(Math.min(factor2,factor3),factor5); //Min(factor2, factor3, factor5), shares the same idea of merging three lists
         ugly[i] = min;
+        //Use three parallel if() to make sure the same elements from different factors are removed together (eg. 12 for 2 and 3)
         if (factor2 == min) {
             factor2 = 2 * ugly[++index2]; //find the smallest unused ugly number for this factor
         }
