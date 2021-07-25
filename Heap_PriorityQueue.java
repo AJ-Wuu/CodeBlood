@@ -26,15 +26,17 @@
 //Comparator
 //Ascending Order -- Default
 //Descending Order --
-//Approach A:
-PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
-//Approach B:
+//Approach A (Use Collections / Comparator):
+PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder()); //OR (Comparator.reverseOrder())
+//Approach B (Override Comparator):
 PriorityQueue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer>() {
     @Override
     public int compare(Integer o1, Integer o2){
-        return o2 < o1 ? -1 : 1; //OR return o2.compare(o1);
+        return o2 < o1 ? -1 : 1; //OR return o2.compare(o1); OR return (o2 - o1);
     }
 });
+//Approach C (Lambda Expression):
+PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
