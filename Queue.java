@@ -11,7 +11,7 @@
  * The Deque is related to the double-ended queue that supports addition or removal of elements from either end of the data structure.
  * It can either be used as a queue(first-in-first-out/FIFO) or as a stack(last-in-first-out/LIFO).
  *          Deque<Obj> deque = new ArrayDeque<Obj> ();
- * Functions: addFirst(), addLast(), removeFirst(), removeLast(), poll(), pop(), pollFirst(), pollLast()
+ * Functions: addFirst(), addLast(), removeFirst(), removeLast(), poll(), pop(), pollFirst(), pollLast(), etc.
  * Iterators: 1. start to end -> Iterator itr = dq.iterator(); 2. end to start -> Iterator itr = dq.descendingIterator();
  *
  * Different Kinds:
