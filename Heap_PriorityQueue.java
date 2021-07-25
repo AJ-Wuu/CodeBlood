@@ -11,6 +11,16 @@
  * 3. Every item has a priority associated with it.
  * 4. An element with high priority is dequeued before an element with low priority.
  * 5. If two elements have the same priority, they are served according to their order in the queue.
+ *
+ * Special Note about Priority Queue:
+ * PriorityQueue does NOT return elements in particular order when we iterate it because it's implemented as a priority heap rather than sorted list.
+ * From javadoc: "The Iterator provided in method iterator() is not guaranteed to traverse the elements of the priority queue in any particular order.
+ *                If you need ordered traversal, consider using Arrays.sort(pq.toArray())."
+ * The only guarantee provided by PriorityQueue is that poll(), peek(), etc return the least element.
+ * If you need ordered iteration of elements, use some other collection such as TreeSet.
+ * Eg. PriorityQueue<Integer> queue = new PriorityQueue<Integer>; queue.add(-1); queue.add(-2); queue.add(-3);
+ *     Object[] array = queue.toArray(); -> array = [-3, -1, -2];
+ *     System.out.println("Elements from smallest to largest: " + queue.poll() + " " + queue.poll() + " " + queue.poll()); -> Elements from smallest to largest: -3 -2 -1
  */
 
 //Comparator
