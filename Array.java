@@ -268,6 +268,7 @@ else {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#264 - Ugly Number II
+//How to prevent adding numbers that have other prime factors? -> Remember that an ugly number must be multiplied by either 2, 3, or 5 from a smaller ugly number.
 public static int nthUglyNumber(int n) {
     int[] ugly = new int[n];
     ugly[0] = 1;
@@ -277,13 +278,13 @@ public static int nthUglyNumber(int n) {
         int min = Math.min(Math.min(factor2,factor3),factor5);
         ugly[i] = min;
         if (factor2 == min) {
-            factor2 = 2*ugly[++index2];
+            factor2 = 2 * ugly[++index2]; //find the smallest unused ugly number for this factor
         }
         if (factor3 == min) {
-            factor3 = 3*ugly[++index3];
+            factor3 = 3 * ugly[++index3];
         }
         if (factor5 == min) {
-            factor5 = 5*ugly[++index5];
+            factor5 = 5 * ugly[++index5];
         }
     }
     return ugly[n-1];
