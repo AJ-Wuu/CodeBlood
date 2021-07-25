@@ -129,3 +129,23 @@ public static List<List<Integer>> getSkyline(int[][] buildings) {
     }
     return res;
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#295 - Find Median from Data Stream
+//Use two PriorityQueues to store the values
+PriorityQueue<Integer> lowerHalf;
+PriorityQueue<Integer> upperHalf;
+
+if (lowerHalf.isEmpty() || num <= lowerHalf.peek()) {
+    lowerHalf.add(num);
+}
+else {
+    upperHalf.add(num);
+}
+if (upperHalf.size() > lowerHalf.size()) {
+    lowerHalf.add(upperHalf.poll());
+}
+else if (lowerHalf.size() > upperHalf.size() + 1) {
+    upperHalf.add(lowerHalf.poll());
+}
