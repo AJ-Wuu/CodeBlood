@@ -24,10 +24,14 @@
  */
 
 //Comparator
-//Ascending Order -- Default
-//Descending Order --
+//Ascending Order -> Default
+//Descending Order ->
 //Approach A (Use Collections / Comparator):
-PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder()); //OR (Comparator.reverseOrder())
+PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+    //Comparator.reverseOrder() also works, as:
+        public static <T extends Comparable<? super T>> Comparator<T> reverseOrder() {
+            return Collections.reverseOrder();
+        }
 //Approach B (Override Comparator):
 PriorityQueue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer>() {
     @Override
