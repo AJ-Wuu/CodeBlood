@@ -149,3 +149,21 @@ if (upperHalf.size() > lowerHalf.size()) {
 else if (lowerHalf.size() > upperHalf.size() + 1) {
     upperHalf.add(lowerHalf.poll());
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#
+//initialize heap 'the less frequent element first'
+Queue<Integer> heap = new PriorityQueue<>((n1, n2) -> count.get(n1) - count.get(n2));
+//keep k top frequent elements in the heap for O(N * log(k)) < O(N * log(N)) time
+for (int n : count.keySet()) {
+    heap.add(n);
+    if (heap.size() > k) {
+        heap.poll();   
+    }
+}
+//build an output array with O(k * log(k)) time
+int[] top = new int[k];
+for(int i=k-1; i>=0; --i) {
+    top[i] = heap.poll();
+}
