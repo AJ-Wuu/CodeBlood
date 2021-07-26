@@ -152,7 +152,8 @@ else if (lowerHalf.size() > upperHalf.size() + 1) {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#
+//#347 - Top K Frequent Elements
+//Approach 1: Using heap
 //initialize heap 'the less frequent element first'
 Queue<Integer> heap = new PriorityQueue<>((n1, n2) -> count.get(n1) - count.get(n2));
 //keep k top frequent elements in the heap for O(N * log(k)) < O(N * log(N)) time
@@ -167,3 +168,5 @@ int[] top = new int[k];
 for(int i=k-1; i>=0; --i) {
     top[i] = heap.poll();
 }
+
+//Approach 2: Quickselect (Hoare's selection algorithm) -> See CLRS/
