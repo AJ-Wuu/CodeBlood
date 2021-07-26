@@ -290,3 +290,17 @@ public static int nthUglyNumber(int n) {
     }
     return ugly[n-1];
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#
+//Approach 1 (same as #264): use index[] -> this approach can be better if we use value[] to store all (primes[j] * ugly[index[j]]) to save time of duplicate mutiplication
+    for (int j=0; j<primes.length; j++) {
+        ugly[i] = Math.min(ugly[i], primes[j] * ugly[index[j]]);
+    }
+    for (int k=0; k<primes.length; k++) {
+        if (ugly[i] == primes[k] * ugly[index[k]]) {
+            index[k]++;
+        }
+    }
+//Approach 2: use PriorityQueue is possible; however, 
