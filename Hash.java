@@ -318,7 +318,7 @@ private static HashMap sortByValues(HashMap<Integer, Integer> map) {
 	
     //Here, the sorted list is copied in HashMap using LinkedHashMap to safeguard the insertion order
     HashMap sortedHashMap = new LinkedHashMap();
-    Iterator iter = list.iterator();
+    Iterator iter = list.iterator(); //from java.util.Iterator, not javax.swing.text.html.HTMLDocument.Iterator
     for ( ;iter.hasNext(); ) {
         Map.Entry entry = (Map.Entry)iter.next();
         sortedHashMap.put(entry.getKey(), entry.getValue());
