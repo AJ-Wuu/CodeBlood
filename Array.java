@@ -303,5 +303,5 @@ public static int nthUglyNumber(int n) {
             index[k]++;
         }
     }
-//Approach 2: use PriorityQueue is possible. Though we hope it would be O(k * n * log(k)) (k == primes.length), the ratio may not scale in terms of k,
+//Approach 2: using PriorityQueue is possible. Though we hope it would be O(k * n * log(k)) (k == primes.length), the ratio may not scale in terms of k,
 //            but there's a m in front of the time complexity anyway, so it becomes O(m * n * log(k)). Therefore, the efficiency is worse, not better.
