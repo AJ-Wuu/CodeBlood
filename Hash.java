@@ -304,3 +304,24 @@ public List<List<String>> groupAnagrams(String[] strs) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#347 - Top K Frequent Elements
+//Sort HashMap by Values
+@SuppressWarnings({ "rawtypes", "unchecked" })
+private static HashMap sortByValues(HashMap<Integer, Integer> map) { 
+    LinkedList list = new LinkedList(map.entrySet());
+    Collections.sort(list, new Comparator() {
+        public int compare(Object obj1, Object obj2) { //from the largest to the smallest
+            return ((Comparable) ((Map.Entry) (obj2)).getValue()).compareTo(((Map.Entry) (obj1)).getValue());
+        }
+    });
+	
+    //Here, the sorted list is copied in HashMap using LinkedHashMap to safeguard the insertion order
+    HashMap sortedHashMap = new LinkedHashMap();
+    Iterator iter = list.iterator();
+    for ( ;iter.hasNext(); ) {
+        Map.Entry entry = (Map.Entry)iter.next();
+        sortedHashMap.put(entry.getKey(), entry.getValue());
+    } 
+    return sortedHashMap;
+}
