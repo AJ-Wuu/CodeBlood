@@ -294,7 +294,7 @@ public static int nthUglyNumber(int n) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#
-//Approach 1 (same as #264): use index[] -> this approach can be better if we use value[] to store all (primes[j] * ugly[index[j]]) to save time of duplicate mutiplication
+//Approach 1 (same idea as #264): Use index[] -> this approach can be better if we use value[] to store all (primes[j] * ugly[index[j]]) to save time of duplicate mutiplication
     for (int j=0; j<primes.length; j++) {
         ugly[i] = Math.min(ugly[i], primes[j] * ugly[index[j]]);
     }
@@ -303,5 +303,5 @@ public static int nthUglyNumber(int n) {
             index[k]++;
         }
     }
-//Approach 2: using PriorityQueue is possible. Though we hope it would be O(k * n * log(k)) (k == primes.length), the ratio may not scale in terms of k,
+//Approach 2: Use PriorityQueue (possible but bad efficiency). Though we hope it would be O(k * n * log(k)) (k == primes.length), the ratio may not scale in terms of k,
 //            but there's a m in front of the time complexity anyway, so it becomes O(m * n * log(k)). Therefore, the efficiency is worse, not better.
