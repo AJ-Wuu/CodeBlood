@@ -169,4 +169,4 @@ for(int i=k-1; i>=0; --i) {
     top[i] = heap.poll();
 }
 
-//Approach 2: Quickselect (Hoare's selection algorithm) -> See CLRS/
+//Approach 2: Quickselect (Hoare's selection algorithm) -> See CLRS/Chapter07-Quick Sort/QuickSelect.java
