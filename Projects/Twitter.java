@@ -74,7 +74,6 @@ public class Twitter {
 		}
 
 		//Add all relevant tweets into queue
-		//Object[] objArray = map.get(userID).Following.toArray();
 		Integer[] userNums = map.get(userID).Following.toArray(new Integer[map.get(userID).Following.size()]);
 		PriorityQueue<Tweet> queue = new PriorityQueue<Tweet>((a, b) -> (b.number - a.number));
 		for (int userNum : userNums) {
