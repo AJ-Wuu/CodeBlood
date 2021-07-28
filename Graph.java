@@ -12,22 +12,23 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#133 - Clone Graph
+//Concerning duplicate labels situations (two nodes with the same label)
 public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-    return clone(node, new HashMap<>());
+    return clone(node, new HashMap<UndirectedGraphNode, UndirectedGraphNode>());
 }
     
-UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGraphNode, UndirectedGraphNode> visitedBag){
-    if (src == null){
+public UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGraphNode, UndirectedGraphNode> visitedBag) {
+    if (src == null) {
         return null;
     }
-    if (visitedBag.containsKey(src)){
+    if (visitedBag.containsKey(src)) {
         return visitedBag.get(src);
     }
         
     UndirectedGraphNode n = new UndirectedGraphNode(src.label);
     visitedBag.put(src, n);
-    for (UndirectedGraphNode child : src.neighbors){
-        if (visitedBag.containsKey(child)){
+    for (UndirectedGraphNode child : src.neighbors) {
+        if (visitedBag.containsKey(child)) {
             n.neighbors.add(visitedBag.get(child));
         }
         else {
