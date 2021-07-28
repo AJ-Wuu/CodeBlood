@@ -8,3 +8,30 @@
  *            Deep copies are more expensive, due to needing to create additional objects, 
  *                and can be substantially more complicated, due to references possibly forming a complicated graph.
  */
+
+//#133 - Clone Graph
+public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+    return clone(node, new HashMap<>());
+}
+    
+UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGraphNode, UndirectedGraphNode> visitedBag){
+    if (src == null){
+        return null;
+    }
+    if (visitedBag.containsKey(src)){
+        return visitedBag.get(src);
+    }
+        
+    UndirectedGraphNode n = new UndirectedGraphNode(src.label);
+    visitedBag.put(src, n);
+    for (UndirectedGraphNode child : src.neighbors){
+        if (visitedBag.containsKey(child)){
+            n.neighbors.add(visitedBag.get(child));
+        }
+        else {
+            UndirectedGraphNode childCopy = clone(child, visitedBag);    
+            n.neighbors.add(childCopy);    
+        }
+    }
+    return n;
+}
