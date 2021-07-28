@@ -39,3 +39,51 @@ public UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGrap
     }
     return n;
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//207 - Course Schedule
+//Approach 1: BFS (better efficiency)
+public static boolean canFinish(int numCourses, int[][] prerequisites) {
+    ArrayList[] graph = new ArrayList[numCourses];
+    int[] degree = new int[numCourses];
+    Queue<Integer> queue = new LinkedList<Integer>();
+    int count = 0;
+        
+    for (int i=0; i<numCourses; i++) {
+        graph[i] = new ArrayList<Integer>();
+    }
+            
+    for (int i=0; i<prerequisites.length; i++) {
+        degree[prerequisites[i][1]]++;
+        graph[prerequisites[i][0]].add(prerequisites[i][1]);
+    }
+    for (int i=0; i<degree.length; i++) {
+        if (degree[i] == 0) {
+            queue.add(i);
+            count++;
+        }
+    }
+        
+    while (queue.size() != 0) {
+        int course = (int)queue.poll();
+        for (int i=0; i<graph[course].size(); i++) {
+            int pointer = (int)graph[course].get(i);
+            degree[pointer]--;
+            if (degree[pointer] == 0) {
+                queue.add(pointer);
+                count++;
+            }
+        }
+    }
+    if (count == numCourses) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+//Approach 2: DFS (Time Limit Exceeded)
+
+//Approach 3: Topological Sort (worse efficiency)
