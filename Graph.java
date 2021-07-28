@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#133 - Clone Graph
+//DFS, using recursion and visited map
 //Concerning duplicate labels situations (two nodes with the same label)
 public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
     return clone(node, new HashMap<UndirectedGraphNode, UndirectedGraphNode>());
