@@ -46,9 +46,9 @@ public UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGrap
 //Approach 1: BFS (better efficiency)
 public static boolean canFinish(int numCourses, int[][] prerequisites) {
     ArrayList[] graph = new ArrayList[numCourses];
-    int[] degree = new int[numCourses];
-    Queue<Integer> queue = new LinkedList<Integer>();
-    int count = 0;
+    int[] degree = new int[numCourses]; //stores the courses that are prerequisites
+    Queue<Integer> queue = new LinkedList<Integer>(); //stores the courses that are not prerequisites to any other courses
+    int count = 0; //number of courses being visited (by degree and queue)
     
     //Initialize
     for (int i=0; i<numCourses; i++) {
