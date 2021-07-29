@@ -93,3 +93,51 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#210 - Course Schedule II
+static boolean hasCircle(ArrayList<Integer>[] list, boolean[] visited, boolean[] restack, Queue<Integer> queue, int i){
+    if (restack[i]) {
+        return true;
+    }
+    if (visited[i]) {
+        return false;
+    }
+        
+    visited[i] = true;
+    restack[i] = true;
+    ArrayList<Integer> adj = list[i];
+    for (int c : adj) {
+        if (hasCircle(list, visited, restack, queue, c)) {
+            return true;
+        }
+    }
+    restack[i] = false;
+    queue.add(i);
+    return false;
+}
+
+public static int[] findOrder(int numCourses, int[][] prerequisites) {
+    ArrayList<Integer>[] list = new ArrayList[numCourses];
+        
+    for (int i=0; i<prerequisites.length; i++) {
+        int u = prerequisites[i][1], v = prerequisites[i][0];
+        list[u].add(v);
+    }
+        
+    boolean[] visited = new boolean[numCourses];
+    boolean[] restack = new boolean[numCourses];
+    Queue<Integer> queue = new LinkedList<>();
+        
+    for (int i=0; i<numCourses; i++) {
+        if (hasCircle(list, visited, restack, queue, i)) {
+            return (new int[0]);
+        }
+    }
+        
+    int[] ans = new int[numCourses];
+    int k = numCourses - 1;
+    while (queue.size() != 0) {
+        ans[k--] = queue.poll();
+    }
+    return ans;
+}
