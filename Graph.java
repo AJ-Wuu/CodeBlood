@@ -68,7 +68,9 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
         }
     }
     
-    //
+    //Check if there are circles
+    //If circle exists, then the two courses will never be added to queue, as:
+    //      1. courses in the queue could never point to them, OR 2. their degrees will never reach 0
     while (queue.size() != 0) {
         int course = (int)queue.poll();
         for (int i=0; i<graph[course].size(); i++) {
