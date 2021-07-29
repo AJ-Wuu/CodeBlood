@@ -44,7 +44,7 @@ public UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGrap
 
 //207 - Course Schedule
 //prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai
-//Approach 1: Topological Sort (worse efficiency) -> See CLRS/Chapter22-Elementary Graph Algorithms/Directed Graph/TopologicalSort.java for details
+//Approach 1: Topological Sort (worse efficiency) -> See #210 or CLRS/Chapter22-Elementary Graph Algorithms/Directed Graph/TopologicalSort.java for details
 //Approach 2: DFS (Time Limit Exceeded)
 //Approach 3: BFS (better efficiency)
 public static boolean canFinish(int numCourses, int[][] prerequisites) {
@@ -145,3 +145,5 @@ public static int[] findOrder(int numCourses, int[][] prerequisites) {
     }
     return ans;
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
