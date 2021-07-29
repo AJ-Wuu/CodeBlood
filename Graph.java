@@ -43,7 +43,7 @@ public UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGrap
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //207 - Course Schedule
-//For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+//prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai
 //Approach 1: Topological Sort (worse efficiency) -> See CLRS/Chapter22-Elementary Graph Algorithms/Directed Graph/TopologicalSort.java for details
 //Approach 2: DFS (Time Limit Exceeded)
 //Approach 3: BFS (better efficiency)
