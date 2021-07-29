@@ -44,7 +44,9 @@ public UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGrap
 
 //207 - Course Schedule
 //For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
-//Approach 1: BFS (better efficiency)
+//Approach 1: Topological Sort (worse efficiency) -> See CLRS/Chapter22-Elementary Graph Algorithms/Directed Graph/TopologicalSort.java for details
+//Approach 2: DFS (Time Limit Exceeded)
+//Approach 3: BFS (better efficiency)
 public static boolean canFinish(int numCourses, int[][] prerequisites) {
     ArrayList[] graph = new ArrayList[numCourses]; //prerequisite-requisite relationship
     int[] degree = new int[numCourses]; //courses that are prerequisites (Eg. degree[1] = 2 means that course 1 is the prerequisite of two other courses)
@@ -90,6 +92,4 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
     }
 }
 
-//Approach 2: DFS (Time Limit Exceeded)
-
-//Approach 3: Topological Sort (worse efficiency)
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
