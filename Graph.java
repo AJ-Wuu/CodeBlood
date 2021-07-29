@@ -49,7 +49,7 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
     ArrayList[] graph = new ArrayList[numCourses]; //prerequisite-requisite relationship
     int[] degree = new int[numCourses]; //courses that are prerequisites (Eg. degree[1] = 2 means that course 1 is the prerequisite of two other courses)
     Queue<Integer> queue = new LinkedList<Integer>(); //courses that are not prerequisites to any other courses
-    int count = 0; //number of courses being visited (by degree and queue)
+    int count = 0; //how many courses have ever been added to queue
     
     //Initialize
     for (int i=0; i<numCourses; i++) {
