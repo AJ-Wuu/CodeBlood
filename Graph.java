@@ -95,6 +95,7 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#210 - Course Schedule II
+//Topological Sort Approach
 static boolean hasCircle(ArrayList<Integer>[] list, boolean[] visited, boolean[] restack, Queue<Integer> queue, int i){
     if (restack[i]) {
         return true;
@@ -118,6 +119,9 @@ static boolean hasCircle(ArrayList<Integer>[] list, boolean[] visited, boolean[]
 
 public static int[] findOrder(int numCourses, int[][] prerequisites) {
     ArrayList<Integer>[] list = new ArrayList[numCourses];
+    for (int i=0; i<numCourses; i++) {
+        list[i] = new ArrayList<Integer>();
+    }
         
     for (int i=0; i<prerequisites.length; i++) {
         int u = prerequisites[i][1], v = prerequisites[i][0];
