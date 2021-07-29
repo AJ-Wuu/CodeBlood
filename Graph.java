@@ -49,11 +49,13 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
     int[] degree = new int[numCourses];
     Queue<Integer> queue = new LinkedList<Integer>();
     int count = 0;
-        
+    
+    //Initialize
     for (int i=0; i<numCourses; i++) {
         graph[i] = new ArrayList<Integer>();
     }
-            
+    
+    //Assign Values
     for (int i=0; i<prerequisites.length; i++) {
         degree[prerequisites[i][1]]++;
         graph[prerequisites[i][0]].add(prerequisites[i][1]);
@@ -64,7 +66,8 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
             count++;
         }
     }
-        
+    
+    //
     while (queue.size() != 0) {
         int course = (int)queue.poll();
         for (int i=0; i<graph[course].size(); i++) {
