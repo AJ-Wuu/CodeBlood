@@ -43,6 +43,7 @@ public UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGrap
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //207 - Course Schedule
+//For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
 //Approach 1: BFS (better efficiency)
 public static boolean canFinish(int numCourses, int[][] prerequisites) {
     ArrayList[] graph = new ArrayList[numCourses];
