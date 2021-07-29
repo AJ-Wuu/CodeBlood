@@ -97,7 +97,7 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
 //#210 - Course Schedule II
 //Topological Sort Approach
 static boolean hasCircle(ArrayList<Integer>[] list, boolean[] visited, boolean[] restack, Queue<Integer> queue, int i){
-    if (restack[i]) {
+    if (restack[i]) { //deal with self-circle, like [5, 5]
         return true;
     }
     if (visited[i]) {
