@@ -70,9 +70,8 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
         }
     }
     
-    //Check if there are circles
-    //If circle exists, then the two courses will never be added to queue, as:
-    //      1. courses in the queue could never point to them, OR 2. their degrees will never reach 0
+    //Check if there are cycles
+    //If cycle exists, then the two courses will never be added to queue, as: 1. courses in the queue could never point to them; OR 2. their degrees will never reach 0
     while (queue.size() != 0) {
         int course = (int)queue.poll();
         for (int i=0; i<graph[course].size(); i++) {
@@ -96,8 +95,8 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
 
 //#210 - Course Schedule II
 //Topological Sort Approach
-static boolean hasCircle(ArrayList<Integer>[] list, boolean[] visited, boolean[] restack, Queue<Integer> queue, int i){
-    if (restack[i]) { //deal with circle, like [5,5] or [[1,2], [2,1]]
+static boolean hasCycle(ArrayList<Integer>[] list, boolean[] visited, boolean[] restack, Queue<Integer> queue, int i){
+    if (restack[i]) { //deal with cycle, like [5,5] or [[1,2], [2,1]]
         return true;
     }
     if (visited[i]) { //stop recursion
@@ -108,7 +107,7 @@ static boolean hasCircle(ArrayList<Integer>[] list, boolean[] visited, boolean[]
     restack[i] = true;
     ArrayList<Integer> adj = list[i];
     for (int c : adj) {
-        if (hasCircle(list, visited, restack, queue, c)) {
+        if (hasCycle(list, visited, restack, queue, c)) {
             return true;
         }
     }
@@ -133,7 +132,7 @@ public static int[] findOrder(int numCourses, int[][] prerequisites) {
     Queue<Integer> queue = new LinkedList<>();
         
     for (int i=0; i<numCourses; i++) {
-        if (hasCircle(list, visited, restack, queue, i)) {
+        if (hasCycle(list, visited, restack, queue, i)) {
             return (new int[0]);
         }
     }
