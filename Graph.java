@@ -207,27 +207,23 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#329 - Longest Increasing Path in a Matrix
-/** 
- * DFS + Memoization 
- * 
- * Traverse all points in matrix, use every point as starting point to do dfs traversal. DFS function returns max increasing 
- * path after comparing four max return distance from four directions. 
- * 
- * @param cache: cache[i][j] represents longest increasing path starts from point matrix[i][j]
- * @param prev: previous value used by DFS traversal, to compare whether current value is greater than previous value
- * */
+//Key: 1. Use matrix[x][y] <= matrix[i][j] so we don't need a visited[m][n] array
+//     2. Cache the distance because it's highly possible to revisit a cell
 final int[][] dirs = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 public int longestIncreasingPath(int[][] matrix) {
+    //Base Case
     if (matrix.length == 0) {
         return 0;
     }
 
+    //Traverse all points in matrix, use every point as starting point to do dfs traversal
+    //DFS function returns max increasing path after comparing four max return distance from four directions
     int result = 0;
     int n = matrix.length, m = matrix[0].length;
-    int[][] cache = new int[n][m];
+    int[][] cache = new int[n][m]; //represent the longest increasing path starts from point matrix[i][j]
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            int curLen = dfs(matrix, cache, i, j, matrix[i][j]);
+            int curLen = dfs(matrix, cache, i, j, matrix[i][j]); //do DFS for every cell
             result = Math.max(result, curLen);
         }
     }
@@ -239,22 +235,21 @@ public int dfs(int[][] matrix, int[][] cache, int x, int y, int curPoint) {
         return cache[x][y];
     }
 
-    // initialize max distance as 1 since the path includes starting point itself
+    //Initialize max distance as 1, since the path includes starting point itself
     int max = 1;
     for (int[] dir : dirs) {
         int dx = x + dir[0];
         int dy = y + dir[1];
         
-        // if next point is out of bound or next point current point is greater than or equal to next point
-        if (dx < 0 || dx > matrix.length - 1 || dy < 0 || dy > matrix[0].length - 1 || curPoint >= matrix[dx][dy]) {
+        //Compare every 4 direction and skip cells that are out of boundary or smaller
+        if (dx < 0 || dx > matrix.length - 1 || dy < 0 || dy > matrix[0].length - 1 || curPoint >= matrix[dx][dy]) { //next point is invalid (out of bound or GE next point)
             continue;
         }
-        
-        // if next point is a valid point, add curLen by 1 and continue DFS traversal
-        int curLen = 1 + dfs(matrix, cache, dx, dy, matrix[dx][dy]);
-        max = Math.max(max, curLen);
+        int curLen = 1 + dfs(matrix, cache, dx, dy, matrix[dx][dy]); //next point is valid
+        max = Math.max(max, curLen); //matrix max (getting from every cell's max)
     }
-    // update max increasing path value starting from current point in cache
+    
+    //Update max increasing path value starting from current point in cache
     cache[x][y] = max;
     return max;
 }
