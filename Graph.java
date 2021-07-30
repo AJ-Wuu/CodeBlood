@@ -148,45 +148,59 @@ public static int[] findOrder(int numCourses, int[][] prerequisites) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#310 - Minimum Height Trees
-//Key: For a tree-alike graph, the number of centroids is no more than 2.
+//Key: 1. For a tree-alike graph, the number of centroids is no more than 2
+//     2. Center is always the middle node in the longest path(s) along the tree
+
+Iteratively pick off each leaf nodes (when node has 1 or 0 degree (neighbor), add to the leaves list,
+Since you are picking off leaf, decrease degree each of its neighbors.
+Finally all nodes added to leaves (tracking using c var since we need to replace leaves with newLeaves)
+Last 1 (or 2) nodes in the leaves would be center(s) of the tree which considered as minimum height tree's root node
 //Process: 1. Once we trim out the first layer of the leaf nodes (nodes that have only one connection), some of the non-leaf nodes would become leaf nodes.
 //         2. The trimming process continues until there are only two nodes left in the graph, which are the centroids that we are looking for.
 public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
-        int[] degree = new int[n];
-        HashMap<Integer, List<Integer>> map = new HashMap<>();
-        for (int i = 0; i < n; i++) {
-            map.put(i, new ArrayList<>());
+    //base cases
+    if (n < 2) {
+        ArrayList<Integer> centroids = new ArrayList<>();
+        for (int i=0; i<n; i++) {
+            centroids.add(i);
         }
-        for (int[] edge : edges) {
-            map.get(edge[0]).add(edge[1]);
-            map.get(edge[1]).add(edge[0]);
-            degree[edge[0]]++;
-            degree[edge[1]]++;
-        }
-        ArrayList<Integer> leaves = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            if (degree[i] <= 1) {
-                leaves.add(i);
-                degree[i] = 0;
-            }
-        }
-        
-        int c = leaves.size();
-        
-        while (c < n) {
-            ArrayList<Integer> newLeaves = new ArrayList<>();
-            for (int leaf : leaves) {
-                for (int neighbor : map.get(leaf)) {
-                    degree[neighbor]--;
-                    if (degree[neighbor] == 1) {
-                        newLeaves.add(neighbor);
-                    }
-                }
-                degree[leaf] = 0;
-            }
-            c += newLeaves.size();
-            leaves = newLeaves;
-        }
-        
-        return leaves;
+        return centroids;
     }
+    
+    int[] degree = new int[n];
+    HashMap<Integer, List<Integer>> map = new HashMap<>();
+    for (int i = 0; i < n; i++) {
+        map.put(i, new ArrayList<>());
+    }
+    for (int[] edge : edges) {
+        map.get(edge[0]).add(edge[1]);
+        map.get(edge[1]).add(edge[0]);
+        degree[edge[0]]++;
+        degree[edge[1]]++;
+    }
+    ArrayList<Integer> leaves = new ArrayList<>();
+    for (int i=0; i<n; i++) {
+        if (degree[i] <= 1) {
+            leaves.add(i);
+            degree[i] = 0;
+        }
+    }
+        
+    int c = leaves.size();
+    while (c < n) {
+        ArrayList<Integer> newLeaves = new ArrayList<>();
+        for (int leaf : leaves) {
+            for (int neighbor : map.get(leaf)) {
+                degree[neighbor]--;
+                if (degree[neighbor] == 1) {
+                    newLeaves.add(neighbor);
+                }
+            }
+            degree[leaf] = 0;
+        }
+        c += newLeaves.size();
+        leaves = newLeaves;
+    }
+        
+    return leaves;
+}
