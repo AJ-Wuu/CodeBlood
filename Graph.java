@@ -155,7 +155,7 @@ public static int[] findOrder(int numCourses, int[][] prerequisites) {
 public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
     //Base cases
     if (n < 2) {
-        ArrayList<Integer> centroids = new ArrayList<>();
+        ArrayList<Integer> centroids = new ArrayList<Integer>();
         for (int i=0; i<n; i++) {
             centroids.add(i);
         }
@@ -164,9 +164,9 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
     
     //Build the graph
     int[] degree = new int[n];
-    HashMap<Integer, List<Integer>> map = new HashMap<>();
-    for (int i = 0; i < n; i++) {
-        map.put(i, new ArrayList<>());
+    HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+    for (int i=0; i<n; i++) {
+        map.put(i, new ArrayList<Integer>());
     }
     for (int[] edge : edges) {
         map.get(edge[0]).add(edge[1]);
@@ -186,20 +186,20 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
         
     int c = leaves.size();
     while (c < n) {
-        ArrayList<Integer> newLeaves = new ArrayList<>();
+        ArrayList<Integer> newLeaves = new ArrayList<Integer>();
         for (int leaf : leaves) {
             for (int neighbor : map.get(leaf)) {
-                degree[neighbor]--; //picking off the leaf, so decrease degree for each of its neighbors.
+                degree[neighbor]--; //picking off the leaf, so decrease degree for each of its neighbors
                 if (degree[neighbor] == 1) {
                     newLeaves.add(neighbor);
                 }
             }
             degree[leaf] = 0;
         }
-        c += newLeaves.size(); //Finally all nodes added to leaves (tracking using c var since we need to replace leaves with newLeaves)
+        c += newLeaves.size(); //all nodes added to leaves (tracking using c since we need to replace leaves with newLeaves)
+                               //the last 1 (or 2) node(s) in the leaves would be the center(s) of the tree which considered as minimum height tree's root node
         leaves = newLeaves;
     }
-    
-    //Last 1 (or 2) nodes in the leaves would be center(s) of the tree which considered as minimum height tree's root node
+
     return leaves;
 }
