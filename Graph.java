@@ -153,7 +153,7 @@ public static int[] findOrder(int numCourses, int[][] prerequisites) {
 //Process: 1. Once we trim out the first layer of the leaf nodes (nodes that have only one connection), some of the non-leaf nodes would become leaf nodes.
 //         2. The trimming process continues until there are only two nodes left in the graph, which are the centroids that we are looking for.
 public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
-    //base cases
+    //Base cases
     if (n < 2) {
         ArrayList<Integer> centroids = new ArrayList<>();
         for (int i=0; i<n; i++) {
@@ -162,7 +162,7 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
         return centroids;
     }
     
-    //Iteratively pick off each leaf nodes (when node has 1 or 0 degree (neighbor), add to the leaves list
+    //Build the graph
     int[] degree = new int[n];
     HashMap<Integer, List<Integer>> map = new HashMap<>();
     for (int i = 0; i < n; i++) {
@@ -174,6 +174,8 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
         degree[edge[0]]++;
         degree[edge[1]]++;
     }
+    
+    //Iteratively pick off each leaf nodes (when node has 1 or 0 degree (neighbor), add to the leaves list
     ArrayList<Integer> leaves = new ArrayList<>();
     for (int i=0; i<n; i++) {
         if (degree[i] <= 1) {
