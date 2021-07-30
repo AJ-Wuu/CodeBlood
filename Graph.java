@@ -175,7 +175,7 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
         degree[edge[1]]++;
     }
     
-    //Iteratively pick off each leaf nodes (when node has 1 or 0 degree (neighbor), add to the leaves list
+    //Trim the leaves until reaching the centroids
     ArrayList<Integer> leaves = new ArrayList<>();
     for (int i=0; i<n; i++) {
         if (degree[i] <= 1) {
@@ -187,7 +187,7 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
     int c = leaves.size();
     while (c < n) {
         ArrayList<Integer> newLeaves = new ArrayList<Integer>();
-        for (int leaf : leaves) {
+        for (int leaf : leaves) { //remove the current leaves along with the edges
             for (int neighbor : map.get(leaf)) {
                 degree[neighbor]--; //picking off the leaf, so decrease degree for each of its neighbors
                 if (degree[neighbor] == 1) {
@@ -197,9 +197,9 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
             degree[leaf] = 0;
         }
         c += newLeaves.size(); //all nodes added to leaves (tracking using c since we need to replace leaves with newLeaves)
-                               //the last 1 (or 2) node(s) in the leaves would be the center(s) of the tree which considered as minimum height tree's root node
         leaves = newLeaves;
     }
-
+    
+    //The remaining 1 (or 2) node(s) in the leaves would be the centroid(s) of the tree which considered as minimum height tree's root node
     return leaves;
 }
