@@ -148,6 +148,7 @@ public static int[] findOrder(int numCourses, int[][] prerequisites) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#310 - Minimum Height Trees
+//Key: For a tree-alike graph, the number of centroids is no more than 2.
 public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
         int[] degree = new int[n];
         HashMap<Integer, List<Integer>> map = new HashMap<>();
