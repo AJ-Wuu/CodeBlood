@@ -150,11 +150,6 @@ public static int[] findOrder(int numCourses, int[][] prerequisites) {
 //#310 - Minimum Height Trees
 //Key: 1. For a tree-alike graph, the number of centroids is no more than 2
 //     2. Center is always the middle node in the longest path(s) along the tree
-
-Iteratively pick off each leaf nodes (when node has 1 or 0 degree (neighbor), add to the leaves list,
-Since you are picking off leaf, decrease degree each of its neighbors.
-Finally all nodes added to leaves (tracking using c var since we need to replace leaves with newLeaves)
-Last 1 (or 2) nodes in the leaves would be center(s) of the tree which considered as minimum height tree's root node
 //Process: 1. Once we trim out the first layer of the leaf nodes (nodes that have only one connection), some of the non-leaf nodes would become leaf nodes.
 //         2. The trimming process continues until there are only two nodes left in the graph, which are the centroids that we are looking for.
 public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
@@ -167,6 +162,7 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
         return centroids;
     }
     
+    //Iteratively pick off each leaf nodes (when node has 1 or 0 degree (neighbor), add to the leaves list
     int[] degree = new int[n];
     HashMap<Integer, List<Integer>> map = new HashMap<>();
     for (int i = 0; i < n; i++) {
@@ -191,16 +187,17 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
         ArrayList<Integer> newLeaves = new ArrayList<>();
         for (int leaf : leaves) {
             for (int neighbor : map.get(leaf)) {
-                degree[neighbor]--;
+                degree[neighbor]--; //picking off the leaf, so decrease degree for each of its neighbors.
                 if (degree[neighbor] == 1) {
                     newLeaves.add(neighbor);
                 }
             }
             degree[leaf] = 0;
         }
-        c += newLeaves.size();
+        c += newLeaves.size(); //Finally all nodes added to leaves (tracking using c var since we need to replace leaves with newLeaves)
         leaves = newLeaves;
     }
-        
+    
+    //Last 1 (or 2) nodes in the leaves would be center(s) of the tree which considered as minimum height tree's root node
     return leaves;
 }
