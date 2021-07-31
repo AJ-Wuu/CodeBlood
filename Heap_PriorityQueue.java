@@ -1,5 +1,7 @@
 /**
- * Heap is generally preferred for priority queue implementation because heaps provide better performance compared arrays or linked list
+ * Heap is generally preferred for priority queue implementation because heaps provide better performance compared arrays or linked list.
+ *
+ * PriorityQueue can contain repetitive elements.
  * 
  * Why Binary Heap?
  * 1. Efficiently add new values after initially constructing it.
