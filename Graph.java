@@ -259,9 +259,9 @@ public int dfs(int[][] matrix, int[][] cache, int x, int y, int curPoint) {
 //#332 - Reconstruct Itinerary
 //AKA the Eulerian Path
 //Keys: 1. there must exist a start node(which is JFK in this problem) and a end node
-//		2. end node can be the start node or another node
-//			2.1. end node is start node iff all nodes has even degree
-//			2.2. end node is another node iff there is another odd degree node and start node has an odd degree
+//      2. end node can be the start node or another node
+//          2.1. end node is start node iff all nodes has even degree
+//          2.2. end node is another node iff there is another odd degree node and start node has an odd degree
 public static List<String> findItinerary(List<List<String>> tickets) {
     HashMap<String, PriorityQueue<String>> targets = new HashMap<String, PriorityQueue<String>>();
     for (List<String> ticket : tickets) {
