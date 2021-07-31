@@ -260,3 +260,17 @@ End node can be start node or another node.
 end node is start node iff all nodes has even degree.
 end node is another node iff there is another odd degree node and start node has an odd degree.
 So, the algorithm is to find the end node first and delete the path to this node(backtrack), meanwhile using PriorityQueue to guarantee lexical order.
+public static List<String> findItinerary(List<List<String>> tickets) {
+	Map<String, PriorityQueue<String>> targets = new HashMap<>();
+	for (List<String> ticket : tickets)
+	    targets.computeIfAbsent(ticket.get(0), k -> new PriorityQueue()).add(ticket.get(1));
+	List<String> route = new LinkedList();
+	Stack<String> stack = new Stack<>();
+	stack.push("JFK");
+	while (!stack.empty()) {
+	    while (targets.containsKey(stack.peek()) && !targets.get(stack.peek()).isEmpty())
+	        stack.push(targets.get(stack.peek()).poll());
+	    route.add(0, stack.pop());
+	}
+	return route;
+}
