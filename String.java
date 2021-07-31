@@ -14,6 +14,12 @@ str.valueOf(int i); //all data types
 str.valueOf(char[] cc); //only for char arrays
 str.valueOf(char[] data, int offset, int count); //representation of a specific subarray of the char array argument
 
+//Commpare
+//str1.equals(str2) tells the equality of two strings
+//str1.compareTo(str2) tells how strings are compared lexicographically -> ATTENTION: uppercase are "smaller" than lowercase
+int a = ("AEC").compareTo("DBC"); //a = -3 = A - D
+int b = ("Z").compareTo("a"); //b = -7
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#76 - Minimum Window Substring
