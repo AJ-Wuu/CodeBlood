@@ -51,6 +51,10 @@
 HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(); //<K, V>
 Hashtable<Integer, Integer> table = new Hashtable<Integer, Integer>();
 
+//computeIfAbsent()
+public V computeIfAbsent(K key, Function<? super K, ? extends V> remappingFunction);
+targets.computeIfAbsent(ticket.get(0), k -> new PriorityQueue()).add(ticket.get(1)); //See LeetCode/Graph.java #332
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#954 - Array of Doubled Pairs ????????????????????????????????????????????????????????
