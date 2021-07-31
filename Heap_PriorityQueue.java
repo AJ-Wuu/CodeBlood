@@ -1,4 +1,4 @@
-/***
+/**
  * Heap is generally preferred for priority queue implementation because heaps provide better performance compared arrays or linked list
  * 
  * Why Binary Heap?
