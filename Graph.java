@@ -325,9 +325,9 @@ private static String find(HashMap<String, String> parent, HashMap<String, Doubl
     if (s.equals(parent.get(s))) {
         return s;
     }
-    String father = parent.get(s);
-    String grandpa = find(parent, ratio, father);
-    parent.put(s, grandpa);
-    ratio.put(s, ratio.get(s) * ratio.get(father));
-    return grandpa;
+    String child = parent.get(s);
+    String grandchild = find(parent, ratio, child);
+    parent.put(s, grandchild);
+    ratio.put(s, ratio.get(s) * ratio.get(child));
+    return grandchild;
 }
