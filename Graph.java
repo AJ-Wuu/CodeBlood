@@ -283,16 +283,18 @@ public static List<String> findItinerary(List<List<String>> tickets) {
 
 //#399 - Evaluate Division
 //Approach 1: EulerianPath(start, end) + visited[] -> Eulerian Path see CLRS/Chapter22-Elementary Graph Algorithms/EulerianPath_HierholzerAlgorithm.java
+//            -> Notion: Find every path from start to end (in queries) and get each ratio
 //Approach 2: Union-Find (faster than Approach 1)
+//            -> Notion: Get every ratio between every node on the path (eg. store the ratio of a/b, b/c, a/c, b/a, c/b, c/a for path a-b-c)
 public static double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-    Map<String, String> parent = new HashMap<>();  //<node, parent of the node>
-    Map<String, Double> ratio = new HashMap<>();   //<node, node / parent>
-    for (int i = 0; i < equations.size(); i++) {
+    HashMap<String, String> parent = new HashMap<String, String>();  //<node, parent of the node>
+    HashMap<String, Double> ratio = new HashMap<String, Double>();   //<node, node / parent>
+    for (int i=0; i<equations.size(); i++) {
         union(parent, ratio, equations.get(i).get(0), equations.get(i).get(1), values[i]);
     }
         
     double[] res = new double[queries.size()];
-    for (int i = 0; i < queries.size(); i++) {
+    for (int i=0; i<queries.size(); i++) {
         String s1 = queries.get(i).get(0), s2 = queries.get(i).get(1);
         if (!parent.containsKey(s1) || !parent.containsKey(s2) || !find(parent, ratio, s1).equals(find(parent, ratio, s2))) {
             res[i] = -1.0;
@@ -304,7 +306,7 @@ public static double[] calcEquation(List<List<String>> equations, double[] value
     return res;
 }
     
-private static void union(Map<String, String> parent, Map<String, Double> ratio, String s1, String s2, double val) {
+private static void union(HashMap<String, String> parent, HashMap<String, Double> ratio, String s1, String s2, double val) {
     if (!parent.containsKey(s1)) {
         parent.put(s1, s1);
         ratio.put(s1, 1.0);
@@ -319,7 +321,7 @@ private static void union(Map<String, String> parent, Map<String, Double> ratio,
     ratio.put(p1, val * ratio.get(s2) / ratio.get(s1));
 }
     
-private static String find(Map<String, String> parent, Map<String, Double> ratio, String s) {
+private static String find(HashMap<String, String> parent, HashMap<String, Double> ratio, String s) {
     if (s.equals(parent.get(s))) {
         return s;
     }
