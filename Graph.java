@@ -285,7 +285,7 @@ public static List<String> findItinerary(List<List<String>> tickets) {
 //Approach 1: EulerianPath(start, end) + visited[] -> Eulerian Path see CLRS/Chapter22-Elementary Graph Algorithms/EulerianPath_HierholzerAlgorithm.java
 //            -> Notion: Find every path from start to end (in queries) and get each ratio
 //Approach 2: Union-Find (faster than Approach 1)
-//            -> Notion: Get the ratio of every element in a path with the same parameter, eg. (a/b, b/c, a/d) -> (a/b, b/c, c/d, d/d)
+//            -> Notion: Get the ratio of every element in a path with the same parameter, eg. (a/b, b/c, a/d) -> (a/d, b/d, c/d, d/d)
 public static double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
     HashMap<String, String> parent = new HashMap<String, String>();  //<node, parent of the node>
     HashMap<String, Double> ratio = new HashMap<String, Double>();   //<node, node / parent>
