@@ -282,50 +282,50 @@ public static List<String> findItinerary(List<List<String>> tickets) {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#399 - Evaluate Division
-//Approach 1: Eulerian Path + visited[] -> Eulerian Path see 
-//Approach 2: Union-Find
+//Approach 1: EulerianPath(start, end) + visited[] -> Eulerian Path see CLRS/Chapter22-Elementary Graph Algorithms/EulerianPath_HierholzerAlgorithm.java
+//Approach 2: Union-Find (faster than Approach 1)
 public static double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-        Map<String, String> parent = new HashMap<>();  //<node, parent of the node>
-        Map<String, Double> ratio = new HashMap<>();   //<node, node / parent>
-        for (int i = 0; i < equations.size(); i++) {
-            union(parent, ratio, equations.get(i).get(0), equations.get(i).get(1), values[i]);
-        }
+    Map<String, String> parent = new HashMap<>();  //<node, parent of the node>
+    Map<String, Double> ratio = new HashMap<>();   //<node, node / parent>
+    for (int i = 0; i < equations.size(); i++) {
+        union(parent, ratio, equations.get(i).get(0), equations.get(i).get(1), values[i]);
+    }
         
-        double[] res = new double[queries.size()];
-        for (int i = 0; i < queries.size(); i++) {
-            String s1 = queries.get(i).get(0), s2 = queries.get(i).get(1);
-            if (!parent.containsKey(s1) || !parent.containsKey(s2)
-                || !find(parent, ratio, s1).equals(find(parent, ratio, s2))) {
-                res[i] = -1.0;
-            } else {
-                res[i] = ratio.get(s1) / ratio.get(s2);
-            }
+    double[] res = new double[queries.size()];
+    for (int i = 0; i < queries.size(); i++) {
+        String s1 = queries.get(i).get(0), s2 = queries.get(i).get(1);
+        if (!parent.containsKey(s1) || !parent.containsKey(s2) || !find(parent, ratio, s1).equals(find(parent, ratio, s2))) {
+            res[i] = -1.0;
         }
-        return res;
-    }
-    
-    private static void union(Map<String, String> parent, Map<String, Double> ratio, String s1, String s2, double val) {
-            if (!parent.containsKey(s1)) {
-                parent.put(s1, s1);
-                ratio.put(s1, 1.0);
-            }
-            if (!parent.containsKey(s2)) {
-                parent.put(s2, s2);
-                ratio.put(s2, 1.0);
-            }
-            String p1 = find(parent, ratio, s1);
-            String p2 = find(parent, ratio, s2);
-            parent.put(p1, p2);
-            ratio.put(p1, val * ratio.get(s2) / ratio.get(s1));
-    }
-    
-    private static String find(Map<String, String> parent, Map<String, Double> ratio, String s) {
-        if (s.equals(parent.get(s))) {
-            return s;
+        else {
+            res[i] = ratio.get(s1) / ratio.get(s2);
         }
-        String father = parent.get(s);
-        String grandpa = find(parent, ratio, father);
-        parent.put(s, grandpa);
-        ratio.put(s, ratio.get(s) * ratio.get(father));
-        return grandpa;
     }
+    return res;
+}
+    
+private static void union(Map<String, String> parent, Map<String, Double> ratio, String s1, String s2, double val) {
+    if (!parent.containsKey(s1)) {
+        parent.put(s1, s1);
+        ratio.put(s1, 1.0);
+    }
+    if (!parent.containsKey(s2)) {
+        parent.put(s2, s2);
+        ratio.put(s2, 1.0);
+    }
+    String p1 = find(parent, ratio, s1);
+    String p2 = find(parent, ratio, s2);
+    parent.put(p1, p2);
+    ratio.put(p1, val * ratio.get(s2) / ratio.get(s1));
+}
+    
+private static String find(Map<String, String> parent, Map<String, Double> ratio, String s) {
+    if (s.equals(parent.get(s))) {
+        return s;
+    }
+    String father = parent.get(s);
+    String grandpa = find(parent, ratio, father);
+    parent.put(s, grandpa);
+    ratio.put(s, ratio.get(s) * ratio.get(father));
+    return grandpa;
+}
