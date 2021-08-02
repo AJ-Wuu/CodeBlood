@@ -12,10 +12,10 @@ public static ListNode reverseKGroup(ListNode head, int k) {
     init.next = head;
     for (ListNode prev=init, tail=head; n>=k; n-=k) {
         for (int i=1; i<k; i++) { //Eg. 12345 with k = 4
-            ListNode next = tail.next.next; //3 -- 4
-            tail.next.next = prev.next; //12121 -- 
-            prev.next = tail.next; //21212 -- 
-            tail.next = next; //21345 -- 
+            ListNode next = tail.next.next; //3 -- 4 -- 5
+            tail.next.next = prev.next; //12121 -- 21321 -- 32143
+            prev.next = tail.next; //21212 -- 32132 -- 43214
+            tail.next = next; //21345 -- 32145 -- 43215
         }
         prev = tail;
         tail = tail.next;
