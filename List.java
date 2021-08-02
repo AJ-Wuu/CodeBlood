@@ -18,7 +18,7 @@ public static ListNode reverseKGroup(ListNode head, int k) {
             tail.next = next; //21345 -- 32145 -- 43215
         }
         prev = tail;
-        tail = tail.next;
+        tail = tail.next; //Node(5).next == Node(5), not null, so it's needed to control the process with n
     }
     return init.next;
 }
