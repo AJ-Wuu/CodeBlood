@@ -33,25 +33,23 @@ public static ListNode reverseKGroup(ListNode head, int k) {
 //This method is slow but interesting. It uses two pointers to track the nodes, and it avoids counting the size of the list (which is always used in k % n when k > n)
 public static ListNode rotateRight(ListNode head, int k) {
     if (head == null || head.next == null || k == 0) {
-	         return head;
-	    }
-	    ListNode fast = head;
-	    ListNode slow = head;
-	    ListNode newHead;
-	    for (int i = 0; i < k; i++) {
-	        if (fast.next == null) {
-	            fast = head; //go back to head when k > n
-	        }
-	        else {
-	            fast = fast.next;
-	        }
-	    }
-	    while (fast.next != null) { //when fast reaches the last node, slow reaches the last node of the new list
-	        fast = fast.next;
-	        slow = slow.next;
-	    }
-	    fast.next = head;
-	    newHead = slow.next;
-	    slow.next = null;
-	    return newHead;
-	}
+        return head;
+    }
+    ListNode fast = head, slow = head, newHead;
+    for (int i=0; i<k; i++) {
+        if (fast.next == null) {
+            fast = head; //go back to head when k > n
+        }
+        else {
+            fast = fast.next;
+        }
+    }
+    while (fast.next != null) { //when fast reaches the last node, slow reaches the last node of the new list
+        fast = fast.next;
+        slow = slow.next;
+    }
+    fast.next = head;
+    newHead = slow.next;
+    slow.next = null;
+    return newHead;
+}
