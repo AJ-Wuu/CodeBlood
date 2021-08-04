@@ -27,20 +27,12 @@ public static ListNode reverseKGroup(ListNode head, int k) {
     return init.next;
 }
 
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#61 - Rotate List
+//This method is slow but interesting. It uses two pointers to track the nodes, and it avoids counting the size of the list (which is always used in k % n when k > n)
 public static ListNode rotateRight(ListNode head, int k) {
-//		if (head == null || head.next == null) {
-//            return head;
-//        }
-//		int n = 0;
-//		ListNode temp = head;
-//		for (; temp != null; n++) {
-//			temp = temp.next;
-//		}
-//		for (int i=0; i<k%n; i++) {
-//			head = rotateHelper(head, n);
-//		}
-//		return head;
-		if (head == null || head.next == null || k == 0) {
+    if (head == null || head.next == null || k == 0) {
 	         return head;
 	    }
 	    ListNode fast = head;
@@ -48,7 +40,7 @@ public static ListNode rotateRight(ListNode head, int k) {
 	    ListNode newHead;
 	    for (int i = 0; i < k; i++) {
 	        if (fast.next == null) {
-	            fast = head; //go back to head when k > list's size
+	            fast = head; //go back to head when k > n
 	        }
 	        else {
 	            fast = fast.next;
