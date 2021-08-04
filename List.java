@@ -58,28 +58,31 @@ public static ListNode rotateRight(ListNode head, int k) {
 
 //#82 - Remove Duplicates from Sorted List II
 //Method: Sentinel Head + Predecessor
+//The standard way to handle this use case is to use the so-called Sentinel Node.
+//Sentinel nodes are widely used for trees and linked lists as pseudo-heads, pseudo-tails, etc.
+//    They are purely functional and usually don't hold any data.
+//    Their primary purpose is to standardize the situation to avoid edge case handling.
 public static ListNode deleteDuplicates(ListNode head) {
-    //sentinel
+    //sentinel, "virtual head", make sure there is a new head and keep track of the new head
     ListNode sentinel = new ListNode(0, head);
     //predecessor = the last node before the sublist of duplicates
     ListNode pred = sentinel;
         
     while (head != null) {
-    //if it's a beginning of duplicates sublist, skip all duplicates
+    //skip all duplicates at the beginning of any duplicates sublist
         if (head.next != null && head.val == head.next.val) {
             //move till the end of duplicates sublist
             while (head.next != null && head.val == head.next.val) {
                 head = head.next;    
             }
-            //skip all duplicates
-            pred.next = head.next;     
-            //otherwise, move predecessor
+            //skip the entire duplicate sublist and make predecessor to point to the node after the sublist
+            pred.next = head.next;   
         }
-        else {
+        else { //otherwise, move predecessor
             pred = pred.next;    
         }
-                
-        //move forward
+      
+        //move on
         head = head.next;    
     }  
     return sentinel.next;
