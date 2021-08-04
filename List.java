@@ -1,7 +1,7 @@
 /**
  * Type        internal structure  |  Manipulation                              |  Act as          |  Better at                   |  Performance
  * ArrayList:  dynamic array       |  slow (array needs shifting for removal)   |  list only       |  storing and accessing data  |  O(1)
- * LinkedList: doubly linked list  |  fast (DLL needs no shifting for removal)  |  list and queue  |  manipulating data           |  O(n)
+ * LinkedList: doubly linked list  |  fast (DLL needs no shifting for removal)  |  list and deque  |  manipulating data           |  O(n)
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
