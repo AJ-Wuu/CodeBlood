@@ -1,4 +1,8 @@
-//As seen in performance comparison, ArrayList is better for storing and accessing data. LinkedList is better for manipulating data.
+/**
+ * Type        internal structure  |  Manipulation                              |  Act as          |  Better at
+ * ArrayList:  dynamic array       |  slow (array needs shifting for removal)   |  list only       |  storing and accessing data
+ * LinkedList: doubly linked list  |  fast (DLL needs no shifting for removal)  |  list and queue  |  manipulating data
+ */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
