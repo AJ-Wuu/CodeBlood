@@ -63,7 +63,7 @@ public static ListNode rotateRight(ListNode head, int k) {
 //    They are purely functional and usually don't hold any data.
 //    Their primary purpose is to standardize the situation to avoid edge case handling.
 public static ListNode deleteDuplicates(ListNode head) {
-    //sentinel, "virtual head", make sure there is a new head and keep track of the new head
+    //sentinel, "virtual head", make sure there is a new head and keep track of the new head (sentinel.next = newHead)
     ListNode sentinel = new ListNode(0, head);
     //predecessor = the last node before the sublist of duplicates
     ListNode pred = sentinel;
