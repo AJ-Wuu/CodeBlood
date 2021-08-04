@@ -1,5 +1,5 @@
 /**
- * Type        internal structure  |  Manipulation                              |  Act as          |  Better at                   |  Performance
+ * Type        Internal structure  |  Manipulation                              |  Interface       |  Better at                   |  Performance
  * ArrayList:  dynamic array       |  slow (array needs shifting for removal)   |  list only       |  storing and accessing data  |  O(1)
  * LinkedList: doubly linked list  |  fast (DLL needs no shifting for removal)  |  list and deque  |  manipulating data           |  O(n)
  */
