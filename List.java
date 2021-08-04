@@ -26,3 +26,40 @@ public static ListNode reverseKGroup(ListNode head, int k) {
     }
     return init.next;
 }
+
+public static ListNode rotateRight(ListNode head, int k) {
+//		if (head == null || head.next == null) {
+//            return head;
+//        }
+//		int n = 0;
+//		ListNode temp = head;
+//		for (; temp != null; n++) {
+//			temp = temp.next;
+//		}
+//		for (int i=0; i<k%n; i++) {
+//			head = rotateHelper(head, n);
+//		}
+//		return head;
+		if (head == null || head.next == null || k == 0) {
+	         return head;
+	    }
+	    ListNode fast = head;
+	    ListNode slow = head;
+	    ListNode newHead;
+	    for (int i = 0; i < k; i++) {
+	        if (fast.next == null) {
+	            fast = head; //go back to head when k > list's size
+	        }
+	        else {
+	            fast = fast.next;
+	        }
+	    }
+	    while (fast.next != null) { //when fast reaches the last node, slow reaches the last node of the new list
+	        fast = fast.next;
+	        slow = slow.next;
+	    }
+	    fast.next = head;
+	    newHead = slow.next;
+	    slow.next = null;
+	    return newHead;
+	}
