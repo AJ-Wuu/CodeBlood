@@ -15,6 +15,9 @@
  * 
  * There are still a lot of problems that are still unable to be solved by DP or Recursion + Memoization even in pseudopolynomial time,
  *     for example, Strong NP-completeness problems.
+ *
+ * Categories -> most DP questions can be boiled down to a few categories:
+ * 
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
