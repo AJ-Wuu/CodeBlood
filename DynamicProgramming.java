@@ -17,7 +17,11 @@
  *     for example, Strong NP-completeness problems.
  *
  * Categories -> most DP questions can be boiled down to a few categories:
- * 
+ *     1. 0/1 Knapsack
+ *     2. Unbounded Knapsack
+ *     3. Shortest Path (eg: Unique Paths I/II)
+ *     4. Fibonacci Sequence (eg: House Thief, Jump Game)
+ *     5. Longest Common Substring/Subsequeunce
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
