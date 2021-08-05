@@ -1,27 +1,23 @@
 /**
  * Recursion VS Memoization:
- * Recursion is for solving the subproblem / optimal substructure property.
- * Memoization is for those overlapping substructures.
- * Sometimes memoization takes up too much space, and you can save memory using recursion.
+ *     Recursion is for solving the subproblem / optimal substructure property.
+ *     Memoization is for those overlapping substructures.
+ *     Sometimes memoization takes up too much space, and you can save memory using recursion.
  *
  * How to design a DP?
- * The core idea is to first design an intuitive recursive function that solves the problem, and then applied memoization to the recursive function.
- * For many problems, recursive function + memoization have nearly the same "theoretical" time complexity as DP tabularization.
- * If needed, we can convert the recursive solution to DP by using the recursive function parameters as DP index.
+ *     The core idea is to first design an intuitive recursive function that solves the problem, and then applied memoization to the recursive function.
+ *     For many problems, recursive function + memoization have nearly the same "theoretical" time complexity as DP tabularization.
+ *     If needed, we can convert the recursive solution to DP by using the recursive function parameters as DP index.
  * 
- * To identify problems that can be solved by DP or recursion + memoization, get familiar with some frequently seen DP problems, 
- *     such as Fibonacci Sequence, 0-1 Knapsack and its many variants, Unbounded Knapsack (#518), 
- *     Longest Common Sub-string (#718) or Longest Common Subsequence (#1143), Pseudopolynomial MultiWay number partitioning, etc.
- * 
- * There are still a lot of problems that are still unable to be solved by DP or Recursion + Memoization even in pseudopolynomial time,
- *     for example, Strong NP-completeness problems.
+ * There are still a lot of problems that are still unable to be solved by DP or Recursion + Memoization even in pseudopolynomial time, like Strong NP-completeness problems.
  *
  * Categories -> most DP questions can be boiled down to a few categories:
- *     1. 0/1 Knapsack
- *     2. Unbounded Knapsack
+ *     1. 0/1 Knapsack (and its many variants)
+ *     2. Unbounded Knapsack (eg. #518)
  *     3. Shortest Path (eg: Unique Paths I/II)
  *     4. Fibonacci Sequence (eg: House Thief, Jump Game)
- *     5. Longest Common Substring/Subsequeunce
+ *     5. Longest Common Substring / Subsequeunce (#718 / #1143)
+ *    [6. Pseudopolynomial MultiWay Number Partitioning]
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
