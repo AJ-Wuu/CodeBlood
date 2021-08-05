@@ -11,6 +11,7 @@
  * 
  * There are still a lot of problems that are still unable to be solved by DP or Recursion + Memoization even in pseudopolynomial time, like Strong NP-completeness problems.
  *
+ * https://leetcode.com/problems/target-sum/discuss/455024/DP-IS-EASY!-5-Steps-to-Think-Through-DP-Questions.
  * Categories -> most DP questions can be boiled down to a few categories:
  *     1. 0/1 Knapsack (and its many variants)
  *     2. Unbounded Knapsack (eg. #518)
