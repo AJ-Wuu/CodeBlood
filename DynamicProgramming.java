@@ -1,8 +1,16 @@
 /**
+ * Dynamic Programming shares the core of induction that it's guaranteed to find the solution for larger order since all the minimal order subproblems are already solved.
+ * 
  * Recursion VS Memoization:
  *     Recursion is for solving the subproblem / optimal substructure property.
  *     Memoization is for those overlapping substructures.
  *     Sometimes memoization takes up too much space, and you can save memory using recursion.
+ *
+ * Memoization:
+ *     1. Identify a subproblem of the same nature
+ *     2. For a problem of size n, check if i have already solved for subproblem of size k where k=f(n)
+ *        2.1. If I have the answer, use that answer in the solution step
+ *        2.2. Else go for the solution of subproblem (recursive, stack based algorithm, etc.)
  *
  * How to design a DP?
  *     The core idea is to first design an intuitive recursive function that solves the problem, and then applied memoization to the recursive function.
@@ -11,6 +19,8 @@
  * 
  * There are still a lot of problems that are still unable to be solved by DP or Recursion + Memoization even in pseudopolynomial time, like Strong NP-completeness problems.
  *
+
+ * 
  * https://leetcode.com/problems/target-sum/discuss/455024/DP-IS-EASY!-5-Steps-to-Think-Through-DP-Questions.
  * Categories -> most DP questions can be boiled down to a few categories:
  *     1. 0/1 Knapsack (and its many variants)
