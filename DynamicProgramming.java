@@ -19,7 +19,15 @@
  * 
  * There are still a lot of problems that are still unable to be solved by DP or Recursion + Memoization even in pseudopolynomial time, like Strong NP-completeness problems.
  *
-
+ * Top-Down VS Bottom-UP:
+ *     Top-Down -> start solving in a natural manner and store the solutions of the subproblems along the way
+ *                 use memoization (as memo)
+ *                 Advantages -> coding is easier for complex problems & don't need solutions for all subproblems
+ *                 Disadvantages -> a lot of recursion, possibly out of memory, slower
+ *     Bottom-Up -> start from the bottom (the 2nd, 3rd and so on), and finally calculate the higher terms on the top of these by using these values
+ *                  use tabulation (like filling up a table from the start)
+ *                  Advantages -> faster, less memory requirement, have every subproblem value
+ *                  Disadvantages -> harder to code
  * 
  * https://leetcode.com/problems/target-sum/discuss/455024/DP-IS-EASY!-5-Steps-to-Think-Through-DP-Questions.
  * Categories -> most DP questions can be boiled down to a few categories:
