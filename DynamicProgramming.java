@@ -49,6 +49,10 @@
  *         3. relate subproblem solutions
  *         4. recurse & memoize || build DP table
  *         5. solve the original problem
+ *
+ * https://www.youtube.com/watch?v=ENyox7kNKeY
+ * https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/TextJustification.java
+ * https://www.programcreek.com/2014/05/leetcode-text-justification-java/
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
