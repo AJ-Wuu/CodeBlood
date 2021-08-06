@@ -32,7 +32,7 @@
  *                 Disadvantages -> a lot of recursion, possibly out of memory, slower
  *     Bottom-Up -> start from the bottom (the 2nd, 3rd and so on), and finally calculate the higher terms on the top of these by using these values
  *                  use tabulation (like filling up a table from the start)
- *                  Advantages -> faster, less memory requirement, have every subproblem value
+ *                  Advantages -> faster, might require less memory, go over every subproblem value
  *                  Disadvantages -> harder to code
  * 
  * https://leetcode.com/problems/target-sum/discuss/455024/DP-IS-EASY!-5-Steps-to-Think-Through-DP-Questions.
