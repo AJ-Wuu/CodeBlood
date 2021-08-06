@@ -1,5 +1,6 @@
 /**
  * Dynamic Programming shares the core of induction that it's guaranteed to find the solution for larger order since all the minimal order subproblems are already solved.
+ * It's always finding the shortest path in a DAG.
  * 
  * Recursion VS Memoization:
  *     Recursion is for solving the subproblem / optimal substructure property.
