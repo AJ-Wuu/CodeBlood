@@ -12,6 +12,11 @@
  *        2.1. If I have the answer, use that answer in the solution step
  *        2.2. Else go for the solution of subproblem (recursive, stack based algorithm, etc.)
  *
+ * State: A number of necessary variables at a particular instant that are required to calculate the optimal result
+ *        Basically, it is a combination of variables that will keep changing over different instants.
+ *        More the number of states, more is the depth of the recursive solution and more is the memory required to cache the result of the states to avoid re-computing.
+ *        Therefore, it very well makes sense to preserve the results of the state to save time.
+ * 
  * How to design a DP?
  *     The core idea is to first design an intuitive recursive function that solves the problem, and then applied memoization to the recursive function.
  *     For many problems, recursive function + memoization have nearly the same "theoretical" time complexity as DP tabularization.
