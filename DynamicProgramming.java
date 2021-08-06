@@ -44,7 +44,7 @@
  *     If needed, we can convert the recursive solution to DP by using the recursive function parameters as DP index.
  *     Problems like Strong NP-completeness still cannot be solved by DP or Recursion + Memoization in pseudopolynomial time.
  *     5 Steps:
- *         1. define subproblems
+ *         1. define subproblems (might be multiple subproblems)
  *         2. guess (part of solution)
  *         3. relate subproblem solutions
  *         4. recurse & memoize || build DP table
