@@ -16,6 +16,7 @@
  *        Basically, it is a combination of variables that will keep changing over different instants.
  *        More the number of states, more is the depth of the recursive solution and more is the memory required to cache the result of the states to avoid re-computing.
  *        Therefore, it very well makes sense to preserve the results of the state to save time.
+ *        As a general rule, index is a required state in nearly all dynamic programming problems, except for shortest paths which is row and column (two indexes).
  * 
  * How to design a DP?
  *     The core idea is to first design an intuitive recursive function that solves the problem, and then applied memoization to the recursive function.
