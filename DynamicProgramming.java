@@ -18,13 +18,6 @@
  *        More the number of states, more is the depth of the recursive solution and more is the memory required to cache the result of the states to avoid re-computing.
  *        Therefore, it very well makes sense to preserve the results of the state to save time.
  *        As a general rule, index is a required state in nearly all dynamic programming problems, except for shortest paths which is row and column (two indexes).
- * 
- * How to design a DP?
- *     The core idea is to first design an intuitive recursive function that solves the problem, and then applied memoization to the recursive function.
- *     For many problems, recursive function + memoization have nearly the same "theoretical" time complexity as DP tabularization.
- *     If needed, we can convert the recursive solution to DP by using the recursive function parameters as DP index.
- * 
- * There are still a lot of problems that are still unable to be solved by DP or Recursion + Memoization even in pseudopolynomial time, like Strong NP-completeness problems.
  *
  * Top-Down VS Bottom-UP:
  *     Top-Down -> start solving in a natural manner and store the solutions of the subproblems along the way
@@ -44,6 +37,18 @@
  *     4. Fibonacci Sequence (eg: House Thief, Jump Game)
  *     5. Longest Common Substring / Subsequeunce (#718 / #1143)
  *    [6. Pseudopolynomial MultiWay Number Partitioning]
+ *
+ * How to design a DP?
+ *     The core idea is to first design an intuitive recursive function that solves the problem, and then applied memoization to the recursive function.
+ *     For many problems, recursive function + memoization have nearly the same "theoretical" time complexity as DP tabularization.
+ *     If needed, we can convert the recursive solution to DP by using the recursive function parameters as DP index.
+ *     Problems like Strong NP-completeness still cannot be solved by DP or Recursion + Memoization in pseudopolynomial time.
+ *     5 Steps:
+ *         1. define subproblems
+ *         2. guess (part of solution)
+ *         3. relate subproblem solutions
+ *         4. recurse & memoize || build DP table
+ *         5. solve the original problem
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
