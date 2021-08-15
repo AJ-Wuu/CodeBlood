@@ -12,7 +12,8 @@
  *      hashCode() –> because equals() is overridden
  *      getDeclaringClass() –> returns the class Object corresponding to the current constant’s enum -> eg. class cl=weekends.getDeclaringClass();
  *      name() –> returns constant’s name
- *      ordinal() –> position of the constant within enum type. compareTo () compares ordinals
+ *      ordinal() –> position of the constant within enum type
+ *      compareTo() -> compares ordinals
  *      public static <T extends Enum <T>> T valueOf (class <T> enumType, String name) –> for returning enum constant from the specified enum with the specified name
  * 
  * The compiler converts enum Weekend {---------} into a class with name Weekend and extends Enum<Weekend>.
