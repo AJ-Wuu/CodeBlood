@@ -18,7 +18,23 @@ enum Weekend {
     public abstract void someMethod();
 }
 
-//
+enum Weekend {
+    SATURDAY, SUNDAY;
+}
+
+public static void switch(enum Weekend) {
+        Weekend weekends = weekend.SATURDAY;
+        Switch (weekends) {
+            Case SATURDAY:
+                sysout (“Saturday”);
+                break;
+            Case SUNDAY:
+                sysout (“sunday”);
+                break;
+        }
+}
+
+//Call enums
 public enum CardColour {
     RED, BLACK
 }
