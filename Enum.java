@@ -1,9 +1,11 @@
 /**
- * Enums are preferably to constants as they can enforce type safety.
- * Enums are basically classes; they can implement interfaces, have behaviour and so on.
+ * Enums are preferably to constants as they can:
+ *       1. enforce type safety
+ *       2. implement interfaces, have behaviour and so on (enums are basically classes)
+ *       3. add fields, constructors and methods
  */
 
-//implement interface
+//Assign a different behavior to each constant by introducing an abstract method into the enum and overriding this method in an anonymous subclass of the constant
 enum Weekend {
     SATURDAY {
         @Override
@@ -16,7 +18,7 @@ enum Weekend {
     public abstract void someMethod();
 }
 
-
+//
 public enum CardColour {
     RED, BLACK
 }
