@@ -21,6 +21,15 @@
  * When anything else other than constants are there, comma-separated constants should be terminated with a semicolon. Otherwise, semicolon is optional.
  */
 
+//hashCode()
+public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((enum1 == null) ? 0 : enum1.hashCode());
+    result = prime * result + ((enum2 == null) ? 0 : enum2.hashCode());
+    return result;
+}
+
 //Assign a different behavior to each constant by introducing an abstract method into the enum and overriding this method in an anonymous subclass of the constant
 enum Weekend {
     SATURDAY {
