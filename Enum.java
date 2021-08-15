@@ -3,6 +3,10 @@
  *       1. enforce type safety
  *       2. implement interfaces, have behaviour and so on (enums are basically classes)
  *       3. add fields, constructors and methods
+ *       4. group things in a set
+ *       5. limit inputs (the compiler won’t allow parsing a constant of a wrong enum to a method that expects an enum type)
+ *       6. iterate (enums are iterable)
+ *       7. be used as a singleton in java
  * 
  * The compiler converts enum Weekend {---------} into a class with name Weekend and extends Enum<Weekend>.
  * It won’t allow us to explicitly extend the Enum class.
