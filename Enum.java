@@ -3,6 +3,9 @@
  *       1. enforce type safety
  *       2. implement interfaces, have behaviour and so on (enums are basically classes)
  *       3. add fields, constructors and methods
+ * 
+ * The compiler converts enum Weekend {---------} into a class with name Weekend and extends Enum<Weekend>.
+ * It won’t allow us to explicitly extend the Enum class.
  */
 
 //Assign a different behavior to each constant by introducing an abstract method into the enum and overriding this method in an anonymous subclass of the constant
@@ -10,11 +13,11 @@ enum Weekend {
     SATURDAY {
         @Override
         Public void someMethod(){}
-},
+    },
     SUNDAY {
         @Override
         Public void someMethod(){}
-};
+    };
     public abstract void someMethod();
 }
 
