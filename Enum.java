@@ -6,6 +6,8 @@
  * 
  * The compiler converts enum Weekend {---------} into a class with name Weekend and extends Enum<Weekend>.
  * It won’t allow us to explicitly extend the Enum class.
+ * 
+ * When anything else other than constants are there, comma-separated constants should be terminated with a semicolon. Otherwise, semicolon is optional.
  */
 
 //Assign a different behavior to each constant by introducing an abstract method into the enum and overriding this method in an anonymous subclass of the constant
@@ -28,15 +30,15 @@ enum Weekend {
 }
 
 public static void switch(enum Weekend) {
-        Weekend weekends = weekend.SATURDAY;
-        Switch (weekends) {
-            Case SATURDAY:
-                sysout (“Saturday”);
-                break;
-            Case SUNDAY:
-                sysout (“sunday”);
-                break;
-        }
+    Weekend weekends = weekend.SATURDAY;
+    Switch (weekends) {
+        Case SATURDAY:
+            sysout (“Saturday”);
+            break;
+        Case SUNDAY:
+            sysout (“sunday”);
+            break;
+    }
 }
 
 //Call enums
