@@ -18,6 +18,8 @@ enum Weekend {
     public abstract void someMethod();
 }
 
+//Enums are supported by the switch statement from java 5
+//When using enum in switch statement, the enum constants are the only allowed labels for cases
 enum Weekend {
     SATURDAY, SUNDAY;
 }
