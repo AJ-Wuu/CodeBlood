@@ -67,4 +67,3 @@ public enum Suit {
     Suit(CardColour colour) { this.colour = colour; }
     public CardColour getColour() { return colour; }
 }
-
