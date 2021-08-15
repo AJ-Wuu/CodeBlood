@@ -13,8 +13,6 @@ public enum Suit {
   DIAMONDS(CardColour.RED);
 
   private final CardColour colour;
-
   Suit(CardColour colour) { this.colour = colour; }
-
   public CardColour getColour() { return colour; }
 }
