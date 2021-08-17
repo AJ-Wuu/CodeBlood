@@ -58,6 +58,7 @@
  * Running Time:
  *     1. Polynomial: polynomial in input size -> Θ(n), if number S fits in a word; O(n*lg(S)) in general (S is exponential in lg(S), not polynomial)
  *     2. Pseudopolynomial: polynomial in the problem size AND the numbers (S, Si, Vi) in input -> Θ(n*S) is pseudopolynomial
+ *     Generally, Polynomial is good, Pseudopolynomial is okay, Exponential is bad.
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
