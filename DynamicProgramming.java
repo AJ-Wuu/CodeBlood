@@ -54,6 +54,10 @@
  *     suffix (x[i:]) \
  *     prefix (x[:i]) -> Θ(|x|) -> suffix and prefix are cheaper, if possible to be used
  *     substring (x[i:j]) -> Θ(x^2)
+ *
+ * Running Time:
+ *     1. Polynomial: polynomial in input size -> Θ(n), if number S fits in a word; O(n*lg(S)) in general (S is exponential in lg(S), not polynomial)
+ *     2. Pseudopolynomial: polynomial in the problem size AND the numbers (S, Si, Vi) in input -> Θ(n*S) is pseudopolynomial
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
