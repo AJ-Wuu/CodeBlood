@@ -49,6 +49,11 @@
  *         3. relate subproblem solutions
  *         4. recurse & memoize || build DP table
  *         5. solve the original problem
+ *     FAST:
+ *         Find the recursive solution
+ *         Analyze the solution (to look for overlapping problems)
+ *         Save the results for future (use n-dimensional array for caching purpose)
+ *         Tweak the solution to make it more powerful by eliminating recursion overhead (known as Bottom-Up)
  *
  * Solving sequence problems (words, cards, etc.):
  *     suffix (x[i:]) \
