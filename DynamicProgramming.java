@@ -51,9 +51,9 @@
  *         5. solve the original problem
  *
  * Solving sequence problems (words, cards, etc.):
- *     suffix (x[i:])
- *     prefix (x[:i])
- *     substring (x[i:j])
+ *     suffix (x[i:]) \
+ *     prefix (x[:i]) -> Θ(|x|) -> suffix and prefix are cheaper, if possible to be used
+ *     substring (x[i:j]) -> Θ(x^2)
  */
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
