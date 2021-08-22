@@ -20,3 +20,20 @@ implements: You are implementing a contract. The class implementing the interfac
             It is compulsory that class implementing an interface has to implement all the methods of that interface.
             An @Override tag is not required for implementing an interface, as there is nothing in the original interface methods to be overridden.
             An interface can never implement any other interface.
+
+static**********************************************************************************************************************************************************************
+1. The keyword static indicates that the particular member belongs to a type itself, rather than to an instance of that type.
+2. Static Field
+   2.1. If a field is declared static, then exactly a single copy of that field is created and shared among all instances of that class
+   2.2. From the memory perspective, static variables go in a particular pool in JVM memory called Metaspace 
+        (before Java 8, this pool was called Permanent Generation or PermGen, which was completely removed and replaced with Metaspace)
+   2.3. Compelling Reasons to Use static Fields: 
+        2.3.1. When the value of variable is independent of objects
+        2.3.2. When the value is supposed to be shared across all objects
+   2.4. Key Points to Remember:
+        2.4.1. since static variables belong to a class, they can be accessed directly using class name and don't need any object reference
+        2.4.2. static variables can only be declared at the class level
+        2.4.3. static fields can be accessed without object initialization
+        2.4.4. although we can access static fields using an object reference (like ford.numberOfCars++), 
+               we should refrain from using it as in this case it becomes difficult to figure whether it’s an instance variable or a class variable; 
+               instead, we should always refer to static variables using class name (for example, in this case, Car.numberOfCars++)
