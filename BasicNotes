@@ -1,0 +1,13 @@
+Packages*****************************************************************************************************************************************************************
+util VS awt
+  java.util.* contains some tool classes, such as List, Map, HashMap, Set, etc.
+  java.awt.* encapsulates the classes related to graphics drawing, such as Point, Line, etc.
+
+awt VS swing
+                   Definition                                |  Components                     |  Functionality  |  Execution Time  |  Platform     |  MVC** pattern
+  java.awt.*    |  API to develop GUI applications           |  heavy weighted, less powerful  |  less           |  more            |  dependent    |  not supported
+  java.swing.*  |  part of Java Foundation Classes for many  |  light weighted, more powerful  |  more           |  less            |  independent  |  supported
+    **MVC stands for Model–View–Controller, 
+          which is a software design pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements.
+          
+A
