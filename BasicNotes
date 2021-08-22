@@ -51,6 +51,18 @@ static**************************************************************************
                3.2.4.3. static methods can access all static variables and other static methods
                3.2.4.4. static methods cannot access instance variables and instance methods directly; they need some object reference to do so
 4. Static Block
+    public class StaticBlockDemo {
+        public static List<String> ranks = new LinkedList<>();
+        static {
+            ranks.add("Lieutenant");
+            ranks.add("Captain");
+            ranks.add("Major");
+        }
+        static {
+            ranks.add("Colonel");
+            ranks.add("General");
+        }
+    }
    4.1. If static variables require additional, multi-statement logic while initialization, then a static block can be used.
    4.2. Compelling Reasons to Use static Blocks:
         4.2.1. if initialization of static variables requires some additional logic except the assignment
