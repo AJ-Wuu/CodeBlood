@@ -59,15 +59,15 @@ static**************************************************************************
         4.3.1. a class can have multiple static blocks
         4.3.2. static fields and static blocks are resolved and executed in the same order as they are present in the class
 5. Static Class
-   public class Singleton {
-    private Singleton() {}
-    private static class SingletonHolder {
-        public static final Singleton instance = new Singleton();
+    public class Singleton {
+        private Singleton() {}
+        private static class SingletonHolder {
+            public static final Singleton instance = new Singleton();
+        }
+        public static Singleton getInstance() {
+            return SingletonHolder.instance;
+        }
     }
-    public static Singleton getInstance() {
-        return SingletonHolder.instance;
-    }
-   }
    5.1. Static nested classes behaved exactly like any other top-level class but enclosed in the only class which will access it, to provide better packaging convenience.
    5.2. The nested class architecture:
         5.1.1. nested classes that are declared static are called static nested classes
