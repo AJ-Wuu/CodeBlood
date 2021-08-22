@@ -58,3 +58,29 @@ static**************************************************************************
    4.3. Key Points to Remember:
         4.3.1. a class can have multiple static blocks
         4.3.2. static fields and static blocks are resolved and executed in the same order as they are present in the class
+5. Static Class
+   public class Singleton  {    
+    private Singleton() {}
+    
+    private static class SingletonHolder {    
+        public static final Singleton instance = new Singleton();
+    }    
+
+    public static Singleton getInstance() {    
+        return SingletonHolder.instance;    
+    }    
+   }
+   5.1. Static nested classes behaved exactly like any other top-level class but enclosed in the only class which will access it, to provide better packaging convenience.
+   5.2. The nested class architecture:
+        5.1.1. nested classes that are declared static are called static nested classes
+        5.1.2. nested classes that are non-static are called inner classes
+   5.3. Compelling Reasons to Use a static Inner Class:
+        5.3.1. grouping classes that will be used only in one place increases encapsulation
+        5.3.2. the code is brought closer to the place that will be only one to use it; this increases readability and code is more maintainable
+        5.3.3. if nested class doesn't require any access to it's enclosing class instance members, then it's better to declare it as static because this way, 
+               it won't be coupled to the outer class and hence will be more optimal as they won't require any heap or stack memory
+   5.4. Key Points to Remember:
+        5.4.1. static nested classes do not have access to any instance members of the enclosing outer class; it can only access them through an object's reference
+        5.4.2. static nested classes can access all static members of the enclosing class, including private ones
+        5.4.3. Java programming specification doesn't allow us to declare the top-level class as static;
+               only classes within the classes (nested classes) can be made as static
