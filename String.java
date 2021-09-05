@@ -87,6 +87,3 @@ public int lengthOfLongestSubstringKDistinct(String s, int k) {
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//#5 - Longest Palindromic Substring
-//  https://en.wikipedia.org/wiki/Longest_palindromic_substring#Manacher's_algorithm
