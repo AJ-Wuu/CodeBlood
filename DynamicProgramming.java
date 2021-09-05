@@ -156,7 +156,34 @@ public boolean isMatch(String s, String p) {
 
 //#5 - Longest Palindromic Substring
 //Note: A palindrome is a string which reads the same in both directions.
-//Key: A string is a palindrome when it's
-//     1. a single char
-//     2. "XY" where 'X' == 'Y'
-//     3. string[i] == string[j] and substring at [i-1][j+1] is palindrome
+//Key: The substring of a palindrome without the left-most and right-most chars is a palindrome, too (Eg. "ababa" & its substring "bab")
+//Conditions: A string is a palindrome when it's
+//            1. a single char
+//            2. "XY" where 'X' == 'Y'
+//            3. string[i] == string[j] and substring at [i-1][j+1] is palindrome
+public static String longestPalindrome(String s) {
+    int low, maxLen;
+	int len = s.length();
+	if (len < 2) {
+		return s;
+	}
+	
+    for (int i=0; i<len-1; i++) {
+     	extendPalindrome(s, i, i);  //Conditions 1
+     	extendPalindrome(s, i, i+1); //Conditions 2
+    }
+    return s.substring(low, low + maxLen);
+}
+
+private static void extendPalindrome(String s, int j, int k) {
+	while (j>=0 && k<s.length() && s.charAt(j) == s.charAt(k)) {
+        //find if the base is a palindrome (in other words, if conditions 1 OR 2 is TRUE)
+        //if TRUE, then goes to the left and right, to see if the palindrome can be extended
+		j--;
+		k++;
+	}
+	if (maxLen < k - j - 1) {
+		lo = j + 1;
+		maxLen = k - j - 1;
+	}
+}
