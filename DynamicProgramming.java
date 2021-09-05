@@ -163,6 +163,7 @@ public boolean isMatch(String s, String p) {
 //            3. string[i] == string[j] and substring at [i-1][j+1] is palindrome
 
 //The following solution is a special one for this question, not technically a DP
+//Time: O(n ^ 2)
 public static String longestPalindrome(String s) {
     int low, maxLen;
     int len = s.length();
@@ -188,3 +189,5 @@ private static void extendPalindrome(String s, int j, int k) {
         maxLen = k - j - 1;
     }
 }
+
+//Refer to Projects/ManacherAlgorithm.java for a special solution with Time: O(n)
