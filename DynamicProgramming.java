@@ -66,11 +66,11 @@
  *     Generally, Polynomial is good, Pseudopolynomial is okay, Exponential is bad.
  */
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#68 - Text Justification -> See Projects/Text Justification/DP.java
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#10 - Regular Expression Matching
 //Similar to Longest Common Sub-string (#718) or Longest Common Subsequence (#1143) as they all match string from left to right.
@@ -152,7 +152,7 @@ public boolean isMatch(String s, String p) {
     return dp[s.length()][p.length()];
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#5 - Longest Palindromic Substring
 //Note: A palindrome is a string which reads the same in both directions.
@@ -178,7 +178,7 @@ public static String longestPalindrome(String s) {
 private static void extendPalindrome(String s, int j, int k) {
 	while (j>=0 && k<s.length() && s.charAt(j) == s.charAt(k)) {
         //find if the base is a palindrome (in other words, if conditions 1 OR 2 is TRUE)
-        //if TRUE, then goes to the left and right, to see if the palindrome can be extended
+        //if TRUE, then goes to the left and right, to see if the palindrome can be extended (see Key above)
 		j--;
 		k++;
 	}
