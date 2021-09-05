@@ -151,3 +151,8 @@ public boolean isMatch(String s, String p) {
     }
     return dp[s.length()][p.length()];
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#5 - Longest Palindromic Substring
+//Note: A palindrome is a string which reads the same in both directions.
