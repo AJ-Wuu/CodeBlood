@@ -231,3 +231,71 @@ public static List<Integer> getRow(int rowIndex) {
     }
     return row;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#22 - Generate Parentheses
+//Brute Force: Generate all 2^(2n) sequences of '(' and ')' characters, then check if each one is valid.
+public static void generateAll(char[] current, int pos, List<String> result) {
+    if (pos == current.length) {
+        if (valid(current)) {
+            result.add(new String(current));
+        }
+    }
+    else {
+        current[pos] = '(';
+        generateAll(current, pos+1, result);
+        current[pos] = ')';
+        generateAll(current, pos+1, result);
+    }
+}
+
+public static boolean valid(char[] current) {
+    int balance = 0;
+    for (char c : current) {
+        if (c == '(') {
+            balance++;
+        }
+        else {
+            balance--;
+        }
+        if (balance < 0) {
+            return false;
+        }
+    }
+    return (balance == 0);
+}
+
+//Back Track: Add '(' or ')' only when we know it will remain a valid sequence.
+public void backtrack(List<String> list, String str, int open, int close, int max){
+    if(str.length() == max*2){
+        list.add(str);
+        return;
+    }
+        
+    if(open < max) {
+        backtrack(list, str+"(", open+1, close, max);
+    }
+    if(close < open) {
+	    backtrack(list, str+")", open, close+1, max);
+    }
+}
+
+//Closure Number: For each closure number c, we know the starting and ending brackets must be at index 0 and 2*c + 1.
+//                Then, the 2*c elements between must be a valid sequence, plus the rest of the elements must be a valid sequence.
+public static List<String> generateParenthesis(int n) {
+    List<String> ans = new ArrayList<String>();
+    if (n == 0) {
+        ans.add("");
+    }
+    else {
+        for (int c = 0; c < n; ++c) {
+            for (String left : generateParenthesis(c)) {
+                for (String right : generateParenthesis(n-1-c)) {
+                    ans.add("(" + left + ")" + right);
+                }
+            }
+        }
+    }
+    return ans;
+}
