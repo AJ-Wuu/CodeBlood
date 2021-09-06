@@ -191,3 +191,21 @@ private static void extendPalindrome(String s, int j, int k) {
 }
 
 //Refer to Projects/ManacherAlgorithm.java for a special solution with Time: O(n)
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#118 - Pascal's Triangle
+//TakeAways: 1. define List<List<>>, 2. currow can be reused after adding to rows,
+//           3. eg. numRows = 4, it goes as [1,3,3,1] -> [1,1,3,3,1] -> [1,4,3,3,1] -> [1,4,6,3,1] -> [1,4,6,4,1], so there is no need to access the previous row
+public static List<List<Integer>> generate(int numRows) {
+    List<List<Integer>> rows = new LinkedList<List<Integer>>();
+    LinkedList<Integer> currrow = new LinkedList<Integer>();
+    for (int i=0; i<numRows; i++) {
+        currrow.add(0, 1);
+        for (int j=1; j<currrow.size()-1; j++) {
+            currrow.set(j, currrow.get(j) + currrow.get(j+1));
+        }
+        rows.add(new LinkedList<Integer>(currrow));
+    }
+    return rows;
+}
