@@ -209,3 +209,25 @@ public static List<List<Integer>> generate(int numRows) {
     }
     return rows;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#119 - Pascal's Triangle II
+//Use the mathematical property of this triangle
+public static List<Integer> getRow(int rowIndex) {
+    List<Integer> row = new LinkedList<Integer>();
+    row.add(1);
+    if (rowIndex == 0) {
+        return row;
+    }
+    int t = rowIndex, b = 1;
+    long cur = 1; //this must be long, otherwise it will go out-of-bound
+    for (int i=1; i<rowIndex+1; i++) {
+        cur = cur * t;
+        cur = cur / b;
+        row.add((int)cur);
+        t--;
+        b++;
+    }
+    return row;
+}
