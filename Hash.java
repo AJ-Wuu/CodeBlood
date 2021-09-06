@@ -55,7 +55,7 @@ Hashtable<Integer, Integer> table = new Hashtable<Integer, Integer>();
 public V computeIfAbsent(K key, Function<? super K, ? extends V> remappingFunction);
 targets.computeIfAbsent(ticket.get(0), k -> new PriorityQueue()).add(ticket.get(1)); //See LeetCode/Graph.java #332
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#954 - Array of Doubled Pairs ????????????????????????????????????????????????????????
 map.put(x, map.getOrDefault(x, 0)); //map.getOrDefault(x, 0) -> hashmap.get(Object key, V defaultValue)
@@ -87,13 +87,13 @@ public boolean checkMatch(Map intsLeft, int n) {
     return matchCount >= nCount;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#3 - Longest Substring Without Repeating Characters
 //This is an easy way to: 1. check if c is in the map & 2. move the starting index to the latter possible position
 start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if find c in the map, return its value; else, return 0
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#17 - Letter Combinations of a Phone Number
 //Convert char to int
@@ -132,7 +132,7 @@ public void backtrack(List<String> combos, char[] digits, String s, String[] dic
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#30 - Substring with Concatenation of All Words
 //Shallow copy a whole HashMap
@@ -258,7 +258,7 @@ public static void decreaseCount(HashMap<String, Integer> currDict, String key) 
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#36 - Valid Sudoku
 //Using some signal words to store a value in different strings in HashSet can save loops.
@@ -279,7 +279,7 @@ public static boolean isValidSudoku(char[][] board) {
     return true;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#49 - Group Anagrams
 //Key points:
@@ -307,7 +307,7 @@ public List<List<String>> groupAnagrams(String[] strs) {
     return new ArrayList<>(map.values()); //Convert Map to ArrayList (object could be omitted)
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#347 - Top K Frequent Elements
 //Sort HashMap by Values
@@ -330,69 +330,4 @@ private static HashMap sortByValues(HashMap<Integer, Integer> map) {
     return sortedHashMap;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//#22 - Generate Parentheses
-//Brute Force: Generate all 2^(2n) sequences of '(' and ')' characters, then check if each one is valid.
-public static void generateAll(char[] current, int pos, List<String> result) {
-    if (pos == current.length) {
-        if (valid(current)) {
-            result.add(new String(current));
-        }
-    }
-    else {
-        current[pos] = '(';
-        generateAll(current, pos+1, result);
-        current[pos] = ')';
-        generateAll(current, pos+1, result);
-    }
-}
-
-public static boolean valid(char[] current) {
-    int balance = 0;
-    for (char c : current) {
-        if (c == '(') {
-            balance++;
-        }
-        else {
-            balance--;
-        }
-        if (balance < 0) {
-            return false;
-        }
-    }
-    return (balance == 0);
-}
-
-//Back Track: Add '(' or ')' only when we know it will remain a valid sequence.
-public void backtrack(List<String> list, String str, int open, int close, int max){
-    if(str.length() == max*2){
-        list.add(str);
-        return;
-    }
-        
-    if(open < max) {
-        backtrack(list, str+"(", open+1, close, max);
-    }
-    if(close < open) {
-	    backtrack(list, str+")", open, close+1, max);
-    }
-}
-
-//Closure Number: For each closure number c, we know the starting and ending brackets must be at index 0 and 2*c + 1.
-//                Then, the 2*c elements between must be a valid sequence, plus the rest of the elements must be a valid sequence.
-public static List<String> generateParenthesis(int n) {
-    List<String> ans = new ArrayList<String>();
-    if (n == 0) {
-        ans.add("");
-    }
-    else {
-        for (int c = 0; c < n; ++c) {
-            for (String left : generateParenthesis(c)) {
-                for (String right : generateParenthesis(n-1-c)) {
-                    ans.add("(" + left + ")" + right);
-                }
-            }
-        }
-    }
-    return ans;
-}
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
