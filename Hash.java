@@ -329,3 +329,36 @@ private static HashMap sortByValues(HashMap<Integer, Integer> map) {
     } 
     return sortedHashMap;
 }
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//#22 - Generate Parentheses
+//Generate all 2^(2n) sequences of '(' and ')' characters, then check if each one is valid.
+public static void generateAll(char[] current, int pos, List<String> result) {
+    if (pos == current.length) {
+        if (valid(current)) {
+            result.add(new String(current));
+        }
+    }
+    else {
+        current[pos] = '(';
+        generateAll(current, pos+1, result);
+        current[pos] = ')';
+        generateAll(current, pos+1, result);
+    }
+}
+
+public static boolean valid(char[] current) {
+    int balance = 0;
+    for (char c : current) {
+        if (c == '(') {
+            balance++;
+        }
+        else {
+            balance--;
+        }
+        if (balance < 0) {
+            return false;
+        }
+    }
+    return (balance == 0);
+}
