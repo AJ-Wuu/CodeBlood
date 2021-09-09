@@ -3,7 +3,7 @@ int row = mat.length;
 int col = mat[0].length;
 result[i/c][i%c] = mat[i/col][i%col];
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#1146 - Snapshot Array
 class SnapshotArray {
@@ -43,7 +43,7 @@ class SnapshotArray {
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#384 - Shuffle an Array
 Random rand = new Random(); //the seed goes in the parentheses
@@ -64,7 +64,8 @@ temp = Arrays.copyOf(nums,nums.length); //used for shuffle()
 public int[] shuffle() {
     Random rand = new Random();
     int index;
-    for (int i=0; i<length/2; i++) { //as swap moves between 2 elements and temp never changes back to initial setting, length/2 is enough to get all possible permutations
+    for (int i=0; i<length/2; i++) {
+        //as swap moves between 2 elements and temp never changes back to initial setting, length/2 is enough to get all possible permutations
         index = rand.nextInt(length);
         if (i != index) {
             temp = swap(temp, 0, index);
@@ -78,7 +79,7 @@ int ii = (int) ((double)12/2 + 0.5); // 6
 int j = (int) (21/2 + 0.5); // 10
 int jj = (int) ((double)21/2 + 0.5); // 11
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#189 - Rotate Array
 //Best way: Reverse (whole and partial array)
@@ -103,13 +104,13 @@ public void reverse(int[] nums, int start, int end) {
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#912 - Sort an Array
 //Count Sort: Put positive integers into countP[] with (valueOfInteger == index), and put the absolute value of negative integers into countN[].
 //            Then combining elements of reverse countN[] and plain countP[] to get the sorted array.
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#525 - Contiguous Array
 //This is to count how many 0-1 are there, including 0-1 & 00-11 & 000-111 & etc., but they don't need to be joined nor sorted.
@@ -132,13 +133,13 @@ public int findMaxLength(int[] nums) {
     return maxlen;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#392 - Beautiful Array
 //For questions with new concepts like this ("for every i < j, there is no k with i < k < j such that nums[k] * 2 = nums[i] + nums[j]"),
 //we should try to analyze its basic properties first, then deduce some underlined properties, and use those properties in the algorithm.
     
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#896 - Monotonic Array
 Integer.compare(A[i], A[i+1]); //equals .compareTo() with previous declarations of A[i] and A[i+1] being Integer (not int)
@@ -146,7 +147,7 @@ Integer.compare(A[i], A[i+1]); //equals .compareTo() with previous declarations 
 //                             if A[i] > A[i+1], increasing = false; if A[i] < A[i+1], decreasing = false
 //                             return (increasing || decreasing)
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#565 - Array Nesting
 //For questions concerning inner recycling (eg. "s[k] = {nums[k], nums[nums[k]], nums[nums[nums[k]]], ... }"), we first need to think about using boolean visited[].
@@ -170,7 +171,7 @@ public int arrayNesting(int[] nums) {
 
 Arrays.sort(a); //this sorts array "a" in an increasing order -> a[0] is the minimum and a[a.length-1] is the maximum
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#845 - Longest Mountain in Array
 //The order in if() / while() sentence is crucial. Eg:
@@ -193,13 +194,13 @@ while (base < N) {
     base = Math.max(end, base + 1); //update the base
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#1095 - Find in Mountain Array
 //Binary Search is enough, no need for Trinary
 //1. Find peak; 2. Try to find target on the left side of the peak; 3. Try to find on the right side
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#954 - Array of Doubled Pairs
 //Greedy
@@ -239,7 +240,7 @@ Collections.sort(list, new EmployeeSalaryComparator());
 list.sort(Comparator.naturalOrder());
 list.sort(Comparator.reverseOrder());
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#41 - First Missing Positive
 //We don't care negative and duplicate numbers, so we try to make the original A[] as a positive standard array like [1,2,3,...] (Key Point: A[i] = i + 1):
@@ -256,7 +257,7 @@ else {
     i++;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#73 - Set Matrix Zeroes
 //If the problem can be solved in-place for an array, there is no need to involve a new data structure
@@ -265,7 +266,7 @@ else {
         //-> If (matrix[i][j] == 0), matrix[i][0] = matrix[0][j] = 0. Then if (matrix[i][0] == 0 || matrix[0][j] == 0), matrix[i][j] = 0.
         //-> If the first row has 0, Arrays.fill(matrix[0], 0).
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#264 - Ugly Number II
 //How to prevent adding numbers that have other prime factors? -> Remember that an ugly number must be multiplied by either 2, 3, or 5 from a smaller ugly number.
@@ -291,10 +292,11 @@ public static int nthUglyNumber(int n) {
     return ugly[n-1];
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#
-//Approach 1 (same idea as #264): Use index[] -> this approach can be better if we use value[] to store all (primes[j] * ugly[index[j]]) to save time of duplicate mutiplication
+//Approach 1 (same idea as #264): Use index[] -> 
+//                                this approach can be better if we use value[] to store all (primes[j] * ugly[index[j]]) to save time of duplicate mutiplication
     for (int j=0; j<primes.length; j++) {
         ugly[i] = Math.min(ugly[i], primes[j] * ugly[index[j]]);
     }
@@ -305,3 +307,54 @@ public static int nthUglyNumber(int n) {
     }
 //Approach 2: Use PriorityQueue (possible but bad efficiency). Though we hope it would be O(k * n * log(k)) (k == primes.length), the ratio may not scale in terms of k,
 //            but there's a m in front of the time complexity anyway, so it becomes O(m * n * log(k)). Therefore, the efficiency is worse, not better.
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//4 - Median of Two Sorted Arrays
+public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    int m = nums1.length;
+    int n = nums2.length;
+		
+    if (m > n) {
+        return findMedianSortedArrays(nums2, nums1);
+    }
+		
+    int i = 0, j = 0, imin = 0, imax = m, half = (m + n + 1) / 2;
+    double maxLeft = 0, minRight = 0;
+    while (imin <= imax) {
+        i = (imin + imax) / 2;
+        j = half - i;
+        if (j > 0 && i < m && nums2[j - 1] > nums1[i]) {
+            imin = i + 1;
+        }
+        else if (i > 0 && j < n && nums1[i - 1] > nums2[j]) {
+            imax = i - 1;
+        }
+        else{
+            if (i == 0) {
+                maxLeft = (double)nums2[j - 1];
+            }
+            else if (j == 0) {
+                maxLeft = (double)nums1[i - 1];
+            }
+            else {
+                maxLeft = (double)Math.max(nums1[i - 1], nums2[j - 1]);
+            }
+            break;
+        }
+    }
+    if ((m + n) % 2 == 1) {
+        return maxLeft;
+    }
+    if (i == m) {
+        minRight = (double)nums2[j];
+    }
+    else if (j == n) {
+        minRight = (double)nums1[i];
+    }
+    else {
+        minRight = (double)Math.min(nums1[i], nums2[j]);
+    }
+		
+    return (double)(maxLeft + minRight) / 2;
+}
