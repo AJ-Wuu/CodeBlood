@@ -1,6 +1,7 @@
 //String
 String s = "";
 s = s.concat("s"); //s.concat() has a return value, and it needs this return value to update the original string
+s += "00"; //directly using "+" could also work
 
 //String Builder
 StringBuilder str = new StringBuilder();
