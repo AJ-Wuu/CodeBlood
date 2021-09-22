@@ -20,6 +20,9 @@ str.valueOf(char[] data, int offset, int count); //representation of a specific 
 int a = ("AEC").compareTo("DBC"); //a = -3 = A - D
 int b = ("Z").compareTo("a"); //b = -7
 
+//X-digit after the decimal
+String.format("%.6f", m/n); //Note, at least one of m and n should be float or double.
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#76 - Minimum Window Substring
