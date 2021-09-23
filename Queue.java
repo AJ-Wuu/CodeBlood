@@ -16,17 +16,56 @@
  *
  * Different Kinds:
  * 1. Linear Queue -> less efficient; insertion and deletion operations are fixed to be done at the rear and front end respectively
- * 2. Circular Queue -> a ring buffer; items can be inserted or deleted from a queue in O(1) time; less memory; more efficient; insertion and deletion can be done anywhere
+ * 2. Circular Queue -> a ring buffer; items can be inserted or deleted from a queue in O(1) time; 
+ *                      less memory; more efficient; insertion and deletion can be done anywhere
  * 3. Priority Queue -> simple queue; allows duplicate elements; more memory; less efficient
  * 4. Deque -> faster adding or removing elements to the end
  *
  * Inserted Functions:
- * 1. if full, add() -> IllegalSlabEepeplian, offer() -> false, put() -> blocked; NONE of them can add null to the queue, and adding null will cause NullPointerException
+ * 1. if full, add() -> IllegalSlabEepeplian, offer() -> false, put() -> blocked;
+ *             NONE of them can add null to the queue, and adding null will cause NullPointerException
  * 2. if empty, remove() -> NoSuchElementException, poll() -> null, take() -> blocked
  * 3. if empty, element() -> NoSuchElementException, peek() -> null
  */
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Queue using Two Stacks
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+        
+    Stack<Integer> s1 = new Stack<Integer>();
+    Stack<Integer> s2 = new Stack<Integer>();
+        
+    while (N-- > 0) {
+        int read = sc.nextInt();
+        if (read == 1) {
+            int num = sc.nextInt();
+            s1.push(num);
+        }
+        else if (read == 2) {
+            if (s2.empty()) {
+                while (!s1.empty()) {
+                    s2.push(s1.pop());
+                }
+            }
+            s2.pop();
+        }
+        else {
+            if (s2.empty()) {
+                while (!s1.empty()) {
+                    s2.push(s1.pop());
+                }
+            }
+            System.out.println(s2.peek());
+        }
+    }
+    sc.close();
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#239 - Sliding Window Maximum
 public static int[] maxSlidingWindow(int[] nums, int k) {
