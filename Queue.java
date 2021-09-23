@@ -35,7 +35,7 @@
 //Key: enqueue -> put into Stack1
 //     dequeue -> pop out of Stack1 to Stack2, then pop out of Stack2
 //     print -> pop out of Stack1 to Stack2, then peep Stack2
-//The reason of using two stacks is because there exists a possibility of printing without dequeue
+//The reason of using two stacks is because there exists a possibility of printing without dequeue, and the current Stack should be the combination of Stack2-Stack1
 public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     int N = sc.nextInt();
