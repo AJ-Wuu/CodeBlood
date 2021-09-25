@@ -2,7 +2,8 @@
  * https://techparoksha.quora.com/Dynamic-Programming-Part-1
  * Dynamic Programming vs Greedy Approach.
 
-Greedy as the title suggests ,  takes into account the best possible and feasible option at any point of time. Both Greedy and dynamic programming algorithms construct an optimal solution of a subproblem based on optimal solutions of smaller subproblems. However, the main difference is that greedy algorithms have a local choice of the subproblem that will lead to the optimal answer. On the other hand, dynamic programming would solve all dependent subproblems and then select one that would lead to optimal solution. Both algorithms require that an optimal solution of current subproblem is based on optimal solutions of dependent subproblems which is referred to as optimal substructure property.
+Greedy as the title suggests,  takes into account the best possible and feasible option at any point of time.
+Both Greedy and dynamic programming algorithms construct an optimal solution of a subproblem based on optimal solutions of smaller subproblems. However, the main difference is that greedy algorithms have a local choice of the subproblem that will lead to the optimal answer. On the other hand, dynamic programming would solve all dependent subproblems and then select one that would lead to optimal solution. Both algorithms require that an optimal solution of current subproblem is based on optimal solutions of dependent subproblems which is referred to as optimal substructure property.
 
 In dynamic programming, we need to identify the following:
 
