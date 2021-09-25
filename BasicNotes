@@ -1,4 +1,4 @@
-Packages********************************************************************************************************************************************************************
+Packages*****************************************************************************************************************************************************************
 util VS awt
   java.util.* contains some tool classes, such as List, Map, HashMap, Set, etc.
   java.awt.* encapsulates the classes related to graphics drawing, such as Point, Line, etc.
@@ -10,7 +10,7 @@ awt VS swing
     **MVC stands for Model–View–Controller, 
           which is a software design pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements.
           
-Interface & Abstract Classes************************************************************************************************************************************************
+Interface & Abstract Classes*********************************************************************************************************************************************
 A class can extend only one superclass and can implement any number of interfaces simultaneously.
 extends: A derived class can extend a base class. You may redefine the behaviour of an established relation. Derived class "is a" base class type.
          It is not compulsory that subclass that extends a superclass override all the methods in a superclass.
@@ -21,7 +21,7 @@ implements: You are implementing a contract. The class implementing the interfac
             An @Override tag is not required for implementing an interface, as there is nothing in the original interface methods to be overridden.
             An interface can never implement any other interface.
 
-static**********************************************************************************************************************************************************************
+static*******************************************************************************************************************************************************************
 1. The keyword static indicates that the particular member belongs to a type itself, rather than to an instance of that type.
 2. Static Field
    2.1. If a field is declared static, then exactly a single copy of that field is created and shared among all instances of that class
