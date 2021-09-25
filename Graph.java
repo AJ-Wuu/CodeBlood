@@ -9,7 +9,7 @@
  *                and can be substantially more complicated, due to references possibly forming a complicated graph.
  */
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#133 - Clone Graph
 //DFS, using recursion and visited map
@@ -40,7 +40,7 @@ public UndirectedGraphNode clone(UndirectedGraphNode src, HashMap<UndirectedGrap
     return n;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //207 - Course Schedule
 //prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai
@@ -91,7 +91,7 @@ public static boolean canFinish(int numCourses, int[][] prerequisites) {
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#210 - Course Schedule II
 //Topological Sort Approach
@@ -145,7 +145,7 @@ public static int[] findOrder(int numCourses, int[][] prerequisites) {
     return ans;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#310 - Minimum Height Trees
 //Key: 1. For a tree-alike graph, the number of centroids is no more than 2
@@ -204,7 +204,7 @@ public ArrayList<Integer> findMinHeightTrees(int n, int[][] edges) {
     return leaves;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#329 - Longest Increasing Path in a Matrix
 //Key: 1. Use matrix[x][y] <= matrix[i][j] so we don't need a visited[m][n] array
@@ -242,7 +242,8 @@ public int dfs(int[][] matrix, int[][] cache, int x, int y, int curPoint) {
         int dy = y + dir[1];
         
         //Compare every 4 direction and skip cells that are out of boundary or smaller
-        if (dx < 0 || dx > matrix.length - 1 || dy < 0 || dy > matrix[0].length - 1 || curPoint >= matrix[dx][dy]) { //next point is invalid (out of bound or GE next point)
+        if (dx < 0 || dx > matrix.length - 1 || dy < 0 || dy > matrix[0].length - 1 || curPoint >= matrix[dx][dy]) {
+            //next point is invalid (out of bound or GE next point)
             continue;
         }
         int curLen = 1 + dfs(matrix, cache, dx, dy, matrix[dx][dy]); //next point is valid
@@ -254,7 +255,7 @@ public int dfs(int[][] matrix, int[][] cache, int x, int y, int curPoint) {
     return max;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#332 - Reconstruct Itinerary
 //AKA the Eulerian Path
@@ -279,7 +280,7 @@ public static List<String> findItinerary(List<List<String>> tickets) {
     return route;
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#399 - Evaluate Division
 //Approach 1: EulerianPath(start, end) + visited[] -> Eulerian Path see CLRS/Chapter22-Elementary Graph Algorithms/EulerianPath_HierholzerAlgorithm.java
