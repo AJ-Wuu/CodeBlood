@@ -20,3 +20,32 @@ Quite interesting as it seems ,  DP can not be applied over the structures follo
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#68 - Text Justification -> See Projects/Text Justification/Greedy.java
+
+
+public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+        for (int i=0; i<n; i++) {
+            result[i] = -1;
+        }
+        Stack<Integer> key = new Stack<Integer>();
+        Stack<Integer> index = new Stack<Integer>();
+        for (int i=0; i<2*n-1; i++) {
+            if (i < n) {
+                while (!key.isEmpty() && key.peek() < nums[i]) {
+                    key.pop();
+                    result[index.pop()] = nums[i];
+                }
+                key.push(nums[i]);
+                index.push(i);
+            }
+            else {
+                int j = i - n;
+                while (!key.isEmpty() && key.peek() < nums[j]) {
+                    key.pop();
+                    result[index.pop()] = nums[j];
+                }
+            }
+        }
+        return result;
+    }
