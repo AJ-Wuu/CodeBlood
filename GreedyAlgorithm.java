@@ -49,3 +49,14 @@ public int[] nextGreaterElements(int[] nums) {
     }
     return result;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//556 - Next Greater Element III
+//Steps after separating the number into digits:
+//1. From back to front, find the first pair that makes numList.get(j) < numList.get(i) (i < j)
+//2. Keep the digits before i as it is, numList.get(j) should be in position i (numList.get(i) should be in position j, too)
+//3. All elements after current index = i should be sorted from small to large
+//4. Check if the new integer overflow in 32-bit
+//   4.1 this could be done by checking each step (i.e. if (Integer.MAX_VALUE - result > currDigit) { return -1; }), both addition and multiplication
+//   4.2 or, we could use a long variable (resultInLong) to store it, and check if (resultInLong > Integer.MAX_VALUE) { return -1; } else { return (int)resultInLong; } 
