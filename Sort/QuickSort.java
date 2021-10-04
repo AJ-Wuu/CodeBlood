@@ -7,6 +7,7 @@ package quick;
 public class QuickSort {
 	
 	//Divide and Conquer
+	//Sort based on the chosen pivot to {[smaller than pivot], pivot, [larger than pivot]}
 	//Two pointers moving towards each other on the same array
 	//Time: Best = O(nlogn), Worst = O(n^2) -> However, QuickSort is better in practice, as choosing the pivot wisely (instead of randomly) would be very helpful
 	//Space: O(1)
