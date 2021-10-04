@@ -9,6 +9,8 @@ public class MergeSort {
 	//Divide and Conquer
 	//Separate to pieces and then merge
 	//Two pointers of two subarrays
+	//Time: Best = Median = Worst = O(nlogn)
+	//Space: O(n)
 	
 	public static void merge(int[] array, int left, int mid, int right) {
 		int size1 = mid - left + 1;
