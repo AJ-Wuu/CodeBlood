@@ -7,6 +7,7 @@
  * 
  * DP can not be applied over the structures following cyclic property, whereas, greedy can be applied over cyclic structures.
  * DP is slower on average, but it ensures the optimality of the answer.
+ * Greedy is hard in proving that it is optimal, but it has much simpler implementation.
  */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
