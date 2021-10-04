@@ -5,6 +5,11 @@
 package quick;
 
 public class QuickSort {
+	
+	//Divide and Conquer
+	//Two pointers moving towards each other on the same array
+	//Time: Best = O(nlogn), Worst = O(n^2) -> However, QuickSort is better in practice, as choosing the pivot wisely (instead of randomly) would be very helpful
+	//Space: O(1)
 
 	public static void swap(int[] array, int i, int j) {
 		int temp = array[i];
@@ -36,6 +41,7 @@ public class QuickSort {
 		}
 		
 		//put the pivot in the middle and return the separating point index
+		//Notice that the two pointers may be the same or next to each other
 		if (i == j) {
 			swap(array, i, left);
 			return i;
