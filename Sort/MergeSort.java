@@ -7,6 +7,7 @@ package merge;
 public class MergeSort {
 
 	//Divide and Conquer
+	//Separate to pieces and then merge
 	//Two pointers of two subarrays
 	
 	public static void merge(int[] array, int left, int mid, int right) {
