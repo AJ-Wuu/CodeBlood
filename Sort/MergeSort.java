@@ -68,7 +68,7 @@ public class MergeSort {
 	}
 	
 	public static void main(String[] args) {
-		int[] array = {12,1,9,4,32,23,2,24,1,21,3,42};
+		int[] array = {12,22,9,4,32,23,2,24,1,21,3,42};
 		divide(array, 0, array.length-1);
 		print(array);
 	}
