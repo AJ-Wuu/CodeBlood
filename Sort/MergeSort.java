@@ -8,7 +8,7 @@ public class MergeSort {
 
 	//Divide and Conquer
 	//Separate to pieces and then merge
-	//Two pointers of two subarrays
+	//Two pointers moving along each subarray separately
 	//Time: Best = Median = Worst = O(nlogn)
 	//Space: O(n)
 	
