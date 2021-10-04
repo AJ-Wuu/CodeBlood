@@ -24,30 +24,35 @@ Quite interesting as it seems ,  DP can not be applied over the structures follo
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#503 - Next Greater Element II
+//Notion here: get E1, stack empty, store E1
+//             if E1 > E2, store E2; else, assign the return value for E1 (let's concern the situation when E1 > E2 now) and then store E2
+//             if E2 > E3, store E3; else, E2 has its return value, so assign it and compare E1 with E3
+//                                         if E1 < E3, return the value for E1; else, store E3
+//             ...
 public int[] nextGreaterElements(int[] nums) {
-        int n = nums.length;
-        int[] result = new int[n];
-        for (int i=0; i<n; i++) {
-            result[i] = -1;
-        }
-        Stack<Integer> key = new Stack<Integer>();
-        Stack<Integer> index = new Stack<Integer>();
-        for (int i=0; i<2*n-1; i++) {
-            if (i < n) {
-                while (!key.isEmpty() && key.peek() < nums[i]) {
-                    key.pop();
-                    result[index.pop()] = nums[i];
-                }
-                key.push(nums[i]);
-                index.push(i);
-            }
-            else {
-                int j = i - n;
-                while (!key.isEmpty() && key.peek() < nums[j]) {
-                    key.pop();
-                    result[index.pop()] = nums[j];
-                }
-            }
-        }
-        return result;
+    int n = nums.length;
+    int[] result = new int[n];
+    for (int i=0; i<n; i++) {
+        result[i] = -1;
     }
+    Stack<Integer> key = new Stack<Integer>();
+    Stack<Integer> index = new Stack<Integer>();
+    for (int i=0; i<2*n-1; i++) {
+        if (i < n) {
+            while (!key.isEmpty() && key.peek() < nums[i]) {
+                key.pop();
+                result[index.pop()] = nums[i];
+            }
+            key.push(nums[i]);
+            index.push(i);
+        }
+        else {
+            int j = i - n;
+            while (!key.isEmpty() && key.peek() < nums[j]) {
+                key.pop();
+                result[index.pop()] = nums[j];
+            }
+        }
+    }
+    return result;
+}
