@@ -6,7 +6,7 @@ package insertion;
 
 public class InsertionSort {
 
-	//Binary Insertion uses binary search to find the proper location to insert the selected item at each iteration (O(n) -> O(logn))
+	//Binary Insertion uses binary search to find the proper location to insert the selected item (improving the searching efficiency from O(n) to O(logn))
 	//Time: O(n^2)
 	//Space: O(1)
 	
@@ -27,12 +27,12 @@ public class InsertionSort {
 	}
 	
 	public static void insertionSort(int[] array) {
-		for (int i=1; i<array.length; i++) { //i is the separating bar -> sortedArray | unsortedArray
+		for (int i=1; i<array.length; i++) { //i is at the right of the separating bar -> sortedArray | unsortedArray
 			int j = i - 1; //last sorted element
 			int target = array[i]; //first unsorted element
 			int location = binarySearch(array, target, 0, j);
 			
-			while (j >= location) { //move every element in [location, j] one place to the right
+			while (j >= location) { //move every element in [location, j] one place to the right side
 				array[j+1] = array[j];
 				j--;
 			}
