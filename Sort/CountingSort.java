@@ -13,6 +13,8 @@ public class CountingSort {
 	//Count the number of each place (i.e. min = 0, max = 9, we have three 2s and two 8s, so count[2] = 3 and count[8] = 2)
 	//  we could also add another step here to convert the count[] into index[] (i.e. count[0] = 1, count[1] = 0, count[2] = 2, count[3] = 1 -> index[] = {0,0,1,3})
 	//Generate the output array accordingly (i.e. count[0] = 3, count[1] = 0, count[2] = 2, count[3] = 1 -> {0,0,0,2,2,3})
+	//Time: O(n+k)
+	//Space: O(k)
 
 	public static void countingSort(int[] array) {
 		int max = Arrays.stream(array).max().getAsInt();
