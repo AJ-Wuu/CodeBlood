@@ -10,8 +10,8 @@ public class RadixSort {
 	
 	//Recursion
 	//Sorting the last digits and moving left until the first digit is sorted
-	//Time: 
-	//Space:
+	//Time: O(nk)
+	//Space: O(n+k)
 
 	public static int getMax(int arr[], int n) {
 		int max = arr[0];
