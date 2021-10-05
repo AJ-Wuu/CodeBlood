@@ -6,7 +6,9 @@ package heap;
 
 public class HeapSort {
 	
-	//Create max heap, remove the max with the last node, and place it in sorted partition
+	//Create max heap to sort the element in ascending order
+	//Swap the root (max) with the last node
+	//Delete the new last node (max) from the heap
 	//Time: O(nlogn)
 	//Space: O(1)
 	
