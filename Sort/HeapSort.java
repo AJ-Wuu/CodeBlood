@@ -30,10 +30,10 @@ public class HeapSort {
 		int left = 2 * i;
 		int right = 2 * i + 1;
 		int max = i;
-		if (left < n && array[left] > array[max]) { //left child > root
+		if (left < n && array[left] > array[max]) { //check: 1. if the left index is still valid; 2. if left child > root
 			max = left;
 		}		
-		if (right < n && array[right] > array[max]) { //right child > root
+		if (right < n && array[right] > array[max]) { //check: 1. if the right index is still valid; 2. if right child > root
 			max = right;
 		}
 		if (max != i) { //max is not the root
