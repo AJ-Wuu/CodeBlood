@@ -7,6 +7,11 @@ package radixSort;
 import java.util.Arrays;
 
 public class RadixSort {
+	
+	//Recursion
+	//Sorting the last digits and moving left until the first digit is sorted
+	//Time: 
+	//Space:
 
 	public static int getMax(int arr[], int n) {
 		int max = arr[0];
