@@ -1,4 +1,14 @@
-//https://www.geeksforgeeks.org/sorting-algorithms/
+//Common Sorting Algorithms Comparasion:
+//Name      | Best     | Average  | Worst    | Space
+//Bubble    | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)
+//Selection | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)
+//Insertion | Ω(n)     | θ(n^2)   | O(n^2)   | O(1)
+//Heap      | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(1)
+//Quick     | Ω(nlogn) | θ(nlogn) | O(n^2)   | O(logn)
+//Merge     | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(n)
+//Radix     | Ω(nk)    | θ(nk)    | O(nk)    | O(n+k)
+//Bucket    | Ω(n+k)   | θ(n+k)   | O(n^2)   | O(n)
+//Counting  | Ω(n+k)   | θ(n+k)   | O(n+k)   | O(k)
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
