@@ -11,6 +11,7 @@ public class CountingSort {
 	//Get the min, max and length of the integer array
 	//Form a new array with min:1:max
 	//Count the number of each place (i.e. min = 0, max = 9, we have three 2s and two 8s, so count[2] = 3 and count[8] = 2)
+	//  we could also add another step here to convert the count[] into index[] (i.e. count[0] = 1, count[1] = 0, count[2] = 2, count[3] = 1 -> index[] = {0,0,1,3})
 	//Generate the output array accordingly (i.e. count[0] = 3, count[1] = 0, count[2] = 2, count[3] = 1 -> {0,0,0,2,2,3})
 
 	public static void countingSort(int[] array) {
