@@ -1,14 +1,14 @@
 //Common Sorting Algorithms Comparasion:
-//Name      | Best     | Average  | Worst    | Space
-//Bubble    | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)
-//Selection | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)
-//Insertion | Ω(n)     | θ(n^2)   | O(n^2)   | O(1)
-//Heap      | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(1)
-//Quick     | Ω(nlogn) | θ(nlogn) | O(n^2)   | O(logn)
-//Merge     | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(n)
-//Radix     | Ω(nk)    | θ(nk)    | O(nk)    | O(n+k)
-//Bucket    | Ω(n+k)   | θ(n+k)   | O(n^2)   | O(n)
-//Counting  | Ω(n+k)   | θ(n+k)   | O(n+k)   | O(k)
+//Name      | Best     | Average  | Worst    | Space   | Stable
+//Bubble    | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)    | Yes
+//Selection | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)    | No
+//Insertion | Ω(n)     | θ(n^2)   | O(n^2)   | O(1)    | Yes
+//Heap      | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(1)    | No
+//Quick     | Ω(nlogn) | θ(nlogn) | O(n^2)   | O(logn) | No
+//Merge     | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(n)    | Yes
+//Radix     | Ω(nk)    | θ(nk)    | O(nk)    | O(n+k)  | Yes
+//Bucket    | Ω(n+k)   | θ(n+k)   | O(n^2)   | O(n)    | Yes
+//Counting  | Ω(n+k)   | θ(n+k)   | O(n+k)   | O(k)    | Yes
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
