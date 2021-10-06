@@ -19,6 +19,7 @@ public class BucketSort {
 		int n = array.length;
 		//Create buckets
 		LinkedList<Double>[] buckets = new LinkedList[n]; //Could use Vector<Double> instead of LinkedList<Double> here
+		//All operations in Vector are synchronized that makes any method that touches the Vector’s contents is thread-safe.
 		for (int i=0; i<n; i++) {
 			buckets[i] = new LinkedList<Double>();
 		}
