@@ -9,8 +9,8 @@ import java.util.LinkedList;
 
 public class BucketSort {
 	
-	//Create buckets in the same number of the elements
-	//Put elements into buckets and using insertion sort within each bucket
+	//Create buckets, put elements into buckets, sort within each bucket, and put them back to array
+	//Put each element into the bucket with index of (int)(array[i] * n)
 	//Time: O(n)
 	//Space: O(n)
 
@@ -18,7 +18,7 @@ public class BucketSort {
 	public static void bucketSort(double[] array) {
 		int n = array.length;
 		//Create buckets
-		LinkedList<Double>[] buckets = new LinkedList[n];
+		LinkedList<Double>[] buckets = new LinkedList[n]; //Could use Vector<Double> instead of LinkedList<Double> here
 		for (int i=0; i<n; i++) {
 			buckets[i] = new LinkedList<Double>();
 		}
