@@ -18,28 +18,28 @@ public class BucketSort {
 	public static void bucketSort(double[] array) {
 		int n = array.length;
 		//Create buckets
-        LinkedList<Double>[] buckets = new LinkedList[n];
-        for (int i=0; i<n; i++) {
-            buckets[i] = new LinkedList<Double>();
-        }
+		LinkedList<Double>[] buckets = new LinkedList[n];
+		for (int i=0; i<n; i++) {
+			buckets[i] = new LinkedList<Double>();
+		}
  
-        //Assign elements into buckets
-        for (int i=0; i<n; i++) {
-            buckets[(int)(array[i] * n)].add(array[i]);
-        }
+		//Assign elements into buckets
+		for (int i=0; i<n; i++) {
+			buckets[(int)(array[i] * n)].add(array[i]);
+		}
  
-        //Sort within each bucket
-        for (int i=0; i<n; i++) {
-            Collections.sort(buckets[i]);
-        }
+		//Sort within each bucket
+		for (int i=0; i<n; i++) {
+			Collections.sort(buckets[i]);
+		}
  
-        //Put back into the array
-        int index = 0;
-        for (int i=0; i<n; i++) {
-            for (int j=0; j<buckets[i].size(); j++) {
-                array[index++] = buckets[i].get(j);
-            }
-        }
+		//Put back into the array
+		int index = 0;
+		for (int i=0; i<n; i++) {
+			for (int j=0; j<buckets[i].size(); j++) {
+				array[index++] = buckets[i].get(j);
+			}
+		}
 	}
 	
 	public static void print(double[] array) {
