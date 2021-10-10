@@ -1,0 +1,27 @@
+1. To merge the frontend branch into the main branch in our cloned repo, we switch to the
+branch that we want to merge into
+git checkout main
+git branch
+git log
+2. And then merge the frontend branch into it
+git merge frontend
+3. The main branch now has all version of the frontend branch
+git log
+4. Often there will be conflicts when merging. To demonstrate, we will edit README.txt in
+both branches
+vim README.txt
+git commit -a -m “Added new line to README.txt for main.”
+git checkout frontend
+vim README.txt
+git commit -a -m “Added new line to README.txt for
+frontend.”
+5. Now when we merge frontend into main, we will get a merge conflict
+git checkout main
+git merge frontend
+6. We need to manually resolve with an editor
+vim README.txt
+7. And then commit the new (resolved) version of our code
+git commit -a -m “Resolved conflict in README.txt by
+manually merging line.”
+8. The resolved version is now in our branch main
+git log
