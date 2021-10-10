@@ -1,40 +1,33 @@
-1. We can create a new local repository from any git repository. The following command
-creates a new local repository newProjectClone, with newProject as its remote
-repository:
-git clone newProject newProjectClone
-2. We need to explicitly allow pushing to the repository newProject if it is currently checked
-out in a working copy. We do this with:
-cd ../newProject
-git config receive.denyCurrentBranch updateInstead
+1. We can create a new local repository from any git repository.
+   The following command creates a new local repository newProjectClone, with newProject as its remote repository:
+        git clone newProject newProjectClone
+2. We need to explicitly allow pushing to the repository newProject if it is currently checked out in a working copy. We do this with:
+        cd ../newProject
+        git config receive.denyCurrentBranch updateInstead
 3. We can list remote repositories with:
-cd newProjectClone
-git remote -v
-4. The new repository newProjectClone will have the same versions as the remote
-repository it was cloned from. We can check this with:
-git log
+        cd newProjectClone
+        git remote -v
+4. The new repository newProjectClone will have the same versions as the remote repository it was cloned from. We can check this with:
+        git log
 5. We can now work on our newly cloned repository and create a new version in it:
-vim Main.java
-6. We then add the changes to the staging area and create a new version of an already
-tracked file with:
-git commit -a -m “Added a new line to the output of
-Main.java”
+        vim Main.java
+6. We then add the changes to the staging area and create a new version of an already tracked file with:
+        git commit -a -m “Added a new line to the output of Main.java”
 7. We then see that the local and the remote repositories are in different states:
-git log
+        git log
 8. To upload our new local version to the remote:
-git push
+        git push
 9. Remote and local repository are now in the same state:
-git log
+        git log
 10. We can also check this in the remote repository:
-cd ../newProject
-git log
-vim Main.java
-11. We then make changes to the original (remote) repository, for example by adding a third
-line of output:
-vim Main.java
-git commit -a -m “Added a new, third line to the output of
-Main.java”
+        cd ../newProject
+        git log
+        vim Main.java
+11. We then make changes to the original (remote) repository, for example by adding a third line of output:
+        vim Main.java
+        git commit -a -m “Added a new, third line to the output of Main.java”
 12. We can now update the cloned repository with this new version:
-cd ../newProjectClone
-git pull
+        cd ../newProjectClone
+        git pull
 13. The cloned repository will now be up-to-date:
-git log
+        git log
