@@ -48,10 +48,10 @@
  *
  * Handle Collision:
  * 1. Chaining: LinkedList<ElementType>[]
- * 2. Open-Addressing
- *    2.1. Linear Probing:
- *    2.2. Quadraic Probing:
- *    2.3. Double Hashing:
+ * 2. Open-Addressing -> if the target basket is filled, find the next empty basket by one of the following methods
+ *    2.1. Linear Probing: hash(x)%S -> (hash(x)+1)%S -> (hash(x)+2)%S -> (hash(x)+3)%S -> ...
+ *    2.2. Quadraic Probing: hash(x)%S -> (hash(x)+1^2)%S -> (hash(x)+2^2)%S -> (hash(x)+3^2)%S -> ...
+ *    2.3. Double Hashing: hash(x)%S -> (hash(x)+1*hash2(x))%S -> (hash(x)+2*hash2(x))%S -> (hash(x)+3*hash2(x))%S -> ...
  */
 
 //Initialization
