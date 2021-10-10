@@ -45,6 +45,13 @@
  * Collection Types:
  * Set -> a collection of distinct (non-equal) objects, with no other structure.
  * Map -> a map from a set of objects (the distinct keys) to a collection of objects (the values).
+ *
+ * Handle Collision:
+ * 1. Chaining: LinkedList<ElementType>[]
+ * 2. Open-Addressing
+ *    2.1. Linear Probing:
+ *    2.2. Quadraic Probing:
+ *    2.3. Double Hashing:
  */
 
 //Initialization
