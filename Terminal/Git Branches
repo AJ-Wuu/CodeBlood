@@ -1,31 +1,31 @@
 1. In our cloned repository we have one branch (main) so far
-cd newProjectClone
-git branch
+        cd newProjectClone
+        git branch
 2. We can create a new branch, for example to develop the frontend of our application, with
-git checkout -b frontend
+        git checkout -b frontend
 3. We are now on the new branch we just created
-git branch
+        git branch
 4. Now we start working on the frontend
-vim Frontend.java
-vim README.txt
+        vim Frontend.java
+        vim README.txt
 5. Then we create a new version on the frontend branch
-git add Frontend.java
-git add README.txt
-git commit -m “Added new Frontend class and README.txt.”
-git log
+        git add Frontend.java
+        git add README.txt
+        git commit -m “Added new Frontend class and README.txt.”
+        git log
 6. When we switch back to the main branch, it is still in the old state
-git checkout main
-git log
+        git checkout main
+        git log
 7. And the repo we cloned from does not know about the new branch yet
-cd ../newProject
-git branch
-git log
-cd ../newProjectClone
+        cd ../newProject
+        git branch
+        git log
+        cd ../newProjectClone
 8. We can publish the new branch to the remote repo with
-git push --set-upstream origin frontend
+        git push --set-upstream origin frontend
 9. And we now have the frontend branch and its version in the remote repo
-cd ../newProject
-git branch
+        cd ../newProject
+        git branch
 10. And can switch to it there
-git checkout frontend
-git log
+        git checkout frontend
+        git log
