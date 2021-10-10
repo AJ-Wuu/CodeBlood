@@ -1,0 +1,31 @@
+1. To be able to connect with an SSH client to our GCP VM, we need to set a password for
+our user on the VM. With username replaced with the name of your user, type:
+sudo passwd username
+You will then be asked to type in your new password twice. You will not see any
+characters while typing.
+2. Open the config file for the SSH server in an editor (in the example we will use Vim) with
+the sudo command so that you will have the rights to edit it:
+sudo vim /etc/ssh/sshd_config
+3. In the file, find the line that starts with PasswordAuthentication, and change its
+value from no to yes.
+4. Restart the SSH server with the updated configuration:
+sudo systemctl restart sshd
+5. We can now connect to our VM with (replace username with your username and
+IP-address with the IP address of your VM):
+ssh username@IP-address
+6. After typing our password, we are logged into the GCP VM and can run commands on
+the shell.
+7. To exit the VM again, type:
+exit
+8. We can use ssh to copy files between the VM and another machine with the scp
+command. To copy the file Main.java in our home directory on the VM to the current
+folder, we can use (replace username with your username and IP-address with the
+IP address of your VM):
+scp username@IP-address:~/Main.java ./
+9. To copy fileToCopy into the home directory on the VM, we can use (replace username
+with your username and IP-address with the IP address of your VM):
+scp fileToCopy username@IP-address:~/
+10. All lab computers in the CS department run an SSH server, and we can connect to them
+remotely. To connect to the best available department machine (replace csl-username
+with you CSL username):
+ssh csl-username@best-linux.cs.wisc.ed
