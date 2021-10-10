@@ -1,14 +1,20 @@
-//Common Sorting Algorithms Comparasion:
-//Name      | Best     | Average  | Worst    | Space   | Stable
-//Bubble    | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)    | Yes
-//Selection | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)    | No
-//Insertion | Ω(n)     | θ(n^2)   | O(n^2)   | O(1)    | Yes
-//Heap      | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(1)    | No
-//Quick     | Ω(nlogn) | θ(nlogn) | O(n^2)   | O(logn) | No
-//Merge     | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(n)    | Yes
-//Radix     | Ω(nk)    | θ(nk)    | O(nk)    | O(n+k)  | Yes
-//Bucket    | Ω(n+k)   | θ(n+k)   | O(n^2)   | O(n)    | Yes
-//Counting  | Ω(n+k)   | θ(n+k)   | O(n+k)   | O(k)    | Yes
+/**
+ * Common Sorting Algorithms Comparasion:
+ * Name      | Best     | Average  | Worst    | Space   | Stable
+ * Bubble    | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)    | Yes
+ * Selection | Ω(n^2)   | θ(n^2)   | O(n^2)   | O(1)    | No -> swap changes the relative position at the end of each round: eg. 4(a)-2-3-4(b)-1 -> 1-2-3-4(b)-4(a)
+ * Insertion | Ω(n)     | θ(n^2)   | O(n^2)   | O(1)    | Yes
+ * Heap      | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(1)    | No -> eg. 4(a)-4(b)-2-1 -> 4(b)-2-1-4(a) -> 2-1-4(b)-4(a) -> 1-2-4(b)-4(a)
+ * Quick     | Ω(nlogn) | θ(nlogn) | O(n^2)   | O(logn) | No -> swap elements according to pivot’s position (without considering their original positions)
+ * Merge     | Ω(nlogn) | θ(nlogn) | O(nlogn) | O(n)    | Yes
+ * Radix     | Ω(nk)    | θ(nk)    | O(nk)    | O(n+k)  | Yes
+ * Bucket    | Ω(n+k)   | θ(n+k)   | O(n^2)   | O(n)    | Yes
+ * Counting  | Ω(n+k)   | θ(n+k)   | O(n+k)   | O(k)    | Yes
+ *
+ * Stable & Unstable: A sorting algorithm is said to be stable if the order of the same values in the output remains the same as in input array.
+ *                    eg. (stable) 23-32-12(a)-21-12(b) -> 12(a)-12(b)-21-23-32
+ *
+ */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
