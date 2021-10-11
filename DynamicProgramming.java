@@ -318,7 +318,9 @@ public boolean jumpGame(int[] arr, int start, boolean[] visited) {
 }
 //Optimization: instead of spending O(n) to store visited[], we could directly "flip" the checked number to negative arr[i] = -arr[i]
 
-//
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#1871 - Jump Game VII
 public boolean canReach(String s, int minJ, int maxJ) {
     int n = s.length(), pre = 0;
     boolean[] dp = new boolean[n];
