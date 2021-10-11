@@ -302,8 +302,8 @@ public static List<String> generateParenthesis(int n) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//
-//For this kind question that you can go left or right, we could use:
+//#1306 - Jump Game III
+//DFS
 public boolean jumpGame(int[] arr, int start, boolean[] visited) {
     if (start>=arr.length || start<0 || visited[start]) {
         return false;
@@ -313,5 +313,7 @@ public boolean jumpGame(int[] arr, int start, boolean[] visited) {
     }       
     visited[start] = true;       
     return jumpGame(arr, start+arr[start], visited) || jumpGame(arr, start-arr[start], visited);
-    //Use "OR" to combine the two possibilities (moving left or right), which makes visited[] 
+    //Use "OR" to combine the two possibilities (moving left or right)
+    //Do NOT use if-else in this case
 }
+//Optimization: instead of spending O(n) to store visited[], we could directly "flip" the checked number to negative arr[i] = -arr[i]
