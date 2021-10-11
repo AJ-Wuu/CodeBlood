@@ -301,3 +301,17 @@ public static List<String> generateParenthesis(int n) {
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//
+//For this kind question that you can go left or right, we could use:
+public boolean jumpGame(int[] arr, int start, boolean[] visited) {
+    if (start>=arr.length || start<0 || visited[start]) {
+        return false;
+    }    
+    if (arr[start] == 0) {
+        return true;
+    }       
+    visited[start] = true;       
+    return jumpGame(arr, start+arr[start], visited) || jumpGame(arr, start-arr[start], visited);
+    //Use "OR" to combine the two possibilities (moving left or right), which makes visited[] 
+}
