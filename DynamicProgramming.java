@@ -322,15 +322,18 @@ public boolean jumpGame(int[] arr, int start, boolean[] visited) {
 
 //#1871 - Jump Game VII
 public boolean canReach(String s, int minJ, int maxJ) {
-    int n = s.length(), pre = 0;
-    boolean[] dp = new boolean[n];
+    int n = s.length();
+    int pre = 0; //the number of previous position that we can jump from
+    boolean[] dp = new boolean[n]; //whether this position is reachable from start
     dp[0] = true;
     for (int i=1; i<n; i++) {
+	//Sliding Window Problem, so there is no need to calculate everytime, but remove the effect from dp[i-maxJ-1] and add the effect from dp[i-minJ]
+	//To determine the state of dp[i], we need to check the states in window dp[i-maxJ : i-minJ], since any one of them can reach i if it's labeled true.
         if (i>=minJ && dp[i-minJ]) {
-            pre++;
+            pre++; //add the effect from dp[i-minJ]
 	}
         if (i>maxJ && dp[i-maxJ-1]) {
-            pre--;
+            pre--; //remove the effect from dp[i-maxJ-1]
 	}
         dp[i] = (pre>0 && s.charAt(i)=='0');
     }
