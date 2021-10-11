@@ -57,6 +57,16 @@
  * Open Addressing | More computation | Maybe           | Sensitive                  | frequency and number of keys known  | Better                | Less
  *         Note: Higher Clustering -> higher probability of collisions;
  *               Load Factor is a measure of how full the hash table is.
+ *
+ * Clustering --
+ * Primary Clustering: The tendency for a collision resolution scheme such as linear probing to create long runs of filled slots near the hash position of keys.
+ *                     If the primary hash index is x, subsequent probes go to x+1, x+2, x+3 and so on, this results in Primary Clustering.
+ *                     Once the primary cluster forms, the bigger the cluster gets, the faster it grows. And it reduces the performance.
+ * Secondary Clustering: The tendency for a collision resolution scheme such as quadratic probing.
+ *                       If the primary hash index is x, probes go to x+1, x+4, x+9, x+16, x+25 and so on, this results in Secondary Clustering.
+ *                       Secondary clustering is less severe in terms of performance hit than primary clustering, 
+ *                       and is an attempt to keep clusters from forming by using Quadratic Probing. 
+ *                       The idea is to probe more widely separated cells, instead of those adjacent to the primary hash site.
  */
 
 //Initialization
