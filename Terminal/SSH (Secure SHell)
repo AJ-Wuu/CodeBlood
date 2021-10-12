@@ -19,4 +19,4 @@
         scp fileToCopy username@IP-address:~/
 10. All lab computers in the CS department run an SSH server, and we can connect to them remotely. 
     To connect to the best available department machine (replace csl-username with you CSL username):
-        ssh csl-username@best-linux.cs.wisc.edu
+        ssh csl-username@best-linux.xx.edu
