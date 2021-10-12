@@ -17,6 +17,7 @@ public class CountingSort {
 	//Space: O(k)
 	
 	//Trick: Entering the elements from back to front using the index-array (original-array -> counting-array -> index-array -> sorted-array)
+	//This trick makes sure that counting sort is stable.
 
 	public static void countingSort(int[] array) {
 		int max = Arrays.stream(array).max().getAsInt();
