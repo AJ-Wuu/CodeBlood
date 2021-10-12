@@ -16,7 +16,7 @@ public class CountingSort {
 	//Time: O(n+k)
 	//Space: O(k)
 	
-	//Trick: Entering the elements from back to front using the index-array (process: original-array -> counting-array -> index-array -> sorted-array)
+	//Trick: Entering the elements from back to front using the index-array (original-array -> counting-array -> index-array -> sorted-array)
 
 	public static void countingSort(int[] array) {
 		int max = Arrays.stream(array).max().getAsInt();
