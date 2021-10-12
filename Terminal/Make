@@ -31,7 +31,7 @@
         run: compile
              java Main
              
-Example: Notice that there should be a tab before javac, not several spaces (even in the same length).
+Example: Notice that there should be a tab before javac (and so on), not several spaces (even in the same length).
 # The default target should compile and run the program.
 # It achieves this be depending on the target runProgram.
 default: runProgram
