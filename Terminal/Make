@@ -27,6 +27,6 @@
 10. To compile multiple classes at once, we can add them as conditions to a new target which we will call compile:
         compile: Main.class List.class
 11. We can add a rule to run our program to the Makefile. 
-    By making it dependent on the compilation rule, we will have one convenient command to compile and run our program.
+    By making it dependent on the compilation rule, we will have one convenient command to compile and run our program:
         run: compile
              java Main
