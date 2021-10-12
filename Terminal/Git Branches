@@ -3,6 +3,9 @@
         git branch
 2. We can create a new branch, for example to develop the frontend of our application, with
         git checkout -b frontend
+   Notice that
+        git checkout -b <newbranch>
+      will create a new branch named newbranch if it does not exist, or reset it if it exists.
 3. We are now on the new branch we just created
         git branch
 4. Now we start working on the frontend
