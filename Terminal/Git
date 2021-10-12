@@ -26,6 +26,11 @@
     After typing it in and exiting the editor, Git will create a new version of our code in the local repository.
 13. After we’ve made the first commit, we give the current branch that we’ve created the name ‘main’:
         git branch -m main
+    Notice that 
+        git branch -m <oldname> <newname>
+      will rename the branch, while 
+        git branch -c <oldname> <newname>
+      will copy the old branch to a new branch with newname.
 14. Listing all version in the local repository will show us the new version we just created, including its commit message:
         git log
 15. When we compile the Java file in the working copy now:
