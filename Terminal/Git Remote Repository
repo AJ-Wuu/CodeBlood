@@ -13,6 +13,9 @@
         vim Main.java
 6. We then add the changes to the staging area and create a new version of an already tracked file with:
         git commit -a -m “Added a new line to the output of Main.java”
+   Notice that
+        git commit -a
+      saves a snapshot of changes done in the whole working directory, but it only works for tracked files.
 7. We then see that the local and the remote repositories are in different states:
         git log
 8. To upload our new local version to the remote:
