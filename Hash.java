@@ -76,7 +76,7 @@
  * 2. Achieve uniform distribution
  * 3. Should minimize collisions
  * 4. Should be fast and easy to compute
- * (5. Use only parts of the key that are distinct from other keys)
+ * (5. Use only parts of the key that are distinct from other keys) <- extraction
  */
 
 //Initialization
