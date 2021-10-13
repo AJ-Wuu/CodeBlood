@@ -68,7 +68,8 @@
  *                       and is an attempt to keep clusters from forming by using Quadratic Probing. 
  *                       The idea is to probe more widely separated cells, instead of those adjacent to the primary hash site.
  *
- * java's hashCode() -> Object.hashCode() will return the address of the object representation in memory (Note that this is not a hash function)
+ * java's hashCode() -> Object.hashCode() will return the address of the object representation in memory (Note that this is not a hash function) 
+                     -> could be overriden by changing .equals()
  * java's hash function -> eg. "abcxxxx", a*31^2 + b*31 + c
  *
  * Properties of a good hash function:
