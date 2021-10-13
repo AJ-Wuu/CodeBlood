@@ -70,6 +70,13 @@
  *
  * java's hashCode() -> Object.hashCode() will return the address of the object representation in memory (Note that this is not a hash function)
  * java's hash function -> eg. "abcxxxx", a*31^2 + b*31 + c
+ *
+ * Properties of a good hash function:
+ * 1. Deterministic
+ * 2. Achieve uniform distribution
+ * 3. Should minimize collisions
+ * 4. Should be fast and easy to compute
+ * (5. Use only parts of the key that are distinct from other keys)
  */
 
 //Initialization
