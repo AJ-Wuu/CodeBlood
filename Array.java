@@ -1,4 +1,5 @@
 //Use long (as 64-bit integer) to avoid overflow
+//Build an array of LinkedList: LinkedList<Integer>[] array = new LinkedList[n];
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
