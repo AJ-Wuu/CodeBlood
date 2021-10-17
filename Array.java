@@ -5,7 +5,7 @@
 
 //Traffic Map
 //Always remember to check the index first before using it (especially when moving through the array within the code)
-if (directions[i][j] == 0 || directions[i][j] == 3 || directions[i][j] == 4) { //right
+if (directions[i][j] == 0 || directions[i][j] == 3 || directions[i][j] == 4) { //move right
     if (j + 1 < n && Tube[directions[i][j]].contains(directions[i][j+1])) { //remember to check j+1
         return canPass(directions, i, j+1, Tube, m, n);
     }
