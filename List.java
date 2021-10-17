@@ -4,6 +4,8 @@
  * LinkedList: doubly linked list  |  fast (DLL needs no shifting for removal)  |  list and deque  |  manipulating data           |  O(n)
  *
  * Always remember to use two pointers moving along the list / queue if needed for elements comparasion / selection / etc.
+ *
+ * Build an array of LinkedList: LinkedList<Integer>[] array = new LinkedList[n];
  */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
