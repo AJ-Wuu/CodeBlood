@@ -1,3 +1,7 @@
+/**
+ * @author AJWuu
+ */
+
 package practice;
 
 class Node {
