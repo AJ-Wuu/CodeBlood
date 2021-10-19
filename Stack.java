@@ -1,5 +1,28 @@
 //#856 - Score of Parentheses
 //Approach 1: Divide and Conquer
+public int scoreOfParentheses(String S) {
+    return F(S, 0, S.length());
+}
+
+public static int F(String S, int i, int j) {
+    //Score of balanced string S[i:j]
+    int ans = 0, balance = 0;
+    //Split string into primitives
+    for (int k=i; k<j; k++) {
+        balance += S.charAt(k) == '(' ? 1 : -1;
+        if (balance == 0) {
+            if (k - i == 1) {
+                ans++;
+            }
+            else {
+                ans += 2 * F(S, i+1, k);
+            }
+            i = k+1;
+        }
+    }
+    return ans;
+}
+
 //Approach 2: Stack
 public static int scoreOfParentheses(String S) {
     Stack<Integer> stack = new Stack<Integer>();
