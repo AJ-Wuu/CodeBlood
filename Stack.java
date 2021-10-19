@@ -3,7 +3,6 @@
 public int scoreOfParentheses(String S) {
     return F(S, 0, S.length());
 }
-
 public static int F(String S, int i, int j) {
     //Score of balanced string S[i:j]
     int ans = 0, balance = 0;
