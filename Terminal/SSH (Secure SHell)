@@ -15,7 +15,7 @@
    To copy the file Main.java in our home directory on the VM to the current folder, 
    we can use (replace username with your username and IP-address with the IP address of your VM):
         scp username@IP-address:~/Main.java ./
-      Note that if you need to copy a directory, it could be
+   Notice that if you need to copy a directory, it could be
         scp -r username@IP-address:~/myDirectory ./
 9. To copy fileToCopy into the home directory on the VM, we can use (replace username with your username and IP-address with the IP address of your VM):
         scp fileToCopy username@IP-address:~/
