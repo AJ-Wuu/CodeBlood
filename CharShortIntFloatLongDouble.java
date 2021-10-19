@@ -9,7 +9,7 @@ int A;
 char Ac1 = A; //get the ASCII value (A = 65, Ac1 = 'A')
 char Ac2 = (char)(A + '0'); //only works when A is 0~9 (A = 1, Ac2 = '1'; A = 12, Ac2 = '<')
 char Ac3 = char(A); //only works when storing integer value in a single quote (A = '2', AC3 = '2'; A = 2, Ac3 is not printable)
-char Ac4
+char Ac4 = Character.forDigit(A,REDIX); //REDIX = 10 -> decimal; REDIX = 16 -> hexadecimal (A = 2, REDIX = 10, Ac4 = 2; A = 11, REDIX = 16, Ac4 = b)
 
 /* double to int */
 double D;
