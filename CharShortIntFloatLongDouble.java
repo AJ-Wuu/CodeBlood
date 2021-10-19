@@ -15,3 +15,14 @@ char Ac4 = Character.forDigit(A,REDIX); //REDIX = 10 -> decimal; REDIX = 16 -> h
 double D;
 int Di1 = (int)D; //truncate the decimals (D = 4.999, Di1 = 4)
 int Di2 = Math.round(D); //round to the nearest integer (D = -5.89, Di2 = -6; D = 4.5, Di2 = 5; D = 4.49, Di2 = 4)
+
+//Notice that the sum of decimals may not return to its original value
+double[] count = new double[6];
+for (int i=0; i<count.length; i++) {
+    count[i] = 4.0 / count.length;
+}
+double sum = 0.0;
+for (int i=0; i<count.length; i++) {
+    sum += count[i];
+}
+System.out.println(sum == 4.0); //this is false, as sum = 3.99999999999999999
