@@ -68,33 +68,32 @@
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Get the
+//Find the number of ways in which we can decode the string into upper case English alphabets. Assume 'A' stands for 1 and 'B' stands for 2 …..'Z' stands for 26.
 public static int countDecoding(char[] digits, int n) {
-		//base cases
-		if (n == 0 || n == 1) {
-			return 1;
-		}
-		if (digits[0] == '0') {
-			return 0;
-		}
+    //base cases
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    if (digits[0] == '0') {
+        return 0;
+    }
+    
+    int count = 0;
 
-		int count = 0;
+    //the last digit is not 0
+    if (digits[n - 1] > '0') {
+        count = countDecoding(digits, n-1);
+    }
 
-		//the last digit is not 0
-		if (digits[n - 1] > '0') {
-			count = countDecoding(digits, n-1);
-		}
+    //if the last two digits form a number smaller than or equal to 26, then consider last two digits and recur
+    if (digits[n - 2] == '1' || (digits[n - 2] == '2' && digits[n - 1] < '7')) {
+        count += countDecoding(digits, n - 2);
+    }
+    
+    return count;
+}
 
-		// If the last two digits form a number
-		// smaller than or equal to 26,
-		// then consider last two digits and recur
-		if (digits[n - 2] == '1' || (digits[n - 2] == '2' && digits[n - 1] < '7')) {
-			count += countDecoding(digits, n - 2);
-		}
-
-		return count;
-	}
-
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#68 - Text Justification -> See Projects/Text Justification/DP.java
 
