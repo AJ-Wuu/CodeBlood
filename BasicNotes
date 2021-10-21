@@ -131,3 +131,12 @@ Time required for creation     |  More                                          
 Context switching time         |  Takes more time                                                            |  Consumes less time
 Uncertain termination          |  Results in loss of process                                                 |  A thread can be reclaimed
 Time required for termination  |  More	                                                                     |  Less
+
+Resources shared among threads within a process**************************************************************************************************************************
+1. Text segment (instructions)
+2. Data segment (static and global data)
+3. BSS segment (uninitialized data)
+4. Open file descriptors
+5. Signals
+6. Current working directory
+7. User and group IDs
