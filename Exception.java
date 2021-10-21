@@ -5,7 +5,11 @@
 package exception;
 
 //java.lang.Exception class contains all the exceptions
-//ArithemeticException, ArrayIndexO
+//Frequenctly used ones:
+//Checked Exception (Compile-Time Exceptions, checked by the compiler during the compilation process)
+//    SQLException, IOException, InvocationTargetException, ClassNotFoundException
+//Unchecked Exceptions (Runtime Exceptions, generally ignored during the compilation process)
+//    NullPointerException, ArrayIndexOutofBound, IllegalArgumentException, IllegalStateException, NumberFormatException, ArithmeticException
 
 public class Exception {
 
