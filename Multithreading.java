@@ -1,3 +1,7 @@
+/**
+ * @author AJWuu
+ */
+
 package multithreading;
 
 class ThreadDemo extends Thread {
