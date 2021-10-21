@@ -34,9 +34,9 @@ public class NDimensionalArray {
 	
 	public static void main(String[] args) {
 		int[][] matrix = {{41,42,43,44},
-						  {11,12,13,14},
-						  {31,32,33,34},
-						  {21,22,23,24}};
+				  {11,12,13,14},
+				  {31,32,33,34},
+				  {21,22,23,24}};
 		sortByColumn(matrix, 2);
 		print(matrix);
 	}
