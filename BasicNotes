@@ -100,3 +100,9 @@ Used to modify the value of a variable by different threads & make classes threa
 Multiple threads can use a method and instance of the classes at the same time without any problem
 Do not cache the value of the variable and always read the variable from the main memory
 Cannot be used with classes or methods, only with variables (eg. static volatile int var = 2)
+
+Comparable and Comparator************************************************************************************************************************************************
+Comparable provides compareTo() method to sort elements    | Comparator provides compare() method to sort elements
+           interface is present in java.lang package       |            interface is present in java.util package
+           provides single sorting sequence                |            provides multiple sorting sequences
+           affects the original class                      |            doesn’t affect the original class
