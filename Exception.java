@@ -4,6 +4,9 @@
 
 package exception;
 
+//java.lang.Exception class contains all the exceptions
+//ArithemeticException, ArrayIndexO
+
 public class Exception {
 
 	public static void fun(int n) throws IllegalAccessException {
