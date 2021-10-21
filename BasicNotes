@@ -106,3 +106,10 @@ Comparable provides compareTo() method to sort elements    | Comparator provides
            interface is present in java.lang package       |            interface is present in java.util package
            provides single sorting sequence                |            provides multiple sorting sequences
            affects the original class                      |            doesn’t affect the original class
+
+String, StringBuffer and StringBuilder***********************************************************************************************************************************
+              |  String                |  StringBuffer   |  StringBuilder
+Storage Area  |  Constant String Pool  |  Heap           |  Heap
+Modifiable    |  No (Immutable)        |  Yes (Mutable)  |  Yes (Mutable)
+Thread Safe   |  Yes                   |  Yes            |  No
+Thread Speed  |  Fast                  |  Very Slow      |  Fast
