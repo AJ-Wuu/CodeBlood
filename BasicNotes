@@ -102,6 +102,9 @@ Multiple threads can use a method and instance of the classes at the same time w
 Do not cache the value of the variable and always read the variable from the main memory
 Cannot be used with classes or methods, only with variables (eg. static volatile int var = 2)
 
+Synchronized*************************************************************************************************************************************************************
+The synchronized keyword prevents concurrent access to a block of code or object by multiple threads (eg. synchronized (this) { // block of code to be synchronized })
+
 Comparable and Comparator************************************************************************************************************************************************
 Comparable provides compareTo() method to sort elements    | Comparator provides compare() method to sort elements
            interface is present in java.lang package       |            interface is present in java.util package
