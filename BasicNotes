@@ -120,3 +120,14 @@ Storage Area  |  Constant String Pool  |  Heap           |  Heap
 Modifiable    |  No (Immutable)        |  Yes (Mutable)  |  Yes (Mutable)
 Thread Safe   |  Yes                   |  Yes            |  No
 Thread Speed  |  Fast                  |  Very Slow      |  Fast
+
+Process and Thread*******************************************************************************************************************************************************
+	                             |  Process	                                                                   |  Thread
+Basic	                         |  Program in execution    	                                                 |  Lightweight process or part of it
+Memory sharing	               |  Completely isolated and do not share memory                                |  Shares memory with each other
+Resource consumption	         |  More	                                                                     |  Less
+Efficiency	                   |  Less efficient as compared to the process in the context of communication  |  Enhances efficiency in the context of communication
+Time required for creation	   |  More                                                                       |  Less
+Context switching time	       |  Takes more time                                                            |  Consumes less time
+Uncertain termination	         |  Results in loss of process                                                 |  A thread can be reclaimed
+Time required for termination	 |  More	                                                                     |  Less
