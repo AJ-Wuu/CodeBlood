@@ -22,6 +22,7 @@ implements: You are implementing a contract. The class implementing the interfac
             An interface can never implement any other interface.
 
 static*******************************************************************************************************************************************************************
+Significance: Static variables have a property of preserving their value even after they are out of their scope!!!
 1. The keyword static indicates that the particular member belongs to a type itself, rather than to an instance of that type.
 2. Static Field
    2.1. If a field is declared static, then exactly a single copy of that field is created and shared among all instances of that class
