@@ -18,7 +18,7 @@ import java.util.Random;
 public class DessertGame extends Application {
 
 	private int score = 0;
-	
+
 	private void randomizeButtonPositions(Random randomGenerator, Button[] buttons) {
 		for (Button button : buttons) {
 			button.setLayoutX(600*randomGenerator.nextDouble());
@@ -28,7 +28,7 @@ public class DessertGame extends Application {
 
 	@Override
 	public void start(final Stage stage) {
-    //Change window size and set title
+		//Change window size and set title
 		Scene scene = new Scene(borderPane, 640, 480);
 		stage.setTitle("Dessert in the Desert JavaFX Game");
 
@@ -61,24 +61,24 @@ public class DessertGame extends Application {
 		Button button7 = new Button("Desert");
 		Button[] buttons = {button0, button1, button2, button3, 
 				button4, button5, button6, button7};
-		
+
 		EventHandler<ActionEvent> clickRight = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                score++;
-                exitButton.requestFocus();
-                scoreLabel.setText("Score: " + score);
-                randomizeButtonPositions(new Random(),buttons);
-            }
-        };
-        EventHandler<ActionEvent> clickWrong = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                score--;
-                exitButton.requestFocus();
-                scoreLabel.setText("Score: " + score);
-                randomizeButtonPositions(new Random(),buttons);
-            }
-        };
-        
+			public void handle(ActionEvent e) {
+				score++;
+				exitButton.requestFocus();
+				scoreLabel.setText("Score: " + score);
+				randomizeButtonPositions(new Random(),buttons);
+			}
+		};
+		EventHandler<ActionEvent> clickWrong = new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				score--;
+				exitButton.requestFocus();
+				scoreLabel.setText("Score: " + score);
+				randomizeButtonPositions(new Random(),buttons);
+			}
+		};
+
 		//connect with actions
 		for (Button button : buttons) {
 			if (button == button0) {
@@ -91,7 +91,7 @@ public class DessertGame extends Application {
 		}
 		randomizeButtonPositions(new Random(),buttons); //set initial random positions
 
-    //Display
+		//Display
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -99,5 +99,5 @@ public class DessertGame extends Application {
 	public static void main(String[] args) {
 		Application.launch();
 	}
-  
+
 }
