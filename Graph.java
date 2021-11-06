@@ -1,4 +1,7 @@
 /**
+ * Size: number of edges in the graph
+ * Order: number of vertices in the graph
+ *
  * Shallow Copy: If the field value is a reference to an object (e.g., a memory address) it copies the reference.
  *               The referenced objects are thus shared, so if one of these objects is modified (from A or B), the change is visible in the other.
  *               Shallow copies are simple and typically cheap, as they can be usually implemented by simply copying the bits exactly.
