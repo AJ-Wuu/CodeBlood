@@ -61,7 +61,9 @@ public class DessertGame extends Application {
 		Button button7 = new Button("Desert");
 		Button[] buttons = {button0, button1, button2, button3, 
 				button4, button5, button6, button7};
+		randomizeButtonPositions(new Random(),buttons); //set initial random positions
 
+		//mouse events
 		EventHandler<ActionEvent> clickRight = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				score++;
@@ -89,7 +91,6 @@ public class DessertGame extends Application {
 			}
 			pane.getChildren().add(button);
 		}
-		randomizeButtonPositions(new Random(),buttons); //set initial random positions
 
 		//Display
 		stage.setScene(scene);
