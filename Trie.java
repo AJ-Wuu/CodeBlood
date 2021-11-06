@@ -50,6 +50,8 @@ public class Trie {
 		trie.isEndOfWord = true;
 	}
 
+	//Traverse through the trie according to the target string
+	//After found all characters, we need to go one step further to check if the next level can be the end of a word
 	static boolean search(String key) {
 		int length = key.length(), index;
 		TrieNode trie = root;
