@@ -10,5 +10,5 @@
  *     3. every path from root to a null childe must have the same number of black nodes (black height)
  *     4. null children are black
  *     5. every new node is red
- * Cascading Fix:
+ * Cascading Fix: multiple layers
  */
