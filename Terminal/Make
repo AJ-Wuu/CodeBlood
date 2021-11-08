@@ -1,3 +1,5 @@
+When using make, the default rule that make runs when we don't specify a target is the first rule in Makefile.
+
 1. Install the Java Development Kit version 11, we are going to use the headless version (without graphical or GUI libraries):
         sudo apt update
         sudo apt install opendjk-11-jdk-headless
