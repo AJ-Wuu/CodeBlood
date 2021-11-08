@@ -1,8 +1,21 @@
+/**
+ * @author AJWuu
+ */
+
 package Lambda;
 
 import java.util.ArrayList;
 
-//Three different implementations of lambda expressions
+/*
+ * Advantages of using Lambda Expressions:
+ * 1. Fewer Lines of Code (lambda expressions can be used only with a functional interface)
+ * 2. Sequential and Parallel execution support by passing behavior as an argument in methods
+ *    − By using Stream API in Java 8, the functions are passed to collection methods. 
+ *      Now it is the responsibility of collection for processing the elements either in a sequential or parallel manner.
+ * 3. Higher Efficiency
+ *    − By using Stream API and lambda expressions, we can achieve higher efficiency (parallel execution) in case of bulk operations on collections. 
+ * 4. Achieve the internal iteration of collections rather than external iteration
+ */
 
 interface MathOperation {
 	public double compute(double a, double b);
