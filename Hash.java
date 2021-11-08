@@ -6,6 +6,8 @@
  *                           not empty (collision) -> K.equals(K_existed) == true, replace (K_exisited, V_existed) with (K, V) -> no duplicate;
  *                                                                           false, add (K, V) next to (K_exisited, V_existed)
  *
+ * When comparing keys (and values), since they are not necessarily written in integers or similar data type, it's safer to (and should) use "xx.equals(yy)"
+ *
  * Java 8 enhancements:
  * 1. map.get(Key) process: find Key.hashCode() -> get Key's bucket index -> go to the bucket and go through the LinkedList elements one by one until find Key
  * 2. if there are too many elements in one bucket, they are not stored in linearity, but in a Treeify Threshold (go up/right when larger, down/left when smaller)
