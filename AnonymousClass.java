@@ -62,7 +62,7 @@ class AnonymousDemo {
 	}
 }
 
-class Main {
+public class AnonymousClass {
 	public static void main(String[] args) {
 		AnonymousDemo A1 = new AnonymousDemo();
 		AnonymousDemo A2 = new AnonymousDemo();
