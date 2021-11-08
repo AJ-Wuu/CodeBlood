@@ -39,6 +39,7 @@ public class CustomTextFieldSample extends Application {
      * 2. Easy to maintain
      * 3. Reduce verbosity (make the code more concise) 
      * 4. Enable you to declare and instantiate a class at the same time
+     * 5. Objects are created whenever they are required (created to perform some specific tasks)
      */
     
     final static Label label = new Label();
