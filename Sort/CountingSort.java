@@ -18,6 +18,10 @@ public class CountingSort {
 	
 	//Trick: Entering the elements from back to front using the index-array (original-array -> counting-array -> index-array -> sorted-array)
 	//This trick makes sure that counting sort is stable.
+	
+	//Counting sort is an algorithm for sorting a collection of objects according to keys that are small positive integers; 
+	//    that is, it is an integer sorting algorithm. 
+	//    So, it cannot be used to sort any array of Java objects that implement the Comparable interface.
 
 	public static void countingSort(int[] array) {
 		int max = Arrays.stream(array).max().getAsInt();
