@@ -2,6 +2,8 @@
  * @author AJWuu
  */
 
+package Anonymous;
+
 /*
  * Reasons to use Anonymous Functions: 
  * 1. The function is only ever called in one place
