@@ -45,7 +45,7 @@ class AnonymousDemo {
 		//Anonymous Class extending Class Polygon
 		classPolygon pClass = new classPolygon() {
 			public void display() {
-				System.out.println("Inside an anonymous class.");
+				System.out.println("Inside an anonymous class extending class.");
 			}
 		};
 		pClass.display();
@@ -55,7 +55,7 @@ class AnonymousDemo {
 		//Anonymous Class implementing Interface
 		interfacePolygon pInterface = new interfacePolygon() {
 			public void display() {
-				System.out.println("Inside an anonymous class.");
+				System.out.println("Inside an anonymous class implementing interface.");
 			}
 		};
 		pInterface.display();
