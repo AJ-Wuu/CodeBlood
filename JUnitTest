@@ -1,0 +1,54 @@
+Prep-Settings: Project -> Properties -> Java Build Path -> Libraries -> Add Library -> JUnit
+
+Method annotated with @BeforeEach runs before each test
+	@BeforeEach                                         
+	void setUp() {
+		calculator = new Calculator();
+	}
+
+Assert statements typically allow to define messages which are shown if the test fails
+Providing meaningful messages makes it easier for the user to identify and fix the problem
+
+Method annotated with @Test defines a test method
+@DisplayName can be used to define the name of the test which is displayed to the user
+	@Test                                               
+	@DisplayName("Simple multiplication should work")   
+	void testMultiply() {
+		assertEquals(20, calculator.multiply(4, 5), "Regular multiplication should work");  
+	}
+
+@RepeatedTest defines a test method that will be executed multiple times
+	@RepeatedTest(5)                                    
+	@DisplayName("Ensure correct handling of zero")
+	void testMultiplyWithZero() {
+		assertEquals(0, calculator.multiply(0, 5), "Multiple with zero should be zero");
+		assertEquals(0, calculator.multiply(5, 0), "Multiple with zero should be zero");
+	}
+	
+	
+JUnit 5 allows to use static imports for its assertStatements to make the test code short and easy to read
+  Without static imports you have to write the following statement:
+    import org.junit.jupiter.api.Assertions;
+    Assert.assertEquals("10 x 5 must be 50", 50, tester.multiply(10, 5));
+    
+  alternatively define assertEquals as static import
+    import static org.junit.jupiter.api.Assertions.assertEquals;
+    assertEquals(calculator.multiply(4,5), 20, "Regular multiplication should work");
+	
+Assert Statments:
+		assertEquals(4, calculator.multiply(2, 2),"optional failure message");
+		assertTrue('a' < 'b', () → "optional failure message");
+		assertFalse('a' > 'b', () → "optional failure message");
+		assertNotNull(yourObject, "optional failure message");
+		assertNull(yourObject, "optional failure message");
+
+	
+Exception Testing:
+    Throwable exception = assertThrows(IllegalArgumentException.class, () -> user.setAge("23"));
+    assertEquals("Age must be an Integer.", exception.getMessage());
+	
+Grouped Assertions
+    assertAll("address name",
+      () -> assertEquals("John", address.getFirstName()),
+      () -> assertEquals("User", address.getLastName())
+    );
