@@ -1,6 +1,6 @@
 Prep-Settings: Project -> Properties -> Java Build Path -> Libraries -> Add Library -> JUnit
 
-Method annotated with @BeforeEach runs before each test
+Method annotated with @BeforeEach runs before each test:
 	@BeforeEach                                         
 	void setUp() {
 		calculator = new Calculator();
@@ -9,7 +9,7 @@ Method annotated with @BeforeEach runs before each test
 Assert statements typically allow to define messages which are shown if the test fails
 Providing meaningful messages makes it easier for the user to identify and fix the problem
 
-Method annotated with @Test defines a test method
+Method annotated with @Test defines a test method:
 @DisplayName can be used to define the name of the test which is displayed to the user
 	@Test                                               
 	@DisplayName("Simple multiplication should work")   
@@ -27,28 +27,112 @@ Method annotated with @Test defines a test method
 	
 	
 JUnit 5 allows to use static imports for its assertStatements to make the test code short and easy to read
-  Without static imports you have to write the following statement:
-    import org.junit.jupiter.api.Assertions;
-    Assert.assertEquals("10 x 5 must be 50", 50, tester.multiply(10, 5));
-    
-  alternatively define assertEquals as static import
-    import static org.junit.jupiter.api.Assertions.assertEquals;
-    assertEquals(calculator.multiply(4,5), 20, "Regular multiplication should work");
+	Without static imports you have to write the following statement:
+		import org.junit.jupiter.api.Assertions;
+		Assert.assertEquals("10 x 5 must be 50", 50, tester.multiply(10, 5));
+	alternatively define assertEquals as static import
+		import static org.junit.jupiter.api.Assertions.assertEquals;
+		assertEquals(calculator.multiply(4,5), 20, "Regular multiplication should work");
 	
 Assert Statments:
-		assertEquals(4, calculator.multiply(2, 2),"optional failure message");
-		assertTrue('a' < 'b', () → "optional failure message");
-		assertFalse('a' > 'b', () → "optional failure message");
-		assertNotNull(yourObject, "optional failure message");
-		assertNull(yourObject, "optional failure message");
+	assertEquals(4, calculator.multiply(2, 2),"optional failure message");
+	assertTrue('a' < 'b', () → "optional failure message");
+	assertFalse('a' > 'b', () → "optional failure message");
+	assertNotNull(yourObject, "optional failure message");
+	assertNull(yourObject, "optional failure message");
 
 	
 Exception Testing:
-    Throwable exception = assertThrows(IllegalArgumentException.class, () -> user.setAge("23"));
-    assertEquals("Age must be an Integer.", exception.getMessage());
+	Throwable exception = assertThrows(IllegalArgumentException.class, () -> user.setAge("23"));
+	assertEquals("Age must be an Integer.", exception.getMessage());
 	
-Grouped Assertions
-    assertAll("address name",
-      () -> assertEquals("John", address.getFirstName()),
-      () -> assertEquals("User", address.getLastName())
-    );
+Grouped Assertions:
+	assertAll("address name",
+		() -> assertEquals("John", address.getFirstName()),
+		() -> assertEquals("User", address.getLastName())
+	);
+
+Timeout
+	Test fails if it's not done in a certain amount of time:
+		assertTimeout(ofMinutes(1), () -> service.doBackup());
+	
+		String actualResult = assertTimeout(ofSeconds(1), () -> {
+			return restService.request(request);
+		});
+		assertEquals(200, request.getStatus());
+	
+	Cancel tests after the timeout period is passed:
+		String actualResult = assertTimeoutPreemptively(ofSeconds(1), () -> {
+			return restService.request(request);
+		});
+		assertEquals(200, request.getStatus());
+
+The @Disabled or @Disabled("Why disabled") annotation marks a test to be disabled.
+Assumptions.assumeFalse or Assumptions.assumeTrue defines a condition for test execution.
+Assumptions.assumeFalse marks the test as invalid, if its condition evaluates to true.
+Assumptions.assumeTrue evaluates the test as invalid if its condition evaluates to false.
+	Assumptions.assumeFalse(System.getProperty("os.name").contains("Linux"));
+
+JUnit 5 creates and runs all dynamic tests during test execution.
+Methods annotated with @BeforeEach and @AfterEach are not called for dynamic tests.
+This means that you can’t use thesm to reset the test object, if you change it’s state in the lambda expression for a dynamic test.
+	@TestFactory
+	Stream<DynamicTest> testDifferentMultiplyOperations() {
+		MyClass tester = new MyClass();
+		int[][] data = new int[][] { { 1, 2, 2 }, { 5, 3, 15 }, { 121, 4, 484 } };
+		return Arrays.stream(data).map(entry -> {
+			int m1 = entry[0];
+			int m2 = entry[1];
+			int expected = entry[2];
+			return dynamicTest(m1 + " * " + m2 + " = " + expected, () -> {
+				assertEquals(expected, tester.multiply(m1, m2));
+			});
+		});
+	}
+
+Junit5 also supports parameterized tests.
+The function has to be static and must return either a Collection, an Iterator, a Stream or an Array.
+On execution the test method gets called once for every entry in the data source.
+@BeforeEach and @AfterEach methods will be called for parameterized tests.
+
+Data Source:
+	@ValueSource(ints = { 1, 2, 3 })
+	@EnumSource(value = Months.class, names = {"JANUARY", "FEBRUARY"})
+	@MethodSource(names = "genTestData")
+	@CsvSource({ "foo, 1", "'baz, qux', 3" })
+	@ArgumentsSource(MyArgumentsProvider.class)
+
+Argument Conversion:
+	JUnit tries to automatically convert the source strings to match the expected arguments of the test method.
+	If you need explicit conversion you can specify a converter with the @ConvertWith annotation.
+	To define your own converter you have to implement the ArgumentConverter interface.
+		void testWithExplicitArgumentConversion(@ConvertWith(ToOctalStringArgumentConverter.class) String argument) {
+			System.err.println(argument);
+			assertNotNull(argument);
+		}
+
+Nested Tests:
+	All nested test classes must be non-static inner classes.
+	The nested test classes are annotated with @Nested annotation so that the runtime can recognize the nested test classes.
+	A nested test class can contain Test methods, one @BeforeEach method, and one @AfterEach method.
+
+Test Execution Order:
+	@TestMethodOrder(MethodOrderer.OrderAnnotation.class) - Allows to use the @Order(int) annotation on methods to define order
+	@TestMethodOrder(MethodOrderer.DisplayName.class) - runs test method in alphanumeric order of display name
+	@TestMethodOrder(MethodOrderer.MethodName.class) - runs test method in alphanumeric order of method name
+	Custom implementation - Implement your own MethodOrderer via the orderMethods method, which allows you to call context.getMethodDescriptors().sort(..)
+
+Create Temporary Files or Paths:
+	The @TempDir annotations allows to annotate non-private fields or method parameters in a test method of type Path or File.
+	JUnit 5 has registered a 
+		ParameterResolutionException
+	for this annotation and will create temporary files and paths for the tests.
+	It will also remove the temporary files are each test.
+
+Test Suites:
+	@Suite
+	@SuiteDisplayName("JUnit Platform Suite Demo")
+	@SelectPackages("example")
+	public class SuiteDemo {
+		//codes
+	}
