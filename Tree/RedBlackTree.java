@@ -11,4 +11,6 @@
  *     4. null children are black
  *     5. every new node is red
  * Cascading Fix: multiple layers
+ *
+ * Double Black: when a black node is deleted and replaced by a black child, the child is marked as double black.
  */
