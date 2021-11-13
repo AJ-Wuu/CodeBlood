@@ -6,6 +6,7 @@ package mst;
 
 public class Prim {
 	
+	//Works for weighted, connected, undirected graphs
 	//Step1: Pick start vertex s
 	//Step2: Add s as root of T
 	//Step3: At each iteration -- Choose the lowest weight edge that connects a vertex to T without creating a cycle
