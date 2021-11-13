@@ -33,6 +33,10 @@ class Graph {
 }
 
 public class Kruskal {
+	
+	//Works for weighted, connected, undirected graphs
+	//Step1: Sorted all the edges from smallest to largest
+	//Step2: At each iteration -- Add edge with lowest cost that does not create a cycle
 
 	private static int find(subset subsets[], int i) {
 		// find root and make root as parent of i
@@ -44,8 +48,7 @@ public class Kruskal {
 		return subsets[i].parent;
 	}
 
-	// A function that does union of two sets
-	// of x and y (uses union by rank)
+	// A function that does union of two sets of x and y (uses union by rank)
 	private static void Union(subset subsets[], int x, int y) {
 		int xroot = find(subsets, x);
 		int yroot = find(subsets, y);
