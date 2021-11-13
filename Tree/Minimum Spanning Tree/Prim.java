@@ -6,6 +6,8 @@ package mst;
 
 public class Prim {
 	
+	//THIS PRIM IS PROBABLY WRONG, NEED FURTHER CHECK!!!
+	
 	//Works for weighted, connected, undirected graphs
 	//Step1: Pick start vertex s
 	//Step2: Add s as root of T
