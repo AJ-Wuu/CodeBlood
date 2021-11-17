@@ -5,20 +5,18 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
- * This class can be used to test text based user interactions by 1) specifying
- * a String of text input (that will be fed to System.in as if entered by the user),
- * and then 2) capturing the output printed to System.out and System.err in String
- * form so that it can be compared to the expect output.
+ * This class can be used to test text based user interactions by 
+ * 1) specifying a String of text input (that will be fed to System.in as if entered by the user), and then 
+ * 2) capturing the output printed to System.out and System.err in String form so that it can be compared to the expect output.
  */
+
 public class TextUITester {
 
     /**
-     * This main method demonstrates the use of a TextUITester object to check
-     * the behavior of the following run method.
+     * This main method demonstrates the use of a TextUITester object to check the behavior of the following run method.
      * @param args from the commandline are not used in this example
      */
     public static void main(String[] args) {
-
         // 1. Create a new TextUITester object for each test, and
         // pass the text that you'd like to simulate a user typing as only argument.
         TextUITester tester = new TextUITester("apple\n3.14\nq\n");
@@ -28,11 +26,12 @@ public class TextUITester {
 
         // 3. Check whether the output printed to System.out matches your expectations.
         String output = tester.checkOutput();
-        if(output.startsWith("Welcome to the run program.") && 
-           output.contains("apple4.14"))
+        if(output.startsWith("Welcome to the run program.") && output.contains("apple4.14")) {
             System.out.println("Test passed.");
-        else
+        }
+        else {
             System.out.println("Test FAILED.");
+        }
     }   
     
     /**
@@ -50,8 +49,9 @@ public class TextUITester {
         String s = in.nextLine();
         double d = in.nextDouble(); in.nextLine(); // read newline after double
         char c = in.nextLine().charAt(0);
-        if(c == 'q')
+        if(c == 'q') {
             System.out.println(s + (d + 1.0));
+        }
         in.close();
     }
 
@@ -81,10 +81,8 @@ public class TextUITester {
     }
 
     /**
-     * Call this method after running your test code, to check whether the expected
-     * text was printed out to System.out and System.err.  Calling this method will 
-     * also un-redirect standard io, so that the console can be used as normal again.
-     * 
+     * Call this method after running your test code, to check whether the expected text was printed out to System.out and System.err.
+     * Calling this method will also un-redirect standard io, so that the console can be used as normal again.
      * @return captured text that was printed to System.out and System.err durring test.
      */
     public String checkOutput() {
