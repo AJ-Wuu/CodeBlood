@@ -1,0 +1,22 @@
+Nodes & Height -> N <= 2^H - 1
+
+Red-Black Tree: BST that stay balanced.
+
+Shortest BST (Red-Black Tree):
+    size <= 2^height - 1
+    height = log(size) - 1
+Longest BST:
+    height <= 2*log(size/2) - 1
+
+rotate search, insert, delete: O(logn)
+
+Properties:
+    1. root node is black
+    2. red nodes can only have 0 or 2 black node children, and no red child
+    3. every path from root to a null childe must have the same number of black nodes (black height)
+    4. null children are black
+    5. every new node is red
+Cascading Fix: multiple layers
+
+Double Black: when a black node is deleted and replaced by a black child, the child is marked as double black.
+
