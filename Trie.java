@@ -7,7 +7,13 @@ package trie;
 public class Trie {
 	
 	/*
+	 * Trie is a play on words "retrieve" and "tree"
 	 * Tries store strings in a tree with one character per node
+	 * Trie is designed to help group together values that share a common prefix
+	 * Differs from a BST in that
+	 *	(1) values with the same prefix could be stored in completely different part of the tree
+	 * 	(2) each node in a trie can contain many child nodes
+	 * Each child reference in a trie should be labelled with a part of the prefix
 	 * 
 	 * Trie mainly deals with:
 	 * Set of strings
