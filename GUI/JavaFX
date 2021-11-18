@@ -32,7 +32,10 @@ Window Layout Managers -- can be combined
     help to place / organize things on the screen
     adapt to different screen sizes and resolutions, such that GUI remain usable across screens and devices
     Types:
+        HBox -- everything in a horizontal row
+        VBox -- everything in a vertical row
         BorderPane -- Top, Left, Center, Right, Bottom
-        HBox: everything in a horizontal row
-        VBox: everything in a vertical row
-        GridPane: set number of rows and columns
+        GridPane -- set number of rows and columns
+        StackPane --
+        FlowPane --
+        AnchorPane --
