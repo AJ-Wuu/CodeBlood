@@ -9,6 +9,10 @@ public class Dijkstra {
 	//Find shortest path from start vertex to all other vertices in a graph
 	//Fastest, single start, shortest path algorithm for directed and undirected graphs with unbounded, non-negative edge weights
 
+	//Complexity: O((V+E) * logV)
+	//1. remove vertex from PriorityQueue: logV (once per vertex)
+	//2. update priority value: logV (once per edge)
+	
 	static int V;
 
 	int minDistance(int distance[], boolean visitedSet[]) {
