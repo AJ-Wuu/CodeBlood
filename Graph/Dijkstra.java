@@ -6,7 +6,8 @@ package shortestPath;
 
 public class Dijkstra {
 	
-	//Worked for directed graph
+	//Find shortest path from start vertex to all other vertices in a graph
+	//Fastest, single start, shortest path algorithm for directed and undirected graphs with unbounded, non-negative edge weights
 
 	static int V;
 
