@@ -1,6 +1,12 @@
 /**
  * Size: number of edges in the graph
  * Order: number of vertices in the graph
+ * Length of a path = Cost of a path = (weighted) sum of edge weights on the path / (unweighted) the number of edges on the path
+ * Complete Graph: an edge exists between every vertex pair
+ * Connected Graph: a path exists between every vertex pair
+ *           For directed graph -- strongly connected -> if a path exists between each pair of vertices with the edges direction respected
+ *                                 weakly connected -> if a path exists between each pair of vertices with the edge direction ignored
+ * Sub-Graph: G' is a sub-graph of G, if all vertices and edges of G' also exists in G
  *
  * Traversal:
  *     1. visit each vertex exactly once
