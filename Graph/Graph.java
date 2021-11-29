@@ -2,6 +2,16 @@
  * Size: number of edges in the graph
  * Order: number of vertices in the graph
  *
+ * Traversal:
+ *     1. visit each vertex exactly once
+ *        -- avoid cycles (detect cycles and don't visit twice; mark vertices as visited, either through boolean field in node type or additional data structure, eg. set)
+ *     2. need starting vertex
+ *     3. visit only vertices that are reachable from starting vertex
+ *
+ * BFS: queue
+ * DFS: stack
+ * Complexity (both BFS and DFS): O(E+V) for adjacent list, O(V^2) for adjacent matrix
+ *
  * Shallow Copy: If the field value is a reference to an object (e.g., a memory address) it copies the reference.
  *               The referenced objects are thus shared, so if one of these objects is modified (from A or B), the change is visible in the other.
  *               Shallow copies are simple and typically cheap, as they can be usually implemented by simply copying the bits exactly.
