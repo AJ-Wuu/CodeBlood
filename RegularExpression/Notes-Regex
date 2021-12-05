@@ -21,12 +21,22 @@ pattern appears a specific number of times: "[a-z]{m}" where m = 1, 2, ..., whic
 pattern at the beginning of a line: "^", eg. "^a"
 pattern at the end of a line: "$", eg. "g$"
 
-Regular Expressions in Java:
-An example of a String method that makes use of regex: ________________
-Static method to create a new Pattern object: ________________
-Instance method to create a new Matcher object: ________________
-Useful methods to call on a Matcher object: ________________, ________________
-Capture groups are defined within regular expressions by using: ________________
+Regular Expressions in Java
+Packages needed:
+    import java.util.regex.Matcher
+    import java.util.regex.Pattern
+An example of a String method that makes use of regex:
+    String regex = "\\S*@(cs\\.)?study\\.edu)";
+    text.split(regex); //use regex to split the whole text
+Static method to create a new Pattern object: 
+    Pattern pattern = Pattern.compile(regex);
+Instance method to create a new Matcher object: 
+    Matcher matcher = pattern.matcher(text);
+Useful methods to call on a Matcher object: 
+    matcher.find(); //return true or false of found the pattern or not
+    matcher.group(0); //group(0) is always the entire match
+Capture groups are defined within regular expressions by using: "()"
+
 Regular Expressions in Bash:
 Two things to be aware of when using regular expressions with grep in bash:
 1. ________________________________________________________________________
