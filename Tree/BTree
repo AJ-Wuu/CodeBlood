@@ -1,0 +1,33 @@
+Branching Factor and Disk Storage:
+    File systems and databases store data on large (external) devices
+    Access (read operations) are time consuming
+    New disk access every time we follow a reference (access a child node)
+    We would like to keep the number of access operations low
+    Solution: increase branching factor of nodes and values stored in node
+              + read more than one value per access
+              + higher branching factor (lower height)
+
+B-Tree
+    Balanced, non-binary
+    H = O(logm(N)), where N = number of values in tree, m = the tree’s branching factor
+    Search: All leaves are at the same level
+            All internal nodes have 2 to m children
+
+2-3-4 Tree
+    A type of B Tree with 2-nodes, 3-nodes and 4-nodes, which means every node can have 1, 2 or 3 values stored in it, eg.
+        Value1 Value2 Value3
+       /      |      |      \ 
+    node1   node2  node3   node4
+    Search for value: if value < value1, go to child 0;
+                               else if value < value2, go to child 1;
+                               …
+    Insert: Search to find leaf to insert into
+            For every "full" (4-node) on path, split the middle node by pushing it upwards
+            eg. insert 7, 14, 18, 23, 1, 11, 20, 29, 25, 27
+            -> 7-14-18
+            -> 14-Null-Null    ->    14-Null-Null
+              /  |                  /  |
+   7-Null-Null   18-23-Null   1-7-11   18-20-23
+            ->      14------20------Null           ->      14------------20-------------25
+                   /     |          \                     /       |              |        \
+             1-7-11   18-Null-Null   23-25-29       1-7-11   18-Null-Null   23-Null-Null   27-29-Null
