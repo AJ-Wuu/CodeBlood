@@ -7,19 +7,22 @@ Matching files with 6-digit number greater than 100000 in byte-size: ls -l data 
 Matching two patterns at the same time (containing the consecutive letters "ii" and ending with g): grep -E "ii.*g$" data/words
 
 exact sequence of characters: "abc"
-escape characters with special meaning:
-any single character:
-any digit, any space, or any word character:
-any combination of possible characters:
-a range of possible characters:
-exclude possible characters from set:
-either of two different patterns:
-an optional part of pattern:
-pattern appears one or more times:
-pattern appears zero or more times:
-pattern appears a specific number of times:
-pattern at the beginning of a line:
-pattern at the end of a line:
+escape characters with special meaning: adding "\", eg. "\.", "\+", "\$", etc.
+any digit: "\d"
+any digit or letter: "\w"
+any space: "\s"
+any single character: ".", which will match one digit, letter, space, special character, etc.
+any digit, any space, or any word character: "[\d\s\w]"
+any combination of possible characters: "[abc]"
+a range of possible characters: "[a-c]"
+exclude possible characters from set: "[^72]" or "[^abcd]" or "[^0-9a-z]"
+either of two different patterns: "(|)", eg, "([a-z]{2}|[0-9]{3})", which will match two lowercase letters or three digits
+an optional part of pattern: "@(cs\.)?study\.edu", which will match "@study.edu" and "@cs.study.edu"
+pattern appears one or more times: "[0-9]+@study.\edu", which will match "4@study.edu", "789@study.edu", etc.
+pattern appears zero or more times: "[0-9]*@study.\edu", which will match "@study.edu", "4@study.edu", "789@study.edu", etc.
+pattern appears a specific number of times: "[a-z]{m}" where m = 1, 2, ..., which will match two lowercase letters
+pattern at the beginning of a line: "^", eg. "^a"
+pattern at the end of a line: "$", eg. "g$"
 
 Regular Expressions in Java:
 An example of a String method that makes use of regex: ________________
