@@ -36,11 +36,30 @@ Useful methods to call on a Matcher object:
     matcher.find(); //return true or false of found the pattern or not
     matcher.group(0); //group(0) is always the entire match
 Capture groups are defined within regular expressions by using: "()"
+EXAMPLE FOR GROUP:
+    String str = "start123456end"; // Your input String
+    //                                 Group#1 Group#2
+    //                                   ↑      ↑  
+    Pattern p = Pattern.compile("start([0-9]*)(end)");
+    //                           |<--- Group#0 --->|
+    Matcher m = p.matcher(str); // Create a matcher for regex and input
+    while(m.find()){ // as long as your regex matches something
+        System.out.println("group#0:\t" + m.group()); // Or: m.group(0)
+        System.out.println("group#1:\t" + m.group(1));
+        System.out.println("group#2:\t" + m.group(2));
+    }
+    /*
+     * Output:
+     * group#0:    start123456end
+     * group#1:    123456
+     * group#2:    end
+     */
 
 Regular Expressions in Bash:
 Two things to be aware of when using regular expressions with grep in bash:
-1. ________________________________________________________________________
-2. ________________________________________________________________________
-Some more useful arguments when using grep:
--E __________________________________    -n __________________________________
--c __________________________________    -o _
+1. Put double quotes around strings to avoid the special bash characters
+2. Put the "-E" in front as an argument to make use of the additional regular expression pattern matching notation
+grep -E PATTERN -> (explain) interpret PATTERN as an extended regular expression
+grep -n PATTERN -> (line-number) prefix each line of output with the line number within its input file
+grep -c PATTERN -> (count) suppress normal output; instead print a count of matching lines for each input file
+grep -o PATTERN -> (only-matching) show only the part of a matching line that matches PATTERN
