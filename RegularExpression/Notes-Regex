@@ -1,0 +1,5 @@
+Note that when writting in Makefile, for ending pattern, instead of "a$", it should be written as "a$$"
+
+Connecting two patterns (at the same time): ".*"
+Matching files with 6-digit number greater than 100000 in byte-size: ls -l data | grep -E "[1-9][0-9]{5}"
+Matching two patterns at the same time (containing the consecutive letters "ii" and ending with g): grep -E "ii.*g$" data/words
