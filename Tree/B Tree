@@ -10,7 +10,7 @@ Branching Factor and Disk Storage:
 B Tree
     Balanced, non-binary
     H = O(logm(N)), where N = number of values in tree, m = the tree’s branching factor
-    Complexity: search, insert and delete all in O(logn)
+    Time Complexity: search, insert and delete all in O(logn)
     The minimum number of children is ceil(m/2) (all internal nodes have 2 to m children)
     The smallest number of children that any interior node might have is ceil(m/2)
     The number of values within any node is always 1 than its number of children
