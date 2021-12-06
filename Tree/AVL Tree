@@ -1,0 +1,6 @@
+Balance factor for a node: ________________ - ________________
+When the absolute value of this is > ________, then rotations are applied to correct this.
+The nodes within any AVL tree ________________ to form a valid red-black tree.
+But the nodes within a red-black may have a balance factor that is ________________.
+This tradeoff can be understood as AVL trees spending more time __________________
+        versus red-black trees spending more time _________________.
