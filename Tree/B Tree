@@ -7,11 +7,16 @@ Branching Factor and Disk Storage:
               + read more than one value per access
               + higher branching factor (lower height)
 
-B-Tree
+B Tree
     Balanced, non-binary
     H = O(logm(N)), where N = number of values in tree, m = the tree’s branching factor
-    Search: All leaves are at the same level
-            All internal nodes have 2 to m children
+    Complexity: search, insert and delete all in O(logn)
+    The minimum number of children is ceil(m/2) (all internal nodes have 2 to m children)
+    The smallest number of children that any interior node might have is ceil(m/2)
+    The number of values within any node is always 1 than its number of children
+    All leaves are at the same level (AKA perfect)
+    Generally, the B-Tree node size is kept equal to the disk block size
+    Since the height of the B-tree is low so total disk accesses for most of the operations are reduced significantly compared to balanced BST
 
 2-3-4 Tree
     A type of B Tree with 2-nodes, 3-nodes and 4-nodes, which means every node can have 1, 2 or 3 values stored in it, eg.
@@ -19,10 +24,11 @@ B-Tree
        /      |      |      \ 
     node1   node2  node3   node4
     Search for value: if value < value1, go to child 0;
-                               else if value < value2, go to child 1;
-                               …
+                      else if value < value2, go to child 1;
+                      else if value < value3, go to child 2;
+                      else, go to child 4
     Insert: Search to find leaf to insert into
-            For every "full" (4-node) on path, split the middle node by pushing it upwards
+            For every "full" (4-node) on path, split the middle node (out of three) by pushing it upwards
             eg. insert 7, 14, 18, 23, 1, 11, 20, 29, 25, 27
             -> 7-14-18
             ->             14-Null-Null    ->    14-Null-Null
@@ -31,3 +37,5 @@ B-Tree
             ->        14--------20--------Null           ->      14------------20-------------25
                      /     |           |                        /       |              |        \
                1-7-11   18-Null-Null   23-25-29           1-7-11   18-Null-Null   23-Null-Null   27-29-Null
+    Preemptively spilt interior nodes that are ancestors of the leaf node being added to,
+        whenever they contain at least 3 values, to ensure room for one more value beind added as the result of a child split.
