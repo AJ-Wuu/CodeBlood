@@ -1,0 +1,5 @@
+The word stream is used in many places throughout the JavaAPI.
+We are specifically looking at the ________________ interface, and not:
+        _________________    or    ________________
+These stream methods can be organized into the following types:
+1. __________________        2. __________________        3. __________________
