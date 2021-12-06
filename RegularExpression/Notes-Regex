@@ -20,6 +20,7 @@ pattern appears zero or more times: "[0-9]*@study.\edu", which will match "@stud
 pattern appears a specific number of times: "[a-z]{m}" where m = 1, 2, ..., which will match two lowercase letters
 pattern at the beginning of a line: "^", eg. "^a"
 pattern at the end of a line: "$", eg. "g$"
+same letter (out of [xy]) at the beginning and the end: "^([xy])[xy]*\1$|^[xy]$"
 
 Regular Expressions in Java
 Packages needed:
