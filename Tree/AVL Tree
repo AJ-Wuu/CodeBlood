@@ -1,4 +1,4 @@
-Self-Balancing BST -> Height-balanced
+Self-Balancing BST -> Height-balanced (use rotation from leaf to root to keep balance)
 Time Complexity (asymptotically): search, insert and delete O(H) = O(logN)
 Keep track of balance factor instead of color in Red-Black Tree
 Balance factor for a node: H(right subtree) - H(left subtree)
