@@ -9,6 +9,14 @@ public class Dijkstra {
 	//Find shortest path from start vertex to all other vertices in a graph
 	//Fastest, single start, shortest path algorithm for directed and undirected graphs with unbounded, non-negative edge weights
 
+	//Step1: Pick a vertex u which is not there in sptSet and has a minimum distance value. 
+	//Step2: Mark u as visited.
+	//Step3: Update distance value of all adjacent vertices of u.
+	//       To update the distance values, iterate through all adjacent vertices.
+	//       For every adjacent vertex v, 
+	//           if the sum of distance value of u (from source) and weight of edge u-v is less than the distance value of v, 
+	//           then update the distance value of v. 
+	
 	//Complexity: O((V+E) * logV)
 	//1. remove vertex from PriorityQueue: logV (once per vertex)
 	//2. update priority value: logV (once per edge)
