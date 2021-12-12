@@ -36,7 +36,7 @@ public class MST {
 									{ 0, 3, 0, 0, 7 },
 									{ 6, 8, 0, 0, 9 },
 									{ 0, 5, 7, 9, 0 } };
-		Prim.primMST(1, graphMatrix); //however, the starting point doesn't matter here
+		Prim.primMST(1, graphMatrix); //the starting point influences the order of visiting each edge, but doesn't influence the overall MST
 		
 		int V = 4;
 		int E = 5;
