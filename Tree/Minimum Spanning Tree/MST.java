@@ -30,13 +30,18 @@ public class MST {
 	//          E*logV -> update priority values after tree is updated
 	//Kruskal: O(E*logE) -> sorting edges
 	
+	//Starting Node
+	//Prim: influence the order of visiting each edge
+	//      NO influence on the overall MST
+	//Kruskal: No influence at all
+	
 	public static void main(String[] args) {
 		int graphMatrix[][] = new int[][] { { 0, 2, 0, 6, 0 },
 									{ 2, 0, 3, 8, 5 },
 									{ 0, 3, 0, 0, 7 },
 									{ 6, 8, 0, 0, 9 },
 									{ 0, 5, 7, 9, 0 } };
-		Prim.primMST(1, graphMatrix); //the starting point influences the order of visiting each edge, but doesn't influence the overall MST
+		Prim.primMST(1, graphMatrix);
 		
 		int V = 4;
 		int E = 5;
