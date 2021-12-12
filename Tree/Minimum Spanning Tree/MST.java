@@ -18,6 +18,9 @@ public class MST {
 	 * Minimum-cost edge: unique minimum cost edge -> this edge is included in any MST
 	 * Contraction: If T is a tree of MST edges, then we can contract T into a single vertex while maintaining the invariant 
 	 *              that the MST of the contracted graph plus T gives the MST for the graph before contraction
+	 *
+	 * Every possible minimal spanning tree of the same graph has an identical number of edges.
+	 ^ For one graph, Prim's and Kruskal's algorithm may return different minimal spanning tree.
 	 */
 	
 	//Complexities
@@ -33,7 +36,7 @@ public class MST {
 									{ 0, 3, 0, 0, 7 },
 									{ 6, 8, 0, 0, 9 },
 									{ 0, 5, 7, 9, 0 } };
-		Prim.primMST(1, graphMatrix);
+		Prim.primMST(1, graphMatrix); //however, the starting point doesn't matter here
 		
 		int V = 4;
 		int E = 5;
