@@ -11,14 +11,16 @@ Longest BST:
 rotate search, insert, delete: O(logn)
 
 Properties:
-    1. root node is black <- check this at the end of each insertion
-    2. every path from root to a null child must have the same number of black nodes (black height)
-    3. red nodes can only have 0 or 2 black node children, and no red child (if a node is red, then both its children are black)
+    1. every node is either red or black (every new node is red)
+    2. root node is black <- check this at the end of each insertion
+    3. null children are black -- every leaf (NIL) is black
+    4. red nodes can only have 0 or 2 black node children, and no red child (if a node is red, then both its children are black)
            A red node cannot only have one child (if the only child is red, violate the color rule; if the only child is black, violate the black-height rule)
-    4. null children are black -- every leaf (NIL) is black
-    5. every new node is red
-    6. balance for Red-Black Trees is defined through black node heights, which completely ignore the distribution of red nodes throughout the tree.
-       (This is OK to do because that distribution is limited by the red-black tree property/rule: no red node with red child)
+    5. for each node, all simple paths from the node to descendant leaves contain the same number of black nodes (black height)
+    
+Balance for Red-Black Trees is defined through black node heights, which completely ignore the distribution of red nodes throughout the tree.
+    This is OK to do because that distribution is limited by the red-black tree property/rule: no red node with red child.
+    
 Cascading Fix: multiple layers
 
 Double Black: when a black node is deleted and replaced by a black child, the child is marked as double black.
