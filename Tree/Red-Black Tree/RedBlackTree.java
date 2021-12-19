@@ -49,7 +49,15 @@ package redBlackTree;
  * 	    left rotation: 20(R) -- 14(B), 25(R) -- 7(B), 18(B), 23(B), 29(B) -- 1(R), 11(R), 27(R) -> root color violation
  * 	    re-color: 20(B) -- 14(R), 25(R) -- 7(B), 18(B), 23(B), 29(B) -- 1(R), 11(R), 27(R)
  * 
- * Double Black: when a black node is deleted and replaced by a black child, the child is marked as double black.
+ * Double Black: when a black node is deleted and replaced by a black child, the child is marked as double black 
+ * 	         to solve this, we will push the double black property up recursively towards the root
+ *               eg. (from top level to bottom)
+ *                   initial tree: 20(B) -- 10(B), 30(B) -- 2(B), 14(B), 22(B), 45(B) -- 1(B), 5(B), 11(B), 16(B), 21(B), 24(B), 40(B), 58(B)
+ *                   remove 5: 20(B) -- 10(B), 30(B) -- 2(B), 14(B), 22(B), 45(B) -- 1(B), NULL【DB】, 11(B), 16(B), 21(B), 24(B), 40(B), 58(B)
+ *                   move up:  20(B) -- 10(B), 30(B) -- 2【DB】, 14(B), 22(B), 45(B) -- 1(R), NULL(B), 11(B), 16(B), 21(B), 24(B), 40(B), 58(B)
+ *                   move up:  20(B) -- 10【DB】, 30(B) -- 2(B), 14(R), 22(B), 45(B) -- 1(R), NULL(B), 11(B), 16(B), 21(B), 24(B), 40(B), 58(B)
+ *                   move up:  20【DB】 -- 10(B), 30(R) -- 2(B), 14(R), 22(B), 45(B) -- 1(R), NULL(B), 11(B), 16(B), 21(B), 24(B), 40(B), 58(B)
+ *                   resolve the root: 20(B) -- 10(B), 30(R) -- 2(B), 14(R), 22(B), 45(B) -- 1(R), NULL(B), 11(B), 16(B), 21(B), 24(B), 40(B), 58(B)
  * 
  * Different cases of insertion is determined by: 1. parent's color; 2. uncle's color
  * Different cases of deletion is determined by: 1. sibling's color; 2. sibling's children's color
