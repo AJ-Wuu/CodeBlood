@@ -27,8 +27,8 @@ B Tree
                       else if value < value2, go to child 1;
                       else if value < value3, go to child 2;
                       else, go to child 4
-    Insert: Search to find leaf to insert into
-            For every "full" (4-node) on path, split the middle node (out of three) by pushing it upwards
+    Search: split full nodes and find corresponding leaf to insert into
+            for every "full" (4-node) on path, push the middle node (out of three) upwards
             eg. insert 7, 14, 18, 23, 1, 11, 20, 29, 25, 27
             -> 7-14-18
             ->             14-Null-Null    ->    14-Null-Null
@@ -37,5 +37,6 @@ B Tree
             ->        14--------20--------Null           ->      14------------20-------------25
                      /     |           |                        /       |              |        \
                1-7-11   18-Null-Null   23-25-29           1-7-11   18-Null-Null   23-Null-Null   27-29-Null
-    Preemptively spilt interior nodes that are ancestors of the leaf node being added to,
-        whenever they contain at least 3 values, to ensure room for one more value beind added as the result of a child split.
+            Preemptively spilt interior nodes that are ancestors of the leaf node being added to,
+                whenever they contain at least 3 values, to ensure room for one more value beind added as the result of a child split.
+    Insert: Search, then insert in the correct spot
