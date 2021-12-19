@@ -5,6 +5,9 @@
 package Lambda;
 
 import java.util.ArrayList;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 /*
  * Advantages of using Lambda Expressions:
@@ -17,6 +20,32 @@ import java.util.ArrayList;
  * 4. Achieve the internal iteration of collections rather than external iteration
  */
 
+//The Button.onAction method in JavaFX takes an argument of type ActionEvent
+//The Stream.map method in java.util.stream.Streams takes a function as its input
+//A lambda expression is an anonymous function that provides a concise and functional syntax, which is used to write anonymous methods. 
+//    It is based on the function programming concept and used to create delegates or expression tree types. 
+//    The syntax is function(arg1, arg2...argn) expression.
+
+//Lambda expression syntax features are as follows:
+//1. It is a function without a name.
+//2. There are no modifiers, such as overloads and overrides.
+//3. The body of the function should contain an expression, rather than a statement.
+//4. May contain a call to a function procedure but cannot contain a call to a subprocedure.
+//5. The return statement does not exist.
+//6. The value returned by the function is only the value of the expression contained in the function body.
+//7. The End function statement does not exist.
+//8. The parameters must have specified data types or be inferred.
+//9. Does not allow generic parameters, optional or ParamArray parameters.
+
+//In java.util.function
+//Consumer<T>: takes one input of a generic type, and returns nothing.
+//BiConsumer<T,U>: takes two inputs of generic types, and returns nothing.
+//Supplier<T>: takes no inputs, and returns a value of a generic type.
+//Function<T,R>: takes one input of a generic type, and returns a value of a generic type.
+
+//In java.lang.runnable
+//run(): takes no inputs, and returns nothing.
+
 interface MathOperation {
 	public double compute(double a, double b);
 }
@@ -28,7 +57,7 @@ class AdditionOperation implements MathOperation {
 	}
 }
 
-public class CalculatorApp {
+public class LambdaExpression {
 	
 	public static MathOperation add() {  
 		//Define a class named AdditionOperation that implements MathOperation
@@ -75,6 +104,24 @@ public class CalculatorApp {
 				System.out.println(); // ensure that the next operands are printed to the next line
 			}
 		}
+		
+		Runnable printHello10x = () -> { 
+            		for (int i=0; i<10; i++) { System.out.println("Hello Runnable"); }
+        	};
+        	Consumer<Integer> printHelloNx = (n) -> { 
+        		for (int i=0; i<n; i++) { System.out.println("Hello Consumer"); } 
+        	};
+        	BiConsumer<Integer,Runnable> runNx = (n,anycode) -> { 
+        		for (int i=0; i<n; i++) { anycode.run(); } 
+        	};
+        	Function<Integer,Runnable> createPrintHelloNx = (n) -> () -> { 
+        		for (int i=0; i<n; i++) { System.out.println("Hello Function"); }
+        	};
+        	printHello10x.run();
+        	printHelloNx.accept(3);
+        	runNx.accept(3,() -> System.out.println("hi"));
+        	Runnable r = createPrintHelloNx.apply(6);
+        	r.run();
 	}
 	
 }
