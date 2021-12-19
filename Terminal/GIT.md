@@ -1,13 +1,13 @@
 # GIT
 1. Install Git with the following commands:  
-> sudo apt update  
-> sudo apt install git  
-2. Set your name so that it will appear with your commits (replace Jay T with your name):  
-        git config --global user.name “Jay T”
-3. Set your email address to appear with your commits as well (replace heimerl@cs.wisc.edu with your email address):
-        git config --global user.email “jt@xx.edu”
-4. Pick an editor that Git will use (replace vim with your favorite editor):
-        git config --global core.editor vim
+* sudo apt update  
+* sudo apt install git  
+2. Set your name so that it will appear with your commits (replace JT with your name):  
+> git config --global user.name “JT”  
+3. Set your email address to appear with your commits as well (replace heimerl@cs.wisc.edu with your email address):  
+> git config --global user.email “jt@xx.edu”  
+4. Pick an editor that Git will use (replace vim with your favorite editor):  
+> git config --global core.editor vim
 5. Create a folder for our new programming project and navigate into it:
         mkdir newProject
         cd newProject
