@@ -58,6 +58,7 @@
         ```git branch```
 2. We can create a new branch, for example to develop the frontend of our application, with:
         ```git checkout -b frontend```
+   * We often use ```git checkout``` to switch the currently active branch in Git
    * Notice that
         ```git checkout -b <newbranch>```
       will create a new branch named newbranch if it does not exist, or reset it if it exists.
