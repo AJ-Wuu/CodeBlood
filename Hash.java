@@ -52,11 +52,13 @@
  * 1. Chaining: LinkedList<ElementType>[]
  * 2. Open Addressing -> if the target basket is filled, find the next empty basket by one of the following methods
  *    2.1. Linear Probing: hash(x)%S -> (hash(x)+1)%S -> (hash(x)+2)%S -> (hash(x)+3)%S -> ...
+ *             When searching, stop when reaching an index that has never had a key-value pair stored in it 
+                   (assume the load factor prohibits us from inserting so many elements that there are no free spaces)
  *    2.2. Quadraic Probing: hash(x)%S -> (hash(x)+1^2)%S -> (hash(x)+2^2)%S -> (hash(x)+3^2)%S -> ...
  *    2.3. Double Hashing: hash(x)%S -> (hash(x)+1*hash2(x))%S -> (hash(x)+2*hash2(x))%S -> (hash(x)+3*hash2(x))%S -> ...
- * Comparison      | Implementation   | Full            | Clustering and Load Factor | Background                          | Cache                 | Waste Space
- * Chaining        | Simple           | Never filled-up | Not sensitive              | Not knowing the frequency or number | Not good (LinkedList) | More
- * Open Addressing | More computation | Maybe           | Sensitive                  | frequency and number of keys known  | Better                | Less
+ * Comparison      | Implementation   | Full            | Clustering and Load Factor  | Background                          | Cache                 | Waste Space
+ * Chaining        | Simple           | Never filled-up | Not sensitive (may > 100%)  | Not knowing the frequency or number | Not good (LinkedList) | More
+ * Open Addressing | More computation | Maybe           | Sensitive                   | frequency and number of keys known  | Better                | Less
  *         Note: Higher Clustering -> higher probability of collisions;
  *               Load Factor is a measure of how full the hash table is.
  *
