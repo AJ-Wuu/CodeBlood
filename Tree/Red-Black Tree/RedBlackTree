@@ -12,9 +12,9 @@ rotate search, insert, delete: O(logn)
 
 Properties:
     1. root node is black
-    2. red nodes can only have 0 or 2 black node children, and no red child
+    2. red nodes can only have 0 or 2 black node children, and no red child (if a node is red, then both its children are black)
     3. every path from root to a null childe must have the same number of black nodes (black height)
-    4. null children are black
+    4. null children are black (every leaf(NIL) is black)
     5. every new node is red
     6. balance for Red-Black Trees is defined through black node heights, which completely ignore the distribution of red nodes throughout the tree.
        (This is OK to do because that distribution is limited by the red-black tree property/rule: no red node with red child)
