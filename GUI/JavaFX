@@ -39,3 +39,5 @@ Window Layout Managers -- can be combined
         StackPane --
         FlowPane --
         AnchorPane --
+
+An element of a JavaFX Scene (such as a Layout Manger or GUI Control element) can have only one parent.
