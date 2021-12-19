@@ -51,8 +51,8 @@ package redBlackTree;
  * 
  * Double Black: when a black node is deleted and replaced by a black child, the child is marked as double black.
  * 
- * Different cases of insertion is determined by: 1. the color of the uncle; 2. the node is the left / right child of its parent
- * Different cases of deletion is determined by: 1. the color of the sibling; 2. the color of sibling's children
+ * Different cases of insertion is determined by: 1. parent's color; 2. uncle's color
+ * Different cases of deletion is determined by: 1. sibling's color; 2. sibling's children's color
  * 
  * Standard BST insert algorithm is sufficient (ie. there is no need to resolve any red-black tree property violations) for: 
  * 	inserting a new red node -- when the sibling's position is non-null
