@@ -17,15 +17,17 @@ public class SkipList {
 	// 1         →        33         →         103    L2
 	// ↓                                        ↓
 	// 1                   →                   103    L3 (fastest)
-	//Note: it could have more than 4 lanes
+	//Note: it could have whatever number of lanes (1 to ∞)
 	//For searching process: start with the fastest (the last lane),
 	//                       then gradually move upwards (step down) to smaller lane or move one step right until the target is found
 	
 	//Skip List is mainly used for small number of elements (not enough for BST) with all elements known
 	//It is relatively fast and easy to compute and only needs a little memory
 	
+	//In a skip list containing n nodes, we'd like about n/(2^(x-1)) nodes with >=x levels
+	
 	//Complexity                      |  Average  |  Worst
-	//Access, Search, Insert, Delete  |  O(logn)  |  O(n)
+	//Access, Search, Insert, Delete  |  O(logn)  |  O(n)     -> insertion may happen to multiple lanes, as long as it's in the middle of the src and dest
 	//Space                           |     ~     |  O(nlogn)
 	
 	class Node {
