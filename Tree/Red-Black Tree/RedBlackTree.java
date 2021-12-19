@@ -4,6 +4,62 @@
 
 package redBlackTree;
 
+/*
+ * Red-Black Tree: BST that stay balanced.
+ * Complexity: rotate, search, insert, delete: O(logn) -- worst BST could be O(n)
+ * 
+ * Nodes & Height -> N <= 2^H - 1
+ * Shortest BST (Red-Black Tree):
+ * 	size <= 2^height - 1
+ * 	height = log(size) - 1
+ * Longest BST:
+ * 	height <= 2*log(size/2) - 1
+ * 
+ * Properties:
+ * 	1. every node is either red or black (every new node is red)
+ * 	2. root node is black <- check this at the end of each insertion
+ * 	3. null children are black -> every leaf (NIL) is black
+ * 	4. red nodes can only have 0 or 2 black node children, and no red child (if a node is red, then both its children are black)
+ * 	   4.1. a red node cannot only have one child (if the only child is red, violate the color rule; if the only child is black, violate the black-height rule
+ * 	   4.2. a black node can only have one red child (and it's a red leaf), but cannot only have one black child
+ * 	5. for EACH node, all simple paths from the node to descendant leaves contain the same number of black nodes (black height)
+ * 
+ * Insertion Process (1&2 are the same as for any BST):
+ * 	1. follow the binary search algorithm to null child
+ * 	2. add the leaf node
+ * 	3. color the new node red
+ * 	4. restore root-red-black properties
+ * 
+ * Deletion Process (1&2 are the same as for any BST):
+ * 	1. follow the binary search to find the node to be deleted
+ * 	2. check the cases:
+ * 	   2.1. if node has no children, replace with null
+ * 	   2.2. if node has one child, replace with child
+ * 	   2.3. if node has two children, replace VALUE in node with replacement and delete the node with replacement key (back to 2.1 or 2.2)
+ * 	3. restore root-red-black properties
+ * 
+ * Balance for Red-Black Trees is defined through black node heights, which completely ignore the distribution of red nodes throughout the tree.
+ * 	This is OK to do because that distribution is limited by the red-black tree property/rule: no red node with red child.
+ * 
+ * Cascading Fix: multiple layers
+ * 	eg. (from top level to bottom) 
+ * 	    initial tree: 14(B) -- 7(B), 20(R) -- 1(R), 11(R), 18(B), 25(B) -- 23(R), 29(R)
+ * 	    insert 27: 14(B) -- 7(B), 20(R) -- 1(R), 11(R), 18(B), 25(B) -- 23(R), 29(R) -- 27(R)
+ * 	    re-color: 14(B) -- 7(B), 20(R) -- 1(R), 11(R), 18(B), 25(R) -- 23(B), 29(B) -- 27(R) -> 20(R)-25(R) has red property violation
+ * 	    left rotation: 20(R) -- 14(B), 25(R) -- 7(B), 18(B), 23(B), 29(B) -- 1(R), 11(R), 27(R) -> root color violation
+ * 	    re-color: 20(B) -- 14(R), 25(R) -- 7(B), 18(B), 23(B), 29(B) -- 1(R), 11(R), 27(R)
+ * 
+ * Double Black: when a black node is deleted and replaced by a black child, the child is marked as double black.
+ * 
+ * Different cases of insertion is determined by: 1. the color of the uncle; 2. the node is the left / right child of its parent
+ * Different cases of deletion is determined by: 1. the color of the sibling; 2. the color of sibling's children
+ * 
+ * Standard BST insert algorithm is sufficient (ie. there is no need to resolve any red-black tree property violations) for: 
+ * 	inserting a new red node -- when the sibling's position is non-null
+ * 	removing a node -- when removing a red leaf or
+ *                              removing a black node with two children (copy one child value up to the parent, then delete the child -> no color change)
+ */
+
 class Node {
 	int data;
 	Node leftChild;
@@ -85,20 +141,20 @@ public class RedBlackTree{
 				continue;
 			}
 		}
-		
+
 		//Not found
 		if (temp.data == -1) {
 			return;
 		}
-		
+
 		//Find the next greater number than the given data
 		Node next = findNext(temp);
-		
+
 		//Swap the data values of given node and next greater number
 		int t = temp.data;
 		temp.data = next.data;
 		next.data = t;
-		
+
 		//Delete the next node.
 		Node parent = next.parent;
 		if (parent == null) {
@@ -353,5 +409,5 @@ public class RedBlackTree{
 		delete(6);
 		printTree();
 	}
-  
+
 }
