@@ -28,5 +28,7 @@ Double Black: when a black node is deleted and replaced by a black child, the ch
 
 Different cases of insertion is determined by: 1. the color of the uncle; 2. the node is the left / right child of its parent
 
-Standard BST insert algorithm sufficient for inserting a new red node into a red-black tree (ie. there is no need to resolve any red-black tree property violations):
-    When the sibling's position is non-null
+Standard BST insert algorithm is sufficient (ie. there is no need to resolve any red-black tree property violations) for: 
+    inserting a new red node -- when the sibling's position is non-null
+    removing a node -- when removing a red leaf or
+                            removing a black node with two children (copy one child value up to the parent, then delete the child -> no color change)
