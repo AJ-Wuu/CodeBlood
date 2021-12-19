@@ -1,3 +1,8 @@
+# Version Control Systems (eg. git):
+1. Provide easy way to backup and restore of different versions that we're working on
+2. Track changes through different versions of our code
+3. Manage multiple users with concurrent changes on the code base
+
 # GIT
 1. Install Git with the following commands:  
         ```sudo apt update```  
