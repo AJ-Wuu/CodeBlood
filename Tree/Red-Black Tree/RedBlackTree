@@ -15,7 +15,8 @@ Properties:
     2. root node is black <- check this at the end of each insertion
     3. null children are black -- every leaf (NIL) is black
     4. red nodes can only have 0 or 2 black node children, and no red child (if a node is red, then both its children are black)
-           A red node cannot only have one child (if the only child is red, violate the color rule; if the only child is black, violate the black-height rule)
+           a red node cannot only have one child (if the only child is red, violate the color rule; if the only child is black, violate the black-height rule)
+           a black node can only have one red child (and it's a red leaf), but cannot only have one black child
     5. for each node, all simple paths from the node to descendant leaves contain the same number of black nodes (black height)
     
 Balance for Red-Black Trees is defined through black node heights, which completely ignore the distribution of red nodes throughout the tree.
