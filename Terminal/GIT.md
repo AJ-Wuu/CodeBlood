@@ -46,3 +46,102 @@
 19. We can now add this file to the staging area and commit it into our local repository:  
         ```git add .gitignore```  
         ```git commit -m “Added .gitignore file with line for .class files."```
+
+# GIT Branches
+1. In our cloned repository we have one branch (main) so far:  
+        ```cd newProjectClone```  
+        ```git branch```
+2. We can create a new branch, for example to develop the frontend of our application, with:
+        ```git checkout -b frontend```
+   * Notice that
+        ```git checkout -b <newbranch>```
+      will create a new branch named newbranch if it does not exist, or reset it if it exists.
+3. We are now on the new branch we just created:
+        ```git branch```
+4. Now we start working on the frontend:  
+        ```vim Frontend.java```  
+        ```vim README.txt```
+5. Then we create a new version on the frontend branch:  
+        ```git add Frontend.java```  
+        ```git add README.txt```  
+        ```git commit -m “Added new Frontend class and README.txt.”```  
+        ```git log```
+6. When we switch back to the main branch, it is still in the old state:  
+        ```git checkout main```  
+        ```git log```
+7. And the repo we cloned from does not know about the new branch yet:  
+        ```cd ../newProject```  
+        ```git branch```  
+        ```git log```  
+        ```cd ../newProjectClone```
+8. We can publish the new branch to the remote repo with:
+        ```git push --set-upstream origin frontend```
+9. And we now have the frontend branch and its version in the remote repo:  
+        ```cd ../newProject```  
+        ```git branch```
+10. And can switch to it there:  
+        ```git checkout frontend```  
+        ```git log```
+
+# GIT Merges and Conflicts
+1. To merge the frontend branch into the main branch in our cloned repo, we switch to the branch that we want to merge into:  
+        ```git checkout main```  
+        ```git branch```  
+        ```git log```
+2. And then merge the frontend branch into it:
+        ```git merge frontend```
+3. The main branch now has all version of the frontend branch:
+        ```git log```
+4. Often there will be conflicts when merging. To demonstrate, we will edit README.txt in both branches:  
+        ```vim README.txt```  
+        ```git commit -a -m “Added new line to README.txt for main.”```  
+        ```git checkout frontend```  
+        ```vim README.txt```  
+        ```git commit -a -m “Added new line to README.txt for frontend.”```
+5. Now when we merge frontend into main, we will get a merge conflict:  
+        ```git checkout main```  
+        ```git merge frontend```
+6. We need to manually resolve with an editor:
+        ```vim README.txt```
+7. And then commit the new (resolved) version of our code:
+        ```git commit -a -m “Resolved conflict in README.txt by manually merging line.”```
+8. The resolved version is now in our branch main:
+        ```git log```
+
+# GIT Remote Repository
+1. We can create a new local repository from any git repository.  
+   The following command creates a new local repository newProjectClone, with newProject as its remote repository:
+        ```git clone newProject newProjectClone```
+2. We need to explicitly allow pushing to the repository newProject if it is currently checked out in a working copy. We do this with:  
+        ```cd ../newProject```  
+        ```git config receive.denyCurrentBranch updateInstead```
+3. We can list remote repositories with:  
+        ```cd newProjectClone```  
+        ```git remote -v```
+4. The new repository newProjectClone will have the same versions as the remote repository it was cloned from. We can check this with:
+        ```git log```
+5. We can now work on our newly cloned repository and create a new version in it:
+        ```vim Main.java```
+6. We then add the changes to the staging area and create a new version of an already tracked file with:
+        ```git commit -a -m “Added a new line to the output of Main.java”```  
+   * Notice that
+        ```git commit -a```
+      saves a snapshot of changes done in the whole working directory, but it only works for tracked files.
+7. We then see that the local and the remote repositories are in different states:
+        ```git log```
+8. To upload our new local version to the remote:
+        ```git push```
+9. Remote and local repository are now in the same state:
+        ```git log```
+10. We can also check this in the remote repository:  
+        ```cd ../newProject```  
+        ```git log```  
+        ```vim Main.java```
+11. We then make changes to the original (remote) repository, for example by adding a third line of output:  
+        ```vim Main.java```  
+        ```git commit -a -m “Added a new, third line to the output of Main.java”```
+12. We can now update the cloned repository with this new version:  
+        ```cd ../newProjectClone```  
+        ```git pull```
+13. The cloned repository will now be up-to-date:
+        ```git log```
