@@ -20,7 +20,7 @@ public class MST {
 	 *              that the MST of the contracted graph plus T gives the MST for the graph before contraction
 	 *
 	 * Every possible minimal spanning tree of the same graph has an identical number of edges.
-	 ^ For one graph, Prim's and Kruskal's algorithm may return different minimal spanning tree.
+	 ^ For one graph, Prim's and Kruskal's algorithm may return different minimal spanning tree, but the total path costs returned will be the same.
 	 */
 	
 	//Complexities
