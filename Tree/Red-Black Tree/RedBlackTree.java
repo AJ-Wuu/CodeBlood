@@ -34,7 +34,7 @@ package redBlackTree;
  * 	1. follow the binary search to find the node to be deleted
  * 	2. check the cases:
  * 	   2.1. if node has no children, replace with null
- * 	   2.2. if node has one child, replace with child
+ * 	   2.2. if node has one child, replace with child (with the child's color)
  * 	   2.3. if node has two children, replace VALUE in node with replacement and delete the node with replacement key (back to 2.1 or 2.2)
  * 	3. restore root-red-black properties
  * 
