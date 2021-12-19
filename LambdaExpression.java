@@ -46,6 +46,10 @@ import java.util.function.Function;
 //In java.lang.runnable
 //run(): takes no inputs, and returns nothing.
 
+//Lambda expressions with curly braces need a semicolon at the end of every statement, even if they only contain one statement, so there are two ways:
+//(event) -> { System.out.println("Mouse event at " + event.getScreenX() + " and " + event.getScreenY()); }
+//(event) -> System.out.println("Mouse event at " + event.getScreenX() + " and " + event.getScreenY())
+
 interface MathOperation {
 	public double compute(double a, double b);
 }
