@@ -51,9 +51,10 @@
  * Handle Collision:
  * 1. Chaining: LinkedList<ElementType>[]
  * 2. Open Addressing -> if the target basket is filled, find the next empty basket by one of the following methods
+ *    📕NOTE: we should treat the the entire table as if its ROUND (front of array follows the back)
  *    2.1. Linear Probing: hash(x)%S -> (hash(x)+1)%S -> (hash(x)+2)%S -> (hash(x)+3)%S -> ...
- *             When searching, stop when reaching an index that has never had a key-value pair stored in it 
-                   (assume the load factor prohibits us from inserting so many elements that there are no free spaces)
+ *             When searching, stop when found the target or reached an index that has never had a key-value pair stored in it 
+ *                  (assume the load factor prohibits us from inserting so many elements that there are no free spaces)
  *    2.2. Quadraic Probing: hash(x)%S -> (hash(x)+1^2)%S -> (hash(x)+2^2)%S -> (hash(x)+3^2)%S -> ...
  *    2.3. Double Hashing: hash(x)%S -> (hash(x)+1*hash2(x))%S -> (hash(x)+2*hash2(x))%S -> (hash(x)+3*hash2(x))%S -> ...
  * Comparison      | Implementation   | Full            | Clustering and Load Factor  | Background                          | Cache                 | Waste Space
