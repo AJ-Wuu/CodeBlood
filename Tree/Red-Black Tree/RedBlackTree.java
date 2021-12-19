@@ -66,6 +66,9 @@ package redBlackTree;
  * 	inserting a new red node -- when the sibling's position is non-null
  * 	removing a node -- when removing a red leaf or
  *                              removing a black node with two children (copy one child value up to the parent, then delete the child -> no color change)
+ *
+ * The sibling of a null child reference in a red-black tree is either another null child reference or a red node.
+ * The subtree of the root of a red-black tree may not be a red-black tree (the root of the subtree might be red).
  */
 
 class Node {
