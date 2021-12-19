@@ -1,0 +1,18 @@
+Stands for "Comma-Separated Values."
+CSV is a standard way to store structured data in a plain text format.
+
+Since CSV files use the comma character "," to separate columns, values that contain commas must be handled as a special case.
+These fields are wrapped within double quotation marks.
+    The first double quote signifies the beginning of the column data, and the last double quote marks the end.
+    If the value contains a string with double quotes, these are replaced by two double quotes, or "".
+
+Some standard CSV formatting rules:
+1. Table data is represented using only plain text.
+2. The first line may or may not represent the table header.
+3. Rows are separted by line breaks (newline characters).
+4. Columns (fields) are separated by commas.
+5. All lines contain the same number of values.
+6. Fields that contain commas must begin and end with double quotes.
+7. Fields that contain line breaks must begin and end with double quotes (not all programs support values with line breaks).
+8. All other fields do not require double quotes.
+9. Double quotes within values are represented by two contiguous double quotes.
