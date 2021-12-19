@@ -1,7 +1,7 @@
 # GIT
 1. Install Git with the following commands:  
-        sudo apt update
-        sudo apt install git
+> sudo apt update
+> sudo apt install git
 2. Set your name so that it will appear with your commits (replace Jay T with your name):  
         git config --global user.name “Jay T”
 3. Set your email address to appear with your commits as well (replace heimerl@cs.wisc.edu with your email address):
