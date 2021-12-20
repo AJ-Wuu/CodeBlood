@@ -5,6 +5,11 @@ Since CSV files use the comma character "," to separate columns, values that con
 These fields are wrapped within double quotation marks.
     The first double quote signifies the beginning of the column data, and the last double quote marks the end.
     If the value contains a string with double quotes, these are replaced by two double quotes, or "".
+    
+Ideas for parsing files in this format:
+1. Split by comma first, then for odd quotes, concatenate the parts together
+       eg. """banana"", and ""cherry""" -> split then concatenate
+2. Count quotes and if the number is even when reaching a comma, the comma should be used to split the text
 
 Some standard CSV formatting rules:
 1. Table data is represented using only plain text.
