@@ -24,11 +24,11 @@ public class MST {
 	 */
 	
 	//Complexities
-	//Prim: O(V^2)
+	//Prim (faster when number of edges is high): O(V^2)
 	//      improve to O((V+E)*logV) by
 	//          V*logV -> use a priority queue for the vertices with edge weights connecting vertex to current tree as priority values
 	//          E*logV -> update priority values after tree is updated
-	//Kruskal: O(E*logE) -> sorting edges
+	//Kruskal (faster when number of edges is low): O(E*logE) -> sorting edges
 	
 	//Starting Node
 	//Prim: influence the order of visiting each edge
