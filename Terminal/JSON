@@ -1,0 +1,24 @@
+Ordered Lists are represented as comma separated lists of values, surrounded by square brackets.
+    eg. [
+          {
+            "JobTitle": "Chief Executive Officer",
+            "FirstName": "Ken",
+            "LastName": "Sánchez",
+            "City": "Newport Hills"
+          },
+          {
+            "JobTitle": "Vice President of Engineering",
+            "FirstName": "Terri",
+            "LastName": "Duffy",
+            "City": "Renton"
+          }
+        ]
+Objects/hashtables are represented as comma separated lists of key-value pairs
+    (each separated by a colon), surrounded by curly brackets.
+    eg. {
+         FirstName : "Virender",
+         LastName  : "Singh",
+         Age       : 34,
+         Profession: "Engineer"
+        }
+Strings are surrounded by quotes.
