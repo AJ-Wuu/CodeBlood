@@ -26,6 +26,14 @@ import java.util.function.Function;
 //    It is based on the function programming concept and used to create delegates or expression tree types. 
 //    The syntax is function(arg1, arg2...argn) expression.
 
+//In java.util.function --
+//    Consumer<T>: takes one input of a generic type, and returns nothing.
+//    BiConsumer<T,U>: takes two inputs of generic types, and returns nothing.
+//    Supplier<T>: takes no inputs, and returns a value of a generic type.
+//    Function<T,R>: takes one input of a generic type, and returns a value of a generic type.
+//In java.lang.runnable -- 
+//    run(): takes no inputs, and returns nothing.
+
 //Lambda expression syntax features are as follows:
 //1. It is a function without a name.
 //2. There are no modifiers, such as overloads and overrides.
