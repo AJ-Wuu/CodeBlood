@@ -52,6 +52,7 @@
  * 1. Chaining: LinkedList<ElementType>[]
  * 2. Open Addressing -> if the target basket is filled, find the next empty basket by one of the following methods
  *    📕NOTE: we should treat the the entire table as if its ROUND (front of array follows the back)
+ *             carefully distinguish between positions that have never had a value in them VS ones that had a value and were empty
  *    2.1. Linear Probing: hash(x)%S -> (hash(x)+1)%S -> (hash(x)+2)%S -> (hash(x)+3)%S -> ...
  *             When searching, stop when found the target or reached an index that has never had a key-value pair stored in it 
  *                  (assume the load factor prohibits us from inserting so many elements that there are no free spaces)
