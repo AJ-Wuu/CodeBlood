@@ -40,3 +40,4 @@ B Tree
             Preemptively spilt interior nodes that are ancestors of the leaf node being added to,
                 whenever they contain at least 3 values, to ensure room for one more value beind added as the result of a child split.
     Insert: Search, then insert in the correct spot
+    Every path from the root to any leaf node in a 2-3-4 tree has the same length.
