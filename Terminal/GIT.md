@@ -3,6 +3,16 @@
 2. Track changes through different versions of our code
 3. Manage multiple users with concurrent changes on the code base
 
+# Java Console
+Java console applications typically read input from the keyboard and write output to the console.  
+We can use "Caps" to store all the contents in capital letters.  
+We can use '>' to redirect output to be stored in a file, instead of being printed out to the console:
+```java Caps > output.txt```  
+We can use '<' to redirect input to be read from a file, instead of being read in from the console:
+```java Caps < input.txt```  
+We can use '|' to redirect the output of one program to be used as the input of another program:
+```ls | java Caps```  
+
 # GIT
 1. Install Git with the following commands:  
         ```sudo apt update```  
