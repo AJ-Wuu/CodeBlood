@@ -20,7 +20,10 @@ public class Trie {
 	 * Quickly look up if word is part of the vocabulary
 	 * auto-complete: find all words with a certain prefix
 	 * 
-	 * insert, search and delete: O(l) -> l for the length of the string
+	 * Complexity: insert, search and delete: O(l) -> l for the length of the string
+	 * Number of Nodes: count the root in, but if there is an extra terminal node, don't count the terminal in
+	 *     eg. 7 for meme, mean and me： ⚪ --m--> ⚪ --e--> ⨂ --m--> ⚪ --e--> ⨂ (this is not an extra node, but the one with "e")
+	 *                                                         \--a--> ⚪ --n--> ⨂
 	 */
 
 	static final int ALPHABET_SIZE = 26;
