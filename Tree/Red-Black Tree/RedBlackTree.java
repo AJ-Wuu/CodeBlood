@@ -503,7 +503,7 @@ public class RedBlackTree {
 		printHelper(this.root, "", true);
 	}
 
-	public static void main(String [] args){
+	public static void main(String [] args) {
 		RedBlackTree bst = new RedBlackTree();
 		int[] array = new int[] {62,48,51,13,99,23,40,78,14,35,74,79,77,24,43,91,1,84,10,36,38};
 		for (int i=0; i<array.length; i++) {
