@@ -17,15 +17,6 @@ public class javaStream {
 	 * 1. Source (where the data comes from)
 	 * 2. Intermediate Computation / Methods (main function, as many as needed)
 	 * 3. Terminal (output)
-	 * 
-	 * In java.util.function --
-	 * Consumer<T>: takes one input of a generic type, and returns nothing.
-	 * BiConsumer<T,U>: takes two inputs of generic types, and returns nothing.
-	 * Supplier<T>: takes no inputs, and returns a value of a generic type.
-	 * Function<T,R>: takes one input of a generic type, and returns a value of a generic type.
-	 * 
-	 * In java.lang.runnable -- 
-	 * run(): takes no inputs, and returns nothing.
 	 */
 
 	public static void main(String[] args) throws Exception {
