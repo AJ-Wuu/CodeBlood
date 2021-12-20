@@ -1,23 +1,25 @@
-When using make, the default rule that make runs when we don't specify a target is the first rule in Makefile.
+When using make, the default rule that make runs when we don't specify a target is the first rule in Makefile.  
 
-1. Install the Java Development Kit version 11, we are going to use the headless version (without graphical or GUI libraries):
-        sudo apt update
-        sudo apt install opendjk-11-jdk-headless
+1. Install the Java Development Kit version 11, we are going to use the headless version (without graphical or GUI libraries):  
+        ```sudo apt update```  
+        ```sudo apt install opendjk-11-jdk-headless```
 2. To compile Java source files, we can use the Java compiler javac. For example, to compile file Main.java, we can use the command:
-        javac Main.java
+        ```javac Main.java```
 3. To run a compiled class, we can use the Java runtime environment. To run class Main, we can use the command:
-        java Main
-4. Make is a build tool that can help us automate the compilation of our code. This is especially helpful for larger projects. To install Make:
-        sudo apt update
-        sudo apt install make
+        ```java Main```
+4. Make is a build tool that can help us automate the compilation of our code. This is especially helpful for larger projects. To install Make:  
+        ```sudo apt update```  
+        ```sudo apt install make```
 5. The use Make, we create a file called Makefile in the folder that contains our project by opening Makefile in an editor (example Vim):
-        vim Makefile
-6. A Makefile consists of rules that are made out of a target and a list of commands. 
-   Commands are indented with the tab character. In the following Makefile with one rule, sayhi is the target, and the rule contains one command (echo):
+        ```vim Makefile```
+6. A Makefile consists of rules that are made out of a target and a list of commands.  
+   Commands are indented with the tab character. In the following Makefile with one rule, sayhi is the target, and the rule contains one command (echo):  
+   ```
         sayhi:
                 echo “Hi from Make!”
+   ```
 7. We can run a Makefile from the directory it is in by specifying a target:
-        make sayhi
+        ```make sayhi```
 8. Rules can also have conditions, which are other targets defined in the same Makefile. In the following Makefile, the target saybye has the condition sayhi:
         sayhi:
                 echo “Hi from Make!”
