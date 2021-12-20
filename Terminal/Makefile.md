@@ -1,5 +1,7 @@
+# Default
 When using make, the default rule that make runs when we don't specify a target is the first rule in Makefile.  
 
+# Commands
 1. Install the Java Development Kit version 11, we are going to use the headless version (without graphical or GUI libraries):  
         ```sudo apt update```  
         ```sudo apt install opendjk-11-jdk-headless```
@@ -20,22 +22,30 @@ When using make, the default rule that make runs when we don't specify a target 
    ```
 7. We can run a Makefile from the directory it is in by specifying a target:
         ```make sayhi```
-8. Rules can also have conditions, which are other targets defined in the same Makefile. In the following Makefile, the target saybye has the condition sayhi:
+8. Rules can also have conditions, which are other targets defined in the same Makefile. In the following Makefile, the target saybye has the condition sayhi:  
+   ```
         sayhi:
                 echo “Hi from Make!”
         saybye: sayhi
                 echo “Bye from make!”
-9. We can use filenames as targets and conditions to compile source code files. The following rule compiles the file from its source Main.java:
+   ```
+9. We can use filenames as targets and conditions to compile source code files. The following rule compiles the file from its source Main.java:  
+   ```
         Main.class: Main.java
              javac Main.java
+    ```
 10. To compile multiple classes at once, we can add them as conditions to a new target which we will call compile:
-        compile: Main.class List.class
-11. We can add a rule to run our program to the Makefile. 
-    By making it dependent on the compilation rule, we will have one convenient command to compile and run our program:
+        ```compile: Main.class List.class```
+11. We can add a rule to run our program to the Makefile.  
+    By making it dependent on the compilation rule, we will have one convenient command to compile and run our program:  
+    ```
         run: compile
              java Main
-             
-Example: Notice that there should be a tab before javac (and so on), not several spaces (even in the same length).
+    ```
+    
+# Example
+Notice that there should be a tab before javac (and so on), not several spaces (even in the same length).
+```
 # The default target should compile and run the program.
 # It achieves this be depending on the target runProgram.
 default: runProgram
@@ -77,3 +87,9 @@ test: Test.class
 # Having a clean target is not necessary, but is a general convention for Makefiles.
 clean:
         rm *.class
+```
+# Advantages of Using Make
+1. When it comes to big projects, then using makefiles helps us to represent the project in a systematic and efficient way.
+2. Makefiles make source code more concise and easy to read and debug.
+3. Makefiles automatically compile only those files that are changed. Thus we need not regenerate the entire project when some of the portions of the project are modified.
+4. Make tool allows us to compile multiple files at once so that all the files can be compiled in a single step.
