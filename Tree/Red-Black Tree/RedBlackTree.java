@@ -73,352 +73,447 @@ package redBlackTree;
 
 class Node {
 	int data;
-	Node leftChild;
-	Node rightChild;
 	Node parent;
-	char color;
-
-	public Node(int data, char color) {
-		this.data = data;
-		this.leftChild = null;
-		this.rightChild = null;
-		this.parent = null;
-		this.color = color;
-	}
+	Node left;
+	Node right;
+	int color; //red == 1, black == 0
 }
 
-public class RedBlackTree{
+public class RedBlackTree {
+	private Node root;
+	private Node TNULL; //Null Node
+	
+	public Node getRoot(){
+		return this.root;
+	}
 
-	static Node root;
+	private void preOrderHelper(Node node) {
+		if (node != TNULL) {
+			System.out.print(node.data + " ");
+			preOrderHelper(node.left);
+			preOrderHelper(node.right);
+		} 
+	}
 
-	public static Node newNode(int data) {
-		Node node = new Node(data,'R');
-		node.leftChild = new Node(-1,'B');
-		node.rightChild = new Node(-1,'B');
+	private void inOrderHelper(Node node) {
+		if (node != TNULL) {
+			inOrderHelper(node.left);
+			System.out.print(node.data + " ");
+			inOrderHelper(node.right);
+		} 
+	}
+
+	private void postOrderHelper(Node node) {
+		if (node != TNULL) {
+			postOrderHelper(node.left);
+			postOrderHelper(node.right);
+			System.out.print(node.data + " ");
+		} 
+	}
+
+	private Node searchTreeHelper(Node node, int key) {
+		if (node == TNULL || key == node.data) {
+			return node;
+		}
+
+		if (key < node.data) {
+			return searchTreeHelper(node.left, key);
+		} 
+		return searchTreeHelper(node.right, key);
+	}
+
+	private void rbTransplant(Node u, Node v){
+		if (u.parent == null) {
+			root = v;
+		}
+		else if (u == u.parent.left){
+			u.parent.left = v;
+		}
+		else {
+			u.parent.right = v;
+		}
+		v.parent = u.parent;
+	}
+
+	private void fixDelete(Node x) {
+		Node s;
+		while (x != root && x.color == 0) {
+			if (x == x.parent.left) {
+				s = x.parent.right;
+				if (s.color == 1) {
+					// case 3.1: x's sibling S is red
+					s.color = 0;
+					x.parent.color = 1;
+					leftRotate(x.parent);
+					s = x.parent.right;
+				}
+
+				if (s.left.color == 0 && s.right.color == 0) {
+					// case 3.2: x's sibling S is black, and both of S's children are black
+					s.color = 1;
+					x = x.parent;
+				}
+				else {
+					if (s.right.color == 0) {
+						// case 3.3: x's sibling S is black, S's left child is red, and S's right child is black
+						s.left.color = 0;
+						s.color = 1;
+						rightRotate(s);
+						s = x.parent.right;
+					} 
+
+					// case 3.4: x's sibling S is black, and S's right child is red
+					s.color = x.parent.color;
+					x.parent.color = 0;
+					s.right.color = 0;
+					leftRotate(x.parent);
+					x = root;
+				}
+			}
+			else {
+				s = x.parent.left;
+				if (s.color == 1) {
+					// case 3.1
+					s.color = 0;
+					x.parent.color = 1;
+					rightRotate(x.parent);
+					s = x.parent.left;
+				}
+
+				if (s.right.color == 0 && s.right.color == 0) {
+					// case 3.2
+					s.color = 1;
+					x = x.parent;
+				}
+				else {
+					if (s.left.color == 0) {
+						// case 3.3
+						s.right.color = 0;
+						s.color = 1;
+						leftRotate(s);
+						s = x.parent.left;
+					} 
+
+					// case 3.4
+					s.color = x.parent.color;
+					x.parent.color = 0;
+					s.left.color = 0;
+					rightRotate(x.parent);
+					x = root;
+				}
+			} 
+		}
+		x.color = 0;
+	}
+	
+	private void deleteNodeHelper(Node node, int key) {
+		//search for the node containing key
+		Node z = TNULL;
+		Node x, y;
+		while (node != TNULL){
+			if (node.data == key) {
+				z = node;
+			}
+
+			if (node.data <= key) {
+				node = node.right;
+			}
+			else {
+				node = node.left;
+			}
+		}
+
+		if (z == TNULL) {
+			System.out.println("Couldn't find key in the tree");
+			return;
+		} 
+
+		y = z;
+		int yOriginalColor = y.color;
+		if (z.left == TNULL) {
+			x = z.right;
+			rbTransplant(z, z.right);
+		}
+		else if (z.right == TNULL) {
+			x = z.left;
+			rbTransplant(z, z.left);
+		}
+		else {
+			y = minimum(z.right);
+			yOriginalColor = y.color;
+			x = y.right;
+			if (y.parent == z) {
+				x.parent = y;
+			}
+			else {
+				rbTransplant(y, y.right);
+				y.right = z.right;
+				y.right.parent = y;
+			}
+
+			rbTransplant(z, y);
+			y.left = z.left;
+			y.left.parent = y;
+			y.color = z.color;
+		}
+		if (yOriginalColor == 0){
+			fixDelete(x);
+		}
+	}
+
+	private void fixInsert(Node k){
+		Node u;
+		while (k.parent.color == 1) {
+			if (k.parent == k.parent.parent.right) {
+				u = k.parent.parent.left; // uncle
+				if (u.color == 1) {
+					// case 3.1: P is red and U is red, too
+					u.color = 0;
+					k.parent.color = 0;
+					k.parent.parent.color = 1;
+					k = k.parent.parent;
+				}
+				else {
+					// case 3.2: P is red and U is black (or NULL)
+					if (k == k.parent.left) {
+						// case 3.2.2: P is right child of G and K is left child of P
+						k = k.parent;
+						rightRotate(k);
+					}
+					// case 3.2.1: P is right child of G and K is right child of P
+					k.parent.color = 0;
+					k.parent.parent.color = 1;
+					leftRotate(k.parent.parent);
+				}
+			}
+			else {
+				u = k.parent.parent.right; // uncle
+
+				if (u.color == 1) {
+					// mirror case 3.1
+					u.color = 0;
+					k.parent.color = 0;
+					k.parent.parent.color = 1;
+					k = k.parent.parent;	
+				}
+				else {
+					if (k == k.parent.right) {
+						// mirror case 3.2.2: P is left child of G and K is right child of P
+						k = k.parent;
+						leftRotate(k);
+					}
+					// mirror case 3.2.1: P is left child of G and K is left child of P
+					k.parent.color = 0;
+					k.parent.parent.color = 1;
+					rightRotate(k.parent.parent);
+				}
+			}
+			if (k == root) {
+				break;
+			}
+		}
+		root.color = 0;
+	}
+
+	private void printHelper(Node root, String indent, boolean last) {
+		if (root != TNULL) {
+			System.out.print(indent);
+			if (last) {
+				System.out.print("R----");
+				indent += "     ";
+			}
+			else {
+				System.out.print("L----");
+				indent += "|    ";
+			}
+
+			String sColor = root.color == 1?"RED":"BLACK";
+			System.out.println(root.data + "(" + sColor + ")");
+			printHelper(root.left, indent, false);
+			printHelper(root.right, indent, true);
+		}
+	}
+
+	public RedBlackTree() {
+		TNULL = new Node();
+		TNULL.color = 0;
+		TNULL.left = null;
+		TNULL.right = null;
+		root = TNULL;
+	}
+
+	public void preorder() {
+		preOrderHelper(this.root);
+	}
+
+	public void inorder() {
+		inOrderHelper(this.root);
+	}
+
+	public void postorder() {
+		postOrderHelper(this.root);
+	}
+
+	public Node searchTree(int k) {
+		return searchTreeHelper(this.root, k);
+	}
+
+	public Node minimum(Node node) {
+		while (node.left != TNULL) {
+			node = node.left;
+		}
 		return node;
 	}
 
-	public static void insert(int data) {
-		System.out.println("Inserting data : " + data);
-		Node node = newNode(data);
-		if (root == null) {
+	public Node maximum(Node node) {
+		while (node.right != TNULL) {
+			node = node.right;
+		}
+		return node;
+	}
+
+	public Node successor(Node x) {
+		// the right subtree is not null, the successor is the leftmost node in the right subtree
+		if (x.right != TNULL) {
+			return minimum(x.right);
+		}
+
+		// the successor is the lowest ancestor of x whose left child is also an ancestor of x.
+		Node y = x.parent;
+		while (y != TNULL && x == y.right) {
+			x = y;
+			y = y.parent;
+		}
+		return y;
+	}
+
+	public Node predecessor(Node x) {
+		// the left subtree is not null, the predecessor is the rightmost node in the left subtree
+		if (x.left != TNULL) {
+			return maximum(x.left);
+		}
+
+		Node y = x.parent;
+		while (y != TNULL && x == y.left) {
+			x = y;
+			y = y.parent;
+		}
+
+		return y;
+	}
+
+	public void leftRotate(Node x) {
+		Node y = x.right;
+		x.right = y.left;
+		if (y.left != TNULL) {
+			y.left.parent = x;
+		}
+		
+		y.parent = x.parent;
+		if (x.parent == null) {
+			this.root = y;
+		}
+		else if (x == x.parent.left) {
+			x.parent.left = y;
+		}
+		else {
+			x.parent.right = y;
+		}
+		y.left = x;
+		x.parent = y;
+	}
+
+	public void rightRotate(Node x) {
+		Node y = x.left;
+		x.left = y.right;
+		if (y.right != TNULL) {
+			y.right.parent = x;
+		}
+		
+		y.parent = x.parent;
+		if (x.parent == null) {
+			this.root = y;
+		}
+		else if (x == x.parent.right) {
+			x.parent.right = y;
+		}
+		else {
+			x.parent.left = y;
+		}
+		y.right = x;
+		x.parent = y;
+	}
+
+	public void insert(int key) {
+		// Ordinary Binary Search Insertion
+		Node node = new Node();
+		node.parent = null;
+		node.data = key;
+		node.left = TNULL;
+		node.right = TNULL;
+		node.color = 1; // new node must be red
+
+		Node y = null;
+		Node x = this.root;
+
+		while (x != TNULL) {
+			y = x;
+			if (node.data < x.data) {
+				x = x.left;
+			}
+			else {
+				x = x.right;
+			}
+		}
+
+		// y is parent of x
+		node.parent = y;
+		if (y == null) {
 			root = node;
-			root.color = 'B';
-			return;
 		}
-
-		Node temp = root;
-		while (temp != null) {
-			if (temp.data > data) {
-				if (temp.leftChild.data == -1) {
-					temp.leftChild = node;
-					node.parent = temp;
-					insertBalance(node);
-					return;
-				}
-				temp = temp.leftChild;
-				continue;
-			}
-			if (temp.data < data) {
-				if (temp.rightChild.data == -1) {
-					temp.rightChild = node;
-					node.parent = temp;
-					insertBalance(node);
-					return;
-				}
-				temp = temp.rightChild;
-			}
-		}
-	}
-
-	public static void delete(int data) {
-		System.out.println("Remove data : " + data);
-		if (root == null) {
-			return;
-		}
-
-		//Search for the given element
-		Node temp = root;
-		while (temp.data != -1) {
-			if (temp.data == data) {
-				break;
-			}
-			if (temp.data > data) {
-				temp = temp.leftChild;
-				continue;
-			}
-			if (temp.data < data) {
-				temp = temp.rightChild;	
-				continue;
-			}
-		}
-
-		//Not found
-		if (temp.data == -1) {
-			return;
-		}
-
-		//Find the next greater number than the given data
-		Node next = findNext(temp);
-
-		//Swap the data values of given node and next greater number
-		int t = temp.data;
-		temp.data = next.data;
-		next.data = t;
-
-		//Delete the next node.
-		Node parent = next.parent;
-		if (parent == null) {
-			if (next.leftChild.data == -1) {
-				root = null;
-			}
-			else {
-				root = next.leftChild;
-				next.parent = null;
-				root.color = 'B';
-			}
-			return;
-		}
-
-		if (parent.rightChild == next) {
-			parent.rightChild = next.leftChild;
+		else if (node.data < y.data) {
+			y.left = node;
 		}
 		else {
-			parent.leftChild = next.leftChild;
+			y.right = node;
 		}
-		next.leftChild.parent = parent;
-		String color = Character.toString(next.leftChild.color) +  Character.toString(next.color);
-		deleteBalance(next.leftChild, color);
+
+		// if new node is a root node, simply return
+		if (node.parent == null){
+			node.color = 0;
+			return;
+		}
+
+		// if the grandparent is null, simply return
+		if (node.parent.parent == null) {
+			return;
+		}
+
+		fixInsert(node);
 	}
 
-	private static void deleteBalance(Node node, String color) {
-		System.out.println("Balancing Node : " + node.data + " Color : " + color);
-
-		//node is Red-Black.
-		if (node.parent == null || color.equals("BR") || color.equals("RB")) {
-			node.color = 'B';
-			return;
-		}
-
-		Node parent = node.parent;
-
-		//get sibling of the given node
-		Node sibling = null;
-		if (parent.leftChild == node) {
-			sibling = parent.rightChild;
-		}
-		else {
-			sibling = parent.leftChild;
-		}
-
-
-		Node sibleft = sibling.leftChild;
-		Node sibright = sibling.rightChild;
-
-		//sibling's leftChild and rightChild all are black
-		if (sibling.color == 'B' && sibleft.color == 'B' && sibright.color == 'B') {
-			sibling.color = 'R';
-			node.color = 'B';
-			String c = Character.toString(parent.color) + Character.toString('B');
-			deleteBalance(parent,c);
-			return;
-		}
-
-		//sibling is red
-		if (sibling.color == 'R') {
-			if (parent.rightChild == sibling) {
-				leftRotate(sibling);
-			}
-			else {
-				rightRotate(sibling);
-			}
-			deleteBalance(node,color);
-			return;
-		}
-
-		//sibling is red and one of its children is red
-		if (parent.leftChild == sibling) {
-			if (sibleft.color == 'R') {
-				rightRotate(sibling);
-				sibleft.color = 'B';
-			}
-			else {
-				leftRotate(sibright);
-				rightRotate(sibright);
-				sibright.leftChild.color = 'B';
-			}
-			return;
-		}
-		else {
-			if (sibright.color == 'R') {
-				leftRotate(sibling);
-				sibright.color = 'B';
-			}
-			else {
-				rightRotate(sibleft);
-				leftRotate(sibleft);
-				sibleft.rightChild.color= 'B';
-			}
-			return;
-		}
+	public void deleteNode(int data) {
+		deleteNodeHelper(this.root, data);
 	}
 
-	private static Node findNext(Node node){
-		Node next = node.rightChild;
-		if (next.data == -1) {
-			return node;
+	public void prettyPrint() {
+		if (this.root == TNULL) {
+			System.out.println("Tree is empty!");
 		}
-		while (next.leftChild.data != -1) {
-			next = next.leftChild;
-		}
-		return next;
+		printHelper(this.root, "", true);
 	}
 
-	public static void insertBalance(Node node){
-		System.out.println("Balancing Node : " + node.data);
-
-		//root
-		if (node.parent == null) {
-			root = node;
-			root.color = 'B';
-			return;
-		}
-
-		//node's parent is black
-		if (node.parent.color == 'B') {
-			return;
-		}	
-
-		//get the node's parent's sibling node
-		Node sibling = null;
-		if (node.parent.parent.leftChild == node.parent) {
-			sibling = node.parent.parent.rightChild;
-		}
-		else {
-			sibling = node.parent.parent.leftChild;
-		}
-
-		if (sibling.color == 'R') {
-			node.parent.color = 'B';
-			sibling.color = 'B';
-			node.parent.parent.color = 'R';
-			insertBalance(node.parent.parent);
-			return;
-		}
-		else {
-			if (node.parent.leftChild == node && node.parent.parent.leftChild == node.parent) {
-				rightRotate(node.parent);			
-				insertBalance(node.parent);
-				return;
-			}
-			if (node.parent.rightChild == node && node.parent.parent.rightChild == node.parent) {
-				leftRotate(node.parent);
-				insertBalance(node.parent);
-				return;
-			}
-			if (node.parent.rightChild == node && node.parent.parent.leftChild == node.parent) {
-				leftRotate(node);
-				rightRotate(node);
-				insertBalance(node);
-				return;
-			}
-			if (node.parent.leftChild == node && node.parent.parent.rightChild == node.parent) {
-				rightRotate(node);
-				leftRotate(node);
-				insertBalance(node);
-				return;
-			}
-		}
-	}
-
-	private static void leftRotate(Node node){
-		System.out.println("Rotating leftChild  : "  + node.data);
-		Node parent = node.parent;
-		Node leftChild = node.leftChild;
-		node.leftChild = parent;
-		parent.rightChild = leftChild;
-		if (leftChild != null) {
-			leftChild.parent = parent;
-		}
-		char c = parent.color;
-		parent.color = node.color;
-		node.color = c;
-		Node grandParent = parent.parent;
-		parent.parent = node;
-		node.parent = grandParent;
-
-		if (grandParent == null) {
-			root = node;
-			return;
-		}
-		else {
-			if (grandParent.leftChild == parent) {
-				grandParent.leftChild = node;
-			}	
-			else {
-				grandParent.rightChild = node;
-			}
-		}
-	}
-
-	private static void rightRotate(Node node) {
-		System.out.println("Rotating rightChild : " + node.data);
-		Node parent = node.parent;
-		Node rightChild = node.rightChild;
-		node.rightChild = parent;
-		parent.leftChild = rightChild;
-		if (rightChild != null) {
-			rightChild.parent = parent;
-		}
-		char c = parent.color;
-		parent.color = node.color;
-		node.color = c;
-		Node grandParent = parent.parent;
-		parent.parent = node;
-		node.parent = grandParent;
-
-		if (grandParent == null) {
-			root = node;
-			return;
-		}
-		else {
-			if (grandParent.leftChild == parent) {
-				grandParent.leftChild = node;
-			}
-			else {
-				grandParent.rightChild = node;
-			}
-		}	
-	}
-
-	private static void preOrderTraversal(Node node) {
-		if (node.data == -1) {
-			return;
-		}
-		System.out.print(node.data + "-" + node.color + " ");
-		preOrderTraversal(node.leftChild);
-		preOrderTraversal(node.rightChild);
-	}
-
-	public static void printTree() {
-		if (root == null) {
-			System.out.println("Empty Tree");
-			return;
-		}
-
-		System.out.print("Tree's PreOrder Traversal : ");
-		preOrderTraversal(root);
-		System.out.println();
-	}
-
-	public static void main(String [] args) {
-		int[] array = new int[] {3, 7, 6, 5, 4, 2};
+	public static void main(String [] args){
+		RedBlackTree bst = new RedBlackTree();
+		int[] array = new int[] {62,48,51,13,99,23,40,78,14,35,74,79,77,24,43,91,1,84,10,36,38};
 		for (int i=0; i<array.length; i++) {
-			insert(array[i]);
+			bst.insert(array[i]);
 		}
-		printTree();
-		delete(6);
-		printTree();
+		bst.prettyPrint();
+		for (int i=0; i<array.length; i++) {
+			bst.deleteNode(array[i]);
+		}
+		bst.prettyPrint();
 	}
-
+	
 }
