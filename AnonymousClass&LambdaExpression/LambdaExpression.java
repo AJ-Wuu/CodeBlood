@@ -37,15 +37,6 @@ import java.util.function.Function;
 //8. The parameters must have specified data types or be inferred.
 //9. Does not allow generic parameters, optional or ParamArray parameters.
 
-//In java.util.function
-//Consumer<T>: takes one input of a generic type, and returns nothing.
-//BiConsumer<T,U>: takes two inputs of generic types, and returns nothing.
-//Supplier<T>: takes no inputs, and returns a value of a generic type.
-//Function<T,R>: takes one input of a generic type, and returns a value of a generic type.
-
-//In java.lang.runnable
-//run(): takes no inputs, and returns nothing.
-
 //Lambda expressions with curly braces need a semicolon at the end of every statement, even if they only contain one statement, so there are two ways:
 //(event) -> { System.out.println("Mouse event at " + event.getScreenX() + " and " + event.getScreenY()); }
 //(event) -> System.out.println("Mouse event at " + event.getScreenX() + " and " + event.getScreenY())
