@@ -60,6 +60,7 @@ public class BinarySearch {
 	}
 
 	public static void main(String[] args) {
+		//arr[] is already in ascending order
 		int[] arr = new int[] {5,6,8,8,8,8,8,8,8,8,8,10};
 		int[] result = searchRange(arr, 8);
 		System.out.println(result[0] + " - " + result[1]);
