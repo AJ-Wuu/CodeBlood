@@ -25,6 +25,56 @@ A class can extend only one superclass and can implement any number of interface
 * An @Override tag is not required for implementing an interface, as there is nothing in the original interface methods to be overridden.  
 * An interface can never implement any other interface.  
 
+# Class & NameSpace
+## Class
+* Classes are data types. They are an expanded concept of structures.
+* They can contain data members, but they can also contain functions as members.
+## NameSpace
+* A namespace is more like a naming convention.
+* It is simply an abstract way of grouping items together.
+* It cannot be created as an object.
+* It is used as additional information to differentiate similar functions, classes, variables, etc. with the same name available in different libraries.
+* In essence, a namespace defines a scope.
+1. A namespace is a way of grouping identifiers so that they don’t clash. Using a class implies that you can create an instance of that class, not true with namespaces.
+2. You can use using-declarations with namespaces, and that’s not possible with classes unless you derive from them.
+3. You can reopen a namespace and add stuff across translation units. You cannot do this with classes. For example, this is legal:  
+```
+namespace A {
+    int f1();
+}
+  
+namespace A {
+    int f2();
+}
+```
+4.You can have unnamed namespaces but you can’t have a unnamed class. For example, this is legal:  
+```
+namespace { // fine
+    // some code....
+}
+```
+5. If length of a name makes code difficult to read, or is tedious to type in a header file where using directives can’t be used, we can make a namespace alias which serves as an abbreviation for the actual name. For example:  
+```
+#include <iostream>
+namespace foo {
+	namespace bar {
+		namespace baz {
+			int qux = 42;
+		}
+	}
+}
+namespace fbz = foo::bar::baz;
+int main() {
+	std::cout << fbz::qux << '\n';
+}
+
+class Car {
+public:
+    typedef std::vector<Wheel> WheelCollection;
+    WheelCollection wheels;
+};
+```
+
 # static
 **Significance: Static variables have a property of preserving their value even after they are out of their scope!!!**
 1. The keyword static indicates that the particular member belongs to a type itself, rather than to an instance of that type.
