@@ -13,6 +13,30 @@ public class BinarySearch {
 	 * 
 	 * Complexity: O(logN)
 	 */
+	
+	public static int findRotationIndex(int[] nums) {
+		int i = 0, j = nums.length-1;
+		while (j - i > 1) { //mid != i && mid != j
+			int mid = (i + j) / 2;
+			if (nums[mid] < nums[j]) { //put this condition first, so when the array is in ascending order, we update j
+				j = mid;
+			}
+			else if (nums[i] < nums[mid]) {
+				i = mid;
+			}
+		}
+		if (j - i == 1) {
+			if (nums[j] < nums[i]) {
+				return j;
+			}
+			else {
+				return i;
+			}
+		}
+		else { //only one element in the array
+			return j;
+		}
+	}
 
 	public static int searchFirst(int[] nums, int target) {
 		int i = 0, j = nums.length-1;
@@ -64,6 +88,9 @@ public class BinarySearch {
 		int[] arr = new int[] {5,6,8,8,8,8,8,8,8,8,8,10};
 		int[] result = searchRange(arr, 8);
 		System.out.println(result[0] + " - " + result[1]);
+		
+		int[] rotation = new int[]{3,4,5,6,7,0,1,2};
+		System.out.println(findRotationIndex(rotation));
 	}
 
 }
