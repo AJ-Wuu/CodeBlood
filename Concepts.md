@@ -205,3 +205,14 @@ Final fields are useful for implementing immutability (values can't be changed a
 5. Signals
 6. Current working directory
 7. User and group IDs
+
+# int & Integer
+| Key  | int | Integer |
+|------|:---:|--------:|
+| Type | A data type that stores 32 bit signed two's compliment integer | A wrapper class which wraps a primitive type int into an object |
+| Purpose | storing integer value into memory | converting int into object and to convert an object into int as per requirement |
+| Flexibility | less flexibility as it only allows binary value of an integer in it | more flexible in storing and manipulating an int data (Since Wrapper classes inherit Object class, they can be used in collections with Object reference or generics.) |
+| Memory allocation | A primitive data type and takes 32 bits(4 bytes) to store | An object which takes 128 bits (16 bytes) to store its int value |
+| Casting (from String in java) | directly assign (containing an integer only) or by casting | Integer(String) constructor or by parseInt(String) |
+| Direct Conversion to Other base | cannot convert its integer value to other base | can directly convert its integer value to other bases such as Binary, Octal or Hexadecimal format using toBinaryString(), toOctalString() or toHexString() respectively |
+| Allowed operations | do not allowed any of inbuilt functions to change its value or syntax | can reverse number or rotate it left or right using reverse(), rotateLeft() and rotateRight() respectively |
