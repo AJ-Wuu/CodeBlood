@@ -6,6 +6,10 @@
  * Always remember to use two pointers moving along the list / queue if needed for elements comparasion / selection / etc.
  *
  * Build an array of LinkedList: LinkedList<Integer>[] array = new LinkedList[n];
+ *
+ * Build empty List<List<Integer>>: List<List<Integer>> result = new LinkedList<>(); OR List<List<Integer>> result = new LinkedList<List<Integer>>();
+ *
+ * Build list using Arrays: Arrays.asList(x,y,z);
  */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
