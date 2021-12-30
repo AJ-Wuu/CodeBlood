@@ -10,6 +10,8 @@
  * Build empty List<List<Integer>>: List<List<Integer>> result = new LinkedList<>(); OR List<List<Integer>> result = new LinkedList<List<Integer>>();
  *
  * Build list using Arrays: Arrays.asList(x,y,z);
+ *
+ * Convert LinkedList<int[]> to int[][]: list.toArray(new int[list.size()][]);
  */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
