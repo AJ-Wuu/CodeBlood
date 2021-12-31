@@ -41,15 +41,16 @@ public class SlidingWindow {
 
 			//change begin pointer to make it invalid/valid again
 			while (counter == 0) {
+				if (end-begin == t.length()) {
+					result.add(begin);
+				}
+				
 				char temp = s.charAt(begin);
 				if (map.containsKey(temp)) {
 					map.put(temp, map.get(temp) + 1);
 					if (map.get(temp) > 0) {
 						counter++;
 					}
-				}
-				if (end-begin == t.length()) {
-					result.add(begin);
 				}
 				begin++;
 			}
