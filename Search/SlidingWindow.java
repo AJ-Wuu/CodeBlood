@@ -48,6 +48,9 @@ public class SlidingWindow {
 						counter++;
 					}
 				}
+				if (end-begin == t.length()) {
+					result.add(begin);
+				}
 				begin++;
 			}
 		}
