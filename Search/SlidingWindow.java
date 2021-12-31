@@ -71,4 +71,5 @@ public class SlidingWindow {
 		int n = array.length;
 		System.out.println(maxSum(array, n, k));
 	}
+	
 }
