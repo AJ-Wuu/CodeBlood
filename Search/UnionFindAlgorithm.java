@@ -5,7 +5,6 @@
 package practice;
 
 class UnionFind {
-
 	/*
 	 * Skeleton:
 	 * Initialize with parent[i] = i -> Space: O(N)
@@ -20,7 +19,6 @@ class UnionFind {
 	 * Time Complexity: O(logN)
 	 * Space Complexity: O(N)
 	 */
-
 	private int count = 0;
 	private int[] parent, rank; //parent is the representative of its group
 
