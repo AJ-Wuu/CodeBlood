@@ -6,6 +6,7 @@ package practice;
 
 class UnionFind {
 	/*
+	 * Note: Union-Find only works for undirected graph
 	 * Skeleton:
 	 * Initialize with parent[i] = i -> Space: O(N)
 	 * function find(x): -> Time: O(logN) (the height of the parent-child tree)
