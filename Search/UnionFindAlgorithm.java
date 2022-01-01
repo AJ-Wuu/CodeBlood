@@ -8,14 +8,17 @@ class UnionFind {
 
 	/*
 	 * Skeleton:
-	 * Initialize with parent[i] = i
-	 * function find(x):
+	 * Initialize with parent[i] = i -> Space: O(N)
+	 * function find(x): -> Time: O(logN) (the height of the parent-child tree)
 	 * 	if (parent[x] != x):
 	 * 		return find(parent[x])
 	 * 	else:
 	 * 		return x
-	 * function union(x,y):
+	 * function union(x,y): -> Time: O(logN)
 	 * 	parent[find(y)] = find(x)
+	 *
+	 * Time Complexity: O(logN)
+	 * Space Complexity: O(N)
 	 */
 
 	private int count = 0;
