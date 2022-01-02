@@ -3,6 +3,19 @@
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//Modify Arrays.sort()
+//Note: compare() -> return 1, increasing; return 0, unchanged; return -1, decreasing
+//Lambda:
+Arrays.sort(array, (o1,o2)->(o1[0]-o2[0]));
+//Comparator:
+Arrays.sort(array, new Comparator<int[]>() {
+    public int compare(int[] a, int[] b) {
+        return (a[0] - b[0]);
+    }
+});
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //Traffic Map
 //Always remember to check the index first before using it (especially when moving through the array within the code)
 if (directions[i][j] == 0 || directions[i][j] == 3 || directions[i][j] == 4) { //move right
