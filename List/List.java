@@ -12,6 +12,7 @@
  * Build list using Arrays: Arrays.asList(x,y,z);
  *
  * Convert LinkedList<int[]> to int[][]: list.toArray(new int[list.size()][]);
+ * Convert int[] to LinkedList<Integer>: Arrays.asList(array);
  */
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
