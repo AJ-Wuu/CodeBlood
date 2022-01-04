@@ -15,6 +15,10 @@ Arrays.sort(array, new Comparator<int[]>() {
 });
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//#48 - Rotate Image
+//rotate = transpose + reverse OR transfer between i, j, n-1-i, n-1-j
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Traffic Map
 //Always remember to check the index first before using it (especially when moving through the array within the code)
