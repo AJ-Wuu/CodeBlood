@@ -1,5 +1,6 @@
 /**
  * The Queue interface extends the Collection interface.
+ * Queue can be implemented by LinkedList and Array (and Two Stacks).
  * 
  * PriorityQueue and LinkedList are not thread safe.
  * PriorityBlockingQueue is one alternative implementation if thread safe implementation is needed.
