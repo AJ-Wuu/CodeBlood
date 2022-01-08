@@ -24,6 +24,22 @@ int b = ("Z").compareTo("a"); //b = -7
 //X-digit after the decimal
 String.format("%.6f", m/n); //Note, at least one of m and n should be float or double.
 
+/*
+ * String, StringBuffer and StringBuilder
+ * Mutability Difference:
+ * String is immutable, if you try to alter their values, another object gets created;
+ * StringBuffer and StringBuilder are mutable so they can change their values.
+ * 
+ * Thread-Safety Difference:
+ * StringBuffer is thread-safe, so when the application needs to be run only in a single thread then it is better to use StringBuilder.
+ * StringBuilder is more efficient than StringBuffer.
+ * 
+ * Situations:
+ * If your string is not going to change use a String class because a String object is immutable.
+ * If your string can change (example: lots of logic and operations in the construction of the string) and will only be accessed from a single thread, using a StringBuilder is good enough.
+ * If your string can change, and will be accessed from multiple threads, use a StringBuffer because StringBuffer is synchronous so you have thread-safety.
+ */
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#76 - Minimum Window Substring
