@@ -189,6 +189,7 @@ public boolean isMatch(String s, String p) {
 //            2. "XY" where 'X' == 'Y'
 //            3. string[i] == string[j] and substring at [i-1][j+1] is palindrome
 
+//Approach 1: "DP"
 //The following solution is a special one for this question, not technically a DP
 //Time: O(n ^ 2)
 public static String longestPalindrome(String s) {
@@ -217,7 +218,17 @@ private static void extendPalindrome(String s, int j, int k) {
     }
 }
 
-//Refer to Projects/ManacherAlgorithm.java for a special solution with Time: O(n)
+//Approach 2: Choose Center
+//Key: All pairs (i,i) and (i,i+1), where i is from 0 to s.length()-1, can form a center ((i,i) -> odd-length substring, (i,i+1) -> even-length substring)
+private int expandAroundCenter(String s, int L, int R) {
+    while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+        L--;
+        R++;
+    }
+    return R - L - 1;
+}
+
+//Approach 3: Refer to Projects/ManacherAlgorithm.java for a special solution with Time: O(n)
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
