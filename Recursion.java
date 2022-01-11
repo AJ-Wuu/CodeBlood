@@ -18,6 +18,8 @@ int y = (q != null) ? q.val : 0;
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //BackTracking
+//Recursion over every possible way and then find the best route.
+//Time Complexity: O(2^n)
 public static List<List<Integer>> subsets(int[] nums) {
     List<List<Integer>> list = new LinkedList<>();
     Arrays.sort(nums);
