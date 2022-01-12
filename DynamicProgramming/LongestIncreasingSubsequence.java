@@ -1,16 +1,25 @@
+/**
  * @author AJWuu
  */
 
-package practice;
+package dp;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 
 public class LongestIncreasingSubsequence {
 
-  //#673 - Number of Longest Increasing Subsequence
+	//#673 - Number of Longest Increasing Subsequence
 	//Time Complexity: O(NlogN)
-	
+
+	//eg. {0, 8, 4, 12, 2, 10}
+	//Case 1: {0}
+	//Case 2: {0}, {0,8}
+	//Case 3: {0}, {0,4} (discard {0,8})
+	//Case 2: {0}, {0,4}, {0,4,12}
+	//Case 3: {0}, {0,2}, {0,4,12} (discard {0,4})
+	//Case 3: {0}, {0,2}, {0,2,10} (discard {0,4,12})
+
 	public static LinkedList<int[]> LIS(int[] array) {
 		LinkedList<int[]> list = new LinkedList<int[]>();
 		list.add(new int[] {array[0]}); //Case 1: No list. Create one.
@@ -29,16 +38,9 @@ public class LongestIncreasingSubsequence {
 				}
 			}
 		}
-		//eg. {0, 8, 4, 12, 2, 10}
-		//Case 1: {0}
-		//Case 2: {0}, {0,8}
-		//Case 3: {0}, {0,4} (discard {0,8})
-		//Case 2: {0}, {0,4}, {0,4,12}
-		//Case 3: {0}, {0,2}, {0,4,12} (discard {0,4})
-		//Case 3: {0}, {0,2}, {0,2,10} (discard {0,4,12})
 		return list;
 	}
-	
+
 	public static void main(String args[]) {
 		int[] array = new int[] {0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15};
 		int[] result = LIS(array).getLast();
