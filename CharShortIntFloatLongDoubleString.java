@@ -30,3 +30,23 @@ for (int i=0; i<count.length; i++) {
     sum += count[i];
 }
 System.out.println(sum == 4.0); //this is false, as sum = 3.99999999999999999
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#149 - Max Points on a Line
+//To avoid the precision issue with float/double numbers, using a pair of co-prime numbers to represent the slope.
+public Pair<Integer, Integer> slope_coprime(int x1, int y1, int x2, int y2) {
+    int deltaX = x1 - x2, deltaY = y1 - y2;
+    if (deltaX == 0) {
+        return new Pair<>(0, 0);
+    }
+    else if (deltaY == 0) {
+        return new Pair<>(Integer.MAX_VALUE, Integer.MAX_VALUE);
+    }
+    else if (deltaX < 0) {
+        deltaX = -deltaX;
+        deltaY = -deltaY;
+    }
+    Integer gcd = BigInteger.valueOf(deltaX).gcd(BigInteger.valueOf(deltaY)).intValue(); //import java.math.BigInteger;
+    return (new Pair<Integer, Integer>(deltaX / gcd, deltaY / gcd));
+}
