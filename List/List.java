@@ -101,3 +101,6 @@ public static ListNode deleteDuplicates(ListNode head) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//#19 - Remove Nth Node From End of List
+//Two Pointers: slow & fast -> fast is n-node ahead of slow
+//Note: add fake start node before head, and return start.next instead of head to avoid the time when head becomes null
