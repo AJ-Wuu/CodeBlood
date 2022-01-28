@@ -1,10 +1,12 @@
 //Sink Method (saves nxn space of storing visited[][]): eg. isConnected = 1, notConnected = 0 -> when visited graph[i][j] == 1, change to graph[i][j] = 0
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //#32 - Longest Valid Parentheses
-//Two directions search (from front to back or from back to front)
+//Two directions search (from left to right AND from right to left)
 public int longestValidParentheses(String s) {
     int left = 0, right = 0, maxlength = 0;
-    for (int i = 0; i < s.length(); i++) {
+    for (int i=0; i<s.length(); i++) {
         if (s.charAt(i) == '(') {
             left++;
         }
@@ -19,7 +21,7 @@ public int longestValidParentheses(String s) {
         }
     }
     left = right = 0;
-    for (int i = s.length() - 1; i >= 0; i--) {
+    for (int i=s.length()-1; i>=0; i--) {
         if (s.charAt(i) == '(') {
             left++;
         }
