@@ -6,3 +6,6 @@
 * Linker (LD): ```gcc -g -o some demo.c -Wall``` -> ```some``` (executable file) -> ```./some``` to run
 * ```objdump -d some.o``` -> disassemble, ```objdump -s some.o``` -> display full contents
 * ```xxd some.o``` -> hexdecimal version, ```xxd -b some.o``` -> binary version
+
+# C Language
+* ```'\0'``` marks the end of a char array, remember to add one at the end when creating a new char array
