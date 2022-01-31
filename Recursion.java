@@ -36,7 +36,7 @@ private static void backtrackSubset(List<List<Integer>> list , LinkedList<Intege
         tempList.removeLast(); //tempList is of LinkedList type
     }
 }
-private void backtrackSubsetWithDuplicates(List<List<Integer>> list, LinkedList<Integer> tempList, int [] nums, int start){
+private void backtrackSubsetWithDuplicates(List<List<Integer>> list, LinkedList<Integer> tempList, int[] nums, int start){
     list.add(new LinkedList<>(tempList));
     for (int i=start; i<nums.length; i++){
         if (i>start && nums[i]==nums[i-1]) {
@@ -49,7 +49,7 @@ private void backtrackSubsetWithDuplicates(List<List<Integer>> list, LinkedList<
 }
 
 //#47 - Permutations II
-private void backtrackPermutation(List<List<Integer>> list, List<Integer> tempList, int [] nums, boolean [] used){
+private void backtrackPermutation(List<List<Integer>> list, List<Integer> tempList, int[] nums, boolean[] used){
     if (tempList.size() == nums.length){
         list.add(new LinkedList<>(tempList));
     }
