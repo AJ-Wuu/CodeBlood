@@ -3,6 +3,17 @@
 * ```char str[5] = "CSxxx";``` there is no '\0' at the end of the string, so it will continue printing things in the memory until it reaches a '\0'
 * ```char str[6] = "CSxxx";``` any value geq 6 will auto add '\0' at the end of the string
 * ```char str[3] = "CSxxx";``` the compiler will show warning but NOT ERROR, and it will print "CSx" + things following it in the memory until it hits '\0'
+* printf: https://www.man7.org/linux/man-pages/man3/printf.3.html
+  * fprintf, dprintf, sprintf, snprintf, vprintf
+  * format string
+    * normal characters except % -> need to be %%
+    * conversion %[flags] -> decimal or integer = d, i; floating point number = f, F; exponential format = e, E; pick either floating point or esponential form based on size = g, G; cast to unsigned number = u; cast to octal number = o; hexadecimal = x, X; character = c; string = s; pointer = p
+    * flags -> %d, %c, %s, %3d, %-4s (left justified, default is right justified), %.2f (precision of 2 decimals)
+    * positive / negative -> %+5d (print positive nnumbers with a '+'), % 5d (' ', leave a blank space of the '+')
+    * length modifier -> hh, h, l, ll, L, z
+    * zero pad the number -> %04d (add '0')
+    * use the alternate version -> %#x gets 0x123AB, NOT 123AB
+    * ```printf("%*s", length, string-content);```
 
 # Build Process  
 * demo.c
