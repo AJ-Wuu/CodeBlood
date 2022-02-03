@@ -14,6 +14,14 @@
     * zero pad the number -> %04d (add '0')
     * use the alternate version -> %#x gets 0x123AB, NOT 123AB
     * ```printf("%*s", length, string-content);```
+* Variable Name: digits (0-9) cannot be the first letter
+* Primitive Data Types: char - 1 byte; short int - 2 bytes; int = float - 4 bytes; long int = long long int = double - 8 bytes; long double - 16 bytes
+  * In 32-bit system, int - 4, long - 4, long long - 8
+  * In 64-bit system, int - 4, long - 8, long long - 8
+  * NO string -> it's char[]
+  * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.)
+* Sign Modifiers: unsigned -> unsigned char = 0 ~ 255; (signed) char = -128 ~ 127
+* ```int x = 3; if ((x = 2)) { printf("%d\n", x); }``` here the ```(())``` assigns value, and double parentheses emits the warning (one parenthesis will trigger the warning)
 
 # Build Process  
 * demo.c
