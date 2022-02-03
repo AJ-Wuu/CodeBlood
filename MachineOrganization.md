@@ -22,6 +22,7 @@
   * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.)
 * Sign Modifiers: unsigned -> unsigned char = 0 ~ 255; (signed) char = -128 ~ 127
 * ```int x = 3; if ((x = 2)) { printf("%d\n", x); }``` here the ```(())``` assigns value, and double parentheses emits the warning (one parenthesis will trigger the warning)
+* ```int x; if (x) { printf("%d\n", x); }``` where x is undefined, it won't generate a warning, but print out what is left on the memory allocated to x, which is to say if there is nothing before, we will receive "0"; if there is something left, then we will received 4 bytes of the leftover.
 
 # Build Process  
 * demo.c
