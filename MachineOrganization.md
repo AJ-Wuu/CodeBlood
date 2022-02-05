@@ -19,12 +19,13 @@
   * In 32-bit system, int - 4, long - 4, long long - 8
   * In 64-bit system, int - 4, long - 8, long long - 8
   * NO string -> it's char[]
-  * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.)
-* Sign Modifiers: unsigned -> unsigned char = 0 ~ 255; (signed) char = -128 ~ 127
+  * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.) -> NOTICE that 0 here is equivalent to int i = -0.2, float b = 0.0, int c = 0, etc.
+* Sign Modifiers: unsigned -> unsigned char = 0 ~ 255; (signed) char = -128 ~ 127 -- ```for (char i=1; i; i*=2) { printf("%d\n", i); }``` will generate 1,2,4,8,16,32,64,-128
 * ```int x = 3; if ((x = 2)) { printf("%d\n", x); }``` here the ```(())``` assigns value, and double parentheses emits the warning (one parenthesis will trigger the warning)
 * ```int x; if (x) { printf("%d\n", x); }``` where x is undefined, it won't generate a warning, but will print out what is left on the memory allocated to x, that is
   * if there is nothing before, we will receive "0"
   * if there is something left, then we will received 4 bytes of the leftover
+* Scope: You can declare local variables with the same name as a global variable, but the local variable will shadow the global in the local range.
 
 # Build Process  
 * demo.c
