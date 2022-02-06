@@ -43,6 +43,7 @@
  * 1. Implement the Set interface, backed by a HashTable (actually a HashMap instance).
  * 2. No Value needed, only Key.
  * 3. No guarantees as to the iteration order of the set (in particular, it does not guarantee that the order will remain constant over time).
+ * 4. Return boolean for add() and remove() -> can be seen as a combination of containsKey() + put() / remove().
  *
  * Collection Types:
  * Set -> a collection of distinct (non-equal) objects, with no other structure.
@@ -90,6 +91,7 @@
 //Initialization
 HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(); //<K, V>
 Hashtable<Integer, Integer> table = new Hashtable<Integer, Integer>();
+HashSet<String> set = new HashSet<String>();
 
 //computeIfAbsent()
 public V computeIfAbsent(K key, Function<? super K, ? extends V> remappingFunction);
