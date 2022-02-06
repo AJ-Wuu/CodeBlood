@@ -8,7 +8,7 @@ public class BinarySearch {
 
 	/*
 	 * Key of Binary Search:
-	 * 1. Find mid
+	 * 1. Find mid <- Search by Index or Search by Range
 	 * 2. Update start or end with mid
 	 * 
 	 * Complexity: O(logN)
@@ -82,15 +82,41 @@ public class BinarySearch {
 		result[1] = searchLast(nums, target);
 		return result;
 	}
+	
+	public static int kthSmallest(int[][] matrix, int k) {
+		int low = matrix[0][0], high = matrix[matrix.length - 1][matrix[0].length - 1] + 1; //[low, high] is our initial search range
+		while (low < high) {
+			int mid = low + (high - low) / 2;
+			int count = 0, j = matrix[0].length - 1;
+			for (int i=0; i<matrix.length; i++) {
+				while(j >= 0 && matrix[i][j] > mid) {
+					j--;
+				}
+				count += (j + 1); //nums <= mid in matrix
+			}
+			if (count < k) {
+				low = mid + 1;
+			}
+			else {
+				high = mid;
+			}
+		}
+		return low;
+	}
 
 	public static void main(String[] args) {
 		//arr[] is already in ascending order
+		//search by index -> linear sorted array
 		int[] arr = new int[] {5,6,8,8,8,8,8,8,8,8,8,10};
 		int[] result = searchRange(arr, 8);
 		System.out.println(result[0] + " - " + result[1]);
 		
 		int[] rotation = new int[]{3,4,5,6,7,0,1,2};
 		System.out.println(findRotationIndex(rotation));
+		
+		//search by range -> sorted in two directions and cannot find a linear index
+		int[] matrix = new int[]{{1,5,9},{10,11,13},{12,13,15}};
+		System.out.println(kthSmallest(matrix, 8));
 	}
 
 }
