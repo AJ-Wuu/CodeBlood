@@ -41,12 +41,13 @@
 
 # Debugger
 * ```gdb executable_name```, eg. ```gdb a.out```
-* ```list```
-* ```start``` / ```run``` -> the whole program
-* ```step``` (into function code) / ```next``` (over function code)
-* ```print variable_name``` -> print the current value of the variable
-* ```continue```
-* ```finish```
-* ```quit```
-* ```break line_number```
-* ```$```
+* ```l[ist]```: show lines of code surrounding the current point
+* ```start``` / ```r[un]```: run to next breakpoint or to end
+* ```s[tep]```: single-step, descending into functions
+* ```n[ext]```: single-step without descending into functions (over function code)
+* ```p[rint] variable_name```: print the current value of the variable
+* ```c[ontinue]```: continue to next breakpoint or end
+* ```fin[ish]```: finish current function, loop, etc.
+* ```b[reak] line_number / function_name```: set a breakpoint at line / function
+* ```$```: local variables (could use ```info locals``` to get all local variables' values)
+* ```quit```: exit gdb
