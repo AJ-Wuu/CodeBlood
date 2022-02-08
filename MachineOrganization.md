@@ -38,3 +38,15 @@
 
 # Vim
 * ```vsplit``` or ```vs``` split the Vim viewport vertically
+
+# Debugger
+* ```gdb executable_name```, eg. ```gdb a.out```
+* ```list```
+* ```start``` / ```run``` -> the whole program
+* ```step``` (into function code) / ```next``` (over function code)
+* ```print variable_name``` -> print the current value of the variable
+* ```continue```
+* ```finish```
+* ```quit```
+* ```break line_number```
+* ```$```
