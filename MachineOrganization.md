@@ -34,7 +34,7 @@
   * void pointer
     * Using the indirection operator ```*``` we can get back the value which is pointed by the pointer, but in case of void pointer we cannot use the indirection operator directly. This is because a void pointer has no data type that creates a problem for the compiler to predict the size of the pointed object.
     * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information.
-  * ```int q[] = {1,2,3,4}; int* p = &q[2];```, where p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
+  * ```int q[] = {1,2,3,4}; int* p = &q[2];``` indicates that p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
 
 # Build Process  
 * demo.c
