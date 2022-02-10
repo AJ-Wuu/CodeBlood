@@ -15,7 +15,9 @@
     * use the alternate version -> %#x gets 0x123AB, NOT 123AB
     * ```printf("%*s", length, string-content);```
 * Variable Name: digits (0-9) cannot be the first letter
-* Primitive Data Types: char - 1 byte; short int - 2 bytes; int = float - 4 bytes; long int = long long int = double - 8 bytes; long double - 16 bytes
+* Primitive Data Types:
+  * 1 byte = 8 bits 
+  * char - 1 byte; short int - 2 bytes; int = float - 4 bytes; long int = long long int = double - 8 bytes; long double - 16 bytes
   * In 32-bit system, int - 4, long - 4, long long - 8
   * In 64-bit system, int - 4, long - 8, long long - 8
   * NO string -> it's char[]
@@ -26,6 +28,13 @@
   * if there is nothing before, we will receive "0"
   * if there is something left, then we will received 4 bytes of the leftover
 * Scope: You can declare local variables with the same name as a global variable, but the local variable will shadow the global in the local range.
+* Pointer:
+  * ```*p``` is to get the value at the address p, ```&x``` is to get the address of the variable x
+  * For array q, ```*q+k``` gives ```q[0]+k```, and ```*(q+k)``` gives ```q[0+k]```
+  * void pointer
+    * Using the indirection operator ```*``` we can get back the value which is pointed by the pointer, but in case of void pointer we cannot use the indirection operator directly. This is because a void pointer has no data type that creates a problem for the compiler to predict the size of the pointed object.
+    * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information.
+  * ```int q[] = {1,2,3,4}; int* p = &q[2];```, where p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
 
 # Build Process  
 * demo.c
