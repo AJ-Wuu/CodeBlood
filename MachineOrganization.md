@@ -27,14 +27,15 @@
 * ```int x; if (x) { printf("%d\n", x); }``` where x is undefined, it won't generate a warning, but will print out what is left on the memory allocated to x, that is
   * if there is nothing before, we will receive "0"
   * if there is something left, then we will received 4 bytes of the leftover
-* Scope: You can declare local variables with the same name as a global variable, but the local variable will shadow the global in the local range.
+* Scope: You can declare local variables with the same name as a global variable, but the local variable will shadow the global in the local range
 * Pointer:
   * ```*p``` is to get the value at the address p, ```&x``` is to get the address of the variable x
   * For array q, ```*q+k``` gives ```q[0]+k```, and ```*(q+k)``` gives ```q[0+k]```
   * void pointer
-    * Using the indirection operator ```*``` we can get back the value which is pointed by the pointer, but in case of void pointer we cannot use the indirection operator directly. This is because a void pointer has no data type that creates a problem for the compiler to predict the size of the pointed object.
-    * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information.
+    * Using the indirection operator ```*``` we can get back the value which is pointed by the pointer, but in case of void pointer we cannot use the indirection operator directly. This is because a void pointer has no data type that creates a problem for the compiler to predict the size of the pointed object
+    * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information
   * ```int q[] = {1,2,3,4}; int* p = &q[2];``` indicates that p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
+* ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer, so it can never be put at the left of an equation
 
 # Build Process  
 * demo.c
