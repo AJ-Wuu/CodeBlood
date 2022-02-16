@@ -31,15 +31,15 @@ public class FastSlowPointers {
 	 * round 2: we are certain if slow moves x, then slow will be back to p2
 	 *          we also realize that the distance between head and p2 is x
 	 *          so, if slow and head move together in the same speed, they should meet at p2
-	 *          NOTICE that this is why we cannot have any other v(fast) = k*v(slow), as we don't want head to come into the cycle, but right at the beginning
 	 * head & slow met: exactly at p2, which is the beginning of the cycle
 	 * final state: head and slow at p2, fast at p3
 	 */
 
+	//#142 - Linked List Cycle II
 	public static ListNode detectCycle(ListNode head) {
 		ListNode fast = head, slow = head;
 		while (fast != null && fast.next != null) {
-			fast = fast.next.next;
+			fast = fast.next.next.next;
 			slow = slow.next;
 			if (fast == slow) {
 				break;
@@ -54,6 +54,28 @@ public class FastSlowPointers {
 			slow = slow.next;
 		}
 		return head;
+	}
+	
+	//#287 - Find the Duplicate Number
+	//The Key for this Array:
+	//Forming the cycle by nums[nums[...]]
+	//Also called Floyd's Tortoise and Hare
+	public static int findDuplicate(int[] nums) {
+		int fast = 0, slow = 0;
+		while (fast < nums.length) {
+			fast = nums[nums[fast]];
+			slow = nums[slow];
+			if (fast == slow) {
+				break;
+			}
+		}
+		
+		int index = 0;
+		while (nums[index] != nums[slow]) {
+			index = nums[index];
+			slow = nums[slow];
+		}
+		return nums[index];
 	}
 
 	public static void main(String[] args) {
