@@ -103,6 +103,35 @@ public class BinarySearch {
 		}
 		return low;
 	}
+	
+	//#287 - Find the Duplicate Number
+	//NO modification to the original array and CONSTANT space
+	public static int findDuplicate(int[] nums) {
+        	// 'low' and 'high' represent the range of values of the target        
+        	int low = 1, high = nums.length - 1;
+        	int duplicate = -1;
+        
+        	while (low <= high) {
+        		int cur = (low + high) / 2;
+
+            		// Count how many numbers in 'nums' are less than or equal to 'cur'
+            		int count = 0;
+            		for (int num : nums) {
+                		if (num <= cur) {
+                    			count++;
+				}
+            		}
+            
+            		if (count > cur) {
+                		duplicate = cur;
+                		high = cur - 1;
+            		}
+			else {
+                		low = cur + 1;
+            		}
+        	}
+        	return duplicate;
+	}
 
 	public static void main(String[] args) {
 		//arr[] is already in ascending order
@@ -117,6 +146,9 @@ public class BinarySearch {
 		//search by range -> sorted in two directions and cannot find a linear index
 		int[] matrix = new int[]{{1,5,9},{10,11,13},{12,13,15}};
 		System.out.println(kthSmallest(matrix, 8));
+		
+		int[] duplicate = new int[]{1,2,3,2};
+		System.out.println(findDuplicate(duplicate));
 	}
 
 }
