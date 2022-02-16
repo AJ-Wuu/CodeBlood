@@ -107,27 +107,24 @@ public class BinarySearch {
 	//#287 - Find the Duplicate Number
 	//NO modification to the original array and CONSTANT space
 	public static int findDuplicate(int[] nums) {
-        	// 'low' and 'high' represent the range of values of the target        
-        	int low = 1, high = nums.length - 1;
+        	int low = 1, high = nums.length - 1; //the range of values of the target
         	int duplicate = -1;
-        
         	while (low <= high) {
-        		int cur = (low + high) / 2;
-
-            		// Count how many numbers in 'nums' are less than or equal to 'cur'
+        		int curr = (low + high) / 2;
+            		//count how many numbers in 'nums' are less than or equal to 'curr'
             		int count = 0;
             		for (int num : nums) {
-                		if (num <= cur) {
+                		if (num <= curr) {
                     			count++;
 				}
             		}
             
-            		if (count > cur) {
-                		duplicate = cur;
-                		high = cur - 1;
+            		if (count > curr) {
+                		duplicate = curr;
+                		high = curr - 1;
             		}
 			else {
-                		low = cur + 1;
+                		low = curr + 1;
             		}
         	}
         	return duplicate;
