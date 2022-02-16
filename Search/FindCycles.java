@@ -31,6 +31,7 @@ public class FastSlowPointers {
 	 * round 2: we are certain if slow moves x, then slow will be back to p2
 	 *          we also realize that the distance between head and p2 is x
 	 *          so, if slow and head move together in the same speed, they should meet at p2
+	 *          NOTICE that this is why we cannot have any other v(fast) = k*v(slow), as we don't want head to come into the cycle, but right at the beginning
 	 * head & slow met: exactly at p2, which is the beginning of the cycle
 	 * final state: head and slow at p2, fast at p3
 	 */
