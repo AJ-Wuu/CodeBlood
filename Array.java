@@ -1,6 +1,9 @@
 //Use long (as 64-bit integer) to avoid overflow
 //Build an array of LinkedList: LinkedList<Integer>[] array = new LinkedList[n];
 
+//Circular array: moving forward from the last element -> the first element, and vice versa
+//                int nextIndex = (currentIndex + arr[currentIndex]) % arr.length;
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //Modify Arrays.sort()
