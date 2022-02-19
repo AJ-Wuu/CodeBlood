@@ -346,6 +346,12 @@ public static int nthUglyNumber(int n) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//#1201 - Ugly Number III
+//Calculate how many numbers from 1 to num are divisible by either a, b or c by using the formula:
+//    (num / a) + (num / b) + (num / c) – (num / lcm(a, b)) – (num / lcm(b, c)) – (num / lcm(a, c)) + (num / lcm(a, b, c))
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //#4 - Median of Two Sorted Arrays
 public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
     int m = nums1.length;
