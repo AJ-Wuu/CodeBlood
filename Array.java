@@ -329,7 +329,7 @@ public static int nthUglyNumber(int n) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#
+//#313 -Super Ugly Number
 //Approach 1 (same idea as #264): Use index[] -> 
 //                                this approach can be better if we use value[] to store all (primes[j] * ugly[index[j]]) to save time of duplicate mutiplication
     for (int j=0; j<primes.length; j++) {
@@ -345,7 +345,7 @@ public static int nthUglyNumber(int n) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//4 - Median of Two Sorted Arrays
+//#4 - Median of Two Sorted Arrays
 public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
     int m = nums1.length;
     int n = nums2.length;
@@ -393,3 +393,8 @@ public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 		
     return (double)(maxLeft + minRight) / 2;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#53 - Maximum Subarray
+//Key: MaxSoFar = Math.max(nums[i], MaxSoFar + nums[i])
