@@ -107,3 +107,15 @@ public int lengthOfLongestSubstringKDistinct(String s, int k) {
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#151 - Reverse Words in a String
+public static String cleanSpaces(char[] a) {
+    int i = 0, j = 0, n = a.length;
+    while (j < n) { //one word for a loop
+        while (j < n && a[j] == ' ') { j++; } //skip spaces
+        while (j < n && a[j] != ' ') { a[i++] = a[j++]; } //keep non-spaces
+        while (j < n && a[j] == ' ') { j++; } //skip spaces
+        if (j < n) { a[i++] = ' '; } //keep only one space}
+    }
+    return new String(a).substring(0, i);
+}
