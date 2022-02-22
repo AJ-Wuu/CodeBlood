@@ -28,7 +28,7 @@ public static List<List<Integer>> subsets(int[] nums) {
 }
 
 //#78, #90 - Subsets I, II
-private static void backtrackSubset(List<List<Integer>> list , LinkedList<Integer> tempList, int[] nums, int start){
+private static void backtrackSubset(List<List<Integer>> list , LinkedList<Integer> tempList, int[] nums, int start) {
     list.add(new LinkedList<>(tempList));
     for (int i=start; i<nums.length; i++) {
         tempList.add(nums[i]);
@@ -36,9 +36,9 @@ private static void backtrackSubset(List<List<Integer>> list , LinkedList<Intege
         tempList.removeLast(); //tempList is of LinkedList type
     }
 }
-private void backtrackSubsetWithDuplicates(List<List<Integer>> list, LinkedList<Integer> tempList, int[] nums, int start){
+private void backtrackSubsetWithDuplicates(List<List<Integer>> list, LinkedList<Integer> tempList, int[] nums, int start) {
     list.add(new LinkedList<>(tempList));
-    for (int i=start; i<nums.length; i++){
+    for (int i=start; i<nums.length; i++) {
         if (i>start && nums[i]==nums[i-1]) {
         	continue; //skip duplicates (already existed)
         }
@@ -49,12 +49,12 @@ private void backtrackSubsetWithDuplicates(List<List<Integer>> list, LinkedList<
 }
 
 //#47 - Permutations II
-private void backtrackPermutation(List<List<Integer>> list, List<Integer> tempList, int[] nums, boolean[] used){
-    if (tempList.size() == nums.length){
+private void backtrackPermutation(List<List<Integer>> list, List<Integer> tempList, int[] nums, boolean[] used) {
+    if (tempList.size() == nums.length) {
         list.add(new LinkedList<>(tempList));
     }
-    else{
-        for (int i=0; i<nums.length; i++){
+    else {
+        for (int i=0; i<nums.length; i++) {
             if (used[i]) {
             	continue;
             }
@@ -71,7 +71,7 @@ private void backtrackPermutation(List<List<Integer>> list, List<Integer> tempLi
 }
 
 //#39 - Combination Sum
-private void backtrackAllowReuse(List<List<Integer>> list, List<Integer> tempList, int[] nums, int remain, int start){
+private void backtrackAllowReuse(List<List<Integer>> list, List<Integer> tempList, int[] nums, int remain, int start) {
     if (remain < 0) {
     	return ;
     }
@@ -79,7 +79,7 @@ private void backtrackAllowReuse(List<List<Integer>> list, List<Integer> tempLis
     	list.add(new LinkedList<>(tempList));
     }
     else { 
-        for(int i=start; i<nums.length; i++){
+        for (int i=start; i<nums.length; i++) {
             tempList.add(nums[i]);
             backtrackAllowReuse(list, tempList, nums, remain - nums[i], i); //NOT i+1 because we can reuse the same elements
             tempList.remove(tempList.size() - 1);
