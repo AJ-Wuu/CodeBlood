@@ -43,7 +43,10 @@
   * Two-Dimensional: ```m[a][b] = (base address + col * sizeof(int)) + j * sizeof(int)``` -> so if ```m``` is ```axc```, but we offer ```axb (b<c)``` to it, then it will take ```col = b```, which should be ```col = c```
 * Struct: 
   * Initialize: ```struct NAME_OF_STRUCT {data};```
-  * Alias: ```typedef struct NAME_OF_STRUCT ANOTHER_NAME```
+  * Alias: 
+    * ```typedef struct NAME_OF_STRUCT ALIAS_NAME``` -> struct NAME_OF_STRUCT is already defined
+    * ```typedef struct NEW_STRUCT {data} ALIAS_NAME``` -> define and alias in one line
+    * ```typedef struct {data} ALIAS_NAME``` -> anonymous definition
   * Declare: ```struct NAME_OF_STRUCT name```, where the type is ```struct NAME_OF_STRUCT```
   * Dereference: for ```struct STUDENT s1```, we pass ```s1``` and get id by ```s1.id```; for ```struct STUDENT* s1```, we pass ```&s1``` and get id by ```s1->id``` or ```(*s1).id```
 
