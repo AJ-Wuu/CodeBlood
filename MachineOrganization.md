@@ -18,8 +18,9 @@
 * Primitive Data Types:
   * 1 byte = 8 bits 
   * char - 1 byte; short int - 2 bytes; int = float - 4 bytes; long int = long long int = double - 8 bytes; long double - 16 bytes
-  * In 32-bit system, int - 4, long - 4, long long - 8
-  * In 64-bit system, int - 4, long - 8, long long - 8
+  * In 16-bit system, pointer - 2
+  * In 32-bit system, int - 4, long - 4, long long - 8, pointer - 4
+  * In 64-bit system, int - 4, long - 8, long long - 8, pointer - 8
   * NO string -> it's char[]
   * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.) -> NOTICE that 0 here is equivalent to int i = -0.2, float b = 0.0, int c = 0, etc.
 * Sign Modifiers: unsigned -> unsigned char = 0 ~ 255; (signed) char = -128 ~ 127 -- ```for (char i=1; i; i*=2) { printf("%d\n", i); }``` will generate 1,2,4,8,16,32,64,-128
@@ -36,7 +37,15 @@
     * Using the indirection operator ```*``` we can get back the value which is pointed by the pointer, but in case of void pointer we cannot use the indirection operator directly. This is because a void pointer has no data type that creates a problem for the compiler to predict the size of the pointed object
     * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information
   * ```int q[] = {1,2,3,4}; int* p = &q[2];``` indicates that p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
-* ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
+* Array:
+  * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
+  * ```matrix[i][j]``` == ```*(*(matrix + i) + j)``` -> dereferencing twice
+  * Two-Dimensional: ```m[a][b] = (base address + col * sizeof(int)) + j * sizeof(int)``` -> so if ```m``` is ```axc```, but we offer ```axb (b<c)``` to it, then it will take ```col = b```, which should be ```col = c```
+* Struct: 
+  * Initialize: ```struct NAME_OF_STRUCT {data};```
+  * Alias: ```typedef struct NAME_OF_STRUCT ANOTHER_NAME```
+  * Declare: ```struct NAME_OF_STRUCT name```, where the type is ```struct NAME_OF_STRUCT```
+  * Dereference: for ```struct STUDENT s1```, we pass ```s1``` and get id by ```s1.id```; for ```struct STUDENT* s1```, we pass ```&s1``` and get id by ```s1->id``` or ```(*s1).id```
 
 # Build Process  
 * demo.c
