@@ -37,6 +37,7 @@
     * Using the indirection operator ```*``` we can get back the value which is pointed by the pointer, but in case of void pointer we cannot use the indirection operator directly. This is because a void pointer has no data type that creates a problem for the compiler to predict the size of the pointed object
     * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information
   * ```int q[] = {1,2,3,4}; int* p = &q[2];``` indicates that p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
+  * Can re-assign pointers, CANNOT re-assign arrays
 * Array:
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
   * ```matrix[i][j]``` == ```*(*(matrix + i) + j)``` -> dereferencing twice
@@ -49,6 +50,13 @@
     * ```typedef struct {data} ALIAS_NAME``` -> anonymous definition
   * Declare: ```struct NAME_OF_STRUCT name```, where the type is ```struct NAME_OF_STRUCT```
   * Dereference: for ```struct STUDENT s1```, we pass ```s1``` and get id by ```s1.id```; for ```struct STUDENT* s1```, we pass ```&s1``` and get id by ```s1->id``` or ```(*s1).id```
+* Exit:
+  * exit(0) indicates successful program termination & FULLY portable
+  * exit(1) (usually) indicates unsucessful termination & NOT portable
+* Dynamic Array:
+  * stack is small (used by array), heap is big (used by malloc)
+  * double-free errors: free a pointer again after it is already free
+    * free(temp) -> this function only goes with malloc, so temp has to be the space possessed by malloc, DOESN'T work with anything else
 
 # Build Process  
 * demo.c
