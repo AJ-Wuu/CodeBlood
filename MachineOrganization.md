@@ -37,7 +37,7 @@
     * Using the indirection operator ```*``` we can get back the value which is pointed by the pointer, but in case of void pointer we cannot use the indirection operator directly. This is because a void pointer has no data type that creates a problem for the compiler to predict the size of the pointed object
     * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information
   * ```int q[] = {1,2,3,4}; int* p = &q[2];``` indicates that p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
-  * Can re-assign pointers, CANNOT re-assign arrays
+  * Can re-assign pointers, CANNOT re-assign arrays (see arrays as CONSTANT pointers)
 * Array:
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
   * ```matrix[i][j]``` == ```*(*(matrix + i) + j)``` -> dereferencing twice
@@ -57,6 +57,15 @@
   * stack is small (used by array), heap is big (used by malloc)
   * double-free errors: free a pointer again after it is already free
     * free(temp) -> this function only goes with malloc, so temp has to be the space possessed by malloc, DOESN'T work with anything else
+```
+int *row1 = malloc(3*sizeof(int));
+int *row2 = malloc(3*sizeof(int));
+int *row3 = malloc(3*sizeof(int));
+int **matrix = malloc(3*sizeof(int *)); //pointer to an array of pointers; currently it is empty with allocated spaces
+matrix[0] = row1, matrix[1] = row2, matrix[2] = row3;
+//ways to access the data in matrix: matrix[i][j], *(*(matrix + i) + j)
+//if malloc gets more elements than it is allocated for, it will overwrites in the space containing other stuff
+```
 
 # Build Process  
 * demo.c
