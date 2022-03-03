@@ -58,13 +58,29 @@
   * double-free errors: free a pointer again after it is already free
     * free(temp) -> this function only goes with malloc, so temp has to be the space possessed by malloc, DOESN'T work with anything else
 ```
-int *row1 = malloc(3*sizeof(int));
-int *row2 = malloc(3*sizeof(int));
-int *row3 = malloc(3*sizeof(int));
-int **matrix = malloc(3*sizeof(int *)); //pointer to an array of pointers; currently it is empty with allocated spaces
-matrix[0] = row1, matrix[1] = row2, matrix[2] = row3;
+//input: int row, int col, int[][] a
+//announce matrix space
+int **matrix = malloc(row * sizeof(int *)); //pointer to an array of pointers; currently it is empty with allocated spaces
+for (int i=0; i<row; i++) {
+    int *row = malloc(col * sizeof(int));
+    matrix[i] = row;
+}
+
+//assign values
 //ways to access the data in matrix: matrix[i][j], *(*(matrix + i) + j)
 //if malloc gets more elements than it is allocated for, it will overwrites in the space containing other stuff
+for (int i=0; i<row; i++) {
+    for (int j=0; j<col; j++) {
+        //matrix[i][j] = a[j][i];
+        *(*(matrix+i)+j)= a[j][i];
+    }
+}
+
+//free allocation
+for (int i=0; i<row; i++) {
+    free(matrix[i]); //the array of columns at row-i
+}
+free(matrix); //the array of rows
 ```
 
 # Build Process  
