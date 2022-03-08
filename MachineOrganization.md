@@ -84,7 +84,7 @@ free(matrix); //the array of rows
 ```
 * Memory Allocator
   * Implicit: programming languages with garbage collection (Java, Python, ...)
-  * Explicit: malloc / free & new / delete (deconstructor) with heap management responsibility (C, c++, ...)
+  * Explicit: malloc / free & new / delete (deconstructor) with heap management responsibility (C, C++, ...)
   * Alignment Requirement: data starts on address divisible by size
 
 # Build Process  
