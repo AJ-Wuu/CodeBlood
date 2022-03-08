@@ -82,6 +82,10 @@ for (int i=0; i<row; i++) {
 }
 free(matrix); //the array of rows
 ```
+* Memory Allocator
+  * Implicit: programming languages with garbage collection (Java, Python, ...)
+  * Explicit: malloc / free & new / delete (deconstructor) with heap management responsibility (C, c++, ...)
+  * Alignment Requirement: data starts on address divisible by size
 
 # Build Process  
 * demo.c
@@ -96,6 +100,7 @@ free(matrix); //the array of rows
 * ```vsplit``` or ```vs``` split the Vim viewport vertically
 
 # Debugger
+## gdb
 * ```gdb executable_name```, eg. ```gdb a.out```
 * ```l[ist]```: show lines of code surrounding the current point
 * ```start``` / ```r[un]```: run to next breakpoint or to end
@@ -107,3 +112,6 @@ free(matrix); //the array of rows
 * ```b[reak] line_number / function_name```: set a breakpoint at line / function
 * ```$```: local variables (could use ```info locals``` to get all local variables' values)
 * ```quit```: exit gdb
+## valgrind
+* ```valgrind ./a.out```: get memory errors list
+* ```valgrind --leak-check=full ./a.out```: check memory leak
