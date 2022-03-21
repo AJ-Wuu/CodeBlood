@@ -237,3 +237,13 @@ static char *allocp = allocbuf; /* next free position */
 ## valgrind
 * ```valgrind ./a.out```: get memory errors list
 * ```valgrind --leak-check=full ./a.out```: check memory leak
+
+# Memory
+* Pack the size and Alloc bit into 4 bytes
+* Alignment Requirement -- All size will be even numbers
+  * general data is stored in the address divisible by **8 bytes**
+  * char / short -- **2 bytes**
+  * int / long / float -- **4 bytes**
+  * long long / double -- **8 bytes**
+  * payload is applied to fill in the blanks between one variable to another
+* Metadata has header, which needs extra storing space before the actual metadata (eg. Starting with address 0x00, metadata cannot stored at 0x00, but the actual data needs to store at 0x08, with header stored at 0x04. The data will expand up to somewhere like 0x20, where the whole metadata takes 0x20 - 0x04 = 16 divisibleby 8, and the payload will fill in 0x20 so that the new data will be able to start at 0x24)
