@@ -88,7 +88,7 @@ while ((to[i] = from[i]) != '\0') {
 * Bitwise Operator: '&' for AND, '|' for OR, '~' for NOT (unary), '^' for XOR, '<<' for left shift, '>>' for right shift
   * Unary & + - * have higher precedence than the binary forms
   * Precedence:
-    * ! ~ ++ -- + - * sizeof (unary)
+    * ! ~ ++ -- + - *(dereference) sizeof(unary)
     * * / % (binary)
     * + - (binary)
     * << >>
