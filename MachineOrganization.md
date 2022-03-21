@@ -7,13 +7,53 @@
   * fprintf, dprintf, sprintf, snprintf, vprintf
   * format string
     * normal characters except % -> need to be %%
-    * conversion %[flags] -> decimal or integer = d, i; floating point number = f, F; exponential format = e, E; pick either floating point or esponential form based on size = g, G; cast to unsigned number = u; cast to octal number = o; hexadecimal = x, X; character = c; string = s; pointer = p
+    * conversion %[flags]
+      * decimal or integer = d, i
+      * floating point number = f, F
+      * exponential format = e, E
+      * pick either floating point or esponential form based on size = g, G
+      * cast to unsigned number = u
+      * cast to octal number = o
+      * hexadecimal = x, X
+      * character = c
+      * string = s
+      * pointer = p
     * flags -> %d, %c, %s, %3d, %-4s (left justified, default is right justified), %.2f (precision of 2 decimals)
     * positive / negative -> %+5d (print positive nnumbers with a '+'), % 5d (' ', leave a blank space of the '+')
     * length modifier -> hh, h, l, ll, L, z
     * zero pad the number -> %04d (add '0')
     * use the alternate version -> %#x gets 0x123AB, NOT 123AB
     * ```printf("%*s", length, string-content);```
+* Symbolic Constants: ```#define UPPER 21```
+* File Operation: getchar(), putchar(), getline()
+```
+char c;
+printf("Enter some character. Enter $ to exit...\n");
+c = getchar();
+printf("\n Entered character is: ");
+putchar(c); //only supports printing a single character -> might be faster than printf()
+printf("\n");
+/*
+   output:
+   Enter some character. Enter $ to exit…
+   R
+   Entered character is: R
+*/
+
+//print out the whole file
+while ((c = getchar()) != EOF) {
+    putchar(c);
+}
+
+//copy(char to[], char from[])
+int i = 0;
+while ((to[i] = from[i]) != '\0') {
+    ++i;
+}
+```
+* Extern: ```extern int max = 10000;```
+  * GLOBAL variables are declared in one file, and can be accessed in another file with the EXTERN word before (in this another file).
+  * In the same file, no need of EXTERN.
 * Variable Name: digits (0-9) cannot be the first letter
 * Primitive Data Types:
   * 1 byte = 8 bits 
