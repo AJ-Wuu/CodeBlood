@@ -121,14 +121,18 @@ free(matrix); //the array of rows
     * h for Halfwords (two bytes)
     * w for Words (four bytes) -> initial default
     * g for Giant words (eight bytes))
-* ```[info] registers / break / register reg_name / ...```: get all information of current registers, current break point, current register named as reg_name, ...
+* ```[info] locals / args / registers / break / register reg_name / ...```: get all information of current local variables, command line arguments, current registers, current break point, current register named as reg_name, ...
 * ```b[reak] line_number / function_name```: set a breakpoint at line / function
 * ```[watch]point variable_name```: set a watchpoint on the variable that display every time if its value changes (the variable you want to watch must be in the current scope)
-  * Watchpoints will be displayed in the breakpoints list.
+  * Watchpoints will be displayed in the breakpoints list
   * Use ```info breakpoints``` to list the watchpoints
   * Use ```delete Num``` to delete / disable breakpoints and / or watchpoints
 * ```c[ontinue]```: continue to next breakpoint or end
-* ```fin[ish]```: finish current function, loop, etc. ("finish" not meaningful in the outermost frame.)
+* ```[b]ack[t]race```: print one line per frame for frames in the stack (all stack frames are printed by default)
+* ```fin[ish]```: finish current function, loop, etc. ("finish" not meaningful in the outermost frame)
+* ```[k]ill```: kill the current program
+* ```call function_name(parameters)```: evaluate a single function, eg. call pow(2,3)
+* ```set var = val```: assign the value val to the variable var (NO ';' at the end)
 * ```$```: local variables (could use ```info locals``` to get all local variables' values)
 * ```quit```: exit gdb
 ## valgrind
