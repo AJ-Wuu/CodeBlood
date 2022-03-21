@@ -193,6 +193,11 @@ static char *allocp = allocbuf; /* next free position */
 # Vim
 * ```vsplit``` or ```vs``` split the Vim viewport vertically
 
+# Bash
+* stdin = 0, stdout = 1, stderr = 2
+* ```cat < hello.txt```
+* ```echo “hello world” 1>output.log 2>debug.log```
+
 # Debugger
 ## gdb
 * ```gdb executable_name```, eg. ```gdb a.out```
