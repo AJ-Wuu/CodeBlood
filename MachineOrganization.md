@@ -143,9 +143,9 @@ switch (c) {
   * ```int q[] = {1,2,3,4}; int* p = &q[2];``` indicates that p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
   * Can re-assign pointers, CANNOT re-assign arrays (see arrays as CONSTANT pointers)
 ```
-void fun(int *p) { 
+void fun(int *p) { //p is a new copy of the original pointer p, so the change to local p doesn't affect the value of the original p
   int q = 12; 
-  p = &q; //q is a copy of the pointer p, so if we change q to point something else, p remains uneffected
+  p = &q;
 } 
 void fun2(int **pptr) {
   static int q = 12; //static variables exist in memory even after functions return
@@ -174,6 +174,19 @@ int *b = &a[0][0];
 char *c= &a;
 printf("%d\n", *(b + sizeof(int))); //*(b + sizeof(int)) = *(b+4) = *(b + 4*sizeof(int)) = *(b + 16) = a[1][2] = 5
 printf("%d\n", *(c + sizeof(int))); //*(c + sizeof(int)) = *(c+4) = *(c + 4*sizeof(char)) = *(b + 4) = a[0][1] = 2
+
+int arri[] = {1, 2 ,3};
+char arrc[] = {1, 2 ,3};
+printf("sizeof arri[] = %d\n", sizeof(arri)); //num_of_index = sizeof(arri) / sizeof(arri[0]) -> sizeof(arri) = num_of_index * sizeof(int)
+printf("sizeof arrc[] = %d\n", sizeof(arrc)); //sizeof(arrc) = num_of_index * sizeof(char)
+
+int a; 
+char *x; 
+x = (char *) &a; 
+a = 512; 
+x[0] = 1; 
+x[1] = 2; //*x becomes 011010 -> little endian machine gets as 
+printf("%d\n",a);
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
@@ -220,7 +233,7 @@ for (int i=0; i<row; i++) {
 }
 free(matrix); //the array of rows
 ```
-## Memory Allocator
+## Memory Allocator (See Below Memory)
   * Implicit: programming languages with garbage collection (Java, Python, ...)
   * Explicit: malloc / free & new / delete (deconstructor) with heap management responsibility (C, C++, ...)
   * Alignment Requirement: data starts on address divisible by size
@@ -228,6 +241,10 @@ free(matrix); //the array of rows
 char allocbuf[ALLOCSIZE]; /* storage for alloc */
 static char *allocp = allocbuf; /* next free position */
 ```
+## Endian
+Computers process data in “bytes”. For 0x12345678:
+* Big-Endian: 12 | 34 | 56 | 78 -> Network
+* Little-Endian: 78 | 56 | 34 | 12 -> General Machine
 
 # Build Process  
 * demo.c
@@ -295,3 +312,19 @@ static char *allocp = allocbuf; /* next free position */
   * long long / double -- **8 bytes**
   * payload is applied to fill in the blanks between one variable to another
 * Metadata has header, which needs extra storing space before the actual metadata (eg. Starting with address 0x00, metadata cannot stored at 0x00, but the actual data needs to store at 0x08, with header stored at 0x04. The data will expand up to somewhere like 0x20, where the whole metadata takes 0x20 - 0x04 = 16 divisibleby 8, and the payload will fill in 0x20 so that the new data will be able to start at 0x24)
+* Minimum Block Size (dynamic, sum of the following four components)
+  * Header Size - address being allocated (+ previous allocated + padding) - determined
+    * Header records if the block is allocated or free (eg. Block Size = 8, then with Header 8/1 -> allocated; 8/0 -> free)
+  * Data Size - minimum data size
+  * Footer Size - determined
+  * Round Up for Alignment Requirement
+```
+//Header has size 4 bytes, Footer 4 bytes
+malloc(18) //Data has size 18 bytes -> Block Size = H + D + F + R = 4 + 18 + 4 + 6 (padding to a multiple of 8) -> the first byte of data is put into an address divisible by 8 -> check divisible by 8: &00000007
+free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - HeaderSize; 3. Free: &fffffffe to set the last bit to 0
+```
+* Placement Policy: First-Fit, Best-Fit, Next-Fit, etc.
+* Coalesce Policy: Immediate vs. Deferred Coalescing Free Blocks
+  * Always cheap to coalesce a free block AFTER the current one (just directly add up)
+  * Maybe expensive to coalesce a free block BEFORE the current one (need to traverse the whole list to find the previous one if there is no footer)
+* Split Free Block: Free Block Size - Block Size > Minimum Block Size
