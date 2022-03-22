@@ -168,6 +168,12 @@ printf("%s ", **++cpp); //increment cpp by 1 -> cpp[0] points to cp[1] -> "TEST"
 printf("%s ", *--*++cpp+3); //increment cpp by 1 -> cpp[0] points to cp[2] -> decrement cp by 1 -> cp[2] points to c -> increment c (of type char) by 3 -> "sQuiz"
 printf("%s ", *cpp[-2]+3); //check cpp[-2], which points to cp[0] -> increment c+3 by 3 -> "Z"
 printf("%s ", cpp[-1][-1]+1); //check cpp[-1] (cpp[0] = cp[2]), which points to cp[1] -> check (cp[1])[-1] (cp[1][0] = c+2), which points to c+1 -> increment c+1 by 1 -> "CQ"
+
+int a[2][3] = {{1,2,3},{4,5,6}};
+int *b = &a[0][0];
+char *c= &a;
+printf("%d\n", *(b + sizeof(int))); //*(b + sizeof(int)) = *(b+4) = *(b + 4*sizeof(int)) = *(b + 16) = a[1][2] = 5
+printf("%d\n", *(c + sizeof(int))); //*(c + sizeof(int)) = *(c+4) = *(c + 4*sizeof(char)) = *(b + 4) = a[0][1] = 2
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
