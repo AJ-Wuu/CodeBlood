@@ -1,4 +1,5 @@
 # C Language
+## String
 * ```'\0'``` marks the end of a char array, remember to add one at the end when creating a new char array
   * ```char str[5] = "CSxxx";``` there is no '\0' at the end of the string, so it will continue printing things in the memory until it reaches a '\0'
   * ```char str[6] = "CSxxx";``` any value geq 6 will auto add '\0' at the end of the string
@@ -13,7 +14,7 @@
     * ```for (i = 0; s[i] == t[i]; i++) { ... }```
     * ```for ( ; *s == *t; s++, t++) { ... }```
   * ```char pattern = "ould";``` is a shorthand for the longer but equivalent ```char pattern[] = { 'o', 'u', 'l', 'd', '\0' };```
-* printf: https://www.man7.org/linux/man-pages/man3/printf.3.html
+## printf: https://www.man7.org/linux/man-pages/man3/printf.3.html
   * fprintf, dprintf, sprintf, snprintf, vprintf
   * format string
     * normal characters except % -> need to be %%
@@ -34,8 +35,8 @@
     * zero pad the number -> %04d (add '0')
     * use the alternate version -> %#x gets 0x123AB, NOT 123AB
     * ```printf("%*s", length, string-content);```
-* Symbolic Constants: ```#define UPPER 21```
-* File Operation: getchar(), putchar(), getline()
+## Symbolic Constants: ```#define UPPER 21```
+## File Operation: getchar(), putchar(), getline()
 ```
 char c;
 printf("Enter some character. Enter $ to exit...\n");
@@ -61,14 +62,14 @@ while ((to[i] = from[i]) != '\0') {
     ++i;
 }
 ```
-* Extern: ```extern int max = 10000;```
+## Extern: ```extern int max = 10000;```
   * GLOBAL variables are declared in one file, and can be accessed in another file with the EXTERN word before (in this another file).
   * In the same file, no need of EXTERN.
-* Register: ```register int x;```
+## Register: ```register int x;```
   * A register declaration advises the compiler that the variable in question will be heavily used.
   * The idea is that register variables are to be placed in machine registers, which may result in smaller and faster programs.
-* Variable Name: digits (0-9) cannot be the first letter
-* Primitive Data Types:
+## Variable Name: digits (0-9) cannot be the first letter
+## Primitive Data Types
   * 1 byte = 8 bits 
   * char - 1 byte; short int - 2 bytes; int = float - 4 bytes; long int = long long int = double - 8 bytes; long double - 16 bytes
   * In 16-bit system, pointer - 2
@@ -76,19 +77,20 @@ while ((to[i] = from[i]) != '\0') {
   * In 64-bit system, int - 4, long - 8, long long - 8, pointer - 8
   * NO string -> it's char[]
   * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.) -> NOTICE that 0 here is equivalent to int i = -0.2, float b = 0.0, int c = 0, etc.
-* Sign Modifiers:
+## Sign Modifiers
   * unsigned -> unsigned char = 0 ~ 255;
   * (signed) char = -128 ~ 127
     * ```for (char i=1; i; i*=2) { printf("%d\n", i); }``` will generate 1,2,4,8,16,32,64,-128
+## Warning
 * ```int x = 3; if ((x = 2)) { printf("%d\n", x); }``` here the ```(())``` assigns value, and double parentheses emits the warning (one parenthesis will trigger the warning)
 * ```int x; if (x) { printf("%d\n", x); }``` where x is undefined, it won't generate a warning, but will print out what is left on the memory allocated to x, that is
   * if there is nothing before, we will receive "0"
   * if there is something left, then we will received 4 bytes of the leftover
-* Enumeration: ```enum boolean {Yes, NO};```
-* Bitwise Operator: '&' for AND, '|' for OR, '~' for NOT (unary), '^' for XOR, '<<' for left shift, '>>' for right shift
+## Enumeration: ```enum boolean {Yes, NO};```
+## Bitwise Operator: '&' for AND, '|' for OR, '~' for NOT (unary), '^' for XOR, '<<' for left shift, '>>' for right shift
   * Unary & + - * have higher precedence than the binary forms
   * Precedence:
-    * ! ~ ++ -- + - *(dereference) sizeof (unary)
+    * ! ~ ++ -- + - \*(dereference) sizeof (unary)
     * * / % (binary)
     * + - (binary)
     * << >>
@@ -99,8 +101,11 @@ while ((to[i] = from[i]) != '\0') {
     * |
     * &&
     * ||
-* Scope: You can declare local variables with the same name as a global variable, but the local variable will shadow the global in the local range
-* Switch:
+  * ```*ptr++``` is treated as ```*(ptr++)``` -> \*(current value of ptr) and increment ptr
+  * ```*++ptr``` is treated as ```*(++ptr)```
+  * ```++*ptr``` is treated as ```++(*ptr)```
+## Scope: You can declare local variables with the same name as a global variable, but the local variable will shadow the global in the local range
+## Switch
 ```
 switch (c) {
     case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
@@ -114,8 +119,18 @@ switch (c) {
         break;
 }
 ```
-* Pointer:
+## Pointer
   * ```*p``` is to get the value at the address p, ```&x``` is to get the address of the variable x
+  * Pointer Arithmetics:
+    * ptr++ => (current address in pointer) + sizeof(pointer_data_type)
+    * ptr + (int)i => (current address in pointer) + i * sizeof(pointer_data_type)
+    * ```int *p = arr[0], *q = arr[2]```, q - p => (address in q - address in p) / sizeof(pointer_data_type)
+    * ```int (*p)[R][C]``` sizeof(\*p) = R * C * sizeof(int)
+    * ```int a[5] = {1,2,3,4,5}; int *ptr = (int*)(&a+1); printf("%d %d", *(a+1), *(ptr-1));``` 
+      * compilers convert array operations in pointers before accessing the array elements, (a+1) points to 2
+      * &a contains address of an item of size 5 * sizeof(int) and when we do (&a + 1) the pointer is incremented by 5 * sizeof(int)
+      * ptr is type-casted to int* so when we do ptr - 1, we get address of 5
+    * **Array parameters are treated as pointers**, so ```int arr[2] = {12, 21}; arr = arr+1; printf("%d ", arr[0]);``` gets 21
   * For array q, ```*q+k``` gives ```q[0]+k```, and ```*(q+k)``` gives ```q[0+k]```
   * ```p += i``` increments the pointer p (pointing to an element of an array) to point i elements beyond where it currently does (not exceeding the array length)
     * The following expressions are equivalent: ```*ip += 1```, ```(*ip)++```, ```++*ip```
@@ -127,11 +142,38 @@ switch (c) {
     * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information
   * ```int q[] = {1,2,3,4}; int* p = &q[2];``` indicates that p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
   * Can re-assign pointers, CANNOT re-assign arrays (see arrays as CONSTANT pointers)
-* Array:
+```
+void fun(int *p) { 
+  int q = 12; 
+  p = &q; //q is a copy of the pointer p, so if we change q to point something else, p remains uneffected
+} 
+void fun2(int **pptr) {
+  static int q = 12; //static variables exist in memory even after functions return
+  *pptr = &q; //value at pptr (value of p) is changed to address of q
+}  
+int main() { 
+  int r = 21; 
+  int *p = &r; 
+  fun(p); 
+  printf("%d", *p); //output: 21
+  fun2(p); 
+  printf("%d", *p); //output: 12
+  return 0; 
+}
+
+char *c[] = {"GeksQuiz", "MCQ", "TEST", "QUIZ"};
+char **cp[] = {c+3, c+2, c+1, c};
+char ***cpp = cp;
+printf("%s ", **++cpp); //increment cpp by 1 -> cpp[0] points to cp[1] -> "TEST"
+printf("%s ", *--*++cpp+3); //increment cpp by 1 -> cpp[0] points to cp[2] -> decrement cp by 1 -> cp[2] points to c -> increment c (of type char) by 3 -> "sQuiz"
+printf("%s ", *cpp[-2]+3); //check cpp[-2], which points to cp[0] -> increment c+3 by 3 -> "Z"
+printf("%s ", cpp[-1][-1]+1); //check cpp[-1] (cpp[0] = cp[2]), which points to cp[1] -> check (cp[1])[-1] (cp[1][0] = c+2), which points to c+1 -> increment c+1 by 1 -> "CQ"
+```
+## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
   * ```matrix[i][j]``` == ```*(*(matrix + i) + j)``` -> dereferencing twice
   * Two-Dimensional: ```m[a][b] = (base address + col * sizeof(int)) + j * sizeof(int)``` -> so if ```m``` is ```axc```, but we offer ```axb (b<c)``` to it, then it will take ```col = b```, which should be ```col = c```
-* Struct: 
+## Struct
   * Initialize: ```struct NAME_OF_STRUCT {data};```
   * Alias: 
     * ```typedef struct NAME_OF_STRUCT ALIAS_NAME``` -> struct NAME_OF_STRUCT is already defined
@@ -140,10 +182,10 @@ switch (c) {
   * Declare: ```struct NAME_OF_STRUCT name```, where the type is ```struct NAME_OF_STRUCT```
   * Dereference: for ```struct STUDENT s1```, we pass ```s1``` and get id by ```s1.id```; for ```struct STUDENT* s1```, we pass ```&s1``` and get id by ```s1->id``` or ```(*s1).id```
   * ```struct rect r, *rp = &r;``` then these four expressions are equivalent ```r.pt1.x```, ```rp->pt1.x```, ```(r.pt1).x```, ```(rp->pt1).x```
-* Exit:
+## Exit
   * exit(0) indicates successful program termination & FULLY portable
   * exit(1) (usually) indicates unsucessful termination & NOT portable
-* Dynamic Array:
+## Dynamic Array
   * stack is small (used by array), heap is big (used by malloc)
   * double-free errors: free a pointer again after it is already free
     * free(temp) -> this function only goes with malloc, so temp has to be the space possessed by malloc, DOESN'T work with anything else
@@ -172,7 +214,7 @@ for (int i=0; i<row; i++) {
 }
 free(matrix); //the array of rows
 ```
-* Memory Allocator
+## Memory Allocator
   * Implicit: programming languages with garbage collection (Java, Python, ...)
   * Explicit: malloc / free & new / delete (deconstructor) with heap management responsibility (C, C++, ...)
   * Alignment Requirement: data starts on address divisible by size
