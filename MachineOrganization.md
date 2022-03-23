@@ -121,7 +121,13 @@ switch (c) {
 ```
 ## Pointer
   * ```*p``` is to get the value at the address p, ```&x``` is to get the address of the variable x
-  * Initialize: ```int* p1, p2``` gives an int* p1 and an int p2
+  * Initialize:
+    * ```int* p1, p2``` gives an int* p1 and an int p2
+    * ```int *b = &a```
+  * Reference:
+    * References cannot be null, whereas pointers can
+    * Every reference refers to some object, although it may or may not be valid
+    * A reference can never be re-assigned once it is established
   * Pointer Arithmetics:
     * ptr++ => (current address in pointer) + sizeof(pointer_data_type)
     * ptr + (int)i => (current address in pointer) + i * sizeof(pointer_data_type)
