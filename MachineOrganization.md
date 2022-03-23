@@ -121,6 +121,7 @@ switch (c) {
 ```
 ## Pointer
   * ```*p``` is to get the value at the address p, ```&x``` is to get the address of the variable x
+  * Initialize: ```int* p1, p2``` gives an int* p1 and an int p2
   * Pointer Arithmetics:
     * ptr++ => (current address in pointer) + sizeof(pointer_data_type)
     * ptr + (int)i => (current address in pointer) + i * sizeof(pointer_data_type)
