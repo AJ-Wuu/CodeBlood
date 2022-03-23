@@ -250,6 +250,25 @@ static char *allocp = allocbuf; /* next free position */
 Computers process data in “bytes”. For 0x12345678:
 * Big-Endian: 12 | 34 | 56 | 78 -> Network
 * Little-Endian: 78 | 56 | 34 | 12 -> General Machine
+```
+int a = 300;
+char *b = (char *)&a;
+*++b = 2;
+printf("%d ",a);
+
+/*
+In Memory, everything is stored in 4 bytes table
+a = 300 = 0x12C = 0x0000012C -> Little-Endian: 2C-01-00-00; Big-Endian: 00-00-01-2C
+pointer b -> |    |    |    |    |
+             |    |    |    |    |
+    int a -> | 2C | 01 | 00 | 00 |
+*++b = *(++b) -> change the second byte of pointer b, so the table becomes
+pointer b -> |    |    |    |    |
+             |    |    |    |    |
+    int a -> | 2C | 02 | 00 | 00 |
+Hence, a = 0x0000022C = 556
+*/
+```
 
 # Build Process  
 * demo.c
