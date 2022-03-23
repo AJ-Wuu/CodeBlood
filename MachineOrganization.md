@@ -191,13 +191,16 @@ char arrc[] = {1, 2 ,3};
 printf("sizeof arri[] = %d\n", sizeof(arri)); //num_of_index = sizeof(arri) / sizeof(arri[0]) -> sizeof(arri) = num_of_index * sizeof(int)
 printf("sizeof arrc[] = %d\n", sizeof(arrc)); //sizeof(arrc) = num_of_index * sizeof(char)
 
-int a; 
+int a;
 char *x; 
 x = (char *) &a; 
 a = 512; 
 x[0] = 1; 
 x[1] = 2; //*x becomes 011010 -> little endian machine gets as 
 printf("%d\n",a);
+
+char g[] = "geeksforgeeks";
+printf("%s\n", g + g[6] - g[8]); //g[6] = ASCII('o') = 111, g[8] = ASCII('g') = 103, so g[6] - g[8] = 8, and so g+8 points to "geeks"
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
