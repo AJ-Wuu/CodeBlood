@@ -95,7 +95,7 @@ while ((to[i] = from[i]) != '\0') {
   * Unary & + - * have higher precedence than the binary forms
   * Precedence:
     * ++ -- (suffix) . ->
-    * ++ -- (prefix) + - (unary) ! ~ \*(dereference) & sizeof
+    * ++ -- (prefix) + - (unary) ! ~ \* (dereference) & sizeof
     * * / % (binary)
     * + - (binary)
     * << >>
