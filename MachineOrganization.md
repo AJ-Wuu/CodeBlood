@@ -204,6 +204,7 @@ printf("%s\n", g + g[6] - g[8]); //g[6] = ASCII('o') = 111, g[8] = ASCII('g') = 
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
+  * ```arr[-1]``` will give a value in its imaginary location, and this is an undefined action that might break horribly
   * ```matrix[i][j]``` == ```*(*(matrix + i) + j)``` -> dereferencing twice
   * Two-Dimensional: ```m[a][b] = (base address + col * sizeof(int)) + j * sizeof(int)``` -> so if ```m``` is ```axc```, but we offer ```axb (b<c)``` to it, then it will take ```col = b```, which should be ```col = c```
 ```
