@@ -206,6 +206,10 @@ printf("%d\n",a);
 
 char g[] = "geeksforgeeks";
 printf("%s\n", g + g[6] - g[8]); //g[6] = ASCII('o') = 111, g[8] = ASCII('g') = 103, so g[6] - g[8] = 8, and so g+8 points to "geeks"
+
+int *arr1[3][5]; //arr1 is a matrix of int pointers
+int *arr2 = malloc(sizeof(3 * 5 * sizeof(int))); //arr2 is an int pointer pointing to a matrix of integers
+printf("%ld, %ld\n", sizeof(arr1),sizeof(arr2)); //gives "120, 8"
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
