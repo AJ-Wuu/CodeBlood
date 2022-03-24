@@ -206,6 +206,10 @@ printf("%s\n", g + g[6] - g[8]); //g[6] = ASCII('o') = 111, g[8] = ASCII('g') = 
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
   * ```matrix[i][j]``` == ```*(*(matrix + i) + j)``` -> dereferencing twice
   * Two-Dimensional: ```m[a][b] = (base address + col * sizeof(int)) + j * sizeof(int)``` -> so if ```m``` is ```axc```, but we offer ```axb (b<c)``` to it, then it will take ```col = b```, which should be ```col = c```
+```
+char output[256] = {23, '1', 0, 0, 0, 0};
+printf("%s\n", output); //will get "21"
+```
 ## Struct
   * Initialize: ```struct NAME_OF_STRUCT {data};```
   * Alias: 
