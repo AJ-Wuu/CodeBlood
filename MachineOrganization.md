@@ -210,6 +210,10 @@ printf("%s\n", g + g[6] - g[8]); //g[6] = ASCII('o') = 111, g[8] = ASCII('g') = 
 int *arr1[3][5]; //arr1 is a matrix of int pointers
 int *arr2 = malloc(sizeof(3 * 5 * sizeof(int))); //arr2 is an int pointer pointing to a matrix of integers
 printf("%ld, %ld\n", sizeof(arr1),sizeof(arr2)); //gives "120, 8"
+
+char str[] = "abcde";
+char *cp = str;
+while(*cp++); //same as *(cp++), it will start at 'b', continue with '\0', and stop when *cp == NULL, so this will accidentally count in the NULL terminator (resulting in one more than the actual length)
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
