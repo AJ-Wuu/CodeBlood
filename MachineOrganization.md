@@ -94,7 +94,8 @@ while ((to[i] = from[i]) != '\0') {
 ## Bitwise Operator: '&' for AND, '|' for OR, '~' for NOT (unary), '^' for XOR, '<<' for left shift, '>>' for right shift
   * Unary & + - * have higher precedence than the binary forms
   * Precedence:
-    * ! ~ ++ -- + - \*(dereference) sizeof (unary)
+    * ++ -- (suffix) . ->
+    * ++ -- (prefix) + - (unary) ! ~ \*(dereference) & sizeof
     * * / % (binary)
     * + - (binary)
     * << >>
@@ -196,13 +197,13 @@ char arrc[] = {1, 2 ,3};
 printf("sizeof arri[] = %d\n", sizeof(arri)); //num_of_index = sizeof(arri) / sizeof(arri[0]) -> sizeof(arri) = num_of_index * sizeof(int)
 printf("sizeof arrc[] = %d\n", sizeof(arrc)); //sizeof(arrc) = num_of_index * sizeof(char)
 
-int a;
-char *x; 
-x = (char *) &a; 
-a = 512; 
-x[0] = 1; 
-x[1] = 2; //*x becomes 011010 -> little endian machine gets as 
-printf("%d\n",a);
+int a[] = {1,3,5};
+a++; //compiler error
+printf("%d\n",*a);
+
+int *a = NULL;
+int b = *a; //segmentation fault
+printf("%d\n", b);
 
 char g[] = "geeksforgeeks";
 printf("%s\n", g + g[6] - g[8]); //g[6] = ASCII('o') = 111, g[8] = ASCII('g') = 103, so g[6] - g[8] = 8, and so g+8 points to "geeks"
