@@ -124,6 +124,7 @@ switch (c) {
   * Initialize:
     * ```int* p1, p2``` gives an int* p1 and an int p2
     * ```int *b = &a```
+      * '&': only applies to objects in memory -> variables and array elements; cannot be applied to expressions, constants, or register variables
   * Reference:
     * References cannot be null, whereas pointers can
     * Every reference refers to some object, although it may or may not be valid
