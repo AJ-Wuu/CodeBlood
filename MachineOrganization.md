@@ -1,4 +1,7 @@
 # C Language
+## Type Conversion
+* positive number rounding down: (int) 2.99 = 2
+* negative number rounding up: (int) -2.99 = -2
 ## String
 * ```'\0'``` marks the end of a char array, remember to add one at the end when creating a new char array
   * ```char str[5] = "CSxxx";``` there is no '\0' at the end of the string, so it will continue printing things in the memory until it reaches a '\0'
