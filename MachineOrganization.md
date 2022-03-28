@@ -37,7 +37,7 @@ printf("%ld, %ld, %ld\n", strlen(s), sizeof(s), sizeof(*s)); //gives "5, 7, 1" -
       * string = s
       * pointer = p
     * flags -> %d, %c, %s, %3d, %-4s (left justified, default is right justified), %.2f (precision of 2 decimals)
-    * positive / negative -> %+5d (print positive nnumbers with a '+'), % 5d (' ', leave a blank space of the '+')
+    * positive / negative -> %+5d (print positive numbers with a '+'), % 5d (' ', leave a blank space of the '+')
     * length modifier -> hh, h, l, ll, L, z
     * zero pad the number -> %04d (add '0')
     * use the alternate version -> %#x gets 0x123AB, NOT 123AB
