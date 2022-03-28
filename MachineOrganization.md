@@ -150,7 +150,7 @@ switch (c) {
   * For array q, ```*q+k``` gives ```q[0]+k```, and ```*(q+k)``` gives ```q[0+k]```
   * ```p += i``` increments the pointer p (pointing to an element of an array) to point i elements beyond where it currently does (not exceeding the array length)
     * The following expressions are equivalent: ```*ip += 1```, ```(*ip)++```, ```++*ip```
-  * ```iq = ip``` copies the contents of pointer ip into pointer iq
+  * ```iq = ip``` copies the content of pointer ip (an address) into pointer iq
   * ```*p++ = val; /* push val onto stack */```
   * ```val = *--p; /* pop top of stack into val */```
   * void pointer
