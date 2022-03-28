@@ -157,7 +157,6 @@ switch (c) {
     * Using the indirection operator ```*``` we can get back the value which is pointed by the pointer, but in case of void pointer we cannot use the indirection operator directly. This is because a void pointer has no data type that creates a problem for the compiler to predict the size of the pointed object
     * The void pointer is useful because it is a generic pointer that any pointer can be cast into and back again without loss of information
     * Cannot be de-referencing without type cast (```void* p = 21; printf("%d\n", *ptr);``` is illegal)
-  * ```int q[] = {1,2,3,4}; int* p = &q[2];``` indicates that p points to the address of q[2], and q points to the address of q[0]. As integer has 4 bytes, ```p - q = 2```
   * Error:
     * Segmentation fault -- if value at pointer p is constant; p points to a memory location that is invalid
     * Arithmetic overflow can occur
