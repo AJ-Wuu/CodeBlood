@@ -86,7 +86,7 @@ while ((to[i] = from[i]) != '\0') {
   * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.) -> NOTICE that 0 here is equivalent to int i = -0.2, float b = 0.0, char c = '\0', etc.
 ## Sign Modifiers
   * unsigned -> unsigned char = 0 ~ 255;
-  * (signed) char = -128 ~ 127
+  * (signed) char = -128 ~ 127 (-2^7 ~ 2^7-1)
     * ```for (char i=1; i; i*=2) { printf("%d\n", i); }``` will generate 1,2,4,8,16,32,64,-128
 ## Warning
 * ```int x = 3; if ((x = 2)) { printf("%d\n", x); }``` here the ```(())``` assigns value, and double parentheses emits the warning (one parenthesis will trigger the warning)
