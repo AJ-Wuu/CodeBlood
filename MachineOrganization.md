@@ -78,7 +78,7 @@ while ((to[i] = from[i]) != '\0') {
 ## Variable Name: digits (0-9) cannot be the first letter
 ## Primitive Data Types
   * 1 byte = 8 bits 
-  * char - 1 byte; short int - 2 bytes; int = float - 4 bytes; long int = long long int = double - 8 bytes; long double - 16 bytes
+  * char = 1 byte; short = 2 bytes; int = float = 4 bytes; long int = long long int = double = 8 bytes; long double = 16 bytes
   * In 16-bit system, pointer - 2
   * In 32-bit system, int - 4, long - 4, long long - 8, pointer - 4
   * In 64-bit system, int - 4, long - 8, long long - 8, pointer - 8
