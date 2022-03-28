@@ -18,8 +18,8 @@
     * ```for ( ; *s == *t; s++, t++) { ... }```
   * ```char pattern = "ould";``` is a shorthand for the longer but equivalent ```char pattern[] = { 'o', 'u', 'l', 'd', '\0' };```
 ```
-char s[] = "abcde";
-printf("%ld, %ld, %ld\n", strlen(s), sizeof(s), sizeof(*s)); //gives "5, 6, 1" -> sizeof counts '\0', sizeof(*s) = sizeof(s[0]) = sizeof(char) = 1
+char s[7] = "abcde";
+printf("%ld, %ld, %ld\n", strlen(s), sizeof(s), sizeof(*s)); //gives "5, 7, 1" -> sizeof counts all allocated space, sizeof(*s) = sizeof(s[0]) = sizeof(char) = 1
 ```
 ## printf: https://www.man7.org/linux/man-pages/man3/printf.3.html
   * fprintf, dprintf, sprintf, snprintf, vprintf
