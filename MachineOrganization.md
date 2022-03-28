@@ -7,7 +7,7 @@
   * ```char str[5] = "CSxxx";``` there is no '\0' at the end of the string, so it will continue printing things in the memory until it reaches a '\0'
   * ```char str[6] = "CSxxx";``` any value geq 6 will auto add '\0' at the end of the string
   * ```char str[3] = "CSxxx";``` the compiler will show warning but NOT ERROR, and it will print "CSx" + things following it in the memory until it hits '\0'
-  * strlen(str) -> get length of a char[]
+  * strlen(str) -> get length of a char[] without the ending '\0'
   * strcpy(): 
     * ```while ((s[i] = t[i]) != '\0') { i++; }```
     * ```while ((*s = *t) != '\0') { s++; t++; }```
