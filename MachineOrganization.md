@@ -12,7 +12,7 @@
     * ```while ((s[i] = t[i]) != '\0') { i++; }```
     * ```while ((*s = *t) != '\0') { s++; t++; }```
     * ```while ((*s++ = *t++) != '\0') { ; }```
-    * ```while (*s++ = *t++) { ; }```
+    * ```while (*s++ = *t++) { ; }``` -> char c = '\0' is a sign of false
   * strcmp():
     * ```for (i = 0; s[i] == t[i]; i++) { ... }```
     * ```for ( ; *s == *t; s++, t++) { ... }```
@@ -83,7 +83,7 @@ while ((to[i] = from[i]) != '\0') {
   * In 32-bit system, int - 4, long - 4, long long - 8, pointer - 4
   * In 64-bit system, int - 4, long - 8, long long - 8, pointer - 8
   * NO string -> it's char[]
-  * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.) -> NOTICE that 0 here is equivalent to int i = -0.2, float b = 0.0, int c = 0, etc.
+  * NO boolean -> it's 0 & 1 -> NOT 0 is true (including negative numbers, characters, etc.) -> NOTICE that 0 here is equivalent to int i = -0.2, float b = 0.0, char c = '\0', etc.
 ## Sign Modifiers
   * unsigned -> unsigned char = 0 ~ 255;
   * (signed) char = -128 ~ 127
