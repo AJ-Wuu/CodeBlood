@@ -378,7 +378,11 @@ Hence, a = 0x0000022C = 556
 malloc(18) //Data has size 18 bytes -> Block Size = H + D + F + R = 4 + 18 + 4 + 6 (padding to a multiple of 8) -> the first byte of data is put into an address divisible by 8 -> check divisible by 8: &00000007
 free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - HeaderSize; 3. Free: &fffffffe to set the last bit to 0
 ```
-* Placement Policy: First-Fit, Best-Fit, Next-Fit, etc.
+* Placement Policy:
+  * First-Fit: finds the first free block that is large enough
+  * Best-Fit: allocates to the closest-fitting free block in the memory, but doesn't necessarily have to examine all free blocks
+  * Next-Fit: begins as the first fit to find a free block but when called next time it starts searching from where it left off, not from the beginning
+  * Worst-Fit: searches for the largest free block, and it's a slow process because it has to traverse the entire memory 
 * Coalesce Policy: Immediate vs. Deferred Coalescing Free Blocks
   * Always cheap to coalesce a free block AFTER the current one (just directly add up)
   * Maybe expensive to coalesce a free block BEFORE the current one (need to traverse the whole list to find the previous one if there is no footer)
