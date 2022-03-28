@@ -99,8 +99,8 @@ while ((to[i] = from[i]) != '\0') {
   * Precedence:
     * ++ -- (suffix) . ->
     * ++ -- (prefix) + - (unary) ! ~ \* (dereference) & sizeof
-    * * / % (binary)
-    * + - (binary)
+    * \* / % (binary)
+    * \+ \- (binary)
     * << >>
     * < <= > >=
     * == !=
