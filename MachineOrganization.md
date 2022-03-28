@@ -134,7 +134,7 @@ switch (c) {
     * ```int *b = &a```
       * '&': only applies to objects in memory -> variables and array elements; cannot be applied to expressions, constants, or register variables
   * Reference:
-    * References cannot be null, whereas pointers can
+    * **References cannot be null, whereas pointers can**
     * Every reference refers to some object, although it may or may not be valid
     * A reference can never be re-assigned once it is established
   * Pointer Arithmetics:
