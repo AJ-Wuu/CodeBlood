@@ -138,9 +138,9 @@ switch (c) {
     * Every reference refers to some object, although it may or may not be valid
     * A reference can never be re-assigned once it is established
   * Pointer Arithmetics:
-    * ptr++ => (current address in pointer) + sizeof(pointer_data_type)
-    * ptr + (int)i => (current address in pointer) + i * sizeof(pointer_data_type)
-    * ```int *p = arr[0], *q = arr[2]```, q - p => (address in q - address in p) / sizeof(pointer_data_type)
+    * ptr++ = (current address in pointer) + sizeof(pointer_data_type)
+    * ptr + (int)i = (current address in pointer) + i * sizeof(pointer_data_type)
+    * ```int *p = arr[0], *q = arr[2]``` q - p = (address in q - address in p) / sizeof(pointer_data_type) = 2
     * ```int (*p)[R][C]``` sizeof(\*p) = R * C * sizeof(int)
     * ```int a[5] = {1,2,3,4,5}; int *ptr = (int*)(&a+1); printf("%d %d", *(a+1), *(ptr-1));``` 
       * compilers convert array operations in pointers before accessing the array elements, (a+1) points to 2
