@@ -180,7 +180,7 @@ int main() {
   return 0; 
 }
 
-char *c[] = {"GeksQuiz", "MCQ", "TEST", "QUIZ"};
+char *c[] = {"GeeksQuiz", "MCQ", "TEST", "QUIZ"};
 char **cp[] = {c+3, c+2, c+1, c};
 char ***cpp = cp;
 printf("%s ", **++cpp); //increment cpp by 1 -> cpp[0] points to cp[1] -> "TEST"
@@ -190,7 +190,7 @@ printf("%s ", cpp[-1][-1]+1); //check cpp[-1] (cpp[0] = cp[2]), which points to 
 
 int a[2][3] = {{1,2,3},{4,5,6}};
 int *b = &a[0][0];
-char *c= &a;
+char *c = &a;
 printf("%d\n", *(b + sizeof(int))); //*(b + sizeof(int)) = *(b+4) = *(b + 4*sizeof(int)) = *(b + 16) = a[1][2] = 5
 printf("%d\n", *(c + sizeof(int))); //*(c + sizeof(int)) = *(c+4) = *(c + 4*sizeof(char)) = *(b + 4) = a[0][1] = 2
 
