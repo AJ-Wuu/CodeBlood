@@ -160,6 +160,10 @@ switch (c) {
   * Error:
     * Segmentation fault -- if value at pointer p is constant; p points to a memory location that is invalid
     * Arithmetic overflow can occur
+  * Pointers to Functions:
+    * In one parenthesis, function first then pointer; otherwise, go with parenthesis
+    * int \*f() -> f: function returning int\*
+    * int (\*pf)() -> pf: pointer to function returning int
   * Can re-assign pointers, CANNOT re-assign arrays (see arrays as CONSTANT pointers)
 ```
 void fun(int *p) { //p is a new copy of the original pointer p, so the change to local p doesn't affect the value of the original p
