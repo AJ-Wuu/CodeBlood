@@ -240,6 +240,28 @@ printf("%s\n", output); //will get "21"
   * Declare: ```struct NAME_OF_STRUCT name```, where the type is ```struct NAME_OF_STRUCT```
   * Dereference: for ```struct STUDENT s1```, we pass ```s1``` and get id by ```s1.id```; for ```struct STUDENT* s1```, we pass ```&s1``` and get id by ```s1->id``` or ```(*s1).id```
   * ```struct rect r, *rp = &r;``` then these four expressions are equivalent ```r.pt1.x```, ```rp->pt1.x```, ```(r.pt1).x```, ```(rp->pt1).x```
+## Union
+* A union is like a structure in which all members are stored at the same address.
+* Members of a union can only be accessed one at a time.
+```
+typedef struct telephone	{
+		char *name;
+		int number;
+} TELEPHONE;
+TELEPHONE index;
+TELEPHONE *ptr_myindex;
+ptr_myindex = &index;
+ptr_myindex->name = "Jane Doe";
+ptr_myindex->number = 12345;
+
+typedef union myunion {
+		double PI;
+		int B;
+} MYUNION;
+MYUNION numbers;
+numbers.PI = 3.14;
+numbers.B = 50;
+```
 ## Exit
   * exit(0) indicates successful program termination & FULLY portable
   * exit(1) (usually) indicates unsucessful termination & NOT portable
