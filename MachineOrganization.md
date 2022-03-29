@@ -288,7 +288,7 @@ printf("%d ",a);
 
 /*
 In Memory, everything is stored in 4 bytes table
-a = 300 = 0x12C = 0x0000012C -> Little-Endian: 2C-01-00-00; Big-Endian: 00-00-01-2C
+a = 300 = 0x12C = 0x0000012C -> Little-Endian: 2C-01-00-00; Big-Endian: 00-00-01-2C (for this, we use Little-Endian)
 pointer b -> |    |    |    |    |
              |    |    |    |    |
     int a -> | 2C | 01 | 00 | 00 |
