@@ -244,9 +244,9 @@ printf("%s\n", output); //will get "21"
 * A union is like a structure in which all members are stored at the same address.
 * Members of a union can only be accessed one at a time.
 ```
-typedef struct telephone	{
-		char *name;
-		int number;
+typedef struct telephone {
+    char *name;
+    int number;
 } TELEPHONE;
 TELEPHONE index;
 TELEPHONE *ptr_myindex;
@@ -255,8 +255,8 @@ ptr_myindex->name = "Jane Doe";
 ptr_myindex->number = 12345;
 
 typedef union myunion {
-		double PI;
-		int B;
+    double PI;
+    int B;
 } MYUNION;
 MYUNION numbers;
 numbers.PI = 3.14;
