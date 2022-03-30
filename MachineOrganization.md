@@ -149,7 +149,7 @@ switch (c) {
       * compilers convert array operations in pointers before accessing the array elements, (a+1) points to 2
       * &a contains address of an item of size 5 * sizeof(int) and when we do (&a + 1) the pointer is incremented by 5 * sizeof(int)
       * ptr is type-casted to int* so when we do ptr - 1, we get address of 5
-    * **Array parameters are treated as pointers**, so ```int arr[2] = {12, 21}; arr = arr+1; printf("%d ", arr[0]);``` gets 21
+    * **Array parameters are treated as pointers**, so ```int arr[2] = {12, 21}; arr = arr+1; printf("%d", arr[0]);``` gets "21"
   * For array q, ```*q+k``` gives ```q[0]+k```, and ```*(q+k)``` gives ```q[0+k]```
   * ```p += i``` increments the pointer p (pointing to an element of an array) to point i elements beyond where it currently does (not exceeding the array length)
     * The following expressions are equivalent: ```*ip += 1```, ```(*ip)++```, ```++*ip```
