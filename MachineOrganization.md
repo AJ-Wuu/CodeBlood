@@ -351,13 +351,13 @@ Hence, a = 0x0000022C = 556
 # Debugger
 ## gdb
 * ```gdb executable_name```, eg. ```gdb a.out```
-* ```l[ist]```: show lines of code surrounding the current point
+* ```[l]ist```: show lines of code surrounding the current point
   * ```list 7, 21```: show codes from line 7 to line 21
 * ```start```: go to next breakpoint (initially just the first line of main)
-* ```r[un]```: keep running until hit an error
-* ```s[tep]```: single-step, descending into functions
-* ```n[ext]```: single-step without descending into functions (over function code)
-* ```p[rint] variable_name```: print the current value of the variable
+* ```[r]un```: keep running until hit an error
+* ```[s]tep```: single-step, descending into functions
+* ```[n]ext```: single-step without descending into functions (over function code)
+* ```[p]rint variable_name```: print the current value of the variable
 * ```e[x]amine[/nfu] addr```: display n-times of u-length of memory, formatted f-format, starting at address addr
   * n = the repeat count
   * f = the display format
@@ -371,19 +371,19 @@ Hence, a = 0x0000022C = 556
     * w for Words (four bytes) -> initial default
     * g for Giant words (eight bytes))
 * ```[info] locals / args / registers / break / register reg_name / ...```: get all information of current local variables, command line arguments, current registers, current break point, current register named as reg_name, ...
-* ```b[reak] line_number / function_name```: set a breakpoint at line / function
+* ```[b]reak line_number / function_name```: set a breakpoint at line / function
 * ```[watch]point variable_name```: set a watchpoint on the variable that display every time if its value changes (the variable you want to watch must be in the current scope)
   * Watchpoints will be displayed in the breakpoints list
   * Use ```info breakpoints``` to list the watchpoints
   * Use ```delete Num``` to delete / disable breakpoints and / or watchpoints
-* ```c[ontinue]```: continue to next breakpoint or end
+* ```[c]ontinue```: continue to next breakpoint or end
 * ```[b]ack[t]race```: print one line per frame for frames in the stack (all stack frames are printed by default)
-* ```fin[ish]```: finish current function, loop, etc. ("finish" not meaningful in the outermost frame)
+* ```[fin]ish```: finish current function, loop, etc. ("finish" not meaningful in the outermost frame)
 * ```[k]ill```: kill the current program
 * ```call function_name(parameters)```: evaluate a single function, eg. call pow(2,3)
 * ```set var = val```: assign the value val to the variable var (NO ';' at the end)
 * ```$```: local variables (could use ```info locals``` to get all local variables' values)
-* ```quit```: exit gdb
+* ```[q]uit```: exit gdb
 ## valgrind
 * ```valgrind ./a.out```: get memory errors list
 * ```valgrind --leak-check=full ./a.out```: check memory leak
