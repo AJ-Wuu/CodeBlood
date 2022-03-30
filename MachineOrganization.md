@@ -20,9 +20,6 @@
 ```
 char s[7] = "abcde";
 printf("%ld, %ld, %ld\n", strlen(s), sizeof(s), sizeof(*s)); //gives "5, 7, 1" -> sizeof counts all allocated space, sizeof(*s) = sizeof(s[0]) = sizeof(char) = 1
-
-int regina_george[42] = {0};
-int n = sizeof(myarray) / sizeof(myarray[0]); //gives n = 2
 ```
 ## printf: https://www.man7.org/linux/man-pages/man3/printf.3.html
   * fprintf, dprintf, sprintf, snprintf, vprintf
@@ -225,7 +222,7 @@ char str[] = "abcde";
 char *cp = str;
 while(*cp++); //same as *(cp++), it will start at 'b', continue with '\0', and stop when *cp == NULL, so this will accidentally count in the NULL terminator (resulting in one more than the actual length)
 
-void momsSecretMeatloafRecipe(int myarray[]) {...} //directly pass an array is the same as pass by reference
+void passArrayIsPassByReference(int myarray[]) {...} //directly pass an array is the same as pass a pointer, so n = sizeof(myarray) / sizeof(myarray[0]) = sizeof(pointer) / sizeof(int) = 2
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
