@@ -224,6 +224,8 @@ printf("%ld, %ld\n", sizeof(arr1),sizeof(arr2)); //gives "120, 8"
 char str[] = "abcde";
 char *cp = str;
 while(*cp++); //same as *(cp++), it will start at 'b', continue with '\0', and stop when *cp == NULL, so this will accidentally count in the NULL terminator (resulting in one more than the actual length)
+
+void momsSecretMeatloafRecipe(int myarray[]) {...} //directly pass an array is the same as pass by reference
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
