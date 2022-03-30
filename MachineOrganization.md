@@ -22,7 +22,7 @@ char s[7] = "abcde";
 printf("%ld, %ld, %ld\n", strlen(s), sizeof(s), sizeof(*s)); //gives "5, 7, 1" -> sizeof counts all allocated space, sizeof(*s) = sizeof(s[0]) = sizeof(char) = 1
 
 char s[3] = "abcd";
-printf("%ld\n", strlen(s)); //gives 3
+printf("%ld\n", strlen(s)); //gives "3"
 ```
 ## printf: https://www.man7.org/linux/man-pages/man3/printf.3.html
   * fprintf, dprintf, sprintf, snprintf, vprintf
