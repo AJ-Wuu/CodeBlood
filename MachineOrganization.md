@@ -222,7 +222,7 @@ char str[] = "abcde";
 char *cp = str;
 while(*cp++); //same as *(cp++), it will start at 'b', continue with '\0', and stop when *cp == NULL, so this will accidentally count in the NULL terminator (resulting in one more than the actual length)
 
-void passArrayIsPassByReference(int myarray[]) {...} //directly pass an array is the same as pass a pointer, so n = sizeof(myarray) / sizeof(myarray[0]) = sizeof(pointer) / sizeof(int) = 2
+void passArrayIsPassByReference(int myarray[]) {...} //directly passing an array is the same as passing a pointer, so n = sizeof(myarray) / sizeof(myarray[0]) = sizeof(pointer) / sizeof(int) = 2
 ```
 ## Array
   * ```int arr[3] = {1,2,3}``` we have ```arr``` as a **constant** pointer (pointing to the first element of the array), so it can never be put at the left of an equation
