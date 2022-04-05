@@ -418,6 +418,6 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
   * Maybe expensive to coalesce a free block BEFORE the current one (need to traverse the whole list to find the previous one if there is no footer)
 * Split Free Block: Free Block Size - Block Size > Minimum Block Size
 * Efficient Usage
-  * ```c = (a < b) * c1 + (a >= b) * c2``` is twice faster than ```if (a < b) { c = c1; } else { c = c2 }```
+  * ```c = (a < b) * c1 + (a >= b) * c2``` is twice faster than ```if (a < b) { c = c1; } else { c = c2; }```
 
 ## Assembly
