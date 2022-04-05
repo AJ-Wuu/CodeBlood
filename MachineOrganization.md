@@ -421,3 +421,12 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
   * ```c = (a < b) * c1 + (a >= b) * c2``` is twice faster than ```if (a < b) { c = c1; } else { c = c2; }```
 
 ## Assembly
+| Label |  Represent  | Size | Example |
+|:-----|:--------:|------:|-----------:|
+|b|char|1 byte|movb $97, %al|
+|w|short|2 bytes|movw $0xFABC, %ax|
+|l|int|4 bytes|movl $0x1234, %eax|
+|q|long / pointer|8 bytes|movq $21, %rax|
+* Address Memory
+  * Absolute Address: 0x100
+  * Indirect Address: () -> Immediate(base, displacement/index, scale)
