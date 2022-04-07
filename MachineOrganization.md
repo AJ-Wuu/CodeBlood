@@ -429,11 +429,15 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
 |q|long / pointer|8 bytes|movq $21, %rax|
 * Address Memory
   * Absolute Address: 0x100
-  * Indirect Address: () -> immediate(base, displacement/index, scale) = immediate + base + disp
+  * Indirect Address: () -> immediate(base, displacement/index, scale) = immediate + base + disp * scale
+    * immediate must be a number
+    * base will be used as address
+    * disp must be the value stored in a register
+    * scale can only be 1, 2, 4 or 8
     * %rax -> stored in %rax; (%rax) -> the variable at **the memory address** stored in %rax
 <pre>
 movq $-5, %rbx                     FF       FF       FF        FF        FF       FF        FF        FB  
-(NOTE: immediate ($), extending by F -> 0xFFFFFFFFFFFFFFFB; from other parameters (%rcx), extending by 0 -> 0x000000000000FFFB)  
+(NOTE: immediate (eg. $-5), extending by F -> 0xFFFFFFFFFFFFFFFB; from other parameters (eg. %cx), extending by 0 -> 0x000000000000FFFB)  
                                                %rax                         %eax           %ax       %al  
                                [........ ........ ........ .........][........ ........ [........ [........]]]  
 movq $5, %rax                      00       00       00        00        00       00        00        05  
@@ -442,3 +446,17 @@ movb $0xD2, %al                    00       00       00        00        00     
 movabsq $0x1122334455667788, %rax  11       22       33        44        55       66        77        88  
 movw %bx, %ax                      11       22       33        44        55       66        FF        FB  
 </pre>
+* leaq src, dest = Load Effective Address = &src -> dest
+* pushq src = move the stack pointer up, then move the data in
+  * subq $8, %rsp
+  * movq src, (%rsp)
+* popq dest = take the data out, then move the stack pointer down
+  * movq (%rsp), dest
+  * addq $8, %rsp
+* call addr
+  * pushq %rip
+  * jmp addr
+* casting:
+  * movb, movw, movl (0x12345678 -> 0x78)
+  * movz -> zero extend (0x78 -> 0x00000078)
+  * movs -> signed extend (0xFA -> 0xFFFFFFFA)
