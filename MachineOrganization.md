@@ -429,4 +429,16 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
 |q|long / pointer|8 bytes|movq $21, %rax|
 * Address Memory
   * Absolute Address: 0x100
-  * Indirect Address: () -> Immediate(base, displacement/index, scale)
+  * Indirect Address: () -> immediate(base, displacement/index, scale) = immediate + base + disp
+    * %rax -> stored in %rax; (%rax) -> the variable at **the memory address** stored in %rax
+<pre>
+movq $-5, %rbx                     FF       FF       FF        FF        FF       FF        FF        FB  
+(NOTE: immediate ($), extending by F -> 0xFFFFFFFFFFFFFFFB; from other parameters (%rcx), extending by 0 -> 0x000000000000FFFB)  
+                                               %rax                         %eax           %ax       %al  
+                               [........ ........ ........ .........][........ ........ [........ [........]]]  
+movq $5, %rax                      00       00       00        00        00       00        00        05  
+movw $0xB2FF, %ax                  00       00       00        00        00       00        B2        FF  
+movb $0xD2, %al                    00       00       00        00        00       00        B2        D2  
+movabsq $0x1122334455667788, %rax  11       22       33        44        55       66        77        88  
+movw %bx, %ax                      11       22       33        44        55       66        FF        FB  
+</pre>
