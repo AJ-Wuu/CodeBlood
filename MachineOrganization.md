@@ -463,3 +463,10 @@ movw %bx, %ax                      11       22       33        44        55     
   * movb, movw, movl (0x12345678 -> 0x78)
   * movz -> zero extend (0x78 -> 0x00000078)
   * movs -> signed extend (0xFA -> 0xFFFFFFFA)
+* Error
+  * ```movb $0xF, (%ebx)``` -> Cannot use %ebx as address register
+  * ```movl %rax, (%rsp)``` -> Mismatch between instruction suffix and register ID
+  * ```movw (%rax), 4(%rsp)``` -> Cannot have both source and destination be memory references
+  * ```movb %al, %sl``` -> No register named %sl
+  * ```movl %eax, $0x123``` -> Cannot have immediate as destination
+  * ```movl %eax, %dx``` -> Destination operand incorrect size
