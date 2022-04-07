@@ -443,7 +443,7 @@ movq $-5, %rbx                     FF       FF       FF        FF        FF     
 movq $5, %rax                      00       00       00        00        00       00        00        05  
 movw $0xB2FF, %ax                  00       00       00        00        00       00        B2        FF  
 movb $0xD2, %al                    00       00       00        00        00       00        B2        D2  
-movabsq $0x1122334455667788, %rax  11       22       33        44        55       66        77        88  
+movabsq $0x1122334455667788, %rax  11       22       33        44        55       66        77        88       (movabsq goes for 64 bits)
 movw %bx, %ax                      11       22       33        44        55       66        FF        FB  
 </pre>
 * leaq src, dest = Load Effective Address = &src -> dest
