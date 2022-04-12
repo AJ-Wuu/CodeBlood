@@ -432,7 +432,7 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
   * movw %(%ebx), %CS
 * Address Memory
   * Absolute Address: 0x100
-  * Indirect Address: () -> immediate(base, displacement/index, scale) = immediate + base + disp * scale
+  * Indirect Address: () -> immediate(base, displacement/index, scale) = (immediate + base + disp * scale)
     * immediate must be a number
     * base will be used as address
     * disp must be the value stored in a register
