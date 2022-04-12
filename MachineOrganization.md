@@ -463,6 +463,28 @@ movw %bx, %ax                      11       22       33        44        55     
   * movb, movw, movl (0x12345678 -> 0x78)
   * movz -> zero extend (0x78 -> 0x00000078)
   * movs -> signed extend (0xFA -> 0xFFFFFFFA)
+* Operators:
+  * neg -> \*(-1)
+  * not -> bitwise complement
+  * sub -> dest = dest - src
+  * mul -> need to worry about overflow
+  * or -> test 0
+  * and -> test 1
+  * sal -> arithmetic shift left, e.g. ```sall %cl, %dest``` (dest << %cl) where %cl is 8-bit
+  * shl -> logical shift left
+    * shift n left = multiply by 2^n -> extend the right side with 0
+  * sar -> arithmetic shift right
+  * shr -> logical shift right
+    * signed -> extend by 0 or 1; unsigned -> extend by 0 
+    * char -> 8 bit -> only 7 bits to move -> only use the last 3 bits in %cl (because 111 = 7)
+    * int -> 32 bit -> only 31 bits to move -> only use the last 5 bits in %cl (because 11111 = 31)
+  * imulq src / mulq src -> (imulq for signed, mulq for unsigned) %rdx:%rax <- src * %rax
+    * put one operand in %rax
+    * imulq another operand stored in %any-other-register
+    * answer in %rdx:%rax (%rdx represents the top-64 bits, and %rax the bottom-64 bits)
+  * idivq src / divq src -> (idivq for signed, divq for unsigned) %rdx <- %rdx:%rax mod src; %rax <- %rdx:%rax ÷ src
+    * %rdx:%rax (numerator) / %any-other-register (denominator) = %rax (quotient), %rdx (remainder)
+  * cpto -> convert to octal -> %rdx:%rax <- SignExtend %rax
 * Error
   * ```movb $0xF, (%ebx)``` -> Cannot use %ebx as address register
   * ```movl %rax, (%rsp)``` -> Mismatch between instruction suffix and register ID
