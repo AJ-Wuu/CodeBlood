@@ -485,6 +485,7 @@ movw %bx, %ax                      11       22       33        44        55     
   * idivq src / divq src -> (idivq for signed, divq for unsigned) %rdx <- %rdx:%rax mod src; %rax <- %rdx:%rax ÷ src
     * %rdx:%rax (numerator) / %any-other-register (denominator) = %rax (quotient), %rdx (remainder)
   * cpto -> convert to octal -> %rdx:%rax <- SignExtend %rax
+    * MUST use this before div to prepare all the registers
 * Error
   * ```movb $0xF, (%ebx)``` -> Cannot use %ebx as address register
   * ```movl %rax, (%rsp)``` -> Mismatch between instruction suffix and register ID
