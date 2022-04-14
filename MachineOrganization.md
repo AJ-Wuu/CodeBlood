@@ -462,6 +462,7 @@ movw %bx, %ax                      11       22       33        44        55     
 </pre>
 * leaq src, dest = Load Effective Address = &src -> dest
   * ```leaq 6(%rbx,%rdx,8), %rax``` where ```%rbx holds value p and %rdx holds value q```, then ```%rax holds 6 + p + 8 * q```
+  * ```movl $11, -28(%rbp)   leaq -28(%rbp), %rax``` works as ```int x = 11; int *p = &x;```
 * pushq src = move the stack pointer up, then move the data in
   * subq $8, %rsp
   * movq src, (%rsp)
@@ -498,6 +499,12 @@ movw %bx, %ax                      11       22       33        44        55     
     * %rdx:%rax (numerator) / %any-other-register (denominator) = %rax (quotient), %rdx (remainder)
   * cpto -> convert to octal -> %rdx:%rax <- SignExtend %rax
     * MUST use this before div to prepare all the registers
+  * cmp src, dest -> same as sub src, dest except the result is not stored -> if result == 0, set ZF as 1; else, clear ZF as 0
+  * Flags (Condition Codes)
+    * ZF (zero flag)
+    * CF (unsigned flag) -> above / below
+    * SF (signed flag) -> negative
+    * OF (overflow flag)
 * Error
   * ```movb $0xF, (%ebx)``` -> Cannot use %ebx as address register
   * ```movl %rax, (%rsp)``` -> Mismatch between instruction suffix and register ID
