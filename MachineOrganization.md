@@ -450,6 +450,7 @@ movabsq $0x1122334455667788, %rax  11       22       33        44        55     
 movw %bx, %ax                      11       22       33        44        55       66        FF        FB  
 </pre>
 * leaq src, dest = Load Effective Address = &src -> dest
+  * ```leaq 6(%rbx,%rdx,8), %rax``` where ```%rbx holds value p and %rdx holds value q```, then ```%rax holds 6 + p + 8 * q```
 * pushq src = move the stack pointer up, then move the data in
   * subq $8, %rsp
   * movq src, (%rsp)
@@ -470,8 +471,8 @@ movw %bx, %ax                      11       22       33        44        55     
   * mul -> need to worry about overflow
   * or -> test 0
   * and -> test 1
-  * sal -> arithmetic shift left, e.g. ```sall %cl, %dest``` (dest << %cl) where %cl is 8-bit
-  * shl -> logical shift left
+  * sal -> arithmetic shift left, e.g. ```salq %cl, %rax``` (%rax << %cl) where %cl is 8-bit
+  * shl -> logical shift left (exactly same as sal)
     * shift n left = multiply by 2^n -> extend the right side with 0
   * sar -> arithmetic shift right
   * shr -> logical shift right
