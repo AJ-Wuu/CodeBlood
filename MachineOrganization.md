@@ -337,7 +337,7 @@ Hence, a = 0x0000022C = 556
 * Compile Proper (CCI): ```gcc -S -g -o some.s demo.c -Wall``` -> ```some.s``` (s-source), translate to assembly
 * Assembler (AS): ```gcc -c -g -o some.o demo.c -Wall``` -> ```some.o``` (relocatable object file)
 * Linker (LD): ```gcc -g -o some demo.c -Wall``` -> ```some``` (executable file) -> ```./some``` to run
-* ```objdump -d some.o``` -> disassemble, ```objdump -s some.o``` -> display full contents
+* ```objdump -d some.o``` -> disassemble (from binary to assembly), ```objdump -s some.o``` -> display full contents
 * ```xxd some.o``` -> hexdecimal version, ```xxd -b some.o``` -> binary version
 
 # Vim
@@ -384,6 +384,17 @@ Hence, a = 0x0000022C = 556
 * ```set var = val```: assign the value val to the variable var (NO ';' at the end)
 * ```$```: local variables (could use ```info locals``` to get all local variables' values)
 * ```[q]uit```: exit gdb
+* ```e[x]amine```: examine memory
+  * ```x/x```: print in hex
+  * ```x/d```: print in decimal
+  * ```x/g```: print in 8 bytes
+  * ```x/w```: print in 4 bytes
+    * ```x/xg```: print in 8-byte hex
+    * ```x/dw```: print in 4-byte decimal
+  * ```$rbp-0x14``` represents ```-0x14(%rbp)```
+* bring up the disassembly and registers view (**TWO** steps in total):
+  * ```layout asm```
+  * ```layout regs```
 ## valgrind
 * ```valgrind ./a.out```: get memory errors list
 * ```valgrind --leak-check=full ./a.out```: check memory leak
