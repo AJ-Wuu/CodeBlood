@@ -1,4 +1,4 @@
-# Python Tips
+# Python Tips: https://docs.python.org/3.10/tutorial/index.html
 ## Arithmetic Operators
 * '//' for division without float: 10 // 3 gets 3
 * '\*\*' for power: 2 ** 7 gets 2^7
@@ -18,6 +18,7 @@
   * ```word[0:2]``` gets the characters from position 0 (included) to 2 (excluded): "Py"
   * ```word[-2:]``` gets the characters from the second-last (included) to the end: "on"
   * ERROR: ```word[0] = 'J'``` (SHOULD be ```'J' + word[1:]```)
+* str.zfill(): extend the left by 0s
 ## List
 * sorted(), reversed()
 * ```math.isnan(value)``` checks if value == float('NAN')
@@ -50,6 +51,13 @@
 * ```width = 10, precision = 4, value = decimal.Decimal("12.34567"), print(f"result: {value:{width}.{precision}}")```: "result:      12.35"
 * ```today = datetime(year=2017, month=1, day=27), print(f"{today:%B %d, %Y}") # using date format specifier```: "January 27, 2017"
 * ```number = 1024, print(f"{number:#0x}") # using integer format specifier```: "0x400"
+* ```print('We are the {} who say "{}!"'.format('knights', 'Ni'))```: "We are the knights who say "Ni!""
+* ```print('This {food} is {adjective}.'.format(food='spam', adjective='absolutely horrible'))```: "This spam is absolutely horrible."
+* ```table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}```
+  * ```print('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(table))```
+  * ```print('Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table))```
+  * gets "Jack: 4098; Sjoerd: 4127; Dcab: 8637678"
+* ```print('{0:2d} {1:3d} {2:4d}'.format(x, x*x, x*x*x))```: column 0 has 2 decimals; column 1 has 3 decimals; column 2 has 4 decimals
 ## Loop
 * For / While ... Else
   * Else Statement is executed when the loop terminates **through exhaustion of the iterable (with for) or when the condition becomes false (with while)**, but not when the loop is terminated by a break statement.
