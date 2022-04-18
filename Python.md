@@ -19,8 +19,31 @@
   * ```word[-2:]``` gets the characters from the second-last (included) to the end: "on"
   * ERROR: ```word[0] = 'J'``` (SHOULD be ```'J' + word[1:]```)
 ## List
+* sorted(), reversed()
+* ```math.isnan(value)``` checks if value == float('NAN')
 * ```letters[:] = []``` clears the list
 * Update: ```a, b = b, a+b```
+* ```list.extend(iterable)```: Extend the list by appending all the items from the iterable. Equivalent to ```a[len(a):] = iterable```
+* With iteration (the following are equivalent):
+  * ```squares = list(map(lambda x: x**2, range(10)))``` (where map() executes a specified function for each item in an iterable as ```map(function, iterables)```)
+  * ```squares = [x**2 for x in range(10)]```
+* zip(): iterate over several iterables in parallel, producing tuples with an item from each one
+  * ```for item in zip([1, 2, 3], ['sugar', 'spice', 'everything nice']): print(item)``` gets ```[(1, 'sugar'), (2, 'spice'), (3, 'everything nice')]```
+* del(): ```del list[:]``` is equivalent to ```list.clear()```, ```del list``` deletes this variable
+### Used List as Stack (LIFO)
+* pop: stack.pop()
+### Used List as Queue (FIFO)
+* pop: queue.popleft()
+### Tuples are immutable (have fixed values) whereas Lists are mutable
+### Sets
+* a = set('abracadabra'), b = set('alacazam')
+  * a # unique letters in a -> {'a', 'r', 'b', 'c', 'd'}
+  * a - b # letters in a but not in b -> {'r', 'd', 'b'}
+  * a | b # letters in a or b or both -> {'a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'}
+  * a & b # letters in both a and b -> {'a', 'c'}
+  * a ^ b # letters in a or b but not both -> {'r', 'd', 'b', 'm', 'z', 'l'}
+### Dictionary
+* ```dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])``` gets ```{'sape': 4139, 'guido': 4127, 'jack': 4098}```
 ## Print
 * ```print(a, end=',')```
 * ```print(f"He said his name is {name!r}.")``` is the same as ```print(f"He said his name is {repr(name)}.")```: "He said his name is 'J'."
@@ -48,3 +71,14 @@ def http_error(status):
         case _: # '_' acts as a wildcard and never fails to match
             return "Something's wrong with the internet"
 ``` 
+* Technique
+```
+questions = ['name', 'quest', 'favorite color']
+answers = ['lancelot', 'the holy grail', 'blue']
+for q, a in zip(questions, answers):
+    print('What is your {0}?  It is {1}.'.format(q, a))
+
+What is your name?  It is lancelot.
+What is your quest?  It is the holy grail.
+What is your favorite color?  It is blue.
+```
