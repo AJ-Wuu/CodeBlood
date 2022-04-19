@@ -513,7 +513,7 @@ movw %bx, %ax                      11       22       33        44        55     
   * ```movl %eax, $0x123``` -> Cannot have immediate as destination
   * ```movl %eax, %dx``` -> Destination operand incorrect size
 ### Template
-* if-else in main()
+* if-else statement in main()
 ```asm
     .file   "if_else.c"
     .text
@@ -559,4 +559,47 @@ END:
     popq    %rbp                # restore the base pointer
     ret
 ```
-* 
+* for loop in leaf_function_iteration() -> a leaf function never calls any other functions
+```asm
+leaf_function_iteration:
+# prologue
+    pushq   %rbp
+    movq    %rsp, %rbp          # we can directly use the register, without reserving extra spaces
+
+/*
+    memory diagram
+    n       |   -4(%rbp)
+    sum     |   -8(%rbp)
+    i       |   -12(%rbp)
+ */
+
+# initialize variables
+    movl    $3, -4(%rbp)
+    movl    $0, -8(%rbp)
+    movl    $0, -12(%rbp)
+
+TOP_OF_LOOP:
+    jmp     CONDITION
+
+LOOP_BODY:
+    movl    -8(%rbp), %eax
+    movl    -12(%rbp), %edx
+    addl    %edx, %eax          # sum += i
+    movl    %eax, -8(%rbp)
+    movl    -12(%rbp), %eax
+    incl    %eax                # i++
+    movl    %eax, -12(%rbp)
+
+CONDITION:
+    movl    -12(%rbp), %eax
+    movl    -4(%rbp), %edx
+    cmpl    %edx, %eax          # i - n
+    jle     LOOP_BODY           # i <= n
+
+END:
+    movl    $0, %eax
+
+# epilogue
+    popq    %rbp
+    ret
+```
