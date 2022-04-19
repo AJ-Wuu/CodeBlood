@@ -512,3 +512,51 @@ movw %bx, %ax                      11       22       33        44        55     
   * ```movb %al, %sl``` -> No register named %sl
   * ```movl %eax, $0x123``` -> Cannot have immediate as destination
   * ```movl %eax, %dx``` -> Destination operand incorrect size
+### Template
+* if-else in main()
+```asm
+    .file   "if_else.c"
+    .text
+    .globl  main
+    .type   main, @function
+
+main:
+# prologue
+    pushq   %rbp                # save the old base pointer for the operating system
+    movq    %rsp, %rbp          # move the stack pointer to the base pointer
+    subq    $32, %rsp           # reserve 32 bytes of space, optional for leaf function
+
+/*
+    memory diagram
+    a       |   -4(%rbp)
+    b       |   -8(%rbp)
+    result  |   -12(%rbp)
+ */
+
+# initialize variables
+    movl    $5, -4(%rbp)
+    movl    $57, -8(%rbp)
+    movl    $99, -12(%rbp)
+
+CONDITION:
+    movl    -4(%rbp), %eax      # move a into the register %eax
+    movl    -8(%rbp), %edx      # move b into the register %edx
+    cmpl    %edx, %eax          # compute a - b
+    jge     FALSE_BLOCK         # when a >= b
+
+TRUE_BLOCK:
+    movl    $1, -12(%rbp)       # change the result to 1
+    jmp     END                 # jump over FALSE_BLOCK to the end
+
+FALSE_BLOCK:
+    movl    $0, -12(%rbp)       # change the result to 0
+
+END:
+    movl    $0, %eax            # return 0
+
+# epilogue
+    addq    $32, %rsp           # "delete" the reserved space
+    popq    %rbp                # restore the base pointer
+    ret
+```
+* 
