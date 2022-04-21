@@ -603,3 +603,56 @@ END:
     popq    %rbp
     ret
 ```
+* function calls -> change the instruction pointer ((R.)I.P.) to the address of the new instruction
+  * parameters / arguments (local variables are different)
+  * return value (always in %rax)
+  * return stack
+  * shared registers
+  * caller (eg. main), callee (eg. function)
+```asm
+sum:
+# prologue (stack set-up, done by callee)
+    # endbr64 - security
+    pushq   %rbp                # store caller base pointer
+    movq    %rsp, %rbp          # don't need to know where the top is
+    # Canary - security
+    movl    %edi, -20(%rbp)     # store callee saved registers
+    movl    %esi, -24(%rbp)
+
+# function body (done by callee)
+    movl    -20(%rbp), %edx
+    movl    -24(%rbp), %eax
+    addl    %edx, %eax
+    movl    %eax, -4(%rbp)
+
+# epilogue (stack tear-down / clear-up, done by callee)
+    movl    -4(%rbp), %eax      # prepare the return value - put into %rax or a struct (if it's a struct, it is stored in the space reversed by caller setup)
+    popq    %rbp                # restore callee-saved registers - pop or move
+                                # no need to reset %rsp (it is not changed at the beginning), specially for leaf function
+    # Check Canary
+    ret                         # pop return address into instruction pointer
+    
+main:
+# function call setup (done by caller)
+    # endbr64 - security
+    pushq   %rbp                # save caller registers + argument + return register (%rax)
+                                # move %rbp to the bottom of the new stack portion (currently, %rsp represents the top of the old stack portion)
+    movq    %rsp, %rbp          # save spaces for the function (put %rsp to the top of the stack)
+    subq    $16, %rsp           # reserve space if the return value is a struct
+    movl    $3, -12(%rbp)       # push arguments 7+ from right to left
+    movl    $4, -8(%rbp)
+    movl    -8(%rbp), %edx
+    movl    -12(%rbp), %eax
+    movl    %edx, %esi          # move arguments 1-6 into registers (%rdi, %rsi, %rdx, %rcx, %r8, %r9)
+    movl    %eax, %edi
+    call    sum                 # call: push return address & change the instruction pointer
+
+# function call clean-up (done by caller)
+    movq    %eax, -4(%rbp)      # deal with return value
+    movl    -4(%rbp), %eax      
+    movl    %eax, %esi          # remove arguments 7+ from the stack
+    movl    $0, %eax            # restore caller-saved registers
+    leave                       # leave = movq %rbp, %rsp + popq %rbp
+                                # reset the stack pointer - leave or add
+                                # reset the base pointer - leave or pop -> pop is faster than leave (by one step)
+```
