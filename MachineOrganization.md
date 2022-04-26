@@ -512,6 +512,14 @@ movw %bx, %ax                      11       22       33        44        55     
   * ```movb %al, %sl``` -> No register named %sl
   * ```movl %eax, $0x123``` -> Cannot have immediate as destination
   * ```movl %eax, %dx``` -> Destination operand incorrect size
+### Functions
+* Leaf Functions Executing Order
+  * add arguments (if more than 6) to the stack
+  * call func
+  * save base pointer
+  * function body
+  * restore base pointer
+  * ret
 ### Template
 * if-else statement in main()
 ```asm
