@@ -664,3 +664,37 @@ main:
                                 # reset the stack pointer - leave or add
                                 # reset the base pointer - leave or pop -> pop is faster than leave (by one step)
 ```
+## Cache Memories
+<pre>
+CPU (%rip, %rsp, %rbp, %rax, ..., %r15)  ←   I/O  →  Main Memory Ram (16GB)  ←  MMU (Reserve (including I/O mapped memory section), Code, Data, Heap, Stack)
+ |                                            ↓           ↑
+ |                                     Disk Controller    |
+ ↓                                            ↓           |
+Cache (L1, L2, L3)                        Disk (2TB) ←----  (with Network Connection, USB (USB Drive, Mouse, Keyboard), Graphics Card, Sound Card)
+</pre>
+* Locality: the next data or memory is next to the first data or instruction
+  * Temporal: use the data again (eg. i in ```int i=0; i<n; i++```)
+  * Spatial: use the nearby data (eg. arr[i])
+<pre>
+Registers: 0 clock cycle
+    ↑ Compiler ------ ↖
+   L1: 4             TLB
+    ↑---------↘        ↑
+   L2: 10     Hardware Registration
+    ↑---------↗                      ↖
+   L3: 50                             Hardware MMU & OS
+                                     ↗
+Main Memory: 200~300 ---------------
+    ↑ Disk Controller (super flexible) takes care of the actual moving & OS makes decisions
+  Disk: million
+    ↑ Network Card & OS
+Network Internet: trillion
+</pre>
+* Different size blocks for each level
+* Registeration Rules about where I can store each block
+* Placement Policy: Least Recent Used; Least Frequently Used; Random
+* Process to get data (Tag - 11 bits, Set - 2 bits, Data - 3 bits)
+  * Check set
+  * Check all Tags
+  * Check valid
+  * Read data if hit; Go to k+1 and check there if miss
