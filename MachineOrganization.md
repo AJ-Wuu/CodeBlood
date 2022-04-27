@@ -399,7 +399,7 @@ Hence, a = 0x0000022C = 556
 * ```valgrind ./a.out```: get memory errors list
 * ```valgrind --leak-check=full ./a.out```: check memory leak
 
-# Memory
+# Compiler
 * Pack the size and Alloc bit into 4 bytes
 * Alignment Requirement -- All size will be even numbers
   * general data is stored in the address divisible by **8 bytes**
@@ -664,6 +664,21 @@ main:
                                 # reset the stack pointer - leave or add
                                 # reset the base pointer - leave or pop -> pop is faster than leave (by one step)
 ```
+## Procedure
+| Stack |
+|:------------------:|
+| *lower address* |
+| ***Callee Frame*** |
+| %rsp |
+| Arguments (over 6) |
+| Local Variables |
+| Saved Registers |
+| %rip (instruction pointer) |
+| %rbp |
+| ***Caller Frame*** |
+| Return Address |
+| Callee Variables |
+| *higher address* |
 ## Cache Memories
 <pre>
 CPU (%rip, %rsp, %rbp, %rax, ..., %r15)  ←   I/O  →  Main Memory Ram (16GB)  ←  MMU (Reserve (including I/O mapped memory section), Code, Data, Heap, Stack)
