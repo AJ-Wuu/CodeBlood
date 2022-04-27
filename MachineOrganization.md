@@ -665,20 +665,23 @@ main:
                                 # reset the base pointer - leave or pop -> pop is faster than leave (by one step)
 ```
 ## Procedure
-| Stack |
+| Stack with parameters a (%rdi), b (%rsi), c (%rax), d (%rdx), e (%r8), f (%r9),g,h,i,j,k |
 |:------------------:|
-| *lower address* |
+| *Top - Lower address - 0x0000* |
 | ***Callee Frame*** |
 | %rsp |
-| Arguments (over 6) |
-| Local Variables |
-| Saved Registers |
-| %rip (instruction pointer) |
+| Arguments (6), Local Variables & Saved Registers |
 | %rbp |
 | ***Caller Frame*** |
-| Return Address |
-| Callee Variables |
-| *higher address* |
+| Return Address %rip (instruction pointer) |
+| *Arguments (over 6)* |
+| g |
+| h |
+| i |
+| j |
+| k |
+| Caller Local Variables |
+| *Bottom - Higher address - 0xFFFF* |
 ## Cache Memories
 <pre>
 CPU (%rip, %rsp, %rbp, %rax, ..., %r15)  ←   I/O  →  Main Memory Ram (16GB)  ←  MMU (Reserve (including I/O mapped memory section), Code, Data, Heap, Stack)
