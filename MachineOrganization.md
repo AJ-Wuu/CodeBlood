@@ -665,7 +665,7 @@ main:
                                 # reset the base pointer - leave or pop -> pop is faster than leave (by one step)
 ```
 ## Procedure
-| Stack with parameters a (%rdi), b (%rsi), c (%rax), d (%rdx), e (%r8), f (%r9),g,h,i,j,k |
+| Stack with parameters a (%rdi), b (%rsi), c (%rax), d (%rdx), e (%r8), f (%r9),g, h, i, j, k |
 |:------------------:|
 | *Top - Lower address - 0x0000* |
 | ***Callee Frame*** |
