@@ -461,6 +461,11 @@ movabsq $0x1122334455667788, %rax  11       22       33        44        55     
 movw %bx, %ax                      11       22       33        44        55       66        FF        FB  
 </pre>
 * leaq src, dest = Load Effective Address = &src -> dest
+  * **Also used to calculate faster**
+  * leaq is a variant of movq
+    * leaq (%rax), %rdx -> move the value of %rax into %rdx
+    * leaq %rax, %rdx -> move the address of %rax into %rdx
+    * movq %rax, %rdx -> move the value of %rax into %rdx
   * ```leaq 6(%rbx,%rdx,8), %rax``` where ```%rbx holds value p and %rdx holds value q```, then ```%rax holds 6 + p + 8 * q```
   * ```movl $11, -28(%rbp)   leaq -28(%rbp), %rax``` works as ```int x = 11; int *p = &x;```
 * pushq src = move the stack pointer up, then move the data in
@@ -472,7 +477,7 @@ movw %bx, %ax                      11       22       33        44        55     
 * call addr
   * pushq %rip
   * jmp addr
-* casting:
+* **Cast: always casting to the larger type -> int x, long y gets (long) x+y**, and **Signed: depending on the src**:
   * movb, movw, movl (0x12345678 -> 0x78)
   * movz -> zero extend (0x78 -> 0x00000078)
   * movs -> signed extend (0xFA -> 0xFFFFFFFA)
