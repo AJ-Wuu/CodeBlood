@@ -722,6 +722,7 @@ Network Internet: trillion
   * Check valid
   * Read data if hit; Go to k+1 and check there if miss
 * Process Example: store data into the address 0xF1FA = 1111000111111010 -> 11110001111 | 11 | 010
+  * SEBm = (4, 2, 8, 64) -> 4 = sets = 8, E = lines = 2, B = block = 8 bytes, m = address size = 64 bits 
   * By the machine, this block has 8 bytes, so the last 3 bits (010) will be used as the return index of the data (010 = 2 -> return the byte of index 2)
   * Check the number of sets, currently it's 4, so we need the next two bits (11) to represent the set index (11 = 3 -> set3)
   * The rest bits are the Tag
