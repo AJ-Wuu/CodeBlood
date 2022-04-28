@@ -717,7 +717,37 @@ Network Internet: trillion
 * Registeration Rules about where I can store each block
 * Placement Policy: Least Recent Used; Least Frequently Used; Random
 * Process to get data (Tag - 11 bits, Set - 2 bits, Data - 3 bits)
-  * Check set
+  * Check set (#sets will always be a power of 2)
   * Check all Tags
   * Check valid
   * Read data if hit; Go to k+1 and check there if miss
+* Process Example: store data into the address 0xF1FA = 1111000111111010 -> 11110001111 | 11 | 010
+  * By the machine, this block has 8 bytes, so the last 3 bits (010) will be used as the return index of the data (010 = 2 -> return the byte of index 2)
+  * Check the number of sets, currently it's 4, so we need the next two bits (11) to represent the set index (11 = 3 -> set3)
+  * The rest bits are the Tag
+  * Mark Valid
+  * Return 0x46 (the data byte of index 2)
+  * Cache Miss = No data or Wrong address
+  * Cache Size = 8 bytes a line, 2 lines a set, 4 sets = 8 * 2 * 4 = 64 bytes
+
+| *Set* | Valid Bit | Tag | Data | *Line* |
+|:-----:|----------:|----:|-----:|-------:|
+| *set0 as 00* | 1 | 10101010111 | 00 01 02 03 04 05 06 07 | *line0* |
+| | 0 |  |  | *line1* |
+| *set1 as 01* | 0 |  |  | *line0* |
+| | 0 |  |  | *line1* |
+| *set2 as 10* | 0 | 10101011110 | 08 07 06 05 04 03 02 01 | *line0* |
+| | 1 | 00010011000 | 12 34 56 78 90 21 43 65 | *line1* |
+| *set3 as 11* | 1 | 11110001111 | 30 86 46 10 75 23 12 36 | *line0* |
+| | 0 |  |  | *line1* |
+* Types of Caches
+  * Direct Mapped Cache - 1 line per set - Not Flexible - Reading Procedure: check set -> check valid -> check tag -> find which byte of data by block (svtb)
+  * Set Associative Cache - more than 1 line & more than 1 set - Reading Procedure: check set -> check all tags -> check valid -> find which byte (stvb)
+  * Fully Associative Cache - only 1 set (**NO SET BIT NEEDED**) - Most Flexible & Expensive & Complicated - Reading Procedure: check tag -> check valid -> find which byte (tvb)
+* Writing to Memory
+  * Cache Hit
+    * Write-Through: write immediately to level below (k+1)
+    * Write-Back: delay writing to level below until eviction, use "dirty" bit to keep track of if data has been written
+  * Cache Miss
+    * Write-Allocate: load the data, place it in the current level (for the kicked-out data, use one of the cache hit policies)
+    * No-Write-Allocate: don't load the data, skip this level and write to the level below
