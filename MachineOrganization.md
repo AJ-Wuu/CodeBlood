@@ -371,7 +371,7 @@ Hence, a = 0x0000022C = 556
     * w for Words (four bytes) -> initial default
     * g for Giant words (eight bytes))
 * ```[info] locals / args / registers / break / register reg_name / ...```: get all information of current local variables, command line arguments, current registers, current break point, current register named as reg_name, ...
-* ```[b]reak line_number / function_name```: set a breakpoint at line / function
+* ```[b]reak line_number / function_name```: set a breakpoint at line / function, eg. ```break *0x555555555ABC```
 * ```[watch]point variable_name```: set a watchpoint on the variable that display every time if its value changes (the variable you want to watch must be in the current scope)
   * Watchpoints will be displayed in the breakpoints list
   * Use ```info breakpoints``` to list the watchpoints
