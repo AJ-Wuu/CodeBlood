@@ -445,8 +445,7 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
   * Absolute Address: 0x100
   * Indirect Address: () -> immediate(base, displacement/index, scale) = (immediate + base + disp * scale)
     * immediate must be a number
-    * base will be used as address
-    * disp must be the value stored in a register
+    * base and disp must be 8-byte registers (eg. %rax, not %eax)
     * scale can only be 1, 2, 4 or 8
     * %rax -> stored in %rax; (%rax) -> the variable at **the memory address** stored in %rax
   * Examples:
