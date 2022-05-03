@@ -490,6 +490,7 @@ movw %bx, %ax                      11       22       33        44        55     
     * leaq (%rax), %rdx -> move the value of %rax into %rdx
     * leaq %rax, %rdx -> move the address of %rax into %rdx
     * movq %rax, %rdx -> move the value of %rax into %rdx
+    * NO alter any condition flags
   * ```leaq 6(%rbx,%rdx,8), %rax``` where ```%rbx holds value p and %rdx holds value q```, then ```%rax holds 6 + p + 8 * q```
   * ```movl $11, -28(%rbp)   leaq -28(%rbp), %rax``` works as ```int x = 11; int *p = &x;```
 * pushq src = move the stack pointer up, then move the data in
@@ -542,6 +543,9 @@ movw %bx, %ax                      11       22       33        44        55     
   * ```movb %al, %sl``` -> No register named %sl
   * ```movl %eax, $0x123``` -> Cannot have immediate as destination
   * ```movl %eax, %dx``` -> Destination operand incorrect size
+* Signed & Unsigned
+  * Above & Below -> unsigned
+  * Greater & Less -> signed
 ## Functions
 * Leaf Functions Executing Order
   * add arguments (if more than 6) to the stack
