@@ -438,9 +438,6 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
 |w|short|2 bytes|movw $0xFABC, %ax|
 |l|int|4 bytes|movl $0x1234, %eax|
 |q|long / pointer|8 bytes|movq $21, %rax|
-* movw: Move Segment Registers
-  * movw %CS, 5(%ebx)
-  * movw %(%ebx), %CS
 * Address Memory
   * Absolute Address: 0x100
   * Indirect Address: () -> immediate(base, displacement/index, scale) = (immediate + base + disp * scale)
@@ -456,6 +453,10 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
     * movb (%rdi, %rcx), %al -- Memory -> Register, 1 byte
     * **Immediate cannot be destination**
     * **Cannot move from Memory to Memory**
+<pre>
+long x = *xp;       movq (%rdi), %rax       Get x at xp
+*xp = y;            movq %rsi, (%rdi)       Store y at xp
+</pre>
 * Special Registers
   * return value: %rax, %eax, %ax, %al
   * stack pointer: %rsp, %esp, %sp, %spl
