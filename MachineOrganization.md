@@ -431,7 +431,7 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
 * Efficient Usage
   * ```c = (a < b) * c1 + (a >= b) * c2``` is twice faster than ```if (a < b) { c = c1; } else { c = c2; }```
 
-## Assembly
+# Assembly
 | Label |  Represent  | Size | Example |
 |:-----|:--------:|------:|-----------:|
 |b|char|1 byte|movb $97, %al|
@@ -517,7 +517,7 @@ movw %bx, %ax                      11       22       33        44        55     
   * ```movb %al, %sl``` -> No register named %sl
   * ```movl %eax, $0x123``` -> Cannot have immediate as destination
   * ```movl %eax, %dx``` -> Destination operand incorrect size
-### Functions
+## Functions
 * Leaf Functions Executing Order
   * add arguments (if more than 6) to the stack
   * call func
@@ -525,7 +525,7 @@ movw %bx, %ax                      11       22       33        44        55     
   * function body
   * restore base pointer
   * ret
-### Template
+## Template
 * if-else statement in main()
 ```asm
     .file   "if_else.c"
@@ -687,7 +687,7 @@ main:
 | k |
 | Caller Local Variables |
 | *Bottom - Higher address - 0xFFFF* |
-## Cache Memories
+# Cache Memories
 <pre>
 CPU (%rip, %rsp, %rbp, %rax, ..., %r15)  ←   I/O  →  Main Memory Ram (16GB)  ←  MMU (Reserve (including I/O mapped memory section), Code, Data, Heap, Stack)
  |                                            ↓           ↑
@@ -757,3 +757,18 @@ Network Internet: trillion
   * Cache Miss
     * Write-Allocate: load the data, place it in the current level (for the kicked-out data, use one of the cache hit policies)
     * No-Write-Allocate: don't load the data, skip this level and write to the level below
+# Exceptional Control Flow
+* Process Address Space
+| *lower address* |
+|:---------------:|
+| *0x400000* |
+| Read-Only code segment (.init, .text, .rodata), **loaded from the executable file** |
+| Read/Write segment (.data, .bss), **loaded from the executable file** |
+| Run-time heap, **created by malloc** |
+| *break* |
+| Memory-mapped region for shared libraries |
+| *%esp (stack pointer)* |
+| User stack, **created at run time** |
+| *2^48 - 1* |
+| Kernel Virtual Memory (code, data, heap, stack), **invisible to user code** |
+| *higher address* |
