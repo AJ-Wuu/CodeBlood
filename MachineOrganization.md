@@ -526,6 +526,7 @@ movw %bx, %ax                      11       22       33        44        55     
     * answer in %rdx:%rax (%rdx represents the top-64 bits, and %rax the bottom-64 bits)
   * idivq src / divq src -> (idivq for signed, divq for unsigned) %rdx <- %rdx:%rax mod src; %rax <- %rdx:%rax ÷ src
     * %rdx:%rax (numerator) / %any-other-register (denominator) = %rax (quotient), %rdx (remainder)
+    * Typically, register %rdx is set to zero beforehand -> Need to make a copy of the original %rdx
   * cpto -> convert to octal -> %rdx:%rax <- SignExtend %rax
     * MUST use this before div to prepare all the registers
   * cmp src, dest -> same as sub src, dest except the result is not stored -> if result == 0, set ZF as 1; else, clear ZF as 0
