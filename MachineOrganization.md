@@ -334,11 +334,11 @@ Hence, a = 0x0000022C = 556
 # Build Process  
 * demo.c
 * C Preprocessor (CPP): ```gcc -E -g -o some.i demo.c -Wall``` -> ```some.i``` (preprocessed source file)
-* Compile Proper (CCI): ```gcc -S -g -o some.s demo.c -Wall``` -> ```some.s``` (s-source), translate to assembly
-* Assembler (AS): ```gcc -c -g -o some.o demo.c -Wall``` -> ```some.o``` (relocatable object file)
+* Compile Proper (CCI): ```gcc -S -g -o some.s demo.c -Wall``` -> ```some.s``` (s-source), translate C to assembly
+* Assembler (AS): ```gcc -c -g -o some.o demo.c -Wall``` -> ```some.o``` (relocatable object file), generate an object-code file that is in binary format and hence cannot be viewed directly
+  * ```objdump -d some.o``` -> disassemble (from binary to assembly), ```objdump -s some.o``` -> display full contents
+  * ```xxd some.o``` -> hexdecimal version, ```xxd -b some.o``` -> binary version
 * Linker (LD): ```gcc -g -o some demo.c -Wall``` -> ```some``` (executable file) -> ```./some``` to run
-* ```objdump -d some.o``` -> disassemble (from binary to assembly), ```objdump -s some.o``` -> display full contents
-* ```xxd some.o``` -> hexdecimal version, ```xxd -b some.o``` -> binary version
 
 # Vim
 * ```vsplit``` or ```vs``` split the Vim viewport vertically
