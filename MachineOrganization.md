@@ -449,6 +449,11 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
     * disp must be the value stored in a register
     * scale can only be 1, 2, 4 or 8
     * %rax -> stored in %rax; (%rax) -> the variable at **the memory address** stored in %rax
+* Special Registers
+  * return value: %rax, %eax, %ax, %al
+  * stack pointer: %rsp, %esp, %sp, %spl
+  * callee saved: %rbx, %ebx, %bx, %bl; %rbp, %ebp, %bp, %bpl; %r12, %r12d, %r12w, %r12b; %r13, %r13d, %r13w, %r13b; %r14, %r14d, %r14w, %r14b; %r15, %r15d, %r15w, %r15b
+  * caller saved: %r10, %r10d, %r10w, %r10b; %r11, %r11d, %r11w, %r11b
 <pre>
 movq $-5, %rbx                     FF       FF       FF        FF        FF       FF        FF        FB  
 (NOTE: immediate (eg. $-5), extending by F -> 0xFFFFFFFFFFFFFFFB; from other parameters (eg. %cx), extending by 0 -> 0x000000000000FFFB)  
