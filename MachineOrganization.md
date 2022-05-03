@@ -438,6 +438,12 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
 |w|short|2 bytes|movw $0xFABC, %ax|
 |l|int|4 bytes|movl $0x1234, %eax|
 |q|long / pointer|8 bytes|movq $21, %rax|
+* Cast
+  * when performing a cast that involves both a size change and a change of “signedness” in C, the operation should **change the size first**
+  * char to unsigned: ```movsbl (%rdi), %eax```
+  * unsigned char to long: ```movzbl (%rdi), %eax```
+  * unsigned to unsigned char: ```movl (%rdi), %eax```
+  * char to short: ```movsbw (%rdi), %ax```
 * Address Memory
   * Absolute Address: 0x100
   * Indirect Address: () -> immediate(base, displacement/index, scale) = (immediate + base + disp * scale)
@@ -453,7 +459,11 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
     * movb (%rdi, %rcx), %al -- Memory -> Register, 1 byte
     * **Immediate cannot be destination**
     * **Cannot move from Memory to Memory**
-  * Pointer:
+  * Pointers & Variables:
+    * Pointers in C are simply addresses
+    * Dereferencing a pointer involves copying that pointer into a register, and then using this register in a memory reference
+    * Local variables, such as x, are often kept in registers rather than stored in memory locations
+    * Register access is much faster than memory access
 <pre>
 long x = *xp;       movq (%rdi), %rax       Get x at xp
 *xp = y;            movq %rsi, (%rdi)       Store y at xp
