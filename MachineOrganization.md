@@ -453,6 +453,7 @@ free(p) //1. Verify p is from malloc; 2. Find header: HeaderAddress = p - Header
     * movb (%rdi, %rcx), %al -- Memory -> Register, 1 byte
     * **Immediate cannot be destination**
     * **Cannot move from Memory to Memory**
+  * Pointer:
 <pre>
 long x = *xp;       movq (%rdi), %rax       Get x at xp
 *xp = y;            movq %rsi, (%rdi)       Store y at xp
