@@ -711,7 +711,7 @@ main:
 | %rbp |
 | ***Caller Frame*** |
 | Return Address %rip (instruction pointer) |
-| *Arguments (over 6)* |
+| *Arguments (over 6)*: After storing six local variables, the program has used up the supply of callee-saved registers. It stores the remaining two local values on the stack. |
 | g |
 | h |
 | i |
