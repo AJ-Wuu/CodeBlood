@@ -472,7 +472,10 @@ long x = *xp;       movq (%rdi), %rax       Get x at xp
   * return value: %rax, %eax, %ax, %al
   * stack pointer: %rsp, %esp, %sp, %spl
   * callee saved: %rbx, %ebx, %bx, %bl; %rbp, %ebp, %bp, %bpl; %r12, %r12d, %r12w, %r12b; %r13, %r13d, %r13w, %r13b; %r14, %r14d, %r14w, %r14b; %r15, %r15d, %r15w, %r15b
+    * When procedure P calls procedure Q, Q must preserve the values of these registers, ensuring that they have the same values when Q returns to P as they did when Q was called
+    * Procedure Q can preserve a register value by either not changing it at all or by pushing the original value on the stack, altering it, and then popping the old value from the stack before returning
   * caller saved: %r10, %r10d, %r10w, %r10b; %r11, %r11d, %r11w, %r11b
+    * Can be modified by any function
 <pre>
 movq $-5, %rbx                     FF       FF       FF        FF        FF       FF        FF        FB  
 (NOTE: immediate (eg. $-5), extending by F -> 0xFFFFFFFFFFFFFFFB; from other parameters (eg. %cx), extending by 0 -> 0x000000000000FFFB)  
