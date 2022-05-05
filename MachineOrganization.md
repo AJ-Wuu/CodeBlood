@@ -344,7 +344,7 @@ Hence, a = 0x0000022C = 556
   * use local variables before global
   * link global variables in another (not including the main function) file by DECLARING with ```extern```
   * **linker symbols ≠ local variables**
-  * ```static``` makes the variable limited to its scope, but could be used multiple times, and within its scope, it works the same as a global variable
+  * ```static``` defines the variable as **global within its limited scope** (the function where it's defined), so it could be used multiple times with updates
 ```C
 void static_example1() {
     static int z = 0;
@@ -360,7 +360,7 @@ void static_example2() {
 
 int main() {
     static_example1();
-    static_example1(); //gets "12"
+    static_example1(); //gets "12" -> the corresponding z is not renewed
     
     static_example2();
     static_example2();
