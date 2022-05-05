@@ -333,12 +333,54 @@ Hence, a = 0x0000022C = 556
 
 # Build Process  
 * demo.c
-* C Preprocessor (CPP): ```gcc -E -g -o some.i demo.c -Wall``` -> ```some.i``` (preprocessed source file)
+* C Preprocessor (CPP) / Precompiler: ```gcc -E -g -o some.i demo.c -Wall``` -> ```some.i``` (preprocessed source file)
 * Compile Proper (CCI): ```gcc -S -g -o some.s demo.c -Wall``` -> ```some.s``` (s-source), translate C to assembly
 * Assembler (AS): ```gcc -c -g -o some.o demo.c -Wall``` -> ```some.o``` (relocatable object file), generate an object-code file that is in binary format and hence cannot be viewed directly
   * ```objdump -d some.o``` -> disassemble (from binary to assembly), ```objdump -s some.o``` -> display full contents
   * ```xxd some.o``` -> hexdecimal version, ```xxd -b some.o``` -> binary version
-* Linker (LD): ```gcc -g -o some demo.c -Wall``` -> ```some``` (executable file) -> ```./some``` to run
+  * functions with a DECLARATION / prototype will be good enough for not getting a **Warning** here (Declaration is like ```int sum(int a, int b);```)
+* Linker (LD): ```gcc -g -o some demo.c -Wall``` -> ```some``` (executable object file) -> ```./some``` to run
+  * functions without a clear DEFINITION will get an **Error** with the Linker (Definition is like ```int sum(int a, int b) { return a+b; }```)
+  * use local variables before global
+  * link global variables in another (not including the main function) file by DECLARING with ```extern```
+  * **linker symbols ≠ local variables**
+  * ```static``` makes the variable limited to its scope, but could be used multiple times, and within its scope, it works the same as a global variable
+```C
+void static_example1() {
+    static int z = 0;
+    z++;
+    printf("%d");
+}
+
+void static_example2() {
+    static int z = 0; //the two zs are not stored as the same variable
+    z++;
+    printf("%d");
+}
+
+int main() {
+    static_example1();
+    static_example1(); //gets "12"
+    
+    static_example2();
+    static_example2();
+    static_example2(); //gets "123"
+}
+```
+* Executable and Linkable File Format (ELF)
+  * .text -> the actual code
+  * .rodata -> read only data -> hard code in "strings"
+  * .data -> initialized global variables and initialized static variables
+  * .bss -> uninitialized global variables and uninitialized static variables -> 0 byte length
+  * .symtab -> symbol table function names and global variable names -> needed for linking purpose
+  * .rel.text & .rel.data -> relocation data for functions and variables -> things that require updating when combining "link" files
+  * .debug & .line -> -g option saves debugging information and code
+  * .strtab -> string table
+* Libraries -> include library files using -L option
+  * Static Library: collection of object files
+  * Archive Library: collection of .a files
+  * Dynamic Library: linking at load time or even while running, position independent code
+  * Shared Library: share the code, each process gets its own data section
 
 # Vim
 * ```vsplit``` or ```vs``` split the Vim viewport vertically
