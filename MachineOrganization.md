@@ -903,14 +903,9 @@ OS <---------
              | interrupt
 Hardware ---/
 ```
-* Fault / Abort
-  * Page Fault
-  * Segmentation Fault
-  * Corrupted Memory
-* Exceptional Control Flow
-  * Process Address Space
-  * Interrupt
-    * number to CPU (0 ~ 255)
+* Class of Exceptions
+  * Interrupt(async): Signal from I/O device - Always return to the next instruction
+    * Number to CPU (0 ~ 255)
     * Signal from hardware
     * Register holds the base of the interrupt table
 
@@ -918,6 +913,12 @@ Hardware ---/
 |:-----:|----------------:|-----:|
 | 0 | 0xAAA | "name of function" |
 | 1 | 0xBBB | |
+
+  * Trap(sync): Intentional exception - Always return to the next instruction
+  * Fault(sync): Potentially recoverable error - Might return to current instruction (Page Fault, Segmentation Fault)
+  * Abort(sync): Nonrecoverable error - Never returns (Corrupted Memory, Core Dumped, Hardware Failure)
+* Exceptional Control Flow
+  * Process Address Space
 
 | *lower address* |
 |:---------------:|
