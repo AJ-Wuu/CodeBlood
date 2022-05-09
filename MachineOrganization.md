@@ -832,11 +832,14 @@ Network Internet: trillion
   * Fully Associative Cache - only 1 set (**NO SET BIT NEEDED**) - Most Flexible & Expensive & Complicated - Reading Procedure: check tag -> check valid -> find which byte (tvb)
 * Writing to Memory
   * Cache Hit
-    * Write-Through: write immediately to level below (k+1)
-    * Write-Back: delay writing to level below until eviction, use "dirty" bit to keep track of if data has been written
+    * Write-Through: write immediately to level below (k+1) -- update the cache and main memory synchronously
+    * Write-Back: delay writing to level below until eviction, use "dirty" bit to keep track of if data has been written -- update the cache with the new value, and put the old value from cache to main memory
   * Cache Miss
     * Write-Allocate: load the data, place it in the current level (for the kicked-out data, use one of the cache hit policies)
     * No-Write-Allocate: don't load the data, skip this level and write to the level below
+  * Pair Up
+    * Write-Through & No-Write-Allocate
+    * Write-Back & Write-Allocate
 # Operating Systems & Interrupts
 * Breaking-down
   * C, Assembly, Systems (DMA, Cache, OS, Linking)
