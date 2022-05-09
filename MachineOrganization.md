@@ -913,6 +913,7 @@ Hardware ---/
     * number to CPU (0 ~ 255)
     * Signal from hardware
     * Register holds the base of the interrupt table
+
 | Index | Interrupt Table |
 |:-----:|----------------:|
 | 0 | 0xAAA -> "name of function" |
