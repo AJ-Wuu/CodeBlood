@@ -837,6 +837,33 @@ Network Internet: trillion
   * Cache Miss
     * Write-Allocate: load the data, place it in the current level (for the kicked-out data, use one of the cache hit policies)
     * No-Write-Allocate: don't load the data, skip this level and write to the level below
+# Operating Systems & Interrupts
+* Breaking-down
+  * C, Assembly, Systems (DMA, Cache, OS, Linking)
+  * Application, Software Systems (OS, Drives - software that serves as an interface to a piece of hardware), Hardware (CPU, memory, disk, keyboard, timer)
+* Operating Systems
+  * Software that makes computers "easy" to use
+  * Manage resources: CPU, address space, hardware, files, network, process
+  * Share resources: multiple processes - CPU virtualization; share memory - memory virtualization
+    * Virtualization: Transform physical resources into multiple illusionary copies
+  * Security
+* Process (1 CPU)
+  * Program: code, data (on the dist)
+  * Process: memory address space (reserved code and data, heap & stack), registers, current instruction, files and I/O devices
+* Time Sharing
+  * A (10 ms) ---(save registers, set bit to kernel mode)---> OS (Timer off) ---(computer sets the bit to user mode, and reset the timer)---> B (10 ms) -> OS (Timer off) -> B (10 ms) -> ...
+  * Timer (Hardware): priviledge Mode Bit - User Mode = 0, Kernal Mode = 1
+    * changing the timer is a kernel mode instruction
+    * things as the part of the kernel: scheduler, memory virtualization, interrupt handler
+* CPU Cycle
+  * yield()
+<pre>
+Fetch <-\---
+Decode   |  \
+Execute -/   \
+  check for interrupt
+</pre>
+* Context Switching
 # Exceptional Control Flow
 * Process Address Space
 
