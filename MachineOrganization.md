@@ -914,10 +914,10 @@ Hardware ---/
     * Signal from hardware
     * Register holds the base of the interrupt table
 
-| Index | Interrupt Table |
-|:-----:|----------------:|
-| 0 | 0xAAA -> "name of function" |
-| 1 | 0xBBB |
+| Index | Interrupt Table | Note |
+|:-----:|----------------:|-----:|
+| 0 | 0xAAA | "name of function" |
+| 1 | 0xBBB | |
 
 | *lower address* |
 |:---------------:|
