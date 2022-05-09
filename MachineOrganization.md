@@ -851,21 +851,72 @@ Network Internet: trillion
   * Program: code, data (on the dist)
   * Process: memory address space (reserved code and data, heap & stack), registers, current instruction, files and I/O devices
 * Time Sharing
-  * A (10 ms) ---(save registers, set bit to kernel mode)---> OS (Timer off) ---(computer sets the bit to user mode, and reset the timer)---> B (10 ms) -> OS (Timer off) -> B (10 ms) -> ...
+  * A (10 ms) -> OS (Timer off) -> B (10 ms) -> OS (Timer off) -> B (10 ms) -> ...
   * Timer (Hardware): priviledge Mode Bit - User Mode = 0, Kernal Mode = 1
     * changing the timer is a kernel mode instruction
     * things as the part of the kernel: scheduler, memory virtualization, interrupt handler
 * CPU Cycle
   * yield()
-<pre>
+```
 Fetch <-\---
 Decode   |  \
 Execute -/   \
   check for interrupt
-</pre>
-* Context Switching
-# Exceptional Control Flow
-* Process Address Space
+```
+* Context Switching (A -> OS -> B)
+  * A running
+  * Interrupt (timer)
+  * save registers
+  * set to kernel mode
+  * save information about A
+  * restore OS state
+  * jump to code to deal with interrupt
+  * scheduler decides which process to run next
+  * save OS state
+  * restore information about B
+  * set timer, change to user mode
+  * set instruction pointer to next line of B
+* Process Control Block
+  * States of each process are kept in an array on OS Heap
+```
+Reserved A
+Cache A
+Data A
+Heap A
+Stack A
+Code OS
+Data OS
+Heap OS
+Stack OS
+```
+* Process State
+```
+              Running (only 1) -------------- Zombie (many)
+wait for I/O ↙    scheduling ↖↘ timer, interrupt, descheduling
+Blocked (many)                 Ready (many) ←--- embryo
+```
+* Exceptions
+```
+Application \
+             | trap: program requests on OS services
+OS <---------
+             | interrupt
+Hardware ---/
+```
+* Fault / Abort
+  * Page Fault
+  * Segmentation Fault
+  * Corrupted Memory
+* Exceptional Control Flow
+  * Process Address Space
+  * Interrupt
+    * number to CPU (0 ~ 255)
+    * Signal from hardware
+    * Register holds the base of the interrupt table
+| Index | Interrupt Table |
+|:-----:|----------------:|
+| 0 | 0xAAA -> "name of function" |
+| 1 | 0xBBB |
 
 | *lower address* |
 |:---------------:|
