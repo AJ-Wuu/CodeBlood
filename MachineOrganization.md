@@ -932,6 +932,8 @@ Hardware ---/
     * Core Dumped
     * Hardware Failure
     * Machine Check
+  * Signal: kernel usually sets a flag of some form in the process table when a signal is generated
+    * between the time of generation and delivery, the signal is pending
 
 | Index | Interrupt Table | Note |
 |:-----:|----------------:|-----:|
