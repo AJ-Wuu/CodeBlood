@@ -944,7 +944,13 @@ Hardware ---/
   * When control is being transferred from a user program to the kernel, all of these items are pushed onto the kernel’s stack rather than onto the user’s stack
   * Exception handlers run in kernel mode, which means they have complete access to all system resources
 * Exceptional Control Flow
-  * Process Address Space
+  * logical flow
+    * a series of program counter (PC) values that corresponded exclusively to instructions contained in our program’s executable object file or in shared objects linked into our program dynamically at run time
+    * processes take turns using the processor
+    * each process executes a portion of its flow and then is preempted (temporarily suspended) while other processes take their turns
+  * concurrent flow
+    * a logical flow whose execution overlaps in time with another flow
+* Process Address Space
 
 | *lower address* |
 |:---------------:|
