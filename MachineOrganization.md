@@ -869,18 +869,21 @@ Execute -/   \
   check for interrupt
 ```
 * Context Switching (A -> OS -> B)
-  * A running
-  * Interrupt (timer)
-  * save registers
-  * set to kernel mode
-  * save information about A
-  * restore OS state
-  * jump to code to deal with interrupt
-  * scheduler decides which process to run next
-  * save OS state
-  * restore information about B
-  * set timer, change to user mode
-  * set instruction pointer to next line of B
+  * Step 1: saves the context of the current process
+    * A running
+    * Interrupt (timer)
+    * save registers
+    * set to kernel mode
+    * save information about A
+  * Step 2: restores the saved context of some previously preempted process
+    * restore OS state
+    * jump to code to deal with interrupt
+    * scheduler decides which process to run next
+    * save OS state
+  * Step 3: passes control to this newly restored process
+    * restore information about B
+    * set timer, change to user mode
+    * set instruction pointer to next line of B
 * Process Control Block
   * States of each process are kept in an array on OS Heap
 ```
