@@ -347,7 +347,7 @@ Hence, a = 0x0000022C = 556
     * Programmer: cannot understand the instructions in the executable file
     * CPU: can read and understand those instructions, and be able to directly executes to perform the defined tasks in the program
   * functions without a clear DEFINITION will get an **Error** here (Definition is like ```int sum(int a, int b) { return a+b; }```)
-  * use local variables before global (when thwy have the same name)
+  * use local variables before global (when they have the same name)
   * link global variables in another (not including the main function) file by DECLARING with ```extern```
   * **linker symbols ≠ local variables**
   * ```static``` defines the variable as **global within its limited scope** (the function where it's defined), so it could be used multiple times with updates
