@@ -909,17 +909,30 @@ Hardware ---/
 * Class of Exceptions
   * Interrupt(async): Signal from I/O device - Always return to the next instruction
     * Number to CPU (0 ~ 255)
-    * Signal from hardware
+    * Signal from hardware (I/O devices)
     * Register holds the base of the interrupt table
+    * "Press CTRL + Z on the keyboard"
+    * "Move the mouse to click a desktop icon"
+  * Trap & System Call(sync): Intentional exception - Always return to the next instruction
+    * "Exit a C program by calling exit()"
+    * "Reading something from a text file using read()"
+    * "Creating a new process using fork()"
+    * "Loading a new program using execve()"
+  * Fault(sync): Potentially recoverable error - Might return to current instruction
+    * Page Fault: an instruction references a virtual address whose corresponding page is not resident in memory and must therefore be retrieved from disk
+    * Segmentation Fault: try to access an uninitialized memory
+    * "Access memory at virtual address 0x00000000"
+  * Abort(sync): Nonrecoverable error - Never returns
+    * Corrupted Memory
+    * Core Dumped
+    * Hardware Failure
+    * Machine Check
 
 | Index | Interrupt Table | Note |
 |:-----:|----------------:|-----:|
 | 0 | 0xAAA | "name of function" |
 | 1 | 0xBBB | |
 
-  * Trap(sync): Intentional exception - Always return to the next instruction
-  * Fault(sync): Potentially recoverable error - Might return to current instruction (Page Fault, Segmentation Fault)
-  * Abort(sync): Nonrecoverable error - Never returns (Corrupted Memory, Core Dumped, Hardware Failure)
 * Exceptional Control Flow
   * Process Address Space
 
