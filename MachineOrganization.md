@@ -384,10 +384,10 @@ int main() {
   * .debug & .line -> -g option saves debugging information and code
   * .strtab -> string table
 * Library -> include library files using -L option
-  * Static Libraries: collection of object files
-  * Archive Libraries: collection of .a files
+  * Static Libraries: .o (.exe) files, linking in compilation process, resolved in a caller
+  * Archive Libraries: .a files
   * Dynamic Libraries: linking at load time or even while running, position independent code
-  * Shared Libraries: share the code, each process gets its own data section
+  * Shared Libraries: .dll files, share the code, each process gets its own data section, be linked dynamically by simply including the address of the library
 
 # Vim
 * ```vsplit``` or ```vs``` split the Vim viewport vertically
