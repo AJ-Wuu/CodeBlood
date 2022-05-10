@@ -940,6 +940,9 @@ Hardware ---/
 | 0 | 0xAAA | "name of function" |
 | 1 | 0xBBB | |
 
+* Exception Handle
+  * When control is being transferred from a user program to the kernel, all of these items are pushed onto the kernel’s stack rather than onto the user’s stack
+  * Exception handlers run in kernel mode, which means they have complete access to all system resources
 * Exceptional Control Flow
   * Process Address Space
 
