@@ -857,7 +857,7 @@ Network Internet: trillion
   * Process: memory address space (reserved code and data, heap & stack), registers, current instruction, files and I/O devices
 * Time Sharing
   * A (10 ms) -> OS (Timer off) -> B (10 ms) -> OS (Timer off) -> B (10 ms) -> ...
-  * Timer (Hardware): priviledge Mode Bit - User Mode = 0, Kernal Mode = 1
+  * Timer (Hardware): Privilege Mode Bit - User Mode = 0, Kernal Mode = 1
     * changing the timer is a kernel mode instruction
     * things as the part of the kernel: scheduler, memory virtualization, interrupt handler
 * CPU Cycle
