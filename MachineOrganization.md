@@ -831,6 +831,7 @@ Network Internet: trillion
   * Direct Mapped Cache - 1 line per set - Not Flexible - Reading Procedure: check set -> check valid -> check tag -> find which byte of data by block (svtb)
   * Set Associative Cache - more than 1 line & more than 1 set - Reading Procedure: check set -> check all tags -> check valid -> find which byte (stvb)
   * Fully Associative Cache - only 1 set (**NO SET BIT NEEDED**) - Most Flexible & Expensive & Complicated - Reading Procedure: check tag -> check valid -> find which byte (tvb)
+* Thrashing: a cache is repeatedly loading and evicting the same sets of cache blocks
 * Writing to Memory
   * Cache Hit
     * Write-Through: write immediately to level below (k+1) -- update the cache and main memory synchronously
