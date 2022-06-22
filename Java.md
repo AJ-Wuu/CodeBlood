@@ -31,3 +31,66 @@
 * Zoned Date and Time (java.time.ZonedDateTime)
 * Locale (java.util.Locale)
 ## Unified Modelling Language
+* Graphically represent business requirements
+* Modelling Classes: represent classes and their relationships
+* Modelling Interactions and Activities: represent the flow of operations
+## Variables
+* ```final``` marks constants
+* Type Inference: var value = "Hello"; //infers String
+* ```static``` marks variables or methods that belong to the class context, which is shared by all instanced of the class
+  * Objects can access shared static context
+  * Current instance (```this```) is meaningless within the static context -> compilation error
+* Immutability: read-only, thread-safe without an overhead cost of coordinating synchronized access, cannot modify after object construction -> initialized immediately, no setter (```public class Product { private BigDecimal price = BigDecimal.ZERO; }```)
+* Enumeration: a fixed set of instances of a specific type
+```java
+public enum Condition {
+    HOT, WARM, COLD;
+}
+
+public enum Condition {
+    HOT("Warning HOT!"),
+    WARM("Just right"),
+    COLD("Warning COLD!");
+    private String caution;
+    private Condition(String caution) {
+        this.caution = caution;
+    }
+    public String getCaution() }
+        return caution;
+    |
+}
+```
+## Overload Methods
+* ```public void setPrice(double price) ... public void setPrice(BigDecimal price) ... public void setPrice(BigDecimal price, BigDecimal discount)```
+## Reuse Constructors
+* Such call must be the first line of the code in the invoking constructor
+```java
+public class Product {
+    private String name;
+    private BigDecimal price;
+    public Product(String name, double price) {
+        this(name); //invoking another constructor
+        this.price = BigDecimal.valueOf(price);
+    }
+    public Product(String name) {
+        this.name = name; //reused constructor
+        this.price = BigDecimal.ZERO;
+    }
+}
+```
+## Memory Allocation
+* Storage
+  * Stack
+    * A memory context of a thread, storing local method variables
+    * Hold only primitives and object references
+    * Passing parameters means copying stack values (a copy of a primitive value / an object reference value)
+  * Heap
+    * A shared memory area, accessible from different methods and thread contexts
+    * Hold classes and objects
+* Cleanup
+  * Objects remain in the heap as long as they are still referenced
+    * An object reference is null until it's initialized
+    * Assigning null doesn't destroy the object, just indicates the absense of this specific reference (there could be other references)
+  * Garbage Collection -> background process for unused memory within run time
+    * Deferred -- not immediately triggered when **all** object references to the object are lost
+    * Prompt: ```System.gc()``` or ```Runtime.getRuntime().gc()```
