@@ -60,6 +60,7 @@ public enum Condition {
     |
 }
 ```
+* ```abstract``` encourages class extensibility, cannot be directly instantiatied
 ## Overload Methods
 * ```public void setPrice(double price) ... public void setPrice(BigDecimal price) ... public void setPrice(BigDecimal price, BigDecimal discount)```
 ## Reuse Constructors
@@ -94,3 +95,31 @@ public class Product {
   * Garbage Collection -> background process for unused memory within run time
     * Deferred -- not immediately triggered when **all** object references to the object are lost
     * Prompt: ```System.gc()``` or ```Runtime.getRuntime().gc()```
+## Factory Method Pattern
+* Hide the use of a specific constructor
+* Dynamically choose the subtype instance to be created
+* Analyze conditions and produce an instance of a specific subtype
+* Invokers an remain subtype unaware
+* Later addition of extra subtypess may not affect such invokers
+```java
+public abstract class Product {
+    public Prodct(...) { }
+}
+public class Food extends Product {
+    public Food(...) { }
+}
+public class Drink extends Product {
+    public Drink(...) { }
+}
+
+public class ProductFactory {
+    public static Product createProduct(...) {
+        switch(productType) {
+            case FOOD:
+                return new Food(...);
+            case DRINK:
+                return new Drink(...);
+        }
+    }
+}
+```
