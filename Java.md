@@ -128,8 +128,16 @@ public class ProductFactory {
 ```
 
 
-## Collection API Interface
-* Iterable<T>: a top-level interface which allows any collection to be used in a forEach loop
-* Collection<E>: extends Iterable
-* List<E>, Set<E>, SortedSet<E>, Deque<E>, Map<K,V>
-* ArrayList<E>, HashSet<E>, TreeSet<E>, ArrayDeque<E>, HashMap<K,V>
+## Collection
+* Collection API Interface
+  * collection.toArray(), collection.removeIf(conditionFunction)
+  * Iterable<T>: a top-level interface which allows any collection to be used in a forEach loop
+  * Collection<E>: extends Iterable
+  * List<E>, Set<E>, SortedSet<E>, Deque<E>, Map<K,V>
+  * ArrayList<E>, HashSet<E>, TreeSet<E>, ArrayDeque<E>, HashMap<K,V>
+* java.util.Collections
+  * .sort(), .reverse(), .shuffle(), .binarySearch(), .fill()
+* Collection can be corrupted if accesses concurrently from multiple threads
+  * Any object in a heap is not thread-safe if it is not immutable
+  * Any thread can be interrupted, even when it is modifying an object, making other threads observe imcomplete modification state
+  * Making collection thread-safe does not guarantee the thread safety to the objects it contains; only immutable objects are automatically thread-safe
