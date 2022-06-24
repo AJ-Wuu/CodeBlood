@@ -9,6 +9,9 @@
 ## Inheritance
 * Superclass is more general, subclass is more specific
 * Subclass must include all attributes in the superclass, but it could define more
+* Static interface methods do not cause conflicts, because they are invoked via specific parent types and do not rely on the super inference
+* An interface can inherit another interface
+* ```extends``` only one superclass, ```implements``` multiple interfaces
 ## Name should not start with number characters (0~9), underscore \_ or dollar sign $
 ## StringBuilder (java.lang.StringBuilder)
 ## Wrapper Classes for Primitives
