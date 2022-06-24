@@ -126,3 +126,10 @@ public class ProductFactory {
     }
 }
 ```
+
+
+## Collection API Interface
+* Iterable<T>: a top-level interface which allows any collection to be used in a forEach loop
+* Collection<E>: extends Iterable
+* List<E>, Set<E>, SortedSet<E>, Deque<E>, Map<K,V>
+* ArrayList<E>, HashSet<E>, TreeSet<E>, ArrayDeque<E>, HashMap<K,V>
