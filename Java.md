@@ -37,6 +37,7 @@
 * Graphically represent business requirements
 * Modelling Classes: represent classes and their relationships
 * Modelling Interactions and Activities: represent the flow of operations
+## Ternary Operator: variable = Expression1 ? Expression2 : Expression3
 ## Variables
 * ```final``` marks constants
 * Type Inference: var value = "Hello"; //infers String
