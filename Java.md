@@ -79,6 +79,8 @@ public enum Condition {
 ```
 ## Overload Methods
 * ```public void setPrice(double price) ... public void setPrice(BigDecimal price) ... public void setPrice(BigDecimal price, BigDecimal discount)```
+* Must have the same return type
+* Must have different parameter numbers or types or both
 ## Reuse Constructors
 * Such call must be the first line of the code in the invoking constructor
 ```java
