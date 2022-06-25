@@ -4,14 +4,22 @@
 * Compile into byte code -> .class **for JVM**
 * Java Virtual Machine must be installed on a target computer
 ## Class & Object
+* Class is a valid reference type, can be used in type casting
 * Java code is structured with CLASS, which represents a concept and defines attributes it can store & operations and algorithms it is capable of
 * Object is a specific instance of a class, which can have specific values for each attribute, invoke operations at run time, and be referenced using a variable of a relevant type
+## Interface
+* Interface is a valid reference type, can be used in type casting, and works with the ```instanceof``` operator
+* An interface can inherit another interface
+* Instance methods are by default public and abstract
+* Contains concrete methods **only** if they are either default, private or static
+* Can contain constants, but not variables
+* Default method can **only** be defined in an interface
+* Functional Interface defines just one abstract method
 ## Inheritance
 * Superclass is more general, subclass is more specific
 * Subclass must include all attributes in the superclass, but it could define more
 * Static interface methods do not cause conflicts, because they are invoked via specific parent types and do not rely on the super inference
-* An interface can inherit another interface
-* ```extends``` only one superclass, ```implements``` multiple interfaces
+* ```extends``` only one superclass (multiple inheritance is not allowed), ```implements``` multiple interfaces
 * Casting for Reference Type
   * Casting is required to assign parent to child reference type
   * No casting is required to assign child to parent reference type
@@ -65,6 +73,7 @@ stringbuilder.append("Java"); //now the original string is changed
   * cannot be directly instantiatied
   * abstract class purpose (but not a must) is to be extended by one or more concrete subclasses
   * concrete subclasses must override all abstract methods of their abstract parent
+  * abstract class may override default methods
 * Object Class
   * the ultimate parent of any other class
   * defines common, generic operations that all other classes inherit and reuse
@@ -93,6 +102,19 @@ public enum Condition {
     |
 }
 ```
+## Compare
+```java
+public class Compare implements Comparator<String>{
+    public int compare(String s1, String s2) {
+        return s2.length() - s1.length(); //returns positive, put s1 behind s2 (positive-behind; negative-before)
+    }
+}
+
+String[] names = {"Mary","Jane","Elizabeth","Jo"};
+Arrays.sort(names, new Compare());
+```
+## Polymorphyism
+* means many forms, when a method is declared in a superclass and is overridden in a subclass, the subclass method takes precedence without casting reference to a specific subclass type
 ## Overload Methods
 * ```public void setPrice(double price) ... public void setPrice(BigDecimal price) ... public void setPrice(BigDecimal price, BigDecimal discount)```
 * Must have the same return type
