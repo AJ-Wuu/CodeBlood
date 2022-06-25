@@ -141,3 +141,4 @@ public class ProductFactory {
   * Any object in a heap is not thread-safe if it is not immutable
   * Any thread can be interrupted, even when it is modifying an object, making other threads observe imcomplete modification state
   * Making collection thread-safe does not guarantee the thread safety to the objects it contains; only immutable objects are automatically thread-safe
+* Prevent Collections Corruption: Unmodifiable (fast, but read-only), Synchronized (slow, but unscalable), Copy-on-write (fast, but consumes memory)
