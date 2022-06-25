@@ -12,6 +12,14 @@
 * Static interface methods do not cause conflicts, because they are invoked via specific parent types and do not rely on the super inference
 * An interface can inherit another interface
 * ```extends``` only one superclass, ```implements``` multiple interfaces
+* Casting for Reference Type
+  * Casting is required to assign parent to child reference type
+  * No casting is required to assign child to parent reference type
+  * Casting is not possible between objects of sibling types
+  * Casting is required when invoking a polymorphic operation
+* Invoke subtype specific operations using a specific reference type
+* Using generic (superclass) types to define method parameters and return values help to promote better code reusability and extensibility
+* ```this``` and ```super``` is not required when the reference is not ambiguous
 ## Name should not start with number characters (0~9), underscore \_ or dollar sign $
 ## StringBuilder (java.lang.StringBuilder)
 * Automatically expand capacity if needed
@@ -49,9 +57,17 @@ stringbuilder.append("Java"); //now the original string is changed
 * State Transition Diagram: the life cycle of an object
 * Deployment Diagram: physical deployment topology
 ## Ternary Operator: variable = Expression1 ? Expression2 : Expression3
+## ```instanceof``` is a binary operator used to test if an object is of a given type: p instanceof Food
 ## Variables
 * ```final``` marks constants
-* ```abstract``` encourages class extensibility, cannot be directly instantiatied
+* ```abstract```
+  * encourages class extensibility
+  * cannot be directly instantiatied
+  * abstract class purpose (but not a must) is to be extended by one or more concrete subclasses
+  * concrete subclasses must override all abstract methods of their abstract parent
+* Object Class
+  * the ultimate parent of any other class
+  * defines common, generic operations that all other classes inherit and reuse
 * Type Inference: var value = "Hello"; //infers String
 * ```static``` marks variables or methods that belong to the class context, which is shared by all instanced of the class
   * Objects can access shared static context
