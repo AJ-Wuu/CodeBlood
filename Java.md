@@ -104,6 +104,7 @@ public class Product {
 * Analyze conditions and produce an instance of a specific subtype
 * Invokers an remain subtype unaware
 * Later addition of extra subtypess may not affect such invokers
+
 ```java
 public abstract class Product {
     public Prodct(...) { }
@@ -126,7 +127,12 @@ public class ProductFactory {
     }
 }
 ```
-
+## Stream Pipeline Processing Operation
+* Intermediate: perform action and produce another stream
+  * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip, limit, takeWhile
+* Terminal: traverse stream pipeline and end the stream processing
+  * forEach, forEachOrdered, count, min, max, sum, average, collect, reduce, allMatch, anyMatch, noneMatch, findAny, findFirst
+* Short-circuit: product finite result, even if persented with infinite input
 ## Collection
 * Collection API Interface
   * collection.toArray(), collection.removeIf(conditionFunction)
@@ -141,5 +147,3 @@ public class ProductFactory {
   * Any thread can be interrupted, even when it is modifying an object, making other threads observe imcomplete modification state
   * Making collection thread-safe does not guarantee the thread safety to the objects it contains; only immutable objects are automatically thread-safe
 * Prevent Collections Corruption: Unmodifiable (fast, but read-only), Synchronized (slow, but unscalable), Copy-on-write (fast, but consumes memory)
-
-## Stream Pipeline
