@@ -42,16 +42,21 @@ stringbuilder.append("Java"); //now the original string is changed
 * Zoned Date and Time (java.time.ZonedDateTime)
 * Locale (java.util.Locale)
 ## Unified Modelling Language
-* Graphically represent business requirements
-* Modelling Classes: represent classes and their relationships
-* Modelling Interactions and Activities: represent the flow of operations
+* Case Diagram: business requirements
+* Class Diagram: classes and their relationships (documenting access modifiers)
+* Activity Diagram: program logic (the flow of operations)
+* Sequence Diagram: interactions between objects
+* State Transition Diagram: the life cycle of an object
+* Deployment Diagram: physical deployment topology
 ## Ternary Operator: variable = Expression1 ? Expression2 : Expression3
 ## Variables
 * ```final``` marks constants
+* ```abstract``` encourages class extensibility, cannot be directly instantiatied
 * Type Inference: var value = "Hello"; //infers String
 * ```static``` marks variables or methods that belong to the class context, which is shared by all instanced of the class
   * Objects can access shared static context
   * Current instance (```this```) is meaningless within the static context -> compilation error
+* Reference: including phantom reference and soft reference (implicit) and they only occur if purposely used; any default variable reference is strong reference (explicit)
 * Immutability: read-only, thread-safe without an overhead cost of coordinating synchronized access, cannot modify after object construction -> initialized immediately, no setter (```public class Product { private BigDecimal price = BigDecimal.ZERO; }```)
 * Enumeration: a fixed set of instances of a specific type
 ```java
@@ -72,7 +77,6 @@ public enum Condition {
     |
 }
 ```
-* ```abstract``` encourages class extensibility, cannot be directly instantiatied
 ## Overload Methods
 * ```public void setPrice(double price) ... public void setPrice(BigDecimal price) ... public void setPrice(BigDecimal price, BigDecimal discount)```
 ## Reuse Constructors
