@@ -14,6 +14,14 @@
 * ```extends``` only one superclass, ```implements``` multiple interfaces
 ## Name should not start with number characters (0~9), underscore \_ or dollar sign $
 ## StringBuilder (java.lang.StringBuilder)
+* Automatically expand capacity if needed
+* Objects are not thread-safe
+* Objects are mutable
+* Can instantiate with a predefined content or capacity
+```java
+StringBuilder stringbuilder = new StringBuilder("Hello ");  
+stringbuilder.append("Java"); //now the original string is changed  
+```
 ## Wrapper Classes for Primitives
 * Construct wrapper object out of primitive or string using the ```valueof()``` method
 * Extract primitive values out of the wrapper using the ```xxxValue()``` method
