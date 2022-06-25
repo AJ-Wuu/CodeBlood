@@ -99,11 +99,14 @@ public class Product {
 * Storage
   * Stack
     * A memory context of a thread, storing local method variables
+    * Each thread has its own stack
     * Hold only primitives and object references
     * Passing parameters means copying stack values (a copy of a primitive value / an object reference value)
+    * Not all variables are on the stack
   * Heap
     * A shared memory area, accessible from different methods and thread contexts
     * Hold classes and objects
+    * Primitives can be placed into a heap as part of an object
 * Cleanup
   * Objects remain in the heap as long as they are still referenced
     * An object reference is null until it's initialized
