@@ -254,7 +254,10 @@ public class ProductFactory {
   * intermediate actions are deferred until stream is traversed by the terminal operation
   * the chain of activities could be fused into a single pass on data
   * stream processing ends as soon as the result is determined; remaining stream data can be ignored
-* Stream operations use functional interfaces and can be implemented as lambda expressions
+* Stream operations use **functional interfaces** and can be implemented as **lambda expressions**
+* Stream methods take **lambda expressions as arguments**
+* Stream methods are **chained** together
+* **Collections** are converted to streams (standard or parallel)
 * Stream may represent both finite and infinite flows of elements
 * Interfaces
   * BaseStream: defines core stream behaviours (managing the stream in a parallel or sequential mode)
@@ -263,6 +266,7 @@ public class ProductFactory {
   * To avoid excessive boxing and unboxing, primitive stream variants are also provided
   * Stream can be obtained from **any collection and array** or by using **static methods** of the Stream class
 * Stream Pipeline Processing Operation
+  * **```Optional``` is a wrapper object that protects against null value**
   * Intermediate: perform action and produce another stream
     * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip(long l), limit(long l), takeWhile(Predicate P), dropWhile(Predicate P)
   * Terminal: traverse stream pipeline and end the stream processing
