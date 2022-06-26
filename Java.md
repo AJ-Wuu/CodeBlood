@@ -7,6 +7,10 @@
 * Class is a valid reference type, can be used in type casting
 * Java code is structured with CLASS, which represents a concept and defines attributes it can store & operations and algorithms it is capable of
 * Object is a specific instance of a class, which can have specific values for each attribute, invoke operations at run time, and be referenced using a variable of a relevant type
+* Nested Classes
+  * Member Inner Class can access **private/static/instance** variables and methods of the Outer Class
+  * Local Inner Class can access **final or effectively final** Outer method variables and parameters, and contains logic complex enough to require the algorithms be wrapped up as a class
+  * Anonymous Inner Class is an implementation of an interface or extension of a class to override operations, **cannot declare constructors, only invoke the constructor of the Parent Class**, is implemented inline and instantiated immediately, can access **final or effectively final** Outer method variables and parameters
 ## Interface
 * Interface is a valid reference type, can be used in type casting, and works with the ```instanceof``` operator
 * An interface can inherit another interface
@@ -102,7 +106,10 @@ public enum Condition {
     |
 }
 ```
-## Compare
+## Comparator
+* ```thenComparing``` adds additional comparators
+* ```reversed``` reverses sorting order
+* ```nullsFirst``` and ```nullsLast``` return comparators that enable sorting collections with null values
 ```java
 public class Compare implements Comparator<String>{
     public int compare(String s1, String s2) {
@@ -115,9 +122,14 @@ Arrays.sort(names, new Compare());
 ```
 ## Collection
 * Collection API Interface
-  * validate elements within the collection (eg. check uniqueness)
-  * order elements
-  * provide thread-safe operations (protect internal storage from corruption when it is accessed concurrently from multiple threads)
+  * All
+    * validate elements within the collection (eg. check uniqueness)
+    * order elements
+    * provide thread-safe operations (protect internal storage from corruption when it is accessed concurrently from multiple threads)
+    * get implemented internally by using arrays
+  * Some
+    * allow programs to store groups of objects in memory
+    * expand dynamically (eg. Iterable doesn't)
   * collection.toArray(), collection.removeIf(conditionFunction)
   * Interfaces
     * Iterable\<T>: a top-level interface which allows any collection to be used in a forEach loop
