@@ -293,3 +293,45 @@ public class ProductFactory {
   * Primitive variants: ```mapToInt```, ```mapToLong``` and ```mapToDouble```
 * ```reduce``` Operation -> Aggregate Stream Data -> Produce a single result from the stream of values
 * ```collect``` Operation -> General Logic -> Perform a mutable reduction operation on the elements of the stream
+## Java Logging API
+* Logging Method Categories
+  * log
+  * logp (log precise)
+  * logrb (log with resource bundle)
+  * entering, exiting, throwing
+  * severe, warning, config, info, fine, finer, finest
+* Guarded Logging: to avoid processing messages that are due to be discarded
+  * Logging level can be set programmatically or via the configuration
+  * Message is concatenated, but is not recorded because it is below the logging-level threshold
+  * Message is not processed if it is below the logging-level threshold
+  * Object parameters can be used to avoid concatenating messages unnecessarily
+* Log Writing Handling
+  * Logger writes log messages with different log levels
+    * forming a hierarchy
+  * Log Handler writes log messages to a log destination
+    * Console
+    * File
+    * Memory
+    * Socket
+    * Stream
+  * Filters can be set for both Logger and Log Handler
+  * Log Handlers use formatters: SimpleFormatter, XMLFormatter
+* Logging Configuration -> ```logging.properties```
+* Exceptions
+  * Checked: must be caught OR must be explicitly propagated
+  * Unchecked (Runtime): may be caught AND do not have to be explicitly propagated
+  * Custom
+    * Must extend class ```Exception``` or another more specific descedant of ```Throwable```
+    * May provide constructors that utilize superclass constructor abilities like providing an error message, wrapping another exception indicating a cause of this exception
+  * Throwing
+    * when exception is raised, normal program flow is terminated; control is passed to the nearest available exception handler
+    * if exception handler is not available within this method, Unchecked -> automatically propagated to the invoker; Checked -> must be explicitly listed within the ```throws``` clause
+  * Catching
+    * specific expection handlers (catching exception subtypes) must be placed before generic handlers
+    * Unchecked -> optional
+    * when exception occurs within the try block, program flow is interrupted; control is passed to the nearest catch that matches the exception type
+  * No mathing exception handler -> program will exit
+  * Try-with-parameters syntax provides auto-closure of multiple resources
+    * Automatica closure is provided by an implicitly formed final block
+    * may produce supressed exceptions
+  
