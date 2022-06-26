@@ -3,11 +3,13 @@
 * Source code -> plain text -> .java
 * Compile into byte code -> .class **for JVM**
 * Java Virtual Machine must be installed on a target computer
+## Name should not start with number characters (0~9), underscore \_ or dollar sign $
 ## Class & Object
 * Class is a valid reference type, can be used in type casting
 * Java code is structured with CLASS, which represents a concept and defines attributes it can store & operations and algorithms it is capable of
 * Object is a specific instance of a class, which can have specific values for each attribute, invoke operations at run time, and be referenced using a variable of a relevant type
 * Nested Classes
+  * Defining classes inside other classes to encapsulate logic and constrain context of use
   * Member Inner Class
     * can access **private/static/instance** variables and methods of the Outer Class
   * Local Inner Class
@@ -18,6 +20,7 @@
     * **cannot declare constructors, only invoke the constructor of the Parent Class**
     * is implemented inline and instantiated immediately
     * can access **final or effectively final** Outer method variables and parameters
+## Lambda Expressions is an inline implementation of a functional interface
 ## Interface
 * Interface is a valid reference type, can be used in type casting, and works with the ```instanceof``` operator
 * An interface can inherit another interface
@@ -39,44 +42,6 @@
 * Invoke subtype specific operations using a specific reference type
 * Using generic (superclass) types to define method parameters and return values help to promote better code reusability and extensibility
 * ```this``` and ```super``` is not required when the reference is not ambiguous
-## Name should not start with number characters (0~9), underscore \_ or dollar sign $
-## StringBuilder (java.lang.StringBuilder)
-* Automatically expand capacity if needed
-* Objects are not thread-safe
-* Objects are mutable
-* Can instantiate with a predefined content or capacity
-```java
-StringBuilder stringbuilder = new StringBuilder("Hello ");  
-stringbuilder.append("Java"); //now the original string is changed  
-```
-## Wrapper Classes for Primitives
-* Construct wrapper object out of primitive or string using the ```valueof()``` method
-* Extract primitive values out of the wrapper using the ```xxxValue()``` method
-* Auto-boxing & Auto-unboxing
-* Create wrapper or primitive out of the string using the ```parseXXX()``` method
-* Covert a primitive to a string using the ```String.valueOf()``` method
-* Wrapper classes provide constants for each type, such as ```Integer.MIN_VALUE```
-## BigDecimal (java.math.BigDecimal) -> exact precision
-* Parse Numerical Values (java.text.NumberFormat) -> NumberFormat.parse()
-## Local Date and Time
-* LocalDateTime.of(year, month, day, hours, minutes, seconds, nanoseconds)
-* LocalDate.of(year, month, day)
-* LocalTime.of(hours, minutes, seconds, nanoseconds)
-* someDay.atTime(someTime), someDateTime.toLocalDate(), someDateTime.toLocalTime()
-* .plus(XXX), .minus(XXX), .withXXX(), isBefore(), isAfter()
-* Format and Parse Date and Time (java.time.format.DateTimeFormatter)
-* Instants (java.time.Instant), Durations (java.time.Duration), Periods (java.time.Period)
-* Zoned Date and Time (java.time.ZonedDateTime)
-* Locale (java.util.Locale)
-## Unified Modelling Language
-* Case Diagram: business requirements
-* Class Diagram: classes and their relationships (documenting access modifiers)
-* Activity Diagram: program logic (the flow of operations)
-* Sequence Diagram: interactions between objects
-* State Transition Diagram: the life cycle of an object
-* Deployment Diagram: physical deployment topology
-## Ternary Operator: variable = Expression1 ? Expression2 : Expression3
-## ```instanceof``` is a binary operator used to test if an object is of a given type: p instanceof Food
 ## Variables
 * ```final``` marks constants
 * ```abstract```
@@ -160,6 +125,36 @@ Arrays.sort(names, new Compare());
   * Any thread can be interrupted, even when it is modifying an object, making other threads observe imcomplete modification state
   * Making collection thread-safe does not guarantee the thread safety to the objects it contains; only immutable objects are automatically thread-safe
 * Prevent Collections Corruption: Unmodifiable (fast, but read-only), Synchronized (slow, but unscalable), Copy-on-write (fast, but consumes memory)
+## Ternary Operator: variable = Expression1 ? Expression2 : Expression3
+## ```instanceof``` is a binary operator used to test if an object is of a given type: p instanceof Food
+## StringBuilder (java.lang.StringBuilder)
+* Automatically expand capacity if needed
+* Objects are not thread-safe
+* Objects are mutable
+* Can instantiate with a predefined content or capacity
+```java
+StringBuilder stringbuilder = new StringBuilder("Hello ");  
+stringbuilder.append("Java"); //now the original string is changed  
+```
+## Wrapper Classes for Primitives
+* Construct wrapper object out of primitive or string using the ```valueof()``` method
+* Extract primitive values out of the wrapper using the ```xxxValue()``` method
+* Auto-boxing & Auto-unboxing
+* Create wrapper or primitive out of the string using the ```parseXXX()``` method
+* Covert a primitive to a string using the ```String.valueOf()``` method
+* Wrapper classes provide constants for each type, such as ```Integer.MIN_VALUE```
+## BigDecimal (java.math.BigDecimal) -> exact precision
+* Parse Numerical Values (java.text.NumberFormat) -> NumberFormat.parse()
+## Local Date and Time
+* LocalDateTime.of(year, month, day, hours, minutes, seconds, nanoseconds)
+* LocalDate.of(year, month, day)
+* LocalTime.of(hours, minutes, seconds, nanoseconds)
+* someDay.atTime(someTime), someDateTime.toLocalDate(), someDateTime.toLocalTime()
+* .plus(XXX), .minus(XXX), .withXXX(), isBefore(), isAfter()
+* Format and Parse Date and Time (java.time.format.DateTimeFormatter)
+* Instants (java.time.Instant), Durations (java.time.Duration), Periods (java.time.Period)
+* Zoned Date and Time (java.time.ZonedDateTime)
+* Locale (java.util.Locale)
 ## Polymorphyism
 * means many forms, when a method is declared in a superclass and is overridden in a subclass, the subclass method takes precedence without casting reference to a specific subclass type
 ## Overload Methods
@@ -182,6 +177,13 @@ public class Product {
     }
 }
 ```
+## Unified Modelling Language
+* Case Diagram: business requirements
+* Class Diagram: classes and their relationships (documenting access modifiers)
+* Activity Diagram: program logic (the flow of operations)
+* Sequence Diagram: interactions between objects
+* State Transition Diagram: the life cycle of an object
+* Deployment Diagram: physical deployment topology
 ## Memory Allocation
 * Storage
   * Stack
@@ -230,9 +232,20 @@ public class ProductFactory {
     }
 }
 ```
-## Stream Pipeline Processing Operation
-* Intermediate: perform action and produce another stream
-  * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip, limit, takeWhile
-* Terminal: traverse stream pipeline and end the stream processing
-  * forEach, forEachOrdered, count, min, max, sum, average, collect, reduce, allMatch, anyMatch, noneMatch, findAny, findFirst
-* Short-circuit: product finite result, even if persented with infinite input
+## Streams
+* An immutable flow of elements
+* Can be **sequential** (default) or **parallel**
+* Once an element is processed, it is no longer available from the stream
+* Stream pipeline traversal uses **method chaining - intermediate** operations return streams
+* Lazy -> Significant Efficiencies
+  * intermediate actions are deferred until stream is traversed by the terminal operation
+  * the chain of activities could be fused into a single pass on data
+  * stream processing ends as soon as the result is determined; remaining stream data can be ignored
+* Stream operations use functional interfaces and can be implemented as lambda expressions
+* Stream may represent both finite and infinite flows of elements
+* Stream Pipeline Processing Operation
+  * Intermediate: perform action and produce another stream
+    * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip, limit, takeWhile
+  * Terminal: traverse stream pipeline and end the stream processing
+    * forEach, forEachOrdered, count, min, max, sum, average, collect, reduce, allMatch, anyMatch, noneMatch, findAny, findFirst
+  * Short-circuit: product finite result, even if persented with infinite input
