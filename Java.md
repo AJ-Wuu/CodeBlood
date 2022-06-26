@@ -363,3 +363,85 @@ public class ProductFactory {
   * May create non-existent path object **without causing exceptions until trying to use them**
   * Represent Zip Archive as a FileSystem
   * Access HTTP Resources
+## Concurrency and Multithreading
+* Parallelism -> different execution paths that run simutaneously
+* Concurrency -> different execution paths that may not run simutaneously
+* Implement Threads
+  * Describe thread actions
+  * Instantiate thread object
+  * Schedule thread to run
+* Thread Life Cycle
+  * NEW -> RUNNABLE -> (BLOCKED/WAITING/TIMED_WAITING -> RUNNABLE -> ...) -> TERMINATED
+    * WAITING needs a signal to be notified
+    * TIMED_WAITING waits for a set-length of time
+  * Use an ```ExecutorService``` to start, stop accepting new, wait for completion, and stop concurrent tasks
+* Interrupt Thread
+  * RUNNABLE **may** check for interrupt signal
+  * WAITING/TIMED_WAITING **must** catch ```InterruptedException```, which puts it back to RUNNABLE and then decides what to do
+* Block Thread
+    * Monitor object helps to coordinate order of execution of threads
+      * Any object or a class can be used as a monitor
+      * Allows threads to enter blocked or waiting states
+      * Enables mutual exclusion of threads and signaling mechanisms
+    * ```synchronized``` enforces exclusive access to the block of code
+      * Thread that first enters the synchronized block remains in the RUNNABLE state
+      * All other threads accessing the same block enter the BLOCK state
+      * When a RUNNABLE thread exits the synchronized block, the lock is released
+      * Another thread is now allowed to enter the RUNNABLE state and place a new lock
+* Thread Properties
+  * custom name
+  * unique id
+  * marked as a daemon or a user(default) thread
+  * may wait for another thread to terminate
+  * could be assigned a priority
+* Create Executor Service Objects (java.util.concurrent.Executors -> thread management automations with different ```ExecutorService``` objects)
+  * Fixed Thread Pool reuses a fixed number of threads
+  * Work Stealing Pool maintains enough threads to support the given parallelism level
+  * Single Thread Executor uses a single worker thread
+  * Cached Thread Pool creates new threads as needed or reuses existing threads
+  * Scheduled Thread Pool schedules tasks to execute with a delay and/or periodically
+  * Single Thread Scheduled Executor schedules tasks to execute with a delay using a single worker thread
+  * Unconfigurable Executor Service provides a way to "freeze" another Executor Service configuration
+* Locking Problems
+  * Starvation: waiting for a resource blocked by another busy thread
+  * Livelock: forming an indefinite loop, expecting confirmation of completion from each other
+    * ```while (b.isOver()) { //do A } aOVer = true;```
+    * ```while (a.isOver()) { //do B } bOVer = true;```
+  * Deadlock: two or more threads are blocked forever, waiting for each other
+    * ```synchronized (a) { synchronized (b) { ... } }```
+    * ```synchronized (b) { synchronized (a) { ... } }```
+* Thread-Safe
+  * Stack values (local variables/methods)
+  * Immutable objects in a shared heap memory (cannot be changed at all)
+  * Mutable objects in a shared heap memory are **thread-unsafe**
+    * shared between all threads
+    * may be inconsistent or corrupted
+    * compiler may choose cache heap value locally within a thread (not updated in-time)
+* Ensure Consistent Access to Shared Data
+  * Disable compiler optimization that is caching the shared value locally within a thread
+  * ```volatile``` instructs Java compiler
+    * Not to cache the variable value locally
+    * Always read it from the main memory
+    * Applies all changes to the main memory that occurred in a thread before the update of the volatile variable
+* Non-Blocking Atomic Actions
+  * Action is atomic if it is guaranteed to be performed by a thread without an interruption
+  * Cannot be interleaved
+  * Only actions performed by a CPU in a single cycle are by default atomic
+  * Variable assignments are atomic actions, except ```long``` and ```double``` (64-bit, taking more than a single step to assign these on a 32-bit platform)
+  * + - / * % ++ -- are not atomic
+  * java.util.concurrent.atomic -> lock-free thread-safe programming of atomic behaviours on single variables
+  * Volatile
+* Use intrinsic lock to enforce an exclusive access to a shared object
+  * Order of execution and object consistency are ensured
+  * Synchronized logic creates a bottlenect in a multithreaded application
+  * Performance and scalability can be significantly degraded
+* Intrinsic Lock Automation: ```Collections```
+* Non-Blocking Concurrency Automation
+  * java.util.concurrent
+  * All mutative operations (add, remove, etc.) make fresh copies of the underlying collection
+  * The read-only snapshot of merge content is used for traversal
+* Alternative Locking Mechanisms
+  * Allows actions to be performed on an object, without interference from other threads
+  * Available from java.util.concurrent.locks
+  * Write lock prevents other threads from concurrently modifying the object
+  * Read lock can be acquired if Write lock is not held by another thread, allowing concurent read actions
