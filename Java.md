@@ -334,4 +334,32 @@ public class ProductFactory {
   * Try-with-parameters syntax provides auto-closure of multiple resources
     * Automatica closure is provided by an implicitly formed final block
     * may produce supressed exceptions
-  
+## Java I/O API
+* Streams are categorized on:
+  * Type of data to carry (text, binary, etc.)
+  * Direction (input or output)
+  * Type of the source or destination to which this stream is connected
+  * Additional features (filtering, transformation of data, etc.)
+* Packages: java.io and java.nio
+  * ```abstract``` -> general text and binary data read and write abilities
+  * ```concrete``` -> descend from these parents to provide different types of IO stream handlers
+* Serialization
+  * Serialization: writing objects from memory into a stream
+    * can write data outside of the secure environment of the program
+  * Deserialization: reading objects from the stream
+  * Can be customized
+  * Data is serialized in a binary form
+  * Use Cases:
+    * Swapping objects to avoid running out of memory
+    * Sending objects across network
+    * Not suitable for long-term data storage
+    * Specific to the compiled code version
+  * Include the entire object graph, except **transient** variables
+  * Set **Path** Properties using class Files
+    * Set last modified time
+    * Set permissions
+    * Look up users and groups using ```FileSystem UserPrincipalLookupService```
+    * Set owner and group
+  * May create non-existent path object **without causing exceptions until trying to use them**
+  * Represent Zip Archive as a FileSystem
+  * Access HTTP Resources
