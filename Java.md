@@ -243,9 +243,39 @@ public class ProductFactory {
   * stream processing ends as soon as the result is determined; remaining stream data can be ignored
 * Stream operations use functional interfaces and can be implemented as lambda expressions
 * Stream may represent both finite and infinite flows of elements
+* Interfaces
+  * BaseStream: defines core stream behaviours (managing the stream in a parallel or sequential mode)
+  * Stream, DoubleStream, IntStream, LongStream Interfaces extend BaseStream
+  * Use generics
+  * To avoid excessive boxing and unboxing, primitive stream variants are also provided
+  * Stream can be obtained from **any collection and array** or by using **static methods** of the Stream class
 * Stream Pipeline Processing Operation
   * Intermediate: perform action and produce another stream
     * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip, limit, takeWhile
   * Terminal: traverse stream pipeline and end the stream processing
     * forEach, forEachOrdered, count, min, max, sum, average, collect, reduce, allMatch, anyMatch, noneMatch, findAny, findFirst
   * Short-circuit: product finite result, even if persented with infinite input
+* Use **functional interfaces** from java.util.function package
+* Can be implemented using lambda expressions
+* Basic Function Purpose
+  * ```Predicate``` performs tests -> defines method ```boolean test(T t)``` to apply conditions to filter elements
+  * ```Function``` converts types -> defines method ```R apply(T t)```
+  * ```UnaryOperator``` (a variant of function) converts values -> defines method ```T apply(T t)```
+  * ```Consumer``` processes elements -> defines method ```void accept(T t)```
+  * ```Supplier``` produces elements -> defines method ```T get()```
+* Operation ```sum``` and ```average``` are available only for primitive stream variants DoubleStream, IntStream and LongStream
+* Actions
+  * Operations ```peek```, ```forEach``` and ```forEachOrdered``` accept **Consumer\<T>** interface
+  * Lambda expression must implement **abstract** ```void accept(T t)``` method
+  * Default ```andThen``` method provided by the **Consumer** interface combines consumers together
+* Filtering
+  * Method ```filter```accepts **Predict\<T>** interface and returns a stream comprising only elements that satisfy the filter criteria
+  * Lambda expression must implement **abstract** ```boolean test(T t)``` method
+  * Default ```and```, ```or``` and ```negate``` methods provided by the **Predicate** interface
+  * Static ```not``` and ```isEqual``` methods provided by the **Predicate** interface
+* Mapping
+  * Method ```map```accepts **Function\<T, R>** interface and returns a stream comprising elements produced byy this function based on the original stream content
+  * Lambda expression must implement **abstract** ```R apply(T t)``` method
+  * Default ```andThen``` and ```compose``` methods (combine functions together) provided by the **Function** interface
+  * Static ```identity``` method provided by the **Function** interface
+  * Primitive variants: ```mapToInt```, ```mapToLong``` and ```mapToDouble```
