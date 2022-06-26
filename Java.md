@@ -475,24 +475,34 @@ public class ProductFactory {
     * Modules do not allow splitting java packages even when they are not exported (private)
 * Java Platform Module System (JPMS) -> placed into the module root directory
 * Define Module Dependencies
-  * ```requires <modules>``` directive specifies a normal module dependency
-  * ```requires transitive <modules>``` directive makes dependent module available to other modules
-  * ```requires static <modules>``` directive indicates module dependency at compile time only
-  * Directive ```requires java.base``` is implied for all modules, but any other module has to be referenced explicitly
+  * ```requires <modules>``` -> **dependent on another module**
+    * Only exported packages are readable by the requiring module
+    * Any non-public is not readable, even from exported packages
+  * ```requires transitive <modules>``` -> **readibility up the requirement chain**
+    * Anything requiring the current module has access to packages exported by the current module and by anything the current module requires transitively
+    * Implied readability
+  * ```requires static <modules>```-> **dependent at compile time only**
+  * ```requires java.base``` is **implied for all modules**, but any other module has to be referenced explicitly
+    * Not dependent on any other modules
+    * Exports all of the platform's core packages
   * A service provider references a service module with the "requires" directive
   * A service consumer references a service module with the "requires" directive
   * These instructions accept comma-separated lists of module names
 * Export Module Content
-  * Modules define dependencies by exporting packages and requiring other modules
-  * Exporting a package means making all of its public types (and their nested public and protected types) available to other modules
-  * ```exports <packages>``` directive specifies packages whose public types should be accessible to all other modules
-  * ```exports <packages>``` to ```<other modules>``` restricts exported packages to a list of specific modules
-  * These instructions accept comma-separated lists of module names
+  * ```exports <packages>``` -> **accessible to all other modules**
+    * Includes all public
+    * Excludes any private, protected or package access
+  * ```exports <packages> to <other modules>``` -> **accessible to sprcific modules**
+    * Includes all public
+    * Excludes any private, protected or package access
+    * Excludes any not specified module
+    * A comma-separated list of module names
+    * Qualified export
 * Open Module Content
   * Module may allow runtime-only access to a package using "opens" directive
   * Exporting a package means making all of its public types (and their nested public and protected types) available to other modules
   * ```opens <packages>``` directive specifies packages whose entire content is accessible to all other modules at run time
-  * ```opens <packages>``` to ```<other modules>``` restricts opened packages to a list of specific modules
+  * ```opens <packages> to <other modules>``` restricts opened packages to a list of specific modules
   * Opening a package works similar to export, but also makes all of its non-public types available via reflection
   * Modules that contain injectable code should use "opens" directive, because **injections work via reflection**
   * These instructions accept comma-separated lists of module names
