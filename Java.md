@@ -20,7 +20,9 @@
     * **cannot declare constructors, only invoke the constructor of the Parent Class**
     * is implemented inline and instantiated immediately
     * can access **final or effectively final** Outer method variables and parameters
-## Lambda Expressions is an inline implementation of a functional interface
+## Lambda Expressions
+* An inline implementation of a functional interface
+* ```Function<String, String> lambda = x -> x.toUpperCase();``` is equivalent to ```Function<String, String> lambda = String::toUpperCase;```
 ## Interface
 * Interface is a valid reference type, can be used in type casting, and works with the ```instanceof``` operator
 * An interface can inherit another interface
