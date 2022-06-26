@@ -23,6 +23,8 @@
 ## Lambda Expressions
 * An inline implementation of a functional interface
 * ```Function<String, String> lambda = x -> x.toUpperCase();``` is equivalent to ```Function<String, String> lambda = String::toUpperCase;```
+* Parentheses: ```Consumer<String> con = (final String x) -> System.out.print(x);``` -> with ```final```, the variable type needs to be explicit (not ```var```) and has parentheses
+* Consistent -- variables should all be explicit or implicit
 ## Interface
 * Interface is a valid reference type, can be used in type casting, and works with the ```instanceof``` operator
 * An interface can inherit another interface
@@ -30,8 +32,20 @@
 * Contains concrete methods **only** if they are either default, private or static
 * Can contain constants, but not variables
 * Default method can **only** be defined in an interface
+  * Must be public
+  * Helps minimize code duplication
+  * Provides a single location to write and edit code
+  * Can be overridden anytime
+  * Is overridden with per-class precision
 * Functional Interface defines just one abstract method
+* Even not declared explicitly, the variable in an interface is **automatically static final**, so its value cannot be changed; the method in an interface is **automatically abstract**
 ## Inheritance
+* **A superclass (concrete or abstract) method takes priority over an interface default method** -> static has lower priority than default
+* **A subtype interface's default method takes priority over a supertype interface default method**
+* **If there is a conflict, treat the default method as abstract; the concrete class must provice its own implementation; this may include a call to a specific interface's implementation of the method**
+* An interface doesn't store the state of an instance
+* An abstract class may contain instance fields -> **abstract** must be public
+* A class cannot extend multiple abstract classes
 * Superclass is more general, subclass is more specific
 * Subclass must include all attributes in the superclass, but it could define more
 * Static interface methods do not cause conflicts, because they are invoked via specific parent types and do not rely on the super inference
@@ -56,6 +70,14 @@
   * the ultimate parent of any other class
   * defines common, generic operations that all other classes inherit and reuse
 * Type Inference: var value = "Hello"; //infers String
+  * ```var``` should **NOT** be used when:
+    * a declaration without an initial value
+    * initialization with a null value
+    * compound declarations (eg. ```var price = 9.95, tax = 0.05;```)
+    * array initializers (eg. ```var prices = {9.95, 5, 3.50};```)
+    * fields (eg. ```public var price;```)
+    * parameters (eg. ```public void setPrice(var price)```)
+    * method return type (eg. ```public var getPrice() { return price; }```)
 * ```static``` marks variables or methods that belong to the class context, which is shared by all instanced of the class
   * Objects can access shared static context
   * Current instance (```this```) is meaningless within the static context -> compilation error
