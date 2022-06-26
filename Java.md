@@ -113,6 +113,34 @@ public class Compare implements Comparator<String>{
 String[] names = {"Mary","Jane","Elizabeth","Jo"};
 Arrays.sort(names, new Compare());
 ```
+## Collection
+* Collection API Interface
+  * validate elements within the collection (eg. check uniqueness)
+  * order elements
+  * provide thread-safe operations (protect internal storage from corruption when it is accessed concurrently from multiple threads)
+  * collection.toArray(), collection.removeIf(conditionFunction)
+  * Interfaces
+    * Iterable\<T>: a top-level interface which allows any collection to be used in a forEach loop
+    * Collection\<E>: extends Iterable
+    * List\<E>, Set\<E>, SortedSet\<E>, Deque\<E>, Map<K,V>
+  * Classes
+    * ArrayList\<E>, HashSet\<E>, TreeSet\<E>, ArrayDeque\<E>, HashMap<K,V>
+  * A **fixed-sized** List can be created from the array using Arrays.asList(\<T> ...)
+  * A **read-only** List/Set can be created from List.of(\<T> ...)/Set.of(\<T> ...)
+  * A **read-only** Map can be created from ```of(\<key>, \<value>, ...)``` overloaded for upto ten map entries or ```ofEntries (Map.entry\<key, value>... entries)```
+  * Set/ArrayDeque can be created from **any other Collection** to populate with initial values
+  * HashMap can be created from **any other Map** to populate with initial values
+  * Deque uses ```offerFirst(T)``` and ```offerLast(T)``` to insert
+  * Null values are not allowed in Deque
+  * Null key (**just one**) and null values are allowed in HashMap
+  * If Deque is empty, poll and peek return null
+* java.util.Collections
+  * .sort(), .reverse(), .shuffle(), .binarySearch(), .fill()
+* Collection can be corrupted if accesses concurrently from multiple threads
+  * Any object in a heap is not thread-safe if it is not immutable
+  * Any thread can be interrupted, even when it is modifying an object, making other threads observe imcomplete modification state
+  * Making collection thread-safe does not guarantee the thread safety to the objects it contains; only immutable objects are automatically thread-safe
+* Prevent Collections Corruption: Unmodifiable (fast, but read-only), Synchronized (slow, but unscalable), Copy-on-write (fast, but consumes memory)
 ## Polymorphyism
 * means many forms, when a method is declared in a superclass and is overridden in a subclass, the subclass method takes precedence without casting reference to a specific subclass type
 ## Overload Methods
@@ -189,17 +217,3 @@ public class ProductFactory {
 * Terminal: traverse stream pipeline and end the stream processing
   * forEach, forEachOrdered, count, min, max, sum, average, collect, reduce, allMatch, anyMatch, noneMatch, findAny, findFirst
 * Short-circuit: product finite result, even if persented with infinite input
-## Collection
-* Collection API Interface
-  * collection.toArray(), collection.removeIf(conditionFunction)
-  * Iterable<T>: a top-level interface which allows any collection to be used in a forEach loop
-  * Collection<E>: extends Iterable
-  * List<E>, Set<E>, SortedSet<E>, Deque<E>, Map<K,V>
-  * ArrayList<E>, HashSet<E>, TreeSet<E>, ArrayDeque<E>, HashMap<K,V>
-* java.util.Collections
-  * .sort(), .reverse(), .shuffle(), .binarySearch(), .fill()
-* Collection can be corrupted if accesses concurrently from multiple threads
-  * Any object in a heap is not thread-safe if it is not immutable
-  * Any thread can be interrupted, even when it is modifying an object, making other threads observe imcomplete modification state
-  * Making collection thread-safe does not guarantee the thread safety to the objects it contains; only immutable objects are automatically thread-safe
-* Prevent Collections Corruption: Unmodifiable (fast, but read-only), Synchronized (slow, but unscalable), Copy-on-write (fast, but consumes memory)
