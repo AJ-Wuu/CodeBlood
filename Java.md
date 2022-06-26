@@ -234,9 +234,20 @@ public class ProductFactory {
 ```
 ## Streams
 * An immutable flow of elements
-* Can be **sequential** (default) or **parallel**
+* Can be **sequential** (default) or **parallel** (depending on which method was invoked last)
+  * Stream --subdivided-> subsets --subdivided-> ... --combined-> ... --combined-> Stream
+  * Processing order is **stochastic (indeterminate)**
+  * Stateless (state of one element must not affect another element)
+  * Non-interfering (data source must not be affected)
+  * Associative (result must not be affected by the order of operands)
+  * Incorrect handling can corrupt memory and slow down processing
+  * ```toMap``` in sequential mode, ```toConcurrentMap``` in parallel mode
+  * Beneficial if:
+    * stream contains large number of elements
+    * multiple CPU cores are available to physically parallelize computations
+    * processing of stream elements requires significant CPU resources
 * Once an element is processed, it is no longer available from the stream
-* Stream pipeline traversal uses **method chaining - intermediate** operations return streams
+* Stream pipeline traversal uses **method chaining - intermediate** operations return streams (not always starting with the first stream method encountered)
 * Lazy -> Significant Efficiencies
   * intermediate actions are deferred until stream is traversed by the terminal operation
   * the chain of activities could be fused into a single pass on data
@@ -251,10 +262,11 @@ public class ProductFactory {
   * Stream can be obtained from **any collection and array** or by using **static methods** of the Stream class
 * Stream Pipeline Processing Operation
   * Intermediate: perform action and produce another stream
-    * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip, limit, takeWhile
+    * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip(long l), limit(long l), takeWhile(Predicate P), dropWhile(Predicate P)
   * Terminal: traverse stream pipeline and end the stream processing
-    * forEach, forEachOrdered, count, min, max, sum, average, collect, reduce, allMatch, anyMatch, noneMatch, findAny, findFirst
+    * forEach, forEachOrdered, count, min -> Optional object, max -> Optional object, sum, average -> OptionalDouble, collect, reduce, allMatch, anyMatch, noneMatch, findAny, findFirst
   * Short-circuit: product finite result, even if persented with infinite input
+    * allMatch(Predicate P), anyMatch(Predicate P), noneMatch(Predicate P), findAny() -> Optional object, findFirst() -> Optional object
 * Use **functional interfaces** from java.util.function package
 * Can be implemented using lambda expressions
 * Basic Function Purpose
@@ -269,7 +281,7 @@ public class ProductFactory {
   * Lambda expression must implement **abstract** ```void accept(T t)``` method
   * Default ```andThen``` method provided by the **Consumer** interface combines consumers together
 * Filtering
-  * Method ```filter```accepts **Predict\<T>** interface and returns a stream comprising only elements that satisfy the filter criteria
+  * Method ```filter```accepts **Predicate\<T>** interface and returns a stream comprising only elements that satisfy the filter criteria
   * Lambda expression must implement **abstract** ```boolean test(T t)``` method
   * Default ```and```, ```or``` and ```negate``` methods provided by the **Predicate** interface
   * Static ```not``` and ```isEqual``` methods provided by the **Predicate** interface
@@ -279,3 +291,5 @@ public class ProductFactory {
   * Default ```andThen``` and ```compose``` methods (combine functions together) provided by the **Function** interface
   * Static ```identity``` method provided by the **Function** interface
   * Primitive variants: ```mapToInt```, ```mapToLong``` and ```mapToDouble```
+* ```reduce``` Operation -> Aggregate Stream Data -> Produce a single result from the stream of values
+* ```collect``` Operation -> General Logic -> Perform a mutable reduction operation on the elements of the stream
