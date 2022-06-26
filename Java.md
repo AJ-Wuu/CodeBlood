@@ -445,3 +445,80 @@ public class ProductFactory {
   * Available from java.util.concurrent.locks
   * Write lock prevents other threads from concurrently modifying the object
   * Read lock can be acquired if Write lock is not held by another thread, allowing concurent read actions
+## Modules
+* Legacy (non-modular) Java application deployment and execution
+  * Compile Java classes using ```javac``` utility
+  * Package Java class into Java Archive (JAR) using ```jar``` utility
+  * (Optionally) provide JAR descriptor MANIFEST.MF file
+    * May contain name of the main application class
+    * May set up class path to reference other archives containing classes required by this application
+  * Execute Java Application using ```java``` runtime
+* Non-Modular Java Characteristics
+  * Packages provided logical grouping of classes
+  * Packages did not impose physical restrictions on how they are used
+  * Classes are packaged into jar files and accessed via classpath
+  * Common deployment of related classes is not enforced
+  * Visibility of classes is controlled with public and default access modifiers
+  * Encapsulation can always be bypassed using reflection
+  * Impossible to restrict in which exact other packages the code can be used
+* Module
+  * High-level code aggregation
+  * Comprises one or more closely related packages and other resources
+  * Module descriptor ```module-info.class``` stored in the module's root folder contains
+    * Unique module name
+    * Required module dependencies (other modules that this module depends on)
+    * Packages that this module exports, making them available to other modules (all other packages contained within the module are unavailable to other modules)
+    * Permissions to open content of this module to other modules using reflection
+    * Services this module offers to other modules
+    * Services this module consumes
+    * Modules do not allow splitting java packages even when they are not exported (private)
+* Java Platform Module System (JPMS) -> placed into the module root directory
+* Define Module Dependencies
+  * ```requires <modules>``` directive specifies a normal module dependency
+  * ```requires transitive <modules>``` directive makes dependent module available to other modules
+  * ```requires static <modules>``` directive indicates module dependency at compile time only
+  * These instructions accept comma-separated lists of module names
+  * Directive ```requires java.base``` is implied for all modules, but any other module has to be referenced explicitly
+* Export Module Content
+  * Modules define dependencies by exporting packages and requiring other modules
+  * Exporting a package means making all of its public types (and their nested public and protected types) available to other modules
+  * ```exports <packages>``` directive specifies packages whose public types should be accessible to all other modules
+  * ```exports <packages>``` to ```<other modules>``` restricts exported packages to a list of specific modules
+  * These instructions accept comma-separated lists of module names
+* Open Module Content
+  * Module may allow runtime-only access to a package using "opens" directive
+  * Exporting a package means making all of its public types (and their nested public and protected types) available to other modules
+  * ```opens <packages>``` directive specifies packages whose entire content is accessible to all other modules at run time
+  * ```opens <packages>``` to ```<other modules>``` restricts opened packages to a list of specific modules
+  * Opening a package works similar to export, but also makes all of its non-public types available via reflection
+  * Modules that contain injectable code should use "opens" directive, because **injections work via reflection**
+  * These instructions accept comma-separated lists of module names
+* Open an Entire Module
+  * Module may allow runtime-only access to all of its content
+  * ```open module``` specifies that this module's entire content is accessible to all other modules at run time via reflection
+* Produce and Consume Services
+  * Service comprises an interface or abstract class and one or more implementation classes
+  * ```provides <service interface>``` with ```<classes>``` directive specifies that module provides one or more service implementations that can be **dynamically discovered by service consumer**
+  * ```provides <service>``` with ```<implmentation classes>``` directive specifies that a module provides a service implementation, making the module a service provider
+  * ```uses <service interface>``` directive specifies an interface or an abstract class that defines a service that this module would like to consume
+  * ```uses <service>``` directive specifies a service used by this module, making the module a service consumer
+* Multi-Release Module Archives
+  * Only one copy of a module can be placed into a module-path
+  * Multi-Release JAR can be used to support different versions of code
+  * Module root directory may contain either a **default version of the module** or a **non-modularized version** of code to be used
+  * **Specific version** of code may be provided for each version of Java
+  * **Versioned descriptors (module-info)** are optional and must be identical to the **root module descriptor**, with two exceptions:
+    * Can have different non-transitive requires clauses of java.* and jdk.* modules
+    * Can have different use clauses
+* Compile Module (specify all Java sources from various packages to contain, includ packages that are exported by this module to other modules and a module-info, and reference other modules required for this module to compile) -> Package module into a JAR file (may describe a main class for this module) -> Verify packaged module (get description of the compiled module to find out which modules it contains, exports, requires, etc.)
+* Execute a Modularized Application
+  * Modular Application Using Module Path
+    * Classes are located using ```-p``` or ```--module-path``` option
+    * Reference the main class using ```-m``` or ```--module``` option
+    * Non-modular JARs are treated as Automatic Modules
+  * Non-Modular Application (reminder)
+    * Classes are located using ```-cp``` or ```--class-path``` option
+    * Modular JARs located via class path are treated as non-modular for backward compatibility
+* Runtime Image (JIMAGE)
+  * Create & Optimize Custom: ```jlink```
+  * Execute: ```<image>/bin/java -m <module name>``` or ```<image>/bin/<command name>```
