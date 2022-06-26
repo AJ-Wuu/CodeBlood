@@ -563,3 +563,16 @@ public class ProductFactory {
 * Runtime Image (JIMAGE)
   * Create & Optimize Custom: ```jlink```
   * Execute: ```<image>/bin/java -m <module name>``` or ```<image>/bin/<command name>```
+## Annotation
+* A form of metadata
+* ```@SafeVarargs``` supresses heap-pollution warning when using var-args
+```java
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Repeatable(BusinessPolicies.class)
+public @interface BusinessPolicies {
+    String name() default "default policy";
+    String[] countries();
+    String value();
+}
+```
