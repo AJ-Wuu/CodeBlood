@@ -446,6 +446,7 @@ public class ProductFactory {
   * Write lock prevents other threads from concurrently modifying the object
   * Read lock can be acquired if Write lock is not held by another thread, allowing concurent read actions
 ## Modules
+* public -> to everyone, only to specific modules, only within a module
 * Legacy (non-modular) Java application deployment and execution
   * Compile Java classes using ```javac``` utility
   * Package Java class into Java Archive (JAR) using ```jar``` utility
