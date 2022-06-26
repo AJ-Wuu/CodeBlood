@@ -8,9 +8,16 @@
 * Java code is structured with CLASS, which represents a concept and defines attributes it can store & operations and algorithms it is capable of
 * Object is a specific instance of a class, which can have specific values for each attribute, invoke operations at run time, and be referenced using a variable of a relevant type
 * Nested Classes
-  * Member Inner Class can access **private/static/instance** variables and methods of the Outer Class
-  * Local Inner Class can access **final or effectively final** Outer method variables and parameters, and contains logic complex enough to require the algorithms be wrapped up as a class
-  * Anonymous Inner Class is an implementation of an interface or extension of a class to override operations, **cannot declare constructors, only invoke the constructor of the Parent Class**, is implemented inline and instantiated immediately, can access **final or effectively final** Outer method variables and parameters
+  * Member Inner Class
+    * can access **private/static/instance** variables and methods of the Outer Class
+  * Local Inner Class
+    * can access **final or effectively final** Outer method variables and parameters
+    * contains logic complex enough to require the algorithms be wrapped up as a class
+  * Anonymous Inner Class
+    * is an implementation of an interface or extension of a class to override operations
+    * **cannot declare constructors, only invoke the constructor of the Parent Class**
+    * is implemented inline and instantiated immediately
+    * can access **final or effectively final** Outer method variables and parameters
 ## Interface
 * Interface is a valid reference type, can be used in type casting, and works with the ```instanceof``` operator
 * An interface can inherit another interface
