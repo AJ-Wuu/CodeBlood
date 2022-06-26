@@ -477,8 +477,10 @@ public class ProductFactory {
   * ```requires <modules>``` directive specifies a normal module dependency
   * ```requires transitive <modules>``` directive makes dependent module available to other modules
   * ```requires static <modules>``` directive indicates module dependency at compile time only
-  * These instructions accept comma-separated lists of module names
   * Directive ```requires java.base``` is implied for all modules, but any other module has to be referenced explicitly
+  * A service provider references a service module with the "requires" directive
+  * A service consumer references a service module with the "requires" directive
+  * These instructions accept comma-separated lists of module names
 * Export Module Content
   * Modules define dependencies by exporting packages and requiring other modules
   * Exporting a package means making all of its public types (and their nested public and protected types) available to other modules
