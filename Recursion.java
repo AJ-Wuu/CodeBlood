@@ -1,4 +1,5 @@
 /**
+ * Special Note: Java is always pass by value, but when using Collections or Arrays, they are pass by reference.
  * Advantages:
  *     1. Only need to define the base case and recursive case for the recursive funtion, so the code is simpler and shorter than an iterative one.
  *     2. Some problems are inherently recursive, such as Graph and Tree Traversal.
