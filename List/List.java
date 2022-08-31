@@ -13,10 +13,11 @@
  *
  * Convert LinkedList<int[]> to int[][]: list.toArray(new int[list.size()][]);
  * Convert int[] to LinkedList<Integer>: Arrays.asList(array);
+ *
+ * Initialize list: List<Double> temp = new LinkedList<Double>(Arrays.asList(1.0, 2.0));
+ *
+ * Get the index of the max value in a list: IntStream.range(0, list.size()).reduce(0, (a, b) -> list.get(a) < list.get(b) ? b : a);
  */
-
-//Get the index of the max value in a list
-IntStream.range(0, list.size()).reduce(0, (a, b) -> list.get(a) < list.get(b) ? b : a);
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
