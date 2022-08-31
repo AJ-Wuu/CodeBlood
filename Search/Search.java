@@ -37,3 +37,26 @@ public int longestValidParentheses(String s) {
     }
     return maxlength;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#199 - Binary Tree Right Side View
+//Change the order of recursively calling rightSideViewHelper to get leftSideViewHelper
+
+public List<Integer> rightSideView(TreeNode root) {
+    List<Integer> resultList = new ArrayList<Integer>();
+    rightSideViewHelper(root, resultList, 0);
+    return resultList;
+}
+    
+public void rightSideViewHelper(TreeNode root, List<Integer> resultList, int depth) {
+    if (root == null) {
+        return ;
+    }
+    else if (depth == resultList.size()) { //make sure the first element of that level will be added to the result list
+        resultList.add(root.val);
+    }
+     
+    rightSideViewHelper(root.right, resultList, depth+1);
+    rightSideViewHelper(root.left, resultList, depth+1);
+}
