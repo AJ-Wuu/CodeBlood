@@ -60,3 +60,23 @@ public void rightSideViewHelper(TreeNode root, List<Integer> resultList, int dep
     rightSideViewHelper(root.right, resultList, depth+1);
     rightSideViewHelper(root.left, resultList, depth+1);
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//1161 - Maximum Level Sum of a Binary Tree
+
+public void maxLevelSumHelper(TreeNode root, List<Integer> levelSums, int levelNum) { //note that the initial levelNum decides it is index-0 or index-1
+    if (root == null) {
+        return ;
+    }
+    else if (levelSums.size() == levelNum) { //never reached this level before
+        levelSums.add(root.val);
+    }
+    else { //have reached this level
+        levelSums.set(levelNum, levelSums.get(levelNum) + root.val);
+    }
+    
+    //go to the next level
+    maxLevelSumHelper(root.left, levelSums, levelNum+1);
+    maxLevelSumHelper(root.right, levelSums, levelNum+1);
+}
