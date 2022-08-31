@@ -15,6 +15,9 @@
  * Convert int[] to LinkedList<Integer>: Arrays.asList(array);
  */
 
+//Get the index of the max value in a list
+IntStream.range(0, list.size()).reduce(0, (a, b) -> list.get(a) < list.get(b) ? b : a);
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#25 - Reverse Nodes in k-Group
