@@ -36,7 +36,8 @@ String.format("%.6f", m/n); //Note, at least one of m and n should be float or d
  * 
  * Situations:
  * If your string is not going to change use a String class because a String object is immutable.
- * If your string can change (example: lots of logic and operations in the construction of the string) and will only be accessed from a single thread, using a StringBuilder is good enough.
+ * If your string can change, and will only be accessed from a single thread, using a StringBuilder is good enough.
+ *     (example: lots of logic and operations in the construction of the string)
  * If your string can change, and will be accessed from multiple threads, use a StringBuffer because StringBuffer is synchronous so you have thread-safety.
  */
 
