@@ -405,3 +405,8 @@ public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
 //#53 - Maximum Subarray
 //Key: MaxSoFar = Math.max(nums[i], MaxSoFar + nums[i])
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#1509 - Minimum Difference Between Largest and Smallest Value in Three Moves
+//Key: All moves must happen in the largest three elements and the smallest three elements, eg. [A,B,C,D,...,E,F,G,H] -> min(E-A, F-B, G-C, H-D)
