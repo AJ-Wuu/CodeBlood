@@ -122,7 +122,7 @@ public class test {
     }
 
     public static void main(String[] args) throws IOException {
-        Path fileName = Path.of("src\\SpecialSubsequenceInput.txt");
+        Path fileName = Path.of("SpecialSubsequenceInput.txt");
         String str = Files.readString(fileName);
         List<String> result = findSubstrings(str);
         System.out.println(result.get(0));
