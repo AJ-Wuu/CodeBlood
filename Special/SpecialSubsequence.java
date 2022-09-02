@@ -1,4 +1,5 @@
 //Credit: https://leetcode.com/discuss/interview-question/algorithms/125520/adobe-oa-2016-special-subsequence#:~:text=Consider%20a%20string%2C%20s%20%3D%20%22abc%22.%20An%20alphabetically-ordered,with%20a%20consonant%2C%20we%27re%20left%20with%20%7B%22ab%22%2C%20%22abc%22%7D.
+//Solved errors: 1. java.lang.OutOfMemoryError: Java heap space; 2. Time Limit Exceeded
 
 import java.io.IOException;
 import java.nio.file.Files;
