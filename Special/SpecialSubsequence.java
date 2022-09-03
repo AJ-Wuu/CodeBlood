@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class test {
+public class specialSubsequence {
 
     public static List<String> findSubstrings(String str) {
         if (str == null || str.isEmpty()) {
