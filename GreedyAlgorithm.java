@@ -14,7 +14,7 @@
 
 //#253 - Meeting Rooms II
 //Key: arrival time will always be earlier than departure time, we only need to get the peek number of people in the room
-//Note: treat the "==" on double carefully due to precision difference
+//Note: treat the "==" on double carefully due to precision differences
 public static int countChairs(int[] arrive, int[] depart) {
     double[] process = new double[arrive.length + depart.length];
     for (int i=0; i<arrive.length; i++) {
