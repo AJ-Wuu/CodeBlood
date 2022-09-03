@@ -12,6 +12,36 @@
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//#253 - Meeting Rooms II
+//Key: arrival time will always be earlier than departure time, we only need to get the peek number of people in the room
+//Note: treat the "==" on double carefully due to precision difference
+public static int countChairs(int[] arrive, int[] depart) {
+    double[] process = new double[arrive.length + depart.length];
+    for (int i=0; i<arrive.length; i++) {
+        process[i] = arrive[i] + 0.1; //to distinguish arrive or depart
+    }
+    for (int i=0; i<depart.length; i++) {
+        process[i+arrive.length] = depart[i] + 0.2;
+    }
+
+    int count = 0;
+    int[] chairs = new int[arrive.length + depart.length];
+    Arrays.sort(process);
+    for (int i=0; i<process.length; i++) {
+        if (process[i] % 1 < 0.15) { //precision requirement
+            count++;
+        }
+        else {
+            count--;
+        }
+        chairs[i] = count;
+    }
+    Arrays.sort(chairs);
+    return chairs[arrive.length + depart.length - 1];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //#68 - Text Justification -> See Projects/Text Justification/Greedy.java
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
