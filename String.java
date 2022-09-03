@@ -43,6 +43,20 @@ String.format("%.6f", m/n); //Note, at least one of m and n should be float or d
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//#482 - License Key Formatting
+public String licenseKeyFormatting(String s, int k) {
+    s = s.replaceAll("-","").toUpperCase(); //remove all '-' first and format from raw
+    StringBuilder sb = new StringBuilder(s);
+    int i = sb.length() - k; //format from back to front
+    while (i > 0) {
+        sb.insert(i, '-');
+        i -= k;
+    }
+    return sb.toString();
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //#76 - Minimum Window Substring
 //Template for substring problems (with optimization of using array instead of HashMap):
 //1. Shortest Substring w/o repeating characters************************************************************************
