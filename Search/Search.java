@@ -83,7 +83,7 @@ public void maxLevelSumHelper(TreeNode root, List<Integer> levelSums, int levelN
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#1482 - Minimum Number of Days to Make m Bouquets
-//Key: use binary search on the number of days
+//Key: use binary search on the number of days to optimize the total times of checking
 public static int minDays(int[] bloomDay, int m, int k) {
     int n = bloomDay.length;
     if (m * k > n) {
