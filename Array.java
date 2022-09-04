@@ -410,3 +410,26 @@ public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
 //#1509 - Minimum Difference Between Largest and Smallest Value in Three Moves
 //Key: All moves must happen in the largest three elements and the smallest three elements, eg. [A,B,C,D,...,E,F,G,H] -> min(E-A, F-B, G-C, H-D)
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#904 - Fruit Into Baskets
+//Translate: Longest subarray with at most two distinct elements
+public int totalFruit(int[] fruits) {
+    int start = 0;
+    int maxLength = 0;
+    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        
+    for (int end=0; end<fruits.length; end++) {
+        map.put(fruits[end], end); //store the last index of the appearance
+            
+        if (map.size() > 2) {               
+            start = Collections.min(map.values()) + 1;
+            map.remove(fruits[start-1]);
+        }
+           
+        maxLength = Math.max(maxLength, end - start + 1);
+    }
+        
+    return maxLength;
+}
