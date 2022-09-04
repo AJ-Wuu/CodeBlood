@@ -392,3 +392,29 @@ public int numSquares(int n) {
     }
     return dp[n];
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#1049 - Last Stone Weight II
+//Key: S1 + S2 = S, S1 - S2 = diff >= 0 -> diff = S - 2 * S2 -> finding minimum diff is the same as finding the maximum S2
+public static int lastStoneWeightII(int[] stones) {
+    int n = stones.length;
+    int total = 0, S2 = 0; //S2 must be less than total/2 as S2 <= S1
+    for (int i = 0; i < stones.length; i++) {
+        total += stones[i];
+    }
+    
+    boolean[] dp = new boolean[total+1];  //"true" means this value can be achieved by a combination of part of previous stones
+    dp[0] = true;
+    for (int s: stones) {
+        boolean[] cur = dp.clone(); //two arrays so that this stone won't be "used twice"
+        for (int i = s; i <= total/2; i++) { //start from the current stone's weight and end before S2 exceeds total/2
+            if (dp[i - s]) {
+                cur[i] = true; //can achieve this value
+                S2 = Math.max(S2, i);
+            }
+        }
+        dp = cur;
+    }
+    return total - 2 * S2;
+}
