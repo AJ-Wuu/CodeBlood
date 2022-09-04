@@ -137,5 +137,5 @@ public static String cleanSpaces(char[] a) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//1525. Number of Good Ways to Split a String
+//#1525. Number of Good Ways to Split a String
 //Key: get unique_from_start[] and unique_from_end[] using HashMap, and a split is good if unique_from_start[i] == unique_from_end[i+1] -> O(n)
