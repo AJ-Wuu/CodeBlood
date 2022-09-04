@@ -64,7 +64,6 @@ public void rightSideViewHelper(TreeNode root, List<Integer> resultList, int dep
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //1161 - Maximum Level Sum of a Binary Tree
-
 public void maxLevelSumHelper(TreeNode root, List<Integer> levelSums, int levelNum) { //note that the initial levelNum decides it is index-0 or index-1
     if (root == null) {
         return ;
@@ -79,4 +78,46 @@ public void maxLevelSumHelper(TreeNode root, List<Integer> levelSums, int levelN
     //go to the next level
     maxLevelSumHelper(root.left, levelSums, levelNum+1);
     maxLevelSumHelper(root.right, levelSums, levelNum+1);
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#1482 - Minimum Number of Days to Make m Bouquets
+//Key: use binary search on the number of days
+public static int minDays(int[] bloomDay, int m, int k) {
+    int n = bloomDay.length;
+    if (m * k > n) {
+        return -1;
+    }
+
+    int left = Integer.MAX_VALUE, right = Integer.MIN_VALUE;
+    for (int i=0; i<n; i++) {
+        if (bloomDay[i] < left) {
+            left = bloomDay[i];
+        }
+        if (bloomDay[i] > right) {
+            right = bloomDay[i];
+        }
+    }
+    
+    //Binary Search
+    while (left < right) {
+        int mid = (left + right) / 2, flow = 0, bouq = 0;
+        for (int i=0; i<n; i++) {
+            if (bloomDay[i] > mid) { //the current adjacent window breaks
+                flow = 0;
+            }
+            else if (++flow >= k) { //enough for a bouquet
+                bouq++;
+                flow = 0;
+            }
+        }
+        if (bouq < m) { //less than required
+            left = mid + 1;
+        }
+        else { //more than required
+            right = mid;
+        }
+    }
+    return left;
 }
