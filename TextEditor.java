@@ -8,6 +8,7 @@ class MyStack {
         this.top = -1;
     }
 }
+
 class Node {
     String query;
     int idx;
@@ -83,4 +84,5 @@ public class textEditor {
             System.out.println(solution[i]);
         }
     }
+
 }
