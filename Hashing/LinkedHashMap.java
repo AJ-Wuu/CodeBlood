@@ -9,3 +9,19 @@
 
 import java.util.LinkedHashMap;
 
+public static void play() {
+    LinkedHashMap<String, Integer> lmap = new LinkedHashMap<String, Integer>();
+    lmap.put("A", 1);
+    lmap.put("B", 2);
+    lmap.put("C", 3);
+    lmap.put("D", 4);
+    lmap.put("a", 11);
+    lmap.put("b", 22);
+    lmap.put("c", 33);
+    lmap.put("d", 44);
+
+    Iterator<String> iter = lmap.keySet().iterator();
+    while (iter.hasNext()) {
+        System.out.print(iter.next() + " "); //output = "A B C D a b c d "
+    }
+}
