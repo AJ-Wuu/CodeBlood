@@ -22,7 +22,7 @@ public class OverrideListSort {
         });
     }
 
-    public void getEmployeeWithHighestSalary(List<Employee> list){
+    public void getEmployeeWithHighestSalary(List<Employee> list) {
         //Sort the list as per employee name
         Collections.sort(list, new Comparator<Employee>() {
             @Override
@@ -45,6 +45,42 @@ public class OverrideListSort {
     }
 }
 
+//Map - index == key, no duplicate
+class CustomizedHashMap implements Comparator<Map.Entry<String, Integer>> {
+    @Override
+    public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+        return -o1.getValue().compareTo(o2.getValue());
+    }
+}
+
+public class OrderedLinkedHashMap {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new LinkedHashMap<String, Integer>();
+        
+        map.put("a", 11);
+        map.put("B", 12);
+        map.put("c", 3);
+        map.put("d", 4);
+        map.put("e", 5);
+        map.put("f", 6);
+        map.put("g", 7);
+        map.put("h", 8);
+        map.put("i", 9);
+        map.put("j", 3);
+        map.put("k", 2);
+        map.put("l", 1);
+
+        List<Map.Entry<String, Integer>> entries = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());
+        Collections.sort(entries,new CustomizedHashMap());
+
+        Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> entry : entries) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+            System.out.print( sortedMap.put(entry.getKey(), entry.getValue())+" ");
+        }
+    }
+}
+
 //Set - no index, no duplicate
 Comparator<Employee> newComparator = new Comparator<Employee>() {
     @Override
@@ -56,3 +92,4 @@ SortedSet<Employee> employeeSet = new TreeSet<Employee>();
 
 //Queue - no index, accept duplicate
 PriorityQueue<Employee> employeeQueue = new PriorityQueue<Employee>();
+
