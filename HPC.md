@@ -85,9 +85,30 @@ int main() {
 * The main purpose is to free any dynamically allocated storage pointed to only by a data member of that object
 ```
 IntList::~IntList() {
-  delete [] Items; // free the dynamically allocated array pointed to by Items
+  delete [] Items; //free the dynamically allocated array pointed to by Items
 }
-``
+```
+## Copy Constructor
+* If no copy constructor, the compiler will provide a shallow copy (just the value of each data member)
+* If some data member is a pointer, this causes aliasing (both the original pointer and the copy point to the same location), and may lead to trouble
+```
+class IntList {
+    public:
+        IntList();                 // default constructor
+        IntList(const IntList &L)  // copy constructor
+    ...
+};
+
+IntList::IntList(const IntList & L): Items(new int[L.arraySize]), numItems(L.numItems), arraySize(L.arraySize) {
+    for (int k=0; k<numItems; k++) {
+        Items[k] = L.Items[k];
+    }
+}
+```
+## Operator=
+* Default: just field-by-field assignment (a shallow copy)
+* Define to do a deep copy with declaration: ```IntList & operator=(const IntList &L);```
+* Permit chained assignment: ```L1 = L2 = L3;```
 
 # Slurm
 ## Log In: ```ssh awu53@euler.wacc.wisc.edu```
