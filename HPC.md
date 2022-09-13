@@ -109,6 +109,8 @@ IntList::IntList(const IntList & L): Items(new int[L.arraySize]), numItems(L.num
 * Default: just field-by-field assignment (a shallow copy)
 * Define to do a deep copy with declaration: ```IntList & operator=(const IntList &L);```
 * Permit chained assignment: ```L1 = L2 = L3;```
+* Must return a value
+* The object being assigned to has already been initialized; therefore, if it has a pointer field, the storage pointed to must be freed to prevent a storage leak
 
 # Slurm
 ## Log In: ```ssh awu53@euler.wacc.wisc.edu```
