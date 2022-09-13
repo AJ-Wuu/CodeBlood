@@ -81,6 +81,13 @@ int main() {
     }
 }
 ```
+## Destructor Function
+* The main purpose is to free any dynamically allocated storage pointed to only by a data member of that object
+```
+IntList::~IntList() {
+  delete [] Items; // free the dynamically allocated array pointed to by Items
+}
+``
 
 # Slurm
 ## Log In: ```ssh awu53@euler.wacc.wisc.edu```
