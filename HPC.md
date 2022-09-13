@@ -24,6 +24,15 @@ delete p;           //the memory that was pointed to by p has been returned to f
 * If p is the only pointer that points to dynamically allocated memory, and you reassign p without first deleting it, that memory will be lost (your code will have a storage leak)
   * ```int *p = new int; p = NULL; //reassignment to p without freeing the storage it pointed to -- storage leak!```
 * ```(*p).f``` is the same as ```p->f```
+* Pass by value: the value of q is copied into a new location named p
+* Pass by reference: avoid the overhead of creating a copy when the actual parameter is very large 
+* ```void f(const IntList &L)```: be sure that the actual parameter is not "accidentally" modified
+* Arrays are **always** passed by reference
+  * if you want to pass an array by value, you should use a vector like ```vector <int> v(10); v.resize(2*v.size());```
+```
+void f( vector  A );  //A is passed by value
+void f( vector  &B ); //B is passed by reference
+```
 ## I/O Stream
 ```
 void Compare(istream &in1, istream &in2, ostream &out) { //pass by reference
