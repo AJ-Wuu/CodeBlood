@@ -4,6 +4,8 @@
 g++ XXX.cpp -Wall -O3 -std=c++17 -o main
 main (argv)
 ```
+## string
+* Change the first character of the string greeting: ```greeting[0] = 'J';```
 ## typedef: ```typedef double Dollars; Dollars hourlyWage = 10.50;```
 ## Enumerations
 * New types with a fixed (usually small) set of possible values can be defined using an enum declaration
