@@ -4,6 +4,7 @@
 g++ XXX.cpp -Wall -O3 -std=c++17 -o main
 main (argv)
 ```
+## Optimize -- Compiler Explorer
 ## string
 * Change the first character of the string greeting: ```greeting[0] = 'J';```
 ## typedef: ```typedef double Dollars; Dollars hourlyWage = 10.50;```
@@ -35,8 +36,21 @@ delete p;           //the memory that was pointed to by p has been returned to f
 void f( vector  A );  //A is passed by value
 void f( vector  &B ); //B is passed by reference
 ```
+## Inheritance
+```
+class Rectangle: public Shape {
+    public:
+        int getArea() { 
+            return (width * height); 
+        }
+    private:
+        ...
+};
+```
 ## I/O Stream
 ```
+getline(cin, fullName);
+
 void Compare(istream &in1, istream &in2, ostream &out) { //pass by reference
     char ch1, ch2;
     while (in1.get(ch1)) {
