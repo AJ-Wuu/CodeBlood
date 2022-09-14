@@ -21,6 +21,10 @@ int *p = new int;   //p points to newly allocated memory
 ...
 delete p;           //the memory that was pointed to by p has been returned to free storage
 ```
+## Reference & Dereference
+* reference ~= pointer
+* Reference: & == “address of” -- it gives you a reference (pointer) to some object
+* Dereference: * == “value pointed by” -- it takes a reference (pointer) and gives you back the referred to object
 ## Pointer
 * Never dereference a dangling pointer (a pointer to a location that was pointed to by another pointer that has been deleted)
   * ```int *p, *q; p = new int; q = p; delete q; //now p is a dangling pointer```
