@@ -130,6 +130,10 @@ switch (c) {
         break;
 }
 ```
+## Reference & Dereference
+* reference ~= pointer
+* Reference: & == “address of” -- it gives you a reference (pointer) to some object
+* Dereference: * == “value pointed by” -- it takes a reference (pointer) and gives you back the referred to object
 ## Pointer
   * ```*p``` is to get the value at the address p, ```&x``` is to get the address of the variable x
   * Initialize:
