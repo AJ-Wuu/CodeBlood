@@ -18,6 +18,21 @@ int y = (q != null) ? q.val : 0;
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//#24 - Swap Nodes in Pairs
+//Essence: every two adjacent nodes become a pair, and this pair can "ignore" what happens before and after.
+public ListNode swapPairs(ListNode head) {
+    if (head == null || head.next == null) {
+        return head;
+    }
+
+    ListNode newHead = head.next; //record the second node
+    head.next = swapPairs(head.next.next); //move the first node to the second place
+    newHead.next = head; //add the second node to the first place
+    return newHead;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 //BackTracking
 //Recursion over every possible way and then find the best route.
 //Time Complexity: O(2^n)
