@@ -395,6 +395,8 @@ int main() {
 
 # Vim
 * ```vsplit``` or ```vs``` split the Vim viewport vertically
+* show line numbers: ```:set number```
+* copy force overwrite: ```\cp -r XXX```
 
 # Bash
 * stdin = 0, stdout = 1, stderr = 2
