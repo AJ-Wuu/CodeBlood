@@ -137,5 +137,39 @@ public static String cleanSpaces(char[] a) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#1525. Number of Good Ways to Split a String
+//#1525 - Number of Good Ways to Split a String
 //Key: get unique_from_start[] and unique_from_end[] using HashMap, and a split is good if unique_from_start[i] == unique_from_end[i+1] -> O(n)
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#1209 - Remove All Adjacent Duplicates in String II
+//Solution 1: Two Pointers
+public String removeDuplicates(String s, int k) {
+    int i = 0; //i refers to the index to set next character in the output string
+    int n = s.length();
+    int count[] = new int[n];
+    char[] stack = s.toCharArray();
+    for (int j=0; j<n; i++, j++) { //j refers to the index of current iteration in the input string
+        stack[i] = stack[j];
+        count[i] = (i > 0 && stack[i-1] == stack[j]) ? count[i-1] + 1 : 1; //add count[i] if s[j] == s[i-1]
+        if (count[i] == k) {
+            i -= k;
+        }
+    }
+    return new String(stack, 0, i);
+}
+
+//Solution 2: Stack
+public String removeDuplicates(String s, int k) {
+    int[] count = new int[s.length()];
+    StringBuilder sb = new StringBuilder(); //use as a stack
+    for (char c: s.toCharArray()) {
+        sb.append(c);
+        int last = sb.length()-1;
+        count[last] = 1 + ((last > 0 && sb.charAt(last) == sb.charAt(last-1)) ? count[last-1] : 0); //push (c, oldValue + 1) if there is oldValue; otherwise, (c, 1)
+        if (count[last] >= k) {
+            sb.delete(sb.length()-k, sb.length());
+        }
+    }
+    return sb.toString();
+}
