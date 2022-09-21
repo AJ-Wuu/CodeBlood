@@ -47,3 +47,6 @@
 
 ### Edmonds-Karp = O(VE) * O(V+E) = O(VE^2)
 * Use BFS instead of DFS to avoid potential very long path (not ideal) -> find the shortest-length path
+
+## Maximum Bipartite Matching -- maximum matching in a bipartite graph == minimum vertex cover (in polynomial time)
+<img width="787" alt="image" src="https://user-images.githubusercontent.com/84046974/191390872-9c20e879-04fc-4a77-8886-ef321cd6fbf8.png">
