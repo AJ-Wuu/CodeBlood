@@ -88,8 +88,7 @@ Comparator<Employee> newComparator = new Comparator<Employee>() {
         return o2.salary-o1.salary;
     }
 };
-SortedSet<Employee> employeeSet = new TreeSet<Employee>();
+SortedSet<Employee> employeeSet = new TreeSet<Employee>(newComparator);
 
 //Queue - no index, accept duplicate
-PriorityQueue<Employee> employeeQueue = new PriorityQueue<Employee>();
-
+PriorityQueue<Employee> employeeQueue = new PriorityQueue<Employee>(newComparator);
