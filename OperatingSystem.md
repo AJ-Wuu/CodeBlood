@@ -176,14 +176,14 @@ The C library function char *strtok(char *str, const char *delim) breaks string 
 
 ```C
 /* get the first token */
-   token = strtok(str, delim);
+token = strtok(str, delim);
    
-   /* walk through other tokens */
-   while( token != NULL ) {
-      printf( " %s\n", token );
-    
-      token = strtok(NULL, delim);
-   }
+/* walk through other tokens */
+while( token != NULL ) {
+    printf( " %s\n", token );
+ 
+    token = strtok(NULL, delim);
+}
 ```
 
 ## StrDup
@@ -191,7 +191,7 @@ The C library function char *strtok(char *str, const char *delim) breaks string 
 The function strdup() is used to duplicate a string. It returns a pointer to null-terminated byte string.
 
 ```C
-  copy_str = strdup(source_str);
+copy_str = strdup(source_str);
 ```
 
 Source : [TutorialsPoint](https://www.tutorialspoint.com/strdup-and-strdndup-in-c-cplusplus)
