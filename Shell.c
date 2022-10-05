@@ -197,6 +197,18 @@ int run(char **cmd, char **paths) {
 
                 // run the first command
                 status = run(&if_first_command, paths);
+                /*
+                 If we retrieve status of fork() in this way (which is not ideal), status will always be a multiple of 256.
+                 As the exit code is always in 0 ~ 255, which takes 256 = 2^8 -> 8 bits = 2 bytes.
+                 An integer is 4 bytes, so the exit code (eg. 1) will be mapped like: _ _ _ _
+                                                                                      0 1
+                 This eventually gets the integer status = 1 * 2^8 = 256.
+                 
+                 The ideal way of dealing this is:
+                 if (WIFEXITED(status)) {
+                         printf("exit status = %d\n", WEXITSTATUS(status));
+                 }
+                 */
 
                 // check the if-condition is satisfied or not
                 int if_flag = 0; // true == 1, false == 0
