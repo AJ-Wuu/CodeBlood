@@ -206,7 +206,7 @@ int run(char **cmd, char **paths) {
 
                 // if the condition is satisfied, run the second command
                 if (if_flag == 1) {
-                        if (second_command_length < 1) {
+                        if (second_command_length < 1) { // edge cases like "if 12 == 12 then fi" are accepted
                                 status = 0;
                         }
                         else {
