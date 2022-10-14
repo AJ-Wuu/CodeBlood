@@ -1,8 +1,9 @@
 # xv6-systemcall
 ## Part 1: xv6 on QEMU
 1. ```tar xvzf ~cs537-1/public/xv6.tgz```
-2. Run 'make' to create xv6.img
-3. Run 'make qemu-nox' to run xv6 on linprog
+2. Run ```make``` to create xv6.img
+3. Run ```make qemu-nox``` to run xv6 on linprog
+4. Run 'Ctrl-A X' to quit
 
 ## Part 2: The life of getpid
 ### Check all files: ```make clean | grep "getpid" *```
