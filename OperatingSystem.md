@@ -196,3 +196,40 @@ copy_str = strdup(source_str);
 ```
 
 Source : [TutorialsPoint](https://www.tutorialspoint.com/strdup-and-strdndup-in-c-cplusplus)
+
+# xv6 - Scheduling
+## Round Robin (in `proc.c`)
+```
+void
+scheduler(void)
+{
+  struct proc *p;
+  struct cpu *c = mycpu();
+  c->proc = 0;
+  
+  // round robin
+  for (;;) {
+    // Enable interrupts on this processor.
+    sti();
+
+    // Loop over process table looking for process to run.
+    acquire(&ptable.lock);
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+      if (p->state != RUNNABLE) {
+        continue;
+      }
+      c->proc = p;
+      switchuvm(p);
+      p->state = RUNNING;
+      p->tick += 1;
+      swtch(&(c->scheduler), p->context);
+      switchkvm();
+
+      // Process is done running for now.
+      // It should have changed its p->state before coming back.
+      c->proc = 0;
+    }
+
+    release(&ptable.lock);
+}
+```
