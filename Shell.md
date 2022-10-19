@@ -4,7 +4,6 @@ Shell is a program that takes input as "commands" line by line, parses them, the
 - For some commands, the shell will react to them directly without creating a new process. These are called "built-in" commands. E.g. `alias`
 
 If you are curious about which catalog a command falls into, try `which cmd_name`:
-
 ```console
 # The output of the following commands may vary depending on what shell you are running
 # Below is from zsh. If you are using bash, it may look different
@@ -15,6 +14,7 @@ alias: shell built-in command
 $ which which
 which: shell built-in command
 ```
+
 ## `fork`: Process Creation
 The syscall `fork()` creates a copy of the current process. We call the original process "parent" and the newly created process "child". But how are we going to tell which is which if they are the same??? The child process will get the return value 0 from `fork` while the parent will get the child's pid as the return value.
 
@@ -35,6 +35,7 @@ $ ./fork_example
 I am parent with pid 46565. I got return value from fork: 46566
 I am child with pid 46566. I got return value from fork: 0
 ```
+
 ## `exec`:
 `fork` itself is not sufficient to run an operating system. It can only create a copy of the previous program, but we don't want the exact same program all the time. That's when `exec` shines. `exec` is actually a family of functions, including `execve`, `execl`, `execle`, `execlp`, `execv`, `execvp`, `execvP`... The key one is `execve` (which is the actual syscall) and the rest of them are just some wrappers in the glibc that does some work and then calls `execve`. For this project, `execv` is probably what you need. It is slightly less powerful than `execve`, but is enough for this project.
 
