@@ -1,8 +1,14 @@
 # ArrayList & LinkedList
-|            | Internal structure  |  Manipulation                              |  Interface       |  Better at                   |  Performance |
-|:----------:|--------------------:|-------------------------------------------:|-----------------:|-----------------------------:|-------------:|
-| ArrayList  |  dynamic array      |  slow (array needs shift for removal)   |  list only       |  storing and accessing data  |  O(1)        |
-| LinkedList | doubly linked list  |  fast (DLL needs no shift for removal)  |  list and deque  |  manipulating data           |  O(n)        |
+|            | Internal structure  |  Manipulation                              |  Interface       |  Better at                   |
+|:----------:|--------------------:|-------------------------------------------:|-----------------:|-----------------------------:|
+| ArrayList  |  dynamic array      |  slow (array needs shift for removal)   |  list only       |  storing and accessing data  |
+| LinkedList | doubly linked list  |  fast (DLL needs no shift for removal)  |  list and deque  |  manipulating data           |
+
+|            | Get by index | Search by value | Insert at last index | Insert at given index | Remove by index | Remove by value |
+|:----------:|-------------:|----------------:|---------------------:|----------------------:|----------------:|----------------:|
+| ArrayList  | O(1)         | O(N)            | O(N) with array copy | O(N)                  | O(N)            | O(N)            |
+| LinkedList | O(N)         | O(N)            | O(1)                 | O(N)                  | O(N)            | O(N)            |
+| Preference | ArrayList    | ArrayList       | LinkedList           | LinkedList            | LinkedList      | LinkedList      |
 
 ## Tips
 * Always remember to use two pointers moving along the list / queue if needed for elements comparasion / selection / etc.
