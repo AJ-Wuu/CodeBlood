@@ -18,6 +18,34 @@ Arrays.sort(array, new Comparator<int[]>() {
 });
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Count all sub-arrays having sum divisible by k
+public static int subCount(int arr[], int k) {
+    //create auxiliary hash array to count frequency of remainders
+    int mod[] = new int[k];
+    Arrays.fill(mod, 0);
+
+    //traverse original array and compute cumulative sum take remainder of this current cumulative sum and increase count by 1 for this remainder in mod[] array
+    int currSum = 0;
+    for (int i = 0; i < n; i++) {
+        currSum += arr[i];
+        mod[((currSum % k) + k) % k]++; //as the sum can be negative, taking modulo twice
+    }
+
+    int result = 0;
+    for (int i = 0; i < k; i++) {
+        //if there are more than one prefix sub-array with a particular mod value
+        if (mod[i] > 1) {
+            result += (mod[i] * (mod[i] - 1)) / 2;
+        }
+    }
+    //add the elements which are divisible by k itself, i.e., the elements whose sum = 0
+    result += mod[0];
+
+    return result;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //#48 - Rotate Image
 //rotate = transpose + reverse OR transfer between i, j, n-1-i, n-1-j
 
