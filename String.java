@@ -3,6 +3,10 @@ String s = "";
 s = s.concat("s"); //s.concat() has a return value, and it needs this return value to update the original string
 s += "00"; //directly using "+" could also work
 
+// StringBuilder vs StringBuffer
+// StringBuilder works faster than StringBuffer
+// StringBuilder is NOT thread-safe, but StringBuffer is thread-safe
+
 //String Builder
 StringBuilder str = new StringBuilder();
 str.append("GFG"); //str.append() does not have a return value, but directly update the original string
