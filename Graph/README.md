@@ -33,13 +33,13 @@
 <img width="264" alt="image" src="https://user-images.githubusercontent.com/84046974/191388626-3f346366-30f5-4144-ae63-c2999abba664.png">
 
 ## All-Pairs Shortest Path
-### Bellman-Ford = O(V^4)
+### Bellman-Ford = O(V<sup>4</sup>)
 
-### Floyd-Warshall = Θ(V^3) -- DP, connected or disconnected, faster than Dijkstra in dense graphs
+### Floyd-Warshall = Θ(V<sup>3</sup>) -- DP, connected or disconnected, faster than Dijkstra in dense graphs
 * can be used to detect negative cycles: check the nodes distance from itself, should be 0, but will be negative
 <img width="361" alt="image" src="https://user-images.githubusercontent.com/84046974/191389061-90cc56d6-8211-4ce8-a020-7593ad0bf570.png">
 
-### Johnson = O(V^2logV + VE) -- reweighting best for sparse graphs
+### Johnson = O(V<sup>2</sup>logV + VE) -- reweighting best for sparse graphs
 <img width="699" alt="image" src="https://user-images.githubusercontent.com/84046974/191389539-b8c2b305-dc29-478c-b23e-bd7f2cac5813.png">
 
 ## Maximum Flow
@@ -47,10 +47,22 @@
 <img width="365" alt="image" src="https://user-images.githubusercontent.com/84046974/191389651-dfd254cf-7a4f-4c26-9b34-02eb5a1e7d76.png">
 
 ### Ford-Fulkerson = O(|max-flow|*E)
-<img width="460" alt="image" src="https://user-images.githubusercontent.com/84046974/191389716-ae94f1d5-2ecd-4a34-8b70-ba639b2786f1.png">
-
-### Edmonds-Karp = O(VE) * O(V+E) = O(VE^2)
+* Proof of Correctness
+  * Termination - Each iteration increases the throughput of the flow by an integer & The sum of the capacities on the edges out of s is finite
+  * Optimality - Let S = {v | v is reachable from s in G<sub>f</sub>}, T = V - S. We form a cut c(S,T) as s ∈ S, t ∈ T, S ∪ T = V and S ∩ T = Ø, where all edges leaving S are completely saturated and entering 0 flow. Then, we must have |f| = f<sub>out</sub>(S) - f<sub>in</sub>(S) = f<sub>out</sub>(S) = c(S,T)
+<img height="260" alt="image" src="https://user-images.githubusercontent.com/84046974/199741637-d70def0c-f0c7-4ace-a3cb-ae69b98a414a.png" align="left">
+<img height="105" alt="image" src="https://user-images.githubusercontent.com/84046974/191389716-ae94f1d5-2ecd-4a34-8b70-ba639b2786f1.png">
+<img height="105" alt="image" src="https://user-images.githubusercontent.com/84046974/199737174-054c4282-7892-4080-8397-43bd4fa87f25.png">
+  
+### Edmonds-Karp = O(VE) * O(V+E) = O(VE<sup>2</sup>)
 * Use BFS instead of DFS to avoid potential very long path (not ideal) -> find the shortest-length path
+<img width="608" alt="image" src="https://user-images.githubusercontent.com/84046974/199742799-f529f925-7887-4ecb-b43a-9b7362e5f77a.png">
+<img width="637" alt="image" src="https://user-images.githubusercontent.com/84046974/199743891-93fdae60-9cb9-48f7-b9d5-16228594b3eb.png">
+
+### Dinic = O(V<sup>2</sup>E)
+<img height="400" alt="image" src="https://user-images.githubusercontent.com/84046974/199747196-61271a0c-9e80-4488-9dca-d78c3addad2e.png" align="left">
+<img width="460" alt="image" src="https://user-images.githubusercontent.com/84046974/199744663-0f0e586b-12f1-4149-967f-e9137bbe0aaa.png">
+<img height="225" alt="image" src="https://user-images.githubusercontent.com/84046974/199747392-9b7e8339-a49f-4160-af3b-00db1e97a961.png">
 
 ## Maximum Bipartite Matching
 * maximum matching in a bipartite graph == minimum vertex cover (in polynomial time)
