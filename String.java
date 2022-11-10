@@ -28,6 +28,10 @@ int b = ("Z").compareTo("a"); //b = -7
 //X-digit after the decimal
 String.format("%.6f", m/n); //Note, at least one of m and n should be float or double.
 
+//substring
+str.startsWith(prefix); //return true or false
+str.endsWith(suffix); //return true or false
+
 /*
  * String, StringBuffer and StringBuilder
  * Mutability Difference:
