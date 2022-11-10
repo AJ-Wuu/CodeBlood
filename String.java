@@ -3,10 +3,6 @@ String s = "";
 s = s.concat("s"); //s.concat() has a return value, and it needs this return value to update the original string
 s += "00"; //directly using "+" could also work
 
-// StringBuilder vs StringBuffer
-// StringBuilder works faster than StringBuffer
-// StringBuilder is NOT thread-safe, but StringBuffer is thread-safe
-
 //String Builder
 StringBuilder str = new StringBuilder();
 str.append("GFG"); //str.append() does not have a return value, but directly update the original string
@@ -28,7 +24,7 @@ int b = ("Z").compareTo("a"); //b = -7
 //X-digit after the decimal
 String.format("%.6f", m/n); //Note, at least one of m and n should be float or double.
 
-//substring
+//Substring
 str.startsWith(prefix); //return true or false
 str.endsWith(suffix); //return true or false
 
@@ -40,7 +36,7 @@ str.endsWith(suffix); //return true or false
  * 
  * Thread-Safety Difference:
  * StringBuffer is thread-safe, so when the application needs to be run only in a single thread then it is better to use StringBuilder.
- * StringBuilder is more efficient than StringBuffer.
+ * StringBuilder is more efficient than StringBuffer, NOT thread-safe.
  * 
  * Situations:
  * If your string is not going to change use a String class because a String object is immutable.
