@@ -9,7 +9,7 @@
  *         2.4. likely to be faster than Stack when used as a stack
  *         2.5. likely to be faster than LinkedList when used as a queue
  */
-int[][] direction = new int[][]{{0,-1}, {0,1}, {-1,0}, {1,0}};
+int[][] direction = new int[][]{{-1,0}, {1,0}, {0,-1}, {0,1}};
 public int[][] updateMatrix(int[][] mat) {
     int m = mat.length, n = mat[0].length;
         
@@ -43,3 +43,32 @@ public int[][] updateMatrix(int[][] mat) {
 }
 
 // Approach 2: DP (see: https://assets.leetcode.com/users/images/8da7965f-6cf4-4ac2-a307-33f661fea5ca_1627604534.7922251.png)
+public int[][] updateMatrix(int[][] mat) {
+    int m = mat.length, n = mat[0].length, INF = m + n; // distance is up to m + n
+        
+    // compute based on top and left neighbors
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (mat[i][j] == 0) {
+                continue;
+            }
+            int top = (i >= 1) ? mat[i-1][j] : INF;
+            int left = (j >= 1) ? mat[i][j-1] : INF;
+            mat[i][j] = Math.min(top, left) + 1;
+        }
+    }
+        
+    // compute based on bottom and right neighbors
+    for (int i = m-1; i >= 0; i--) {
+        for (int j = n-1; j >= 0; j--) {
+            if (mat[i][j] == 0) {
+                continue;
+            }
+            int bottom = (i < m-1) ? mat[i+1][j] : INF;
+            int right = (j < n-1) ? mat[i][j+1] : INF;
+            mat[i][j] = Math.min(mat[i][j], Math.min(bottom, right) + 1);
+        }
+    }
+        
+    return mat;
+}
