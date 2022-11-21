@@ -96,3 +96,54 @@ public static int[] maxSlidingWindow(int[] nums, int k) {
     }
     return result;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Max Even Sum of a Subsequence of Length K
+public static int MaxEvenSumKLengthSubsequence(int[] arr, int k) {
+    PriorityQueue<Integer> odd = new PriorityQueue<>(Collections.reverseOrder());
+    PriorityQueue<Integer> even = new PriorityQueue<>(Collections.reverseOrder());
+    if (even.size() == 0 && odd.size() == 1) {
+        return -1;
+    }
+
+    int result = 0;
+    for (int i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 == 1) {
+            odd.add(arr[i]);
+        }
+        else {
+            even.add(arr[i]);
+        }
+    }
+
+    while (k > 1) {
+        if (even.peek() > odd.peek()) { // the largest even number > the largest odd number
+            k--;
+            result += even.poll();
+        }
+        else { // choose the larger one out of the sum of even top two and the sum of odd top two
+            k -= 2;
+            int[] temp = new int[4];
+            temp[0] = even.poll();
+            temp[1] = even.peek();
+            temp[2] = odd.poll();
+            temp[3] = odd.peek();
+            if (temp[0] + temp[1] >= temp[2] + temp[3]) {
+                result += temp[0] + temp[1];
+                even.poll();
+                odd.add(temp[2]);
+            }
+            else {
+                result += temp[2] + temp[3];
+                odd.poll();
+                even.add(temp[0]);
+            }
+        }
+    }
+    if (k == 1) { // still need one more number
+        result += even.poll();
+    }
+
+    return result;
+}
