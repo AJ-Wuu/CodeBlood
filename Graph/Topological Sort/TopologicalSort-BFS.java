@@ -75,6 +75,6 @@ class Graph {
 		g.addEdge(3, 1);
 		System.out.print("Following is a Topological sort of the given graph: ");
 		g.topologicalSort();
-        System.out.println();
+		System.out.println();
 	}
 }
