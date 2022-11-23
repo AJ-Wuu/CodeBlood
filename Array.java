@@ -464,7 +464,7 @@ public int totalFruit(int[] fruits) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#621 - Task Scheduler (and similarly, #767 - Reorganize String)
+//#621 - Task Scheduler
 //Key: find how many idle slots we need -- use the longest task to get the maximum parts -- if we have multiple longest task, see them as a combined big task
 //E.g.: [A,A,A,B,B,C], n = 2 -> A ? ? A ? ? A -> 2 parts with 2 empty slots each
 //      [A,A,A,B,B,B,C,D,D], n = 2 -> A B ? A B ? A B <=> X ? X ? X -> 2 parts with 1 empty slot each
@@ -496,4 +496,33 @@ public int leastInterval(char[] tasks, int n) {
         int idles = Math.max(0, emptySlots - taskOther);
         return (tasks.length + idles);
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#767 - Reorganize String
+//Key: very similar to #621 above
+//     when output the result string, we will need to start with the character with the maximum appearance, and put it in every other position
+//     notice that we will need to get back from the end to the beginning of the string, which only happens once, so we can hard-code the return position to be 1
+//E.g.: aaabbbcdd -> a_a_a____ -> aba_a_b_b -> abaca_b_b -> abacadbdb
+public String reorganizeString(String S) {
+    /*...*/
+    char[] res = new char[S.length()];
+    int idx = 0;
+    while (hash[letter] > 0) { // start with the maximum appeared character
+        res[idx] = (char) (letter + 'a');
+        idx += 2; // put the same characters in every other position
+        hash[letter]--;
+    }
+    for (int i = 0; i < hash.length; i++) {
+        while (hash[i] > 0) {
+            if (idx >= res.length) {
+                idx = 1; // we will only be here once, so hard-code it to be 1
+            }
+            res[idx] = (char)(i + 'a');
+            idx += 2; // put the same characters in every other position
+            hash[i]--;
+        }
+    }
+    return String.valueOf(res);
 }
