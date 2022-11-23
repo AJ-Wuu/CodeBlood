@@ -464,7 +464,7 @@ public int totalFruit(int[] fruits) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#621 - Task Scheduler
+//#621 - Task Scheduler (and similarly, #767 - Reorganize String)
 //Key: find how many idle slots we need -- use the longest task to get the maximum parts -- if we have multiple longest task, see them as a combined big task
 //E.g.: [A,A,A,B,B,C], n = 2 -> A ? ? A ? ? A -> 2 parts with 2 empty slots each
 //      [A,A,A,B,B,B,C,D,D], n = 2 -> A B ? A B ? A B <=> X ? X ? X -> 2 parts with 1 empty slot each
