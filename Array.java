@@ -461,3 +461,39 @@ public int totalFruit(int[] fruits) {
         
     return maxLength;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#621 - Task Scheduler
+//Key: find how many idle slots we need -- use the longest task to get the maximum parts -- if we have multiple longest task, see them as a combined big task
+//E.g.: [A,A,A,B,B,C], n = 2 -> A ? ? A ? ? A -> 2 parts with 2 empty slots each
+//      [A,A,A,B,B,B,C,D,D], n = 2 -> A B ? A B ? A B <=> X ? X ? X -> 2 parts with 1 empty slot each
+public int leastInterval(char[] tasks, int n) {
+    int[] taskLength = new int[26];
+    for (int i = 0; i < tasks.length; i++) {
+        taskLength[tasks[i] - 'A']++;
+    }
+        
+    int taskMax = 0;
+    int countMax = 0;
+    for (int i = 0; i < 26; i++) {
+        if (taskLength[i] > taskMax) {
+            taskMax = taskLength[i];
+            countMax = 1;
+        }
+        else if (taskLength[i] == taskMax) {
+            countMax++;
+        }
+    }
+        
+    if (countMax >= n + 1) { // should be n + 1 to take the task execution time into consideration
+        return tasks.length;
+    }
+    else {
+        int parts = taskMax - 1;
+        int emptySlots = (n + 1 - countMax) * parts;
+        int taskOther = tasks.length - countMax * taskMax;
+        int idles = Math.max(0, emptySlots - taskOther);
+        return (tasks.length + idles);
+    }
+}
