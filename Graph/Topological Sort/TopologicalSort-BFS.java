@@ -10,7 +10,7 @@ class Graph {
 		adj = new ArrayList[V];
 		for (int i = 0; i < V; i++) {
 			adj[i] = new ArrayList<Integer>();
-        }
+        	}
 	}
 
 	public void addEdge(int u, int v) {
@@ -34,7 +34,7 @@ class Graph {
 		for (int i = 0; i < V; i++) {
 			if (indegree[i] == 0) {
 				q.add(i);
-            }
+            		}
 		}
 
 		int cnt = 0; // count of visited vertices
@@ -49,7 +49,7 @@ class Graph {
 				// if in-degree becomes zero, add it to queue
 				if (--indegree[node] == 0) {
 					q.add(node);
-                }
+                		}
 			}
 			cnt++;
 		}
