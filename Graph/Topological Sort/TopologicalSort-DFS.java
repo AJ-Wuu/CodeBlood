@@ -10,12 +10,12 @@ class Graph {
 		adj = new ArrayList<ArrayList<Integer> >(v);
 		for (int i = 0; i < v; ++i) {
 			adj.add(new ArrayList<Integer>());
-        }
+        	}
 	}
 
 	void addEdge(int v, int w) {
-        adj.get(v).add(w);
-    }
+        	adj.get(v).add(w);
+    	}
 
 	void topologicalSortUtil(int v, boolean visited[], Stack<Integer> stack) {
 		visited[v] = true;
@@ -26,7 +26,7 @@ class Graph {
 			i = it.next();
 			if (!visited[i]) {
 				topologicalSortUtil(i, visited, stack);
-            }
+            		}
 		}
 
 		stack.push(new Integer(v));
@@ -38,17 +38,17 @@ class Graph {
 		boolean visited[] = new boolean[V];
 		for (int i = 0; i < V; i++) {
 			visited[i] = false;
-        }
+        	}
 
 		for (int i = 0; i < V; i++) {
 			if (visited[i] == false) {
 				topologicalSortUtil(i, visited, stack);
-            }
-        }
+            		}
+        	}
 
 		while (stack.empty() == false) {
 			System.out.print(stack.pop() + " ");
-        }
+        	}
 	}
 
 	public static void main(String args[]) {
@@ -62,6 +62,6 @@ class Graph {
 
 		System.out.print("Following is a Topological sort of the given graph: ");
 		g.topologicalSort();
-        System.out.println();
+        	System.out.println();
 	}
 }
