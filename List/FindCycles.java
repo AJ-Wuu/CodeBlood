@@ -17,7 +17,7 @@ public class FastSlowPointers {
 
 	/*
 	 * Logic:
-	 *        x            y
+	 *  {     x     }{           y            }
 	 * p1 --------- p2 --------- p3 --------- p4
 	 *               \------------------------/
 	 * initial state: head, fast and slow all at p1
@@ -28,7 +28,7 @@ public class FastSlowPointers {
 	 *                  l(fast) - l(slow) = x+y = n*cycle -> fast covers n cycles more than slow
 	 *                                                    -> it could be more than one, as fast may "jump over" slow
 	 * middle state: head at p1, fast and slow at p4
-	 * round 2: we are certain if slow moves x, then slow will be back to p2
+	 * round 2: we are certain if slow moves x, then slow will be back to p2 (see from fast, p1 -- x -- p2 -- y -- p4 -- ? -- p2 -- y -- p4 -> p4 to p2 = x)
 	 *          we also realize that the distance between head and p2 is x
 	 *          so, if slow and head move together in the same speed, they should meet at p2
 	 * head & slow met: exactly at p2, which is the beginning of the cycle
