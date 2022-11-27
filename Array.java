@@ -526,3 +526,27 @@ public String reorganizeString(String S) {
     }
     return String.valueOf(res);
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#330 - Patching Array
+//E.g.: nums = [1, 2, 4, 13, 43] and n = 100 -> patches = 3 = [8, 29, 58]
+//      miss = [1, 2, 4, 8*, 16**, 29*, 58*, 101***]
+//              *: numbers we need to patch
+//              **: numbers we could reach with the existing numbers and some patches
+//              ***: number that already exceeds n, and signifies the end of the algorithm
+public int minPatches(int[] nums, int n) {
+    long miss = 1; // imply that [1, miss) can be reached
+    int patches = 0, i = 0;
+    while (miss <= n) {
+        if (i < nums.length && nums[i] <= miss) { // use `nums[i] <= miss` to check if the next number is already beyond our current reach
+            miss += nums[i];
+            i++;
+        }
+        else { // add miss as a new patch, which will bring the boundary we could reach to miss * 2
+            miss += miss; // faster than miss *= 2
+            patches++;
+        }
+    }
+    return patches;
+}
