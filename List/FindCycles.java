@@ -26,7 +26,7 @@ public class FastSlowPointers {
 	 * fast & slow met: slow has not covered one round yet, and fast has covered more than one round
 	 *                  l(slow) = x+y -> l(fast) = 2*(x+y)
 	 *                  l(fast) - l(slow) = x+y = n*cycle -> fast covers n cycles more than slow
-	 *                      -> it could be more than one, as fast may "jump over" slow
+	 *                                                    -> it could be more than one, as fast may "jump over" slow
 	 * middle state: head at p1, fast and slow at p4
 	 * round 2: we are certain if slow moves x, then slow will be back to p2
 	 *          we also realize that the distance between head and p2 is x
