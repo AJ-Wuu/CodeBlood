@@ -1,4 +1,7 @@
 //List - accept index, accept duplicate
+List<Integer> sortedList = new ArrayList<>();
+Collections.sort(sortedList, Comparator);
+
 public class OverrideListSort {
     static class Employee{
         int id;
