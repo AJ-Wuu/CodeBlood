@@ -22,17 +22,17 @@ public class FastSlowPointers {
 	 *               \------------------------/
 	 * initial state: head, fast and slow all at p1
 	 * round 1: v(fast) = 2*v(slow), so l(fast) = 2*l(slow)
-	 *          both pointers move in the cycle and meet in the cycle (p3)
+	 *          both pointers move in the cycle and meet in the cycle (p4)
 	 * fast & slow met: slow has not covered one round yet, and fast has covered more than one round
 	 *                  l(slow) = x+y -> l(fast) = 2*(x+y)
 	 *                  l(fast) - l(slow) = x+y = n*cycle -> fast covers n cycles more than slow
 	 *                      -> it could be more than one, as fast may "jump over" slow
-	 * middle state: head at p1, fast and slow at p3
+	 * middle state: head at p1, fast and slow at p4
 	 * round 2: we are certain if slow moves x, then slow will be back to p2
 	 *          we also realize that the distance between head and p2 is x
 	 *          so, if slow and head move together in the same speed, they should meet at p2
 	 * head & slow met: exactly at p2, which is the beginning of the cycle
-	 * final state: head and slow at p2, fast at p3
+	 * final state: head and slow at p2, fast at p4
 	 */
 
 	//#142 - Linked List Cycle II
