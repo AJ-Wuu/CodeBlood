@@ -26,7 +26,7 @@ Stack<data_type> stack_name = new Stack<data_type>();
 
 // Queue = PriorityQueue + ArrayDeque + LinkedList
 // ArrayDeque == Array Double Ended Queue == Array Deck:
-//            can add or remove an element from both sides of the queue, thread-safe
+//            can add or remove an element from both sides of the queue, thread-safe, Null prohibited
 //            faster than Stack when used as a stack, faster than LinkedList when used as a queue
 Queue<data_type> queue_name = new PriorityQueue<data_type>(Arrays.asList(Object o1, Object o2, …, Object on));
 Queue<data_type> queue_name = new PriorityQueue<data_type>(map.values());
