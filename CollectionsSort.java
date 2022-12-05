@@ -2,6 +2,8 @@
 List<Integer> sortedList = new ArrayList<>();
 Collections.sort(sortedList, newComparator);
 
+list.sort((x, y) -> x.length() - y.length());
+
 public class OverrideListSort {
     static class Employee{
         int id;
