@@ -550,3 +550,22 @@ public int minPatches(int[] nums, int n) {
     }
     return patches;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#283 - Move Zeroes
+//Snowball method: [0,1,0,3,12] -> [1,0,0,3,12] -> [1,3,0,0,12] -> [1,3,12,0,0]
+//                 [B]                [BB]              [BB]               [BB]
+public void moveZeroes(int[] nums) {
+    int snowBallSize = 0;
+    for (int i = 0; i < nums.length; i++) {
+	if (nums[i] == 0) {
+            snowBallSize++; 
+        }
+        else if (snowBallSize > 0) { // with snowball size over 0, always choose the beginning position of the ball to swap
+	    int t = nums[i];
+	    nums[i] = 0;
+	    nums[i - snowBallSize] = t;
+        }
+    }
+}
