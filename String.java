@@ -177,3 +177,13 @@ public String removeDuplicates(String s, int k) {
     }
     return sb.toString();
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//#49 - Group Anagrams
+//transform anagram strings to the same key (eg. "eat", "tea", "ate")
+char[] ca = new char[26];
+for (char c : s.toCharArray()) {
+    ca[c - 'a']++;
+}
+String keyStr = String.valueOf(ca);
