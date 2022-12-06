@@ -60,3 +60,8 @@ public static int scoreOfParentheses(String S) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//#1963 - Minimum Number of Swaps to Make the String Balanced
+//Key: 1. Use ArrayDeque instead of Stack
+//     2. Notice that the unbalanced brackets would look like "]]]...[[[", e.g. "]]][[[" -> "[]][][" -> "[[][]]"
+//        we could summarize that swaps = 0, 1, 1, 2, 2, 3, 3, 4, ... == result
+//                           mismatches = 0, 1, 2, 3, 4, 5, 6, 7, ... == deque.size() / 2
