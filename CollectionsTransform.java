@@ -31,3 +31,6 @@ Stack<data_type> stack_name = new Stack<data_type>();
 Queue<data_type> queue_name = new PriorityQueue<data_type>(Arrays.asList(Object o1, Object o2, …, Object on));
 Queue<data_type> queue_name = new PriorityQueue<data_type>(map.values());
 Queue<data_type> queue_name = new PriorityQueue<data_type>(Collection c);
+Deque<data_type> deque_name = new ArrayDeque<data_type>(Arrays.asList(Object o1, Object o2, …, Object on));
+Deque<data_type> deque_name = new ArrayDeque<data_type>(map.values());
+Deque<data_type> deque_name = new ArrayDeque<data_type>(Collection c);
