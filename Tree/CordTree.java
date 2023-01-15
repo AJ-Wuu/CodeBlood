@@ -52,21 +52,16 @@ public class CordTree {
 
         public Character findCordAtIndex(int index, Node root) {
             if (index <= root.length) {
-                if (root instanceof LeafNode) {
-                    // if a leaf node, base case
+                if (root instanceof LeafNode) { // a leaf node, base case
                     String s = ((LeafNode) root).value;
                     return s.charAt(index - 1);
-                } else {
-                    // if a internal node
-                    // check left right
+                } else { // an internal node
                     InternalNode internalNode = (InternalNode) root;
                     Node left = internalNode.leftChild;
                     Node right = internalNode.rightChild;
-                    if (index <= left.length) {
-                        // go to left side
+                    if (index <= left.length) { // go to left
                         return findCordAtIndex(index, left);
-                    } else {
-                        // got to right side
+                    } else { // go to right
                         return findCordAtIndex(index - left.length, right);
                     }
                 }
