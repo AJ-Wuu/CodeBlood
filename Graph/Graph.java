@@ -386,7 +386,7 @@ private int find(int[] parent, int f) {
 //#2101 - Detonate the Maximum Bombs
 //Key: Generally, bomb A can detonate bomb B, but not the other way round -> this implies a directed edge from A to B -> BFS or DFS to find all counts -> get the maximum
 private boolean inRange(int[] a, int[] b) {
-    long dx = a[0] - b[0], dy = a[1] - b[1], r = a[2];
+    long dx = a[0] - b[0], dy = a[1] - b[1], r = a[2]; //watch out for integer overflow
     return (dx * dx + dy * dy <= r * r);
 }
 
@@ -395,10 +395,10 @@ private int dfs(int idx, boolean[] visited, int[][] bombs) {
     visited[idx] = true;
     for (int i = 0; i < bombs.length; i++) {
         if (!visited[i] && inRange(bombs[idx], bombs[i])) {
-            count += dfs(i, visited, bombs);
+            count += dfs(i, visited, bombs); //add the possible detonation from bomb B
 	}
     }
-    return (count + 1);
+    return (count + 1); //include itself
 }
 
 public int maximumDetonation(int[][] bombs) {
