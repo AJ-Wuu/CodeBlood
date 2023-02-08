@@ -90,7 +90,9 @@ What is your name?  It is lancelot.
 What is your quest?  It is the holy grail.
 What is your favorite color?  It is blue.
 ```
-## In-Place Sorting
+## Sorting
 ```py
-timestamps.sort(reverse=True)
+array = [5, 2, 3, 1, 4]
+result = sorted(array, reverse=True)  # [5, 4, 3, 2, 1]
+array.sort(reverse=True)  # in-place
 ```
