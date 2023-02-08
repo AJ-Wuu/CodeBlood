@@ -46,6 +46,19 @@
   * a ^ b # letters in a or b but not both -> {'r', 'd', 'b', 'm', 'z', 'l'}
 ### Dictionary
 * ```dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])``` gets ```{'sape': 4139, 'guido': 4127, 'jack': 4098}```
+* Sort by key
+```py
+my_keys = list(myDict.keys())
+my_keys.sort()
+sorted_dict_key1 = {i: my_dictionary[i] for i in my_keys}
+sorted_dict_key1 = dict(sorted(my_dictionary.items()))
+```
+* Sort by value:
+```py
+sorted_dict_val1_ascending = dict(sorted(my_dictionary.items(), key=lambda x: x[1]))  # anonymous lambda function takes x as input, and uses x[1] to sort
+sorted_dict_val1_descending = dict(sorted(my_dictionary.items(), key=lambda x: x[1], reverse=True))
+sorted_dict_val2 = dict(sorted(my_dictionary.items(), key=operator.itemgetter(1)))
+```
 ## Print
 * ```print(a, end=',')```
 * ```print(f"He said his name is {name!r}.")``` is the same as ```print(f"He said his name is {repr(name)}.")```: "He said his name is 'J'."
