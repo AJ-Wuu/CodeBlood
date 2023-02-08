@@ -31,6 +31,7 @@
 * zip(): iterate over several iterables in parallel, producing tuples with an item from each one
   * ```for item in zip([1, 2, 3], ['sugar', 'spice', 'everything nice']): print(item)``` gets ```[(1, 'sugar'), (2, 'spice'), (3, 'everything nice')]```
 * del(): ```del list[:]``` is equivalent to ```list.clear()```, ```del list``` deletes this variable
+* Index (eg. get even-indexed elements): ```nums[1::2]```
 ### Used List as Stack (LIFO)
 * pop: stack.pop()
 ### Used List as Queue (FIFO)
