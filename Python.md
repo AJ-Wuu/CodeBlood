@@ -65,7 +65,7 @@
   * Pass Statement does nothing. It can be used when a statement is required syntactically but the program requires no action.
   * ```while True: pass # Busy-wait for keyboard interrupt (Ctrl+C)```
 * Match (same as Switch)
-```
+```py
 def http_error(status):
     match status:
         case 400:
@@ -80,7 +80,7 @@ def http_error(status):
             return "Something's wrong with the internet"
 ``` 
 * Technique
-```
+```py
 questions = ['name', 'quest', 'favorite color']
 answers = ['lancelot', 'the holy grail', 'blue']
 for q, a in zip(questions, answers):
@@ -89,4 +89,8 @@ for q, a in zip(questions, answers):
 What is your name?  It is lancelot.
 What is your quest?  It is the holy grail.
 What is your favorite color?  It is blue.
+```
+## In-Place Sorting
+```py
+timestamps.sort(reverse=True)
 ```
