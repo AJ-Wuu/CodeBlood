@@ -44,7 +44,7 @@ func main() {
     var msg string = "a string"            // var NAME TYPE = xxx, need to specify type
     msg := "a string"                      // short assignment operator :=, no need to specify type, allow compiler to decide
     
-    const pi = 3.14                        // declare a constant variable, cannot be changed
+    const pi = 3.14                        // declare a constant variable, cannot be changed, implicitly type
     fmt.Printf("type: %T, value: %v", pi + 1.1, pi + 1.1)    // get "type: float64, value: 2.1"
     const myConst int = 3.14
     fmt.Printf("type: %T, value: %v", float64(myConst) + 1.1, float64(myConst) + 1.1)    // no type conversion will give error
@@ -73,7 +73,7 @@ func main() {
 
     // Map
     var prodPrice map[string]int           // map with key being string and value being int, nil
-    prodPrice["cheese"] = 10               // get error because prodPrice is nil
+    prodPrice["cheese"] = 10               // get panic error because prodPrice is nil
     tempPrice := make(map[string]int)      // declare and initialize with default
     tempPrice["cake"] = 18
     prodPrice = tempPrice
@@ -147,7 +147,7 @@ func main() {
         
 
     // Loop -- no while
-    for i := 0; i < 5; i++ {
+    for i := 0; i < 5; i++ {               // for INIT_STATEMENT; CONDITION_STATEMENT; POST_STATEMENT { ... }
         if i == 2 {
             break
         }
