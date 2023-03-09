@@ -22,6 +22,7 @@ package main
 
 import (
     "fmt"
+    "strings"
 )
 
 // global scope
@@ -85,6 +86,21 @@ func main() {
     val2, key2 := empPrice["milk"]         // val2 = 0, key2 = false -> this key doesn't exist
     delete(empPrice, "macaron")
     
+    prices := map[string]int{
+        "egg": 2,
+        "pork": 3,
+        "beef": 4,
+    }
+    for key, value := range prices {       // use "range" to loop through
+        fmt.Println(key, value)
+    }
+    for key := range prices {
+        fmt.Println(key)                   // don't need to add "_" for the value space
+    }
+    for _, value := range prices {
+        fmt.Println(value)                 // need to add "_" for the key space
+    }
+    
     
     // Pointer
     var testPtr *int                       // var NAME *T, get <nil>
@@ -93,15 +109,9 @@ func main() {
     var ptr2 *int = new(int)               // var NAME *T = new(T), set default value 0 for int
     *ptr2 = 123
     ptr3 := &val
+   
     
-
-    // Loop
-    for i := 0; i < 5; i++ {
-        fmt.Println(i)
-    }
-    
-    
-    // Selection
+    // Control Flow
     if temp := -10; temp < 0 {
         fmt.Println("Below freezing")
     } else if temp == 0 {
@@ -134,9 +144,32 @@ func main() {
         default:
             fmt.Println("Take the weekend off!")
     }
+        
+
+    // Loop -- no while
+    for i := 0; i < 5; i++ {
+        if i == 2 {
+            break
+        }
+        fmt.Println(i)
+    }
+    
+    j := 0
+    for j < 5 {
+        if j == 2 {
+            continue
+        }
+        fmt.Println(j)
+        j++
+    }
     
     
-    
+    // String Function
+    fmt.Println(strings.Contains("Working with string functions", "functions"))    // true
+    fmt.Println(strings.Replace("gfg gfg gfg", "gfg", "GFG", 0))                   // replace first 0 occurrence, so doesn't change anything
+    fmt.Println(strings.Replace("gfg gfg gfg", "fg", "FG", -1))                    // -1 occurrence = the last occurrence, so "gFG gFG gFG"
+    fmt.Println(strings.Replace("gfg gfg gfg", "g", "G", 2))                       // 3 occurrence = the first 3 occurrence, so "GfG Gfg gfg"
+    fmt.Println(strings.Trim("____This is a sentence__", "_"))                     // trimmed all underscores, so "This is a sentence"
 }
 
 func setMe() int {
@@ -147,5 +180,19 @@ func deferExample() {
     // defer execution of a function, arguments are evaluated immediately, function is called only after parent function returns
     defer fmt.Println("second")
     fmt.Println("first")
+}
+
+func labelExample() {
+    i := 0
+    
+outerlabel:
+    for i < 5 {
+        if i == 2 {
+            i++
+            goto outerlabel
+        }
+        fmt.Println(i)
+        i++
+    }
 }
 ```
