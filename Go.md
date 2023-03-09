@@ -41,7 +41,7 @@ const (
 func main() {
     // Variables
     var msg string = "a string"            // var NAME TYPE = xxx, need to specify type
-    msg := "a string"                      // no need to specify type, allow compiler to decide with :=
+    msg := "a string"                      // short assignment operator :=, no need to specify type, allow compiler to decide
     
     const pi = 3.14                        // declare a constant variable, cannot be changed
     fmt.Printf("type: %T, value: %v", pi + 1.1, pi + 1.1)    // get "type: float64, value: 2.1"
@@ -70,6 +70,31 @@ func main() {
     sliceC := slice2[3:]
 
 
+    // Map
+    var prodPrice map[string]int           // map with key being string and value being int, nil
+    prodPrice["cheese"] = 10               // get error because prodPrice is nil
+    tempPrice := make(map[string]int)      // declare and initialize with default
+    tempPrice["cake"] = 18
+    prodPrice = tempPrice
+    prodPrice["cream"] = 20                // fine because prodPrice is not nil
+    empPrice := map[string]int{
+        "macaron": 21,                     // declare and initialize
+    }
+    empPrice["cookie"] = 12
+    val1, key1 := empPrice["macaron"]      // val1 = 21, key1 = true -> this key exists
+    val2, key2 := empPrice["milk"]         // val2 = 0, key2 = false -> this key doesn't exist
+    delete(empPrice, "macaron")
+    
+    
+    // Pointer
+    var testPtr *int                       // var NAME *T, get <nil>
+    val := 123
+    var ptr *int = &val                    // assign value
+    var ptr2 *int = new(int)               // var NAME *T = new(T), set default value 0 for int
+    *ptr2 = 123
+    ptr3 := &val
+    
+
     // Loop
     for i := 0; i < 5; i++ {
         fmt.Println(i)
@@ -77,6 +102,24 @@ func main() {
     
     
     // Selection
+    if temp := -10; temp < 0 {
+        fmt.Println("Below freezing")
+    } else if temp == 0 {
+        fmt.Println("At freezing point")
+    } else {
+        fmt.Println("Above freezing")
+    }
+    
+    temp := -10
+    switch {
+        case temp < 0:
+            fmt.Println("Below freezing")
+        case temp == 0:
+            fmt.Println("At freezing point")
+        default:
+            fmt.Println("Above freezing")
+    }
+    
     switch workday {
         case 1:
             fmt.Println("Monday")
@@ -92,9 +135,17 @@ func main() {
             fmt.Println("Take the weekend off!")
     }
     
+    
+    
 }
 
 func setMe() int {
     return 1
+}
+
+func deferExample() {
+    // defer execution of a function, arguments are evaluated immediately, function is called only after parent function returns
+    defer fmt.Println("second")
+    fmt.Println("first")
 }
 ```
