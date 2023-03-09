@@ -166,10 +166,10 @@ func main() {
     
     // String Function
     fmt.Println(strings.Contains("Working with string functions", "functions"))    // true
-    fmt.Println(strings.Replace("gfg gfg gfg", "gfg", "GFG", 0))                   // replace first 0 occurrence, so doesn't change anything
-    fmt.Println(strings.Replace("gfg gfg gfg", "fg", "FG", -1))                    // -1 occurrence = the last occurrence, so "gFG gFG gFG"
-    fmt.Println(strings.Replace("gfg gfg gfg", "g", "G", 2))                       // 3 occurrence = the first 3 occurrence, so "GfG Gfg gfg"
-    fmt.Println(strings.Trim("____This is a sentence__", "_"))                     // trimmed all underscores, so "This is a sentence"
+    fmt.Println(strings.Replace("gfg gfg gfg", "gfg", "GFG", 0))    // replace first 0 occurrence, so doesn't change anything
+    fmt.Println(strings.Replace("gfg gfg gfg", "fg", "FG", -1))     // -1 occurrence = the last occurrence, so "gFG gFG gFG"
+    fmt.Println(strings.Replace("gfg gfg gfg", "g", "G", 2))        // 3 occurrence = the first 3 occurrence, so "GfG Gfg gfg"
+    fmt.Println(strings.Trim("____This is a sentence__", "_"))      // trimmed all underscores, so "This is a sentence"
 }
 
 func setMe() int {
@@ -177,9 +177,9 @@ func setMe() int {
 }
 
 func deferExample() {
-    // defer execution of a function, arguments are evaluated immediately, function is called only after parent function returns
-    defer fmt.Println("second")
-    fmt.Println("first")
+    // defer execution of a function
+    defer fmt.Println("second")            // function, called only after parent function (deferExample()) returns
+    fmt.Println("first")                   // argument, evaluated immediately
 }
 
 func labelExample() {
