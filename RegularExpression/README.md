@@ -65,7 +65,7 @@ EXAMPLE FOR GROUP:
 
 ## Regular Expressions in Bash
 1. Put double quotes around strings to avoid the special bash characters
-2. Put the "-E" in front as an argument to make use of the additional regular expression pattern matching notation
+2. Put the `-E` in front as an argument to make use of the additional regular expression pattern matching notation
 ```bash
 grep -E PATTERN -> (explain) interpret PATTERN as an extended regular expression
 grep -n PATTERN -> (line-number) prefix each line of output with the line number within its input file
