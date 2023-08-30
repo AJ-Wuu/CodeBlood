@@ -1,3 +1,6 @@
+// Best and Safe Practice
+boolean checkNullAndMatch = "key".equalsIgnoreCase(sortBy); // instead of `sortBy != null && sortBy.equalsIgnoreCase("key")`
+
 //String
 String s = "";
 s = s.concat("s"); //s.concat() has a return value, and it needs this return value to update the original string
