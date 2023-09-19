@@ -48,6 +48,19 @@ str.endsWith(suffix); //return true or false
  * If your string can change, and will be accessed from multiple threads, use a StringBuffer because StringBuffer is synchronous so you have thread-safety.
  */
 
+public void stringMatch() {
+    // `pattern.matcher` - test if the string contains-a pattern
+    // `pattern.matches` - test if the string is-a pattern
+    String str = "hello+";
+    Pattern pattern = Pattern.compile("\\+");
+    Matcher matcher = pattern.matcher(str);
+    
+    while (matcher.find()) {
+        System.out.println("I found the text " + matcher.group() + " starting at index " + matcher.start() + " and ending at index " + matcher.end());
+    }
+    System.out.println(java.util.regex.Pattern.matches(".*\\+", str));
+}
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //#482 - License Key Formatting
