@@ -22,7 +22,7 @@
  * When anything else other than constants are there, comma-separated constants should be terminated with a semicolon. Otherwise, semicolon is optional.
  */
 
-//hashCode()
+// hashCode()
 public int hashCode() {
     final int prime = 31;
     int result = 1;
@@ -31,7 +31,7 @@ public int hashCode() {
     return result;
 }
 
-//Assign a different behavior to each constant by introducing an abstract method into the enum and overriding this method in an anonymous subclass of the constant
+// Assign a different behavior to each constant by introducing an abstract method into the enum and overriding this method in an anonymous subclass of the constant
 enum Weekend {
     SATURDAY {
         @Override
@@ -44,8 +44,8 @@ enum Weekend {
     public abstract void someMethod();
 }
 
-//Enums are supported by the switch statement from java 5
-//When using enum in switch statement, the enum constants are the only allowed labels for cases
+// Enums are supported by the switch statement from java 5
+// When using enum in switch statement, the enum constants are the only allowed labels for cases
 enum Weekend {
     SATURDAY, SUNDAY;
 }
@@ -62,7 +62,7 @@ public static void switch(enum Weekend) {
     }
 }
 
-//Call enums
+// Call enums
 public enum CardColour {
     RED, BLACK
 }
@@ -77,3 +77,7 @@ public enum Suit {
     Suit(CardColour colour) { this.colour = colour; }
     public CardColour getColour() { return colour; }
 }
+
+// Get Enum value from String
+public enum Blah { A, B, C, D }
+assertEquals(Blah.A, Blah.valueOf("A"));
