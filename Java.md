@@ -4,6 +4,11 @@
 * Compile into byte code -> .class **for JVM**
 * Java Virtual Machine must be installed on a target computer
 ## Name should not start with number characters (0~9), underscore \_ or dollar sign $
+## Access Modifier
+* `default`: accessible only within the same package
+* `private`: only visible within the enclosing class
+* `protected`: accessible within the same package or subclasses in different packages
+* `public`: accessible from everywhere
 ## Class & Object
 * Class is a valid reference type, can be used in type casting
 * Java code is structured with CLASS, which represents a concept and defines attributes it can store & operations and algorithms it is capable of
