@@ -293,7 +293,13 @@ public class ProductFactory {
   * To avoid excessive boxing and unboxing, primitive stream variants are also provided
   * Stream can be obtained from **any collection and array** or by using **static methods** of the Stream class
 * Stream Pipeline Processing Operation
-  * **```Optional``` is a wrapper object that protects against null value**
+  * **[`Optional`]([https://dzone.com/articles/optional-in-java](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/Optional.html)) is a wrapper object that protects against null value**
+    * not serializable
+    * reason of being introduced is to save the trouble of `null`-checking on each object
+    * `@NotNull` is not always helpful because **Java compiler will compile the code without these `null`-checks without complaint**
+    * **Java compiler forces user to handle the case of an empty `Optional` value**, like `orElse(new Foo())`, `orElseGet(() -> { /* ...lazily create a object foo... */ })`, `orElseThrow(() -> { /* ...lazily create a object foo... */ })`, `.ifPresent(foo -> { /* ...do something with foo... */ })`, etc.
+    * best practice: a variable whose type is `Optional` should never itself be null; it should always point to an `Optional` instance
+    * (NOT PREFERRED) if decided to use `possibleFoo.get()`, need to check `possibleFoo.isPresent()` or `possibleFoo.isEmpty()` first
   * Intermediate: perform action and produce another stream
     * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip(long l), limit(long l), takeWhile(Predicate P), dropWhile(Predicate P)
   * Terminal: traverse stream pipeline and end the stream processing
