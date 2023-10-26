@@ -19,6 +19,7 @@
 * pattern at the beginning of a line: `^`, eg. `^a`
 * pattern at the end of a line: `$`, eg. `g$`
 * same letter (out of `[xy]`) at the beginning and the end: `^([xy])[xy]*\1$|^[xy]$`
+* Meta Escape = `\W` = match any non-word character = `[^a-zA-Z0-9_]`
 
 ## Regular Expressions in Makefile
 * Note that for ending pattern, instead of `a$`, it should be written as `a$$`
