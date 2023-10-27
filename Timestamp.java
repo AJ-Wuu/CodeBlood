@@ -1,3 +1,12 @@
+/**
+ * General ISO-8601 Pattern: P[n]Y[n]M[n]DT[n]H[n]M[n]S or P[n]W 
+ * Java DateTime Format: https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#patterns
+ * Java Duration Regex: static final Pattern PATTERN = Pattern.compile("([-+]?)P(?:([-+]?[0-9]+)D)?" +
+ *                                                                     "(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?" +
+ *                                                                     "(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?",
+ *                                                                     Pattern.CASE_INSENSITIVE);
+ */
+
 import java.sql.Timestamp;
 import java.time.Instant;
 
