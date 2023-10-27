@@ -3,6 +3,20 @@
 * Source code -> plain text -> .java
 * Compile into byte code -> .class **for JVM**
 * Java Virtual Machine must be installed on a target computer
+## Best Practices
+* Use built-in utils like: `StringUtils.isEmpty()`, `StringUtils.isBlank()`, `CollectionUtils.isEmpty()`, `EnumUtils.getEnumIgnoreCase()`
+* No need to specify Access Modified in unit tests
+  * if needed, do `@VisibleForTesting static void test()` instead of `public static void test()`
+* Combine switch with return
+```java
+return switch (entityType) {
+    case ATTACHMENT -> !Sets.intersection(authResponse.getPermissions(), ATTACHMENT_DELETE_PERMISSIONS).isEmpty();
+    case COMMENT -> !Sets.intersection(authResponse.getPermissions(), COMMENT_DELETE_PERMISSIONS).isEmpty();
+    case TICKET -> !Sets.intersection(authResponse.getPermissions(), TICKET_DELETE_PERMISSIONS).isEmpty();
+    default -> throw new IllegalArgumentException("Unknown resource type " + entityType);
+};
+```
+
 ## Name should not start with number characters (0~9), underscore \_ or dollar sign $
 ## Access Modifier
 * `default`: accessible only within the same package
