@@ -16,6 +16,15 @@ return switch (entityType) {
     default -> throw new IllegalArgumentException("Unknown resource type " + entityType);
 };
 ```
+* Use method reference operator `::`
+  * uses direct reference to the method by name instead of providing a delegate to the method (like lambda expressions)
+```java
+// use
+stream.forEach(System.out::println);
+
+// instead of
+stream.forEach(s -> System.out.println(s)); 
+```
 
 ## Name should not start with number characters (0~9), underscore \_ or dollar sign $
 ## Access Modifier
