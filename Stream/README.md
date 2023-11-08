@@ -16,3 +16,28 @@ if (maybeTicket.isPresent() && !CollectionUtils.isEmpty(maybeTicket.get().getSla
     }
 }
 ```
+```java
+// use
+IntStream.range(0, LIMIT)
+         .mapToObj(i ->
+                        ProjectSummary.builder()
+                                .externalId(EXTERNAL_ID + i)
+                                .projectKey(KEY)
+                                .displayName(DISPLAY_NAME)
+                                .lifecycle(LifecycleState.ACTIVE)
+                                .build())
+         .collect(Collectors.toList());
+
+// instead of
+List<ProjectSummary> projectSummaries = new ArrayList<>();
+for (int i = 0; i < LIMIT; i++) {
+    projectSummaries.add(
+            ProjectSummary.builder()
+                    .externalId(EXTERNAL_ID + i)
+                    .projectKey(KEY)
+                    .displayName(DISPLAY_NAME)
+                    .lifecycle(LifecycleState.ACTIVE)
+                    .build());
+}
+```
+
