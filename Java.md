@@ -4,7 +4,7 @@
 * Compile into byte code -> .class **for JVM**
 * Java Virtual Machine must be installed on a target computer
 ## Best Practices
-* Use built-in utils like: `StringUtils.isEmpty()`, `StringUtils.isBlank()`, `CollectionUtils.isEmpty()`, `EnumUtils.getEnumIgnoreCase()`
+* Use built-in utils like: `StringUtils.isEmpty()`, `StringUtils.isBlank()`, `CollectionUtils.isEmpty()`, `EnumUtils.getEnumIgnoreCase()`, `assertEquals(2, result.size());`
 * No need to specify Access Modified in unit tests
   * if needed, do `@VisibleForTesting static void test()` instead of `public static void test()`
 * Combine switch with return
