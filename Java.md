@@ -426,6 +426,7 @@ public class ProductFactory {
   * Represent Zip Archive as a FileSystem
   * Access HTTP Resources
 ## Concurrency and Multithreading
+* `synchronized`: keyword to mark a block, allows only one thread to execute at any given time
 * Parallelism -> different execution paths that run simutaneously
 * Concurrency -> different execution paths that may not run simutaneously
 * Implement Threads
