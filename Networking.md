@@ -57,7 +57,9 @@
       * should be globally unique across the entire Internet
       * some are reserved by RFC (Request For Comment)
 * Consumption
-  * device: read in a full Ethernet packet (technically, a frame) during transmission
+  * device: read in a full Ethernet packet during transmission
+    * technically, this is a frame
+    * frame and packet can be used "interchangeably", as L2 keeps changing but the rest part remains the same
   * switch: only looks at L2
   * router
      1. looks at L2, makes sure the packet is destined for it, then **removes** L2
@@ -65,3 +67,30 @@
      3. leaves L3 **unmodified**, and places a **new** L2 back on the packet (**provided by the Address Resolution Protocol**)
   * firewall: typically looks at at least L4
     * some goes through L7
+
+## IP Subnet
+* IP = Network.Host/Subnet Mask, e.g. `[192.168.11].[22]/[24]`
+  * Network ≈ Zip Code
+  * Host ≈ Street Address
+  * Subnet Mask specifies that the first X bits of the address refers to Network and the last (32 - X) bits refers to Host
+```txt
+address     = 11000000 10101000 00001011 00010110 = 192.168.11.22
+              [         Network        ] [ Host ]
+subnet mask = 11111111 11111111 11111111 00000000 = 255.255.255.0 = (abbreviatedly) /24
+```
+* Subnetwork
+  * usage
+    * route traffic logically to a network rather than having to know specific information for each host in there
+    * create logical groups of devices
+  * rule
+    * within my subnet: encapsulate my L3 packet with a new L2 header to send it directly
+    * beyond my subnet: must use a router, must construct a L2 header with the information for the "next hop" and prepend it to my packet
+      * **default gateway** = the router we know of
+  * class: **deprecated** because lack of flexibility
+    * Class A = 255.0.0.0 = 1.0.0.0/8 ~ 126.255.255.255/8
+    * Class B = 255.255.0.0 = 128.0.0.0/16 ~ 191.255.255.255/16
+    * Class C = 255.255.255.0 = 193.0.0.0/24 ~ 223.255.255.255/24
+  * range
+    * **shared Network, varied Host**
+    * the **lowest** in range (e.g. `.0`) is set aside for the network address
+    * the **highest** in range (e.g. `.255`) is set aside for the broadcast address
