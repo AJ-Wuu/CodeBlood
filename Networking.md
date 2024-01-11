@@ -51,7 +51,7 @@
       * first half (`00:11:22`) is the OUI assigned to a manufacturer of network equipment
       * second half (`AA:BB:CC`) is given out by that vendor and put on each network interface
       * intended to be globally unique even for local addressing
-  * global: L3 with IP = where the ultimate destination is
+  * global: L3 with IP = where the ultimate destination is (**via DNS**)
     * in the format of `Src.IP | Dest.IP`
     * IP (Internet Protocol) = 32 bits, e.g. `0.1.2.255`
       * should be globally unique across the entire Internet
@@ -62,6 +62,6 @@
   * router
      1. looks at L2, makes sure the packet is destined for it, then **removes** L2
      2. looks at L3, and figures out where to send the packet next
-     3. leaves L3 **unmodified**, and places a **new** L2 back on the packet
+     3. leaves L3 **unmodified**, and places a **new** L2 back on the packet (**provided by the Address Resolution Protocol**)
   * firewall: typically looks at at least L4
     * some goes through L7
