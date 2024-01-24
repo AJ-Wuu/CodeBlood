@@ -94,3 +94,25 @@ subnet mask = 11111111 11111111 11111111 00000000 = 255.255.255.0 = (abbreviated
     * **shared Network, varied Host**
     * the **lowest** in range (e.g. `.0`) is set aside for the network address
     * the **highest** in range (e.g. `.255`) is set aside for the broadcast address
+
+## Virtual Local Area Networks (VLAN)
+* Goal: any traffic (unicast, multicast or broadcast) is only allowed to be sent to other ports in the same VLAN
+  * VLAN can talk to each other via a router interface
+  * the router can be external of a new hardware, or internal of the same switch
+  * indicated by a dedicated VLAN field in MAC address table
+* Typically assign one subnet to each VLAN
+  * can have multiple subnets to one VLAN though
+* Usage
+  * security: separate traffic so the devices don't see each other's traffic unless they first go through a router or firewall
+  * segmentation: separate different types of devices
+    * can use VLAN ID to **prioritize** different types of traffic for VoIP calls
+    * VLAN ID is a 12 bit value with 0 and 4095 not permitted
+
+## Trunk
+* Goal: allow frames from multiple VLANs to be carried across
+  * VLAN 22 in switch A can send information to VLAN 22 in switch B
+* Tagging to indicate which frames belong to which VLANs
+  * the other switch can add those devices VLAN membership into its own table
+  * in the layer 2 portion of the packet
+  * format in 802.1Q
+  * can allow packets without this tag to be associated with a particular ("native", "default", or "untagged") VLAN
