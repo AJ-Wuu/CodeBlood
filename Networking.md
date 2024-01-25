@@ -116,3 +116,33 @@ subnet mask = 11111111 11111111 11111111 00000000 = 255.255.255.0 = (abbreviated
   * in the layer 2 portion of the packet
   * format in 802.1Q
   * can allow packets without this tag to be associated with a particular ("native", "default", or "untagged") VLAN
+
+## Spanning Tree Protocol
+* Looping Issue
+  * Alice **knows Bob's IP address (L3) but not his MAC address (L2)**, so it needs to go through an **Address Resolution Protocol (ARP), which is a broadcast frame**
+  * within each Switch, the frame will be forwarded to all ports except the initial port that receives this frame
+  * <img src="https://github.com/Gnaku-18519/CodeBlood/assets/84046974/6650542a-70fb-48b3-b050-fb524205cdff" />
+* Goal: create a loop-free topology throughout a network of switches so that there is **only one active path to any destination** (all other redundant paths are blocked)
+  * can reconverge / recover around failed or disconnected links
+* Algorithm
+  * bridge election
+    * priority value: given to each switch assigned by the admin
+    * Bridge ID (BID) = Bridge Protocol Data Units (BPDUs, packets sent out by all switches with their own priority) + MAC address
+    * the lower priority wins
+    * if there is a tie, the lower MAC wins
+  * root bridge / root switch = a root device decided by bridge election (like the trunk)
+  * path cost = value incremented to BPDU based on the speed of the connection
+  * root port = the port that will make the connection and not be blocked
+    * the lower of BPDU + path cost wins
+    * if there is a tie, the lower interface number chosen by the switch wins
+    * other ports will be blocked
+  * designated port = the port that is determined to have the lowest cost (BID + port)
+
+## Link Aggregation
+* Etherchannel / Port Channel / Linkagg: the one logical switch port that bundles multiple physical switch ports to add up and use all their bandwidths
+  * can apply all configurations except the commands that are specific to the physical properties of each port
+    * e.g., speed, duplex, UDLD
+  * no reconvergence is required as one port failure will not fully disconnect the linkagg
+* Link Aggregation Control Protocol (LACP)
+  * ease the configuration of a linkagg and make sure configurations at switches on both sides of the link is correct
+  * detect when a link fails (even not fully down) and remove the link from the linkagg until it is fixed
