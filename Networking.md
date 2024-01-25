@@ -146,3 +146,12 @@ subnet mask = 11111111 11111111 11111111 00000000 = 255.255.255.0 = (abbreviated
 * Link Aggregation Control Protocol (LACP)
   * ease the configuration of a linkagg and make sure configurations at switches on both sides of the link is correct
   * detect when a link fails (even not fully down) and remove the link from the linkagg until it is fixed
+
+## Domain Name System (DNS)
+* Goal: map names (for humans, like `www.google.com`) into IP addresses (for computers, like `216.58.194.164`)
+* Properties
+  * hierarchical
+    * `.` zone = the root zone (trailing dot is usually hidden)
+    * root `.` name servers ---hold info for---> `com.` ---hold info for---> `google.com.` ---hold info for---> `www.google.com.`
+  * distributed: servers each hold pieces of information for the zones that they are "authoritative"
+    * e.g., Googe name servers for `www.google.com.`
