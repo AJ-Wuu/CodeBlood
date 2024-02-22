@@ -11,3 +11,10 @@
  * hash table      |  O(1)          |  O(1)               |  O(1)             |  NOT ordered              |  need good hash function for element type
  * trie            |  O(length)     |  O(length)          |  O(length)        |  sorted                   |  represent data as a sequence of characters
  */
+
+//     ┌2──────┐
+// ┌1──┼───┐   │  Sets.difference(set1, set2)
+// │ A │ B │ C │  returns the subset of set1
+// └───┼───┘   │  NOT contained in set2 --> A in the diagram.
+//     └───────┘
+Sets.SetView<Permission> notFoundPermissions = Sets.difference(Sets.newHashSet(targetPermSet), Sets.newHashSet(resultPermSet));
