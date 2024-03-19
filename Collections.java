@@ -1,3 +1,6 @@
+// Immutable: Map.of(...) vs Dynamic: new HashMap<>(...)
+// try to modify an immutable collection will get java.lang.UnsupportedOperationException
+
 // Check if (myCollection == null || myCollection.size() == 0)
 CollectionUtils.isEmpty(myCollection);
 
