@@ -393,9 +393,12 @@ public class ProductFactory {
     * Unchecked -> optional
     * when exception occurs within the try block, program flow is interrupted; control is passed to the nearest catch that matches the exception type
   * No mathing exception handler -> program will exit
-  * Try-with-parameters syntax provides auto-closure of multiple resources
+  * Try-with-Parameters syntax provides auto-closure of multiple resources
     * Automatica closure is provided by an implicitly formed final block
     * may produce supressed exceptions
+  * Try-with-Resources aka Automatic Resource Management(ARM)
+    * `try` statement contains one or more resources declarations: `try (BufferedReader br = new BufferedReader(new FileReader(path)))`
+    * the resource is implemented with AutoCloseable
 ## Java I/O API
 * Streams are categorized on:
   * Type of data to carry (text, binary, etc.)
