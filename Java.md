@@ -494,8 +494,9 @@ public class ProductFactory {
   * Cannot be interleaved
   * Only actions performed by a CPU in a single cycle are by default atomic
   * Variable assignments are atomic actions, except ```long``` and ```double``` (64-bit, taking more than a single step to assign these on a 32-bit platform)
-  * + - / * % ++ -- are not atomic
+  * `+ - / * % ++ --` are not atomic
   * java.util.concurrent.atomic -> lock-free thread-safe programming of atomic behaviours on single variables
+  * Atomic Object with `AtomicReference`: see [doc here](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicReference.html)
   * Volatile
 * Use intrinsic lock to enforce an exclusive access to a shared object
   * Order of execution and object consistency are ensured
