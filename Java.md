@@ -397,9 +397,9 @@ public class ProductFactory {
     * Automatica closure is provided by an implicitly formed final block
     * may produce supressed exceptions
   * Try-with-Resources aka Automatic Resource Management(ARM)
-    * `try` statement contains one or more resources declarations: `try (BufferedReader br = new BufferedReader(new FileReader(path)))`
+    * `try` statement contains one or more resources declarations
     * the resource is implemented with AutoCloseable
-    * note that we should not do `try (BufferedReader reader = new BufferedReader(new FileReader(cellConfigFile)); FileWriter writer = new FileWriter(cellConfigFile))`, as `new FileWriter(PATH)` will essentially remove the original file, which leaves nothing for the reader to read
+    * note that we should not do `try (BufferedReader reader = new BufferedReader(new FileReader(cellConfigFile)); FileWriter writer = new FileWriter(cellConfigFile))`, as `new FileWriter(PATH)` essentially removes the original file, which leaves nothing for the reader to read
 ## Java I/O API
 * Streams are categorized on:
   * Type of data to carry (text, binary, etc.)
