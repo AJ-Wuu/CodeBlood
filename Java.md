@@ -1,4 +1,4 @@
-# Java SE 11
+# Java
 ## How Java Works
 * Source code -> plain text -> .java
 * Compile into byte code -> .class **for JVM**
