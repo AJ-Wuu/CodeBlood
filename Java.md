@@ -190,6 +190,7 @@ stringbuilder.append("Java"); //now the original string is changed
 ```
 ## Wrapper Classes for Primitives
 * Construct wrapper object out of primitive or string using the ```valueof()``` method
+  * e.g., with default conversion values: `Boolean.valueOf("true")` -> `true`, `Boolean.valueOf("yes")` -> `false`
 * Extract primitive values out of the wrapper using the ```xxxValue()``` method
 * Auto-boxing & Auto-unboxing
 * Create wrapper or primitive out of the string using the ```parseXXX()``` method
