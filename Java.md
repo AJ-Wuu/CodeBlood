@@ -606,6 +606,10 @@ public class ProductFactory {
   * Execute: ```<image>/bin/java -m <module name>``` or ```<image>/bin/<command name>```
 ## Annotation
 * A form of metadata
+* [`@Deprecated`](https://docs.oracle.com/javase/8/docs/technotes/guides/javadoc/deprecation/deprecation.html)
+  * read by the compiler
+  * mark a method as deprecated
+  * will generate a deprecation compile-time warning if the method is used
 * ```@SafeVarargs``` supresses heap-pollution warning when using var-args
 ```java
 @Retention(RetentionPolicy.RUNTIME)
