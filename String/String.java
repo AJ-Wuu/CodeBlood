@@ -31,6 +31,10 @@ String.format("%.6f", m/n); //Note, at least one of m and n should be float or d
 str.startsWith(prefix); //return true or false
 str.endsWith(suffix); //return true or false
 
+//Eliminate leading and trailing spaces (but NOT middle spaces)
+String s1 = "   Geeks For Geeks   ";
+String s2 = s1.trim();    // "Geeks For Geeks"
+
 /*
  * String, StringBuffer and StringBuilder
  * Mutability Difference:
