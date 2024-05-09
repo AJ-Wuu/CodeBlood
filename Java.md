@@ -70,6 +70,7 @@ stream.forEach(s -> System.out.println(s));
 ## Inheritance
 * **A superclass (concrete or abstract) method takes priority over an interface default method** -> static has lower priority than default
 * **A subtype interface's default method takes priority over a supertype interface default method**
+  * using [wildcard](https://docs.oracle.com/javase/tutorial/java/generics/subtyping.html) like `List<? extends Integer>`
 * **If there is a conflict, treat the default method as abstract; the concrete class must provice its own implementation; this may include a call to a specific interface's implementation of the method**
 * An interface doesn't store the state of an instance
 * An abstract class may contain instance fields -> **abstract** must be public
