@@ -87,6 +87,48 @@ stream.forEach(s -> System.out.println(s));
 * Invoke subtype specific operations using a specific reference type
 * Using generic (superclass) types to define method parameters and return values help to promote better code reusability and extensibility
 * ```this``` and ```super``` is not required when the reference is not ambiguous
+### Get Generic Type Class
+* [Type Erasure](https://docs.oracle.com/javase/tutorial/java/generics/erasure.html)
+  * generic types
+    * unbounded: `T data` will be treated as `Object data`
+    * bounded: `Node<T> next` will be treated as `Node next`
+  * generic methods
+    * unbounded: `public static <T> int count(T[] anArray, T elem)` will be treated as `public static int count(Object[] anArray, Object elem`
+    * bounded: `public static <T extends Shape> void draw(T shape)` will be treated as `public static void draw(Shape shape)`
+* To get the runtime type: need to pass the generic type as parameter into the Class constructor
+```java
+package com.example.test;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import org.springframework.core.GenericTypeResolver;
+
+public abstract class AbstractFoo<T> {
+	private Class<T> javaGenericType;
+	private Class<T> springGenericType;
+
+	public AbstractFoo() {
+		// Pure Java solution to get generic type
+		Class<?> thisClass = getClass();
+		Type genericSuperclass = thisClass.getGenericSuperclass();
+		ParameterizedType parameterizedGenericSuperclass = (ParameterizedType) genericSuperclass;
+		Type[] typeArgs = parameterizedGenericSuperclass.getActualTypeArguments();
+		this.javaGenericType = (Class<T>) typeArgs[0];
+
+		// Spring solution to get generic type
+		this.springGenericType = (Class<T>) GenericTypeResolver.resolveTypeArgument(getClass(), AbstractFoo.class);
+	}
+
+	protected Class<?> getJavaGenericType() {
+		return this.javaGenericType;
+	}
+
+	protected Class<?> getSpringGenericType() {
+		return this.springGenericType;
+	}
+}
+```
+
 ## Variables
 * ```final``` marks constants
 * ```abstract```
