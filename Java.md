@@ -139,6 +139,8 @@ public abstract class AbstractFoo<T> {
   * abstract class purpose (but not a must) is to be extended by one or more concrete subclasses
   * concrete subclasses must override all abstract methods of their abstract parent
   * abstract class may override default methods
+* [`default`](https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html): <img src="https://github.com/AJ-Wuu/CodeBlood/assets/84046974/1c4fc7d6-51f8-479b-9e9c-ec819eb2dbdc" width="400px" />
+
 * Object Class
   * the ultimate parent of any other class
   * defines common, generic operations that all other classes inherit and reuse
