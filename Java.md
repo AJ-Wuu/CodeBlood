@@ -57,6 +57,8 @@ stream.forEach(s -> System.out.println(s));
 * Consistent -- variables should all be explicit or implicit
 ## Interface
 * Interface is a valid reference type, can be used in type casting, and works with the ```instanceof``` operator
+  * `if (ticket instanceof CustomerSupportTicket) { ((CustomerSupportTicket) ticket).setPublicId(ticketNumericValue); }`
+  * `if (ticket instanceof CustomerSupportTicket customerSupportTicket) { customerSupportTicket.setPublicId(ticketNumericValue); }`
 * An interface can inherit another interface
 * Instance methods are by default public and abstract
 * Contains concrete methods **only** if they are either default, private or static
