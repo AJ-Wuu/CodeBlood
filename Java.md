@@ -371,7 +371,9 @@ public class ProductFactory {
     * reason of being introduced is to save the trouble of `null`-checking on each object
     * `@NotNull` is not always helpful because **Java compiler will compile the code without these `null`-checks without complaint**
     * **Java compiler forces user to handle the case of an empty `Optional` value**, like `orElse(new Foo())`, `orElseGet(() -> { /* ...lazily create a object foo... */ })`, `orElseThrow(() -> { /* ...lazily create a object foo... */ })`, `.ifPresent(foo -> { /* ...do something with foo... */ })`, etc.
-    * best practice: a variable whose type is `Optional` should never itself be null; it should always point to an `Optional` instance
+    * best practices
+      * a variable whose type is `Optional` should never itself be null; it should always point to an `Optional` instance
+      * instead of `if ([Optional].isPresent()) { return xxx; } else { return null; }`, do `return [Optional].orElse(null);`
     * (NOT PREFERRED) if decided to use `possibleFoo.get()`, need to check `possibleFoo.isPresent()` or `possibleFoo.isEmpty()` first
   * Intermediate: perform action and produce another stream
     * filter, map, flatMap (merge streams), peek, distinct, sorted, dropWhile, skip(long l), limit(long l), takeWhile(Predicate P), dropWhile(Predicate P)
