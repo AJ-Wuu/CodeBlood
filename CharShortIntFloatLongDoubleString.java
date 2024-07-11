@@ -20,9 +20,9 @@ int Di2 = (int)Math.round(D); //round to the nearest integer (D = -5.89, Di2 = -
 String S;
 int Si = Integer.valueOf(str.substring(a, b)); //NOT include str.charAt(b)
 // Validate if string only contains int
-str.matches("-?\\d+");    // can contain leading 0
+str.matches("-?\\d+");             // can contain leading 0
 str.matches("-?(0|[1-9]\\d*)");    // will not accept leading 0
-StringUtils.isNumeric(str);    // will return true for "" and false for "-1", highly unrecommended
+StringUtils.isNumeric(str);        // will return true for "" and false for "-1", highly unrecommended
 
 //Notice that the sum of decimals may not return to its original value
 double[] count = new double[6];
