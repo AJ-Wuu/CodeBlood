@@ -25,6 +25,9 @@ stream.forEach(System.out::println);
 // instead of
 stream.forEach(s -> System.out.println(s)); 
 ```
+* Wildcard `?` vs Generic Type `T`
+  * general rule: use wildcard when possible to improve readibility
+  * only need a type variable when it is used to relate two or more parameters, or to relate a parameter type with the return type
 
 ## Name should not start with number characters (0~9), underscore \_ or dollar sign $
 ## Access Modifier
