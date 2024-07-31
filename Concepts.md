@@ -14,11 +14,12 @@
           
 # Interface & Abstract Classes
 A class can extend only one superclass and can implement any number of interfaces simultaneously.  
-## extends
+## Key Difference: Abstract Class can have both abstract and concrete methods
+## `extends`
 * A derived class can extend a base class. You may redefine the behaviour of an established relation. Derived class "is a" base class type.  
 * It is not compulsory that subclass that extends a superclass override all the methods in a superclass.  
 * Any number of interfaces can be extended by interface.  
-## implements
+## `implements`
 * You are implementing a contract. The class implementing the interface "has a" capability.  
 * In an interface you can not implement any of the declared methods. Only the class that "implements" the interface can implement the methods.  
 * It is compulsory that class implementing an interface has to implement all the methods of that interface.  
