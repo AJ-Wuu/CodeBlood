@@ -4,6 +4,9 @@
 // Check if (myCollection == null || myCollection.size() == 0)
 CollectionUtils.isEmpty(myCollection);
 
+// Combine two collections of the same type using flatMap()
+Set<String> combined = Stream.of(newStringSet, oldStringSet).flatMap(Set::stream).collect(toSet());
+
 /**
  * Sorting
  */
