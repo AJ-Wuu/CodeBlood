@@ -53,9 +53,9 @@ func main() {
     var employee1 Human = Human{Age: 23, Height: 170.0, Sex: true}
 	var employee2 Human = Human{35, 172.5, true}
 	fmt.Printf("%d  %.2f  %t\n", employee1.Age, employee1.Height, employee1.Sex)
-	fmt.Printf("%v\n", employee2)  // give struct details, like `{35 172.5 true}`
-	fmt.Printf("%+v\n", employee2) // give struct key-value map, like `{Age:35 Height:172.5 Sex:true}`
-	fmt.Printf("%#v\n", employee2) // give struct package with key-value map, like `main.Human{Age:35, Height:172.5, Sex:true}`
+	fmt.Printf("%v\n", employee2)      // give struct details, like `{35 172.5 true}`
+	fmt.Printf("%+v\n", employee2)     // give struct key-value map, like `{Age:35 Height:172.5 Sex:true}`
+	fmt.Printf("%#v\n", employee2)     // give struct package with key-value map, like `main.Human{Age:35, Height:172.5, Sex:true}`
     
     const pi = 3.14                        // declare a constant variable, cannot be changed, implicitly type
     fmt.Printf("type: %T, value: %v", pi + 1.1, pi + 1.1)    // get "type: float64, value: 2.1"
