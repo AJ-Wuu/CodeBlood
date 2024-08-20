@@ -99,6 +99,7 @@ func main() {
     brr = append(brr, 8)                // brr = [2, 3, 5, 8, 8, 8] with len = 6 and cap = 10
                                         // auto-expand the capacity, usually double the existing cap
                                         // deep copy, pointing to a new address (not shared with arr)
+    arr[2] = 4                          // arr = [2, 3, 4] and brr = [2, 3, 5, 8, 8, 8]
 
 
     // Map
