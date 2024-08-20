@@ -94,9 +94,9 @@ func main() {
     sliceNew := append(sliceOld, 8)                    // sliceNew = [1, 3, 5, 8] with len = 4 and cap = 5
                                                        // shallow copy, pointing to the same address as sliceOld,
                                                        // but sliceOld cannot access beyond its own length
-	sliceOld[0] = 2                                    // sliceOld = [2, 3, 5] and sliceNew = [2, 3, 5, 8]
-	sliceNew = append(sliceNew, 8)                     // sliceNew = [2, 3, 5, 8, 8] with len = 5 and cap = 5
-	sliceNew = append(sliceNew, 8)                     // sliceNew = [2, 3, 5, 8, 8, 8] with len = 6 and cap = 10
+    sliceOld[0] = 2                                    // sliceOld = [2, 3, 5] and sliceNew = [2, 3, 5, 8]
+    sliceNew = append(sliceNew, 8)                     // sliceNew = [2, 3, 5, 8, 8] with len = 5 and cap = 5
+    sliceNew = append(sliceNew, 8)                     // sliceNew = [2, 3, 5, 8, 8, 8] with len = 6 and cap = 10
                                                        // auto-expand the capacity, usually double the existing cap
                                                        // deep copy, pointing to a new address (not shared with sliceOld)
 
