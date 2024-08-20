@@ -39,6 +39,13 @@ const (
     Saturday
 )
 
+// slice (implemented by default under the hood)
+type slice struct {
+    array unsafe.Pointer    // pointer, which points to an array
+    len int                 // length = number of the data-possessed slots
+    cap int                 // capacity = number of the total allocated slots
+}
+
 type Human struct {
     Age int
     Height float32
