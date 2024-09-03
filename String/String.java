@@ -35,23 +35,6 @@ str.endsWith(suffix); //return true or false
 String s1 = "   Geeks For Geeks   ";
 String s2 = s1.trim();    // "Geeks For Geeks"
 
-/*
- * String, StringBuffer and StringBuilder
- * Mutability Difference:
- * String is immutable, if you try to alter their values, another object gets created;
- * StringBuffer and StringBuilder are mutable so they can change their values.
- * 
- * Thread-Safety Difference:
- * StringBuffer is thread-safe, so when the application needs to be run only in a single thread then it is better to use StringBuilder.
- * StringBuilder is more efficient than StringBuffer, NOT thread-safe.
- * 
- * Situations:
- * If your string is not going to change use a String class because a String object is immutable.
- * If your string can change, and will only be accessed from a single thread, using a StringBuilder is good enough.
- *     (example: lots of logic and operations in the construction of the string)
- * If your string can change, and will be accessed from multiple threads, use a StringBuffer because StringBuffer is synchronous so you have thread-safety.
- */
-
 public void stringMatch() {
     // `pattern.matcher` - test if the string contains-a pattern
     // `pattern.matches` - test if the string is-a pattern
