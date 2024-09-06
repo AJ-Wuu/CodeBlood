@@ -1,6 +1,12 @@
 # Stream
-* Always try to use Stream instead of Loop and Condition
+* Once created, the stream instance will not modify its source, therefore allowing the creation of multiple instances from a single source
+* Always try to use Stream instead of Loop and Condition for readability
 ```java
+// build map from list
+// `Function.identity()` is the same as lambda `t -> t` or simply `t`
+Map<Integer, User> map = users.stream().collect(Collectors.toMap(User::getId, Function.identity()));
+
+// get part of an object
 // use
 maybeTicket
     .filter(ticket -> !CollectionUtils.isEmpty(ticket.getSlaCollection()))
@@ -15,8 +21,8 @@ if (maybeTicket.isPresent() && !CollectionUtils.isEmpty(maybeTicket.get().getSla
         SlaValidators.validateSlaEntity(sla, "Failed to get sla: ");
     }
 }
-```
-```java
+
+// get a list from a range of index
 // use
 IntStream.range(0, LIMIT)
          .mapToObj(i ->
