@@ -1,6 +1,6 @@
 /* char to int */
 char C;
-Character.isDigit(c); // check if the character is a digital number
+Character.isDigit(c); // check if the character is a digit
 int Ci1 = C; // get the ASCII value (C = '1', Ci1 = 49)
 int Ci2 = Character.getNumericValue(C); // only works for single character to get numerical value (C = '2', Ci2 = 2)
 int Ci3 = Integer.parseInt(String.valueOf(C)); // also works for String, but the String cannot be like "12.34" (C = '3', Ci3 = 3; String S = "-21", Ci3 = -21)
