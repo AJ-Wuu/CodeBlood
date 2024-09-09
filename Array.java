@@ -26,6 +26,53 @@ public static Object deserialize(byte[] data) throws IOException, ClassNotFoundE
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// #2326 - Spiral Matrix IV
+public int[][] spiralMatrix(int rows, int columns, ListNode head) {
+    // create spiral matrix and auto-fill it with default value -1
+    int[][] matrix = new int[rows][];
+    for (int i = 0; i < rows; i++) {
+        matrix[i] = new int[columns];
+        Arrays.fill(matrix[i], -1);
+    }
+
+    // define all four boundaries
+    int topRow = 0, bottomRow = rows - 1, leftColumn = 0, rightColumn = columns - 1;
+    while (head != null) {
+        // counterclockwise, starting from top-left corner
+        // first go right
+        for (int col = leftColumn; col <= rightColumn && head != null; col++) {
+            matrix[topRow][col] = head.val;
+            head = head.next;
+        }
+        topRow++;
+
+        // second go down
+        for (int row = topRow; row <= bottomRow && head != null; row++) {
+            matrix[row][rightColumn] = head.val;
+            head = head.next;
+        }
+        rightColumn--;
+
+        // third go left
+        for (int col = rightColumn; col >= leftColumn && head != null; col--) {
+            matrix[bottomRow][col] = head.val;
+            head = head.next;
+        }
+        bottomRow--;
+
+        // fourth go up
+        for (int row = bottomRow; row >= topRow && head != null; row--) {
+            matrix[row][leftColumn] = head.val;
+            head = head.next;
+        }
+        leftColumn++;
+    }
+
+    return matrix;
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // #661 - Image Smoother
 for (int i = 0; i < rows; ++i) {
     for (int j = 0; j < cols; ++j) {
