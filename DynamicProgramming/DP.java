@@ -311,7 +311,7 @@ public void backtrack(List<String> list, String str, int open, int close, int ma
         list.add(str);
         return;
     }
-        
+
     if (open < max) {
         backtrack(list, str+"(", open+1, close, max);
     }
