@@ -14,6 +14,10 @@
  * 4. An element with high priority is dequeued before an element with low priority.
  * 5. If two elements have the same priority, they are served according to their order in the queue.
  *
+ * Priority Queue add() vs offer()
+ * 1. when there is no max capacity limit, no difference
+ * 2. when there is a max capacity limit, add() throws an exception if the queue is full, whereas offer() only returns false
+ *
  * 🔴 Special Note about Priority Queue
  * PriorityQueue does NOT return elements in particular order when we iterate it because it's implemented as a priority heap rather than sorted list.
  * From javadoc: "The Iterator provided in method iterator() is not guaranteed to traverse the elements of the priority queue in any particular order.
