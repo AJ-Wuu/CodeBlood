@@ -41,4 +41,18 @@ public class ModifyFile {
         }
         properties.set("regionDetails", generateCellConfigRegionDetails());
     }
+
+    // When dealing with clients, file read must happen inside the try-catch block
+    // specifically, it should not be split by getting InputStream in try-catch then readAllBytes() outside of try-catch
+    private static Collection<? extends Certificate> getCertificateChain(
+            String trustCertCollectionFilePath) throws IOException, CertificateException {
+        try (InputStream inputStream =
+                new ByteArrayInputStream(
+                        Files.readAllBytes(Paths.get(trustCertCollectionFilePath)))) {
+            final CertificateFactory x509CertFactory = CertificateFactory.getInstance("X.509");
+            return x509CertFactory.generateCertificates(inputStream);
+        } catch (FileNotFoundException ex) {
+            throw new IllegalArgumentException("Unable to convert certificate bytes to X.509", ex);
+        }
+    }
 }
