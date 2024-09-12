@@ -29,3 +29,18 @@ public char charAt(int index) {
 }
 ```
 * `.toCharArray()` has no validation, and takes O(n) to finish
+
+## Get All Distinct Characters from a String
+```java
+// slower with set
+Set<Character> set = new HashSet<>();
+for (char c : allowed.toCharArray()) {
+    set.add(c);
+}
+
+// faster with array
+boolean[] s = new boolean[26];
+for (char c : allowed.toCharArray()) {
+    s[c - 'a'] = true;
+}
+```
