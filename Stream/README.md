@@ -5,6 +5,7 @@
 // build map from list
 // `Function.identity()` is the same as lambda `t -> t` or simply `t`
 Map<Integer, User> map = users.stream().collect(Collectors.toMap(User::getId, Function.identity()));
+Map<String, Project> projectMap = projectKeys.stream().collect(Collectors.toMap(Function.identity(), projectService::getProjectByKey));
 
 // get part of an object
 // use
