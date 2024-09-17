@@ -63,6 +63,11 @@ public class OverrideListSort {
 }
 
 // Map - index == key, no duplicate
+// Loop Performance Analysis
+// 1. only need keys or values: use `keySet()` or `values()`
+// 2. otherwise: use `entrySet()`
+//    * do NOT use key then fetch value with `get(key)` -- based on the implementation of the map, can be 20% - 200% slower
+//    * as each `get(key)` requires that the hashCode() and equals() methods of the key object be evaluated
 class CustomizedHashMap implements Comparator<Map.Entry<String, Integer>> {
     @Override
     public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
@@ -134,7 +139,7 @@ Set<data_type> set_name = new HashSet<data_type>(Collection c);
 // IdentityHashMap: judge key by identity (eg. int key1 = 256, key2 = 256 -- key1 and key2 are regarded as different keys)
 // WeakHashMap: weak reference, Garbage Collector dominates (eg. map.put(d,"Hi"); d = null; System.gc(); -- size = 0, 1, 0)
 // TreeMap: ordered, manage keys with Red-Black Tree
-Map<key_type, value_type> map_name = new HashMap<key_type, value_type>(Map.of(Key k1, Value v1, Key k2, Value v2, ..., Key kn, Value vn)); 
+Map<key_type, value_type> map_name = new HashMap<key_type, value_type>(Map.of(Key k1, Value v1, Key k2, Value v2, ..., Key kn, Value vn));
 
 // Stack
 Stack<data_type> stack_name = new Stack<data_type>();
