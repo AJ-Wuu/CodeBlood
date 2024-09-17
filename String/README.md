@@ -44,3 +44,9 @@ for (char c : allowed.toCharArray()) {
     s[c - 'a'] = true;
 }
 ```
+
+## Split String by Space and Convert to a List
+```java
+List<String> list1 = Arrays.asList(s1.split(" ", -1));       // faster but only covers ` ` itself
+List<String> list2 = Arrays.asList(s2.split("\\s+", -1));    // slower but more robust, `\s` covers more white space chars than just space and tab
+```
