@@ -1,6 +1,9 @@
 // Empty Array
 return new int[]{};
 
+// List to Array (for example, `String[]`)
+return list.toArray(new String[0]);
+
 // Sum of an Array: using `for` loop to add through the array is faster than using `Arrays.stream(arr).sum()`
 
 // Use long (as 64-bit integer) to avoid overflow
