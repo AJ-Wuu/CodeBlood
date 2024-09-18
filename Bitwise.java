@@ -114,26 +114,27 @@ public int longestSubarray(int[] nums) {
 //             where consonants are 0 and vowels are represented with powers of 2
 //       i.e.: characterMap values --  L  E  E  T  C  O  D  E  G  R  E  A  T
 //                                     0  2  2  0  0  8  0  2  0  0  2  1  0
-//             prefix XOR values -- 0  0  2  0  0  0  8  8  10 10 10 8  9  9
-//       Note: if a mask is the same between index i and j, then the substring [i+1, j] must contain even vowels only
+//             prefix XOR values -- 0  0  2  0  0  0  8  8  10 10 10 8  9  9 (mask)
+//       Note: if the mask == 0, then the substring must contain even vowels only
+//             if the mask is the same between index i and j, then the substring [i+1, j] must contain even vowels only
 //                                  length of the longest subarray with XOR 0 = 5 (LEETC)
 //                                  length of the longest subarray with XOR 8 = 4 (EGRE)
-//                                  length of the longest subarray with XOR 0 = 2 (GR)
+//                                  length of the longest subarray with XOR 10 = 2 (GR)
 public int findTheLongestSubstring(String s) {
     int prefixXOR = 0;
     int[] characterMap = new int[26];
-    characterMap['a' - 'a'] = 1;
-    characterMap['e' - 'a'] = 2;
-    characterMap['i' - 'a'] = 4;
-    characterMap['o' - 'a'] = 8;
-    characterMap['u' - 'a'] = 16;
+    characterMap['A' - 'A'] = 1;
+    characterMap['E' - 'A'] = 2;
+    characterMap['I' - 'A'] = 4;
+    characterMap['O' - 'A'] = 8;
+    characterMap['U' - 'A'] = 16;
     int[] map = new int[32];
     for (int i = 0; i < 32; i++) {
         map[i] = -1;
     }
     int longestSubstring = 0;
     for (int i = 0; i < s.length(); i++) {
-        prefixXOR ^= characterMap[s.charAt(i) - 'a'];
+        prefixXOR ^= characterMap[s.charAt(i) - 'A'];
         if (map[prefixXOR] == -1 && prefixXOR != 0) {
             map[prefixXOR] = i;
         }
