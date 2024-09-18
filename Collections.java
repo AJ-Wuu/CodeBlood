@@ -30,7 +30,7 @@ public class OverrideListSort {
     }
 
     public void getEmployeesAlphabetical(List<Employee> list) {
-        //Sort the list by employee name
+        // Sort the list by employee name
         Collections.sort(list, new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {
@@ -40,7 +40,7 @@ public class OverrideListSort {
     }
 
     public void getEmployeeWithHighestSalary(List<Employee> list) {
-        //Sort the list as per employee name
+        // Sort the list as per employee name
         Collections.sort(list, new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {
@@ -56,7 +56,7 @@ public class OverrideListSort {
         employeeList.add(new Employee("Bob", 30000));
         employeeList.add(new Employee("Drake", 5000));
 
-        OverrideListSort o = new OverrideListSort(); //Important!!!
+        OverrideListSort o = new OverrideListSort(); // Important!!!
         o.getEmployeesAlphabetical(employeeList);
         o.getEmployeeWithHighestSalary(employeeList);
     }
@@ -112,7 +112,9 @@ Comparator<Employee> newComparator = new Comparator<Employee>() {
 };
 SortedSet<Employee> employeeSet = new TreeSet<Employee>(newComparator);
 
-//Queue - no index, accept duplicate
+// Queue - no index, accept duplicate
+// NOT sorted inside but stored all values in a heap
+// output in order with `poll()` and each `poll()` takes O(logN)
 PriorityQueue<Employee> employeeQueue = new PriorityQueue<Employee>(newComparator);
 
 /**
