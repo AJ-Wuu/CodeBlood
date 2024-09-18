@@ -72,10 +72,40 @@ public int[] singleNumber(int[] nums) {
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // #1310 - XOR Queries of a Subarray
+// Note: a XOR d = (a XOR b) XOR (b XOR c) XOR (c XOR d)
+public int[] xorQueries(int[] A, int[][] queries) {
+    int[] res = new int[queries.length], q;
+    for (int i = 1; i < A.length; ++i)
+        A[i] ^= A[i - 1];
+    for (int i = 0; i < queries.length; ++i) {
+        q = queries[i];
+        res[i] = q[0] > 0 ? A[q[0] - 1] ^ A[q[1]] : A[q[1]];
+    }
+    return res;
+}
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // #2419 - Longest Subarray With Maximum Bitwise AND
+// Note: if a != b, then a AND b < max(a, b)
+public int longestSubarray(int[] nums) {
+    int max = 0, current = 0, result = 0, n = nums.length;
+    for (int i = 0; i < n; i++) {
+        if (max < nums[i]) {
+            max = nums[i];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (max == nums[i]) {
+            current++;
+            result = Math.max(result, current);
+        }
+        else {
+            current = 0;
+        }
+    }
+    return result;
+}
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
