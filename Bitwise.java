@@ -128,7 +128,7 @@ public int findTheLongestSubstring(String s) {
     characterMap['I' - 'A'] = 4;
     characterMap['O' - 'A'] = 8;
     characterMap['U' - 'A'] = 16;
-    int[] map = new int[32];
+    int[] map = new int[32];    // only 5 vowels, so maximum 32 different prefixXOR values
     for (int i = 0; i < 32; i++) {
         map[i] = -1;
     }
