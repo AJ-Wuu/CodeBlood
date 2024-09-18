@@ -136,7 +136,7 @@ public int findTheLongestSubstring(String s) {
     for (int i = 0; i < s.length(); i++) {
         prefixXOR ^= characterMap[s.charAt(i) - 'A'];
         if (map[prefixXOR] == -1 && prefixXOR != 0) {
-            map[prefixXOR] = i;
+            map[prefixXOR] = i;    // keep the first index of appearance
         }
         longestSubstring = Math.max(longestSubstring, i - map[prefixXOR]);
     }
