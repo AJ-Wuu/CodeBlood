@@ -1,6 +1,7 @@
 // Bit Operators: & (and), | (or), ~ (not), ^ (xor), <<< (shift left), >>> (shift right)
-// Remove last bit: x&(x-1)
-// Exact last bit: x^(x&(x-1))
+// Remove last bit: x & (x-1)
+// Exact last bit: x ^ (x & (x-1))
+// Odd or Even: x & 1
 // Number of 1 bits:
 public int hammingWeight(int n) {
     while (n) {
@@ -8,7 +9,9 @@ public int hammingWeight(int n) {
         count++;
     }
 }
-// Power of Four: (n & (n-1) == 0) && (n & 0x55555555 != 0)    // (n & (n-1) == 0) gets rid of the odd numbers, (n & 0x55555555 != 0) gets rid of power of 2 but not 4
+// Power of Four: (n & (n-1) == 0) && (n & 0x55555555 != 0)
+//                (n & (n-1) == 0) gets rid of the odd numbers,
+//                (n & 0x55555555 != 0) gets rid of power of 2 but not 4
 // Sum of Two Integers:
 public int getSum(int a, int b) {
     return (b == 0) ? a : ((a ^ b) & ((a & b) <<< 1));
