@@ -1,5 +1,10 @@
 # String
 ## String, StringBuffer and StringBuilder
+### Customizaion
+```java
+String reversedString = new StringBuilder(s).reverse().toString();
+```
+
 ### Mutability
 * String is immutable, if you try to alter their values, another object gets created
 * StringBuffer and StringBuilder are mutable so they can change their values
