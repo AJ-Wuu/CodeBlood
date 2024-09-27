@@ -12,13 +12,99 @@
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#253 - Meeting Rooms II
-//Key: arrival time will always be earlier than departure time, we only need to get the peek number of people in the room
-//Note: treat the "==" on double carefully due to precision differences (could be avoided with java.math.BigDecimal)
+// #729 - My Calendar I
+// Use doubly-linked list with node
+class MyCalendar {
+    class Node {
+        int start;
+        int end;
+        Node left, right;
+
+        public Node(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
+
+    Node root;
+
+    public MyCalendar() {
+        root = null;
+    }
+
+    public boolean book(int start, int end) {
+        if (root == null) {
+            root = new Node(start, end);
+            return true;
+        }
+        Node curr = root;
+        while (curr != null) {
+            if (end <= curr.start) {
+                if (curr.left == null) {
+                    curr.left = new Node(start, end);
+                    return true;
+                }
+                curr = curr.left;
+            } else if (start >= curr.end) {
+                if (curr.right == null) {
+                    curr.right = new Node(start, end);
+                    return true;
+                }
+                curr = curr.right;
+            } else
+                return false;
+        }
+        return false;
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// #731 - My Calendar II
+// This method can be extended to avoid any interval being booked N times
+class MyCalendarTwo {
+    private TreeMap<Integer, Integer> map; // TreeMap is sorted by default, with insert costing O(nlogn)
+
+    public MyCalendarTwo() {
+        map = new TreeMap<>(); 
+    }
+
+    public boolean book(int start, int end) {
+        map.put(start, map.getOrDefault(start, 0) + 1); // start is 1
+        map.put(end, map.getOrDefault(end, 0) - 1);     // end is -1
+        int count = 0;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            // when any existing interval is done, count will be offset by the +1 and -1
+            // for example: with [10, 50) and [20, 40), wanna book [30, 35)
+            //       key -> 10  20  30  35  40  50
+            //     value -> 1   1   1   -1  -1  -1
+            //     count -> 1   2   3 (❌, triple booked)
+            count += entry.getValue();
+            if (count > 2) {
+                map.put(start, map.get(start) - 1);
+                if (map.get(start) == 0) {
+                    map.remove(start);
+                }
+                map.put(end, map.get(end) + 1);
+                if (map.get(end) == 0) {
+                    map.remove(end);
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// #253 - Meeting Rooms II
+// Key: arrival time will always be earlier than departure time, we only need to get the peek number of people in the room
+// Note: treat the "==" on double carefully due to precision differences (could be avoided with java.math.BigDecimal)
 public static int countChairs(int[] arrive, int[] depart) {
     double[] process = new double[arrive.length + depart.length];
     for (int i=0; i<arrive.length; i++) {
-        process[i] = arrive[i] + 0.1; //to distinguish arrive or depart
+        process[i] = arrive[i] + 0.1; // to distinguish arrive or depart
     }
     for (int i=0; i<depart.length; i++) {
         process[i+arrive.length] = depart[i] + 0.2;
@@ -28,7 +114,7 @@ public static int countChairs(int[] arrive, int[] depart) {
     int[] chairs = new int[arrive.length + depart.length];
     Arrays.sort(process);
     for (int i=0; i<process.length; i++) {
-        if (process[i] % 1 < 0.15) { //precision requirement
+        if (process[i] % 1 < 0.15) { // precision requirement
             count++;
         }
         else {
@@ -42,16 +128,16 @@ public static int countChairs(int[] arrive, int[] depart) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#68 - Text Justification -> See Projects/Text Justification/Greedy.java
+// #68 - Text Justification -> See Projects/Text Justification/Greedy.java
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#503 - Next Greater Element II
-//Notion here: get E1, stack empty, store E1
-//             if E1 > E2, store E2; else, assign the return value for E1 (let's concern the situation when E1 > E2 now) and then store E2
-//             if E2 > E3, store E3; else, E2 has its return value, so assign it and compare E1 with E3
-//                                         if E1 < E3, return the value for E1; else, store E3
-//             ...
+// #503 - Next Greater Element II
+// Notion here: get E1, stack empty, store E1
+//              if E1 > E2, store E2; else, assign the return value for E1 (let's concern the situation when E1 > E2 now) and then store E2
+//              if E2 > E3, store E3; else, E2 has its return value, so assign it and compare E1 with E3
+//                                          if E1 < E3, return the value for E1; else, store E3
+//              ...
 public int[] nextGreaterElements(int[] nums) {
     int n = nums.length;
     int[] result = new int[n];
@@ -82,18 +168,18 @@ public int[] nextGreaterElements(int[] nums) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//556 - Next Greater Element III
-//Steps after separating the number into digits:
-//1. From back to front, find the first pair that makes numList.get(j) < numList.get(i) (i < j)
-//2. Keep the digits before i as it is, numList.get(j) should be in position i, and numList.get(i) should be in position j (indices be like {x,x,x,j,y,y,y,i,z,z,z})
-//3. All elements AFTER current index = i should be sorted from small to large (directly using Arrays.sort(currArray) could do)
-//4. Check if the new integer overflow in 32-bit
-//   4.1 this could be done by checking each step (i.e. if (Integer.MAX_VALUE - result > currDigit) { return -1; }), both addition and multiplication
-//   4.2 or, we could use a long variable (resultInLong) to store it, and check if (resultInLong > Integer.MAX_VALUE) { return -1; } else { return (int)resultInLong; } 
+// 556 - Next Greater Element III
+// Steps after separating the number into digits:
+// 1. From back to front, find the first pair that makes numList.get(j) < numList.get(i) (i < j)
+// 2. Keep the digits before i as it is, numList.get(j) should be in position i, and numList.get(i) should be in position j (indices be like {x,x,x,j,y,y,y,i,z,z,z})
+// 3. All elements AFTER current index = i should be sorted from small to large (directly using Arrays.sort(currArray) could do)
+// 4. Check if the new integer overflow in 32-bit
+//    4.1 this could be done by checking each step (i.e. if (Integer.MAX_VALUE - result > currDigit) { return -1; }), both addition and multiplication
+//    4.2 or, we could use a long variable (resultInLong) to store it, and check if (resultInLong > Integer.MAX_VALUE) { return -1; } else { return (int)resultInLong; } 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#435 - Non-overlapping Intervals
+// #435 - Non-overlapping Intervals
 class myComparator implements Comparator<Interval> {
     public int compare(Interval a, Interval b) {
         return a.end - b.end;
