@@ -59,6 +59,7 @@ List<String> list2 = Arrays.asList(s2.split("\\s+", -1));    // slower but more 
 ## Prefix with Trie
 ```java
 // #2416 - Sum of Prefix Scores of Strings
+// #3043 - Find the Length of the Longest Common Prefix
 class TrieNode {
     TrieNode[] children = new TrieNode[26]; // each node has up to 26 possible children (letter a to z)
     int score = 0; // the score of a string `term` = the number of strings `words[i]` such that `term` is a prefix of `words[i]`
