@@ -7,7 +7,7 @@
 * Use built-in utils like: `StringUtils.isEmpty()`, `StringUtils.isBlank()`, `CollectionUtils.isEmpty()`, `EnumUtils.getEnumIgnoreCase()`, `Assert.notNull(dashboard.getVisualization(), errorMessage + "Dashboard visualization can't be null");`
 * No need to specify Access Modified in unit tests
   * if needed, do `@VisibleForTesting static void test()` instead of `public static void test()`
-* Combine switch with return
+* Use enhanced `switch` with return
 ```java
 return switch (entityType) {
     case ATTACHMENT -> !Sets.intersection(authResponse.getPermissions(), ATTACHMENT_DELETE_PERMISSIONS).isEmpty();
