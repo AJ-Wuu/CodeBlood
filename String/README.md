@@ -55,3 +55,37 @@ for (char c : allowed.toCharArray()) {
 List<String> list1 = Arrays.asList(s1.split(" ", -1));       // faster but only covers ` ` itself
 List<String> list2 = Arrays.asList(s2.split("\\s+", -1));    // slower but more robust, `\s` covers more white space chars than just space and tab
 ```
+
+## Prefix with Trie
+```java
+// #2416 - Sum of Prefix Scores of Strings
+class TrieNode {
+    TrieNode[] children = new TrieNode[26]; // each node has up to 26 possible children (letter a to z)
+    int score = 0; // the score of a string `term` = the number of strings `words[i]` such that `term` is a prefix of `words[i]`
+}
+
+class Trie {
+    TrieNode root = new TrieNode();
+
+    void insert(String word) {
+        TrieNode node = root;
+        for (char c : word.toCharArray()) {
+            if (node.children[c - 'a'] == null) {
+                node.children[c - 'a'] = new TrieNode();
+            }
+            node.children[c - 'a'].score++;
+            node = node.children[c - 'a'];
+        }
+    }
+
+    int count(String s) {
+        TrieNode node = root;
+        int ans = 0; // the sum of scores
+        for (char c : s.toCharArray()) {
+            ans += node.children[c - 'a'].score;
+            node = node.children[c - 'a'];
+        }
+        return ans;
+    }
+}
+```
