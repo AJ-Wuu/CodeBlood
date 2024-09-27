@@ -61,9 +61,12 @@ class MyCalendar {
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // #731 - My Calendar II
-// This method can be extended to avoid any interval being booked N times
+// Method 1: TreeMap
+// Analysis: 1. this method can be extended to avoid any interval being booked N times
+//           2. TreeMap is sorted by default, with insert costing O(nlogn)
+//           3. saves space complexity, costing O(n)
 class MyCalendarTwo {
-    private TreeMap<Integer, Integer> map; // TreeMap is sorted by default, with insert costing O(nlogn)
+    private TreeMap<Integer, Integer> map;
 
     public MyCalendarTwo() {
         map = new TreeMap<>(); 
