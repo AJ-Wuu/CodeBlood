@@ -99,6 +99,50 @@ class MyCalendarTwo {
     }
 }
 
+// Method 2: Two Lists
+// Analysis: 1. insert takes O(n) only
+//           2. space complexity takes O(n), but doubled than Method 1 as two lists are kept
+class MyCalendarTwo {
+    private List<int[]> bookings;
+    private List<int[]> overlapBookings;
+
+    // return true if the booking [start1, end1) & [start2, end2) overlaps
+    private boolean doesOverlap(int start1, int end1, int start2, int end2) {
+        return Math.max(start1, start2) < Math.min(end1, end2);
+    }
+
+    // return overlapping booking between [start1, end1) & [start2, end2)
+    private int[] getOverlapped(int start1, int end1, int start2, int end2) {
+        return new int[] { Math.max(start1, start2), Math.min(end1, end2) };
+    }
+
+    public MyCalendarTwo() {
+        bookings = new ArrayList<>();
+        overlapBookings = new ArrayList<>();
+    }
+
+    public boolean book(int start, int end) {
+        // return false if the new booking has an overlap with the existing double-booked bookings
+        for (int[] booking : overlapBookings) {
+            if (doesOverlap(booking[0], booking[1], start, end)) {
+                return false;
+            }
+        }
+
+        // add the double overlapping bookings if any with the new booking
+        for (int[] booking : bookings) {
+            if (doesOverlap(booking[0], booking[1], start, end)) {
+                overlapBookings.add(
+                        getOverlapped(booking[0], booking[1], start, end));
+            }
+        }
+
+        // add the new booking to the list of bookings
+        bookings.add(new int[] { start, end });
+        return true;
+    }
+}
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // #253 - Meeting Rooms II
