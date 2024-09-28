@@ -9,8 +9,10 @@ return list.toArray(new String[0]);
 // Use long (as 64-bit integer) to avoid overflow
 // Build an array of LinkedList: LinkedList<Integer>[] array = new LinkedList[n];
 
-// Circular array: moving forward from the last element -> the first element, and vice versa
+// Circular array: move forward from the last element to the first element, and vice versa
+//                 wrap around and keep track with a global variable index for which index is the first element
 //                 int nextIndex = (currentIndex + arr[currentIndex]) % arr.length;
+// Similar to Doubly-Linked List with a global Node for head, a global Node for end, a global variable for size and a global variable for capacity
 
 // Convert byte[] to Object
 // Note that the deserialization method is valid only if the corresponding serialization method is used
