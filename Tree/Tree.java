@@ -1,5 +1,5 @@
-//#114 - Flatten Binary Tree to Linked List
-//Reversed flattened tree = Reversed pre-order -> (right, left, root)
+// #114 - Flatten Binary Tree to Linked List
+// Reversed flattened tree = Reversed pre-order -> (right, left, root)
 private TreeNode prev = null;
 public void flatten(TreeNode root) {
     //Traverse the original tree in reversed pre-order
