@@ -18,9 +18,9 @@ public void flatten(TreeNode root) {
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // #386 - Lexicographical Numbers
-// Virtual Main Node
+// 0    -- (Virtual Starting Point)
 // ↓                                  ↘                                                               ↘
-// 1                                   2                            ...                                9
+// 1                                   2                            ...                                9    -- (main layer)
 // ↓             ↘                     ↓        ↘                                                      ↓        ↘
 // 10             11        ...        20        21        ...        ...        ...        ...        90        91        ...
 // ↓   ↘          ↓                    ↓         ↓                                                     ↓         ↓
@@ -29,7 +29,7 @@ public void flatten(TreeNode root) {
 // ...
 public List<Integer> lexicalOrder(int n) {
     List<Integer> result = new ArrayList<>();
-    for (int i = 1; i < 10; i++) { // loop through the main layers, starting with 1
+    for (int i = 1; i < 10; i++) { // loop through the main layer, starting with 1
         dfs(i, n, result);
     }
     return result;
@@ -40,8 +40,8 @@ private void dfs(int current, int n, List<Integer> result) {
         return;
     }
 
-    result.add(current);
-    for (int i = 0; i < 10; ++i) {
+    result.add(current); // add the number one by one, instead of layer by layer
+    for (int i = 0; i < 10; ++i) { // include the starting point of the next layer, so start from 0
         if (10 * current + i > n) {
             return;
         }
