@@ -48,3 +48,35 @@ private void dfs(int current, int n, List<Integer> result) {
         dfs(10 * current + i, n, result);
     }
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// #440 - K-th Smallest in Lexicographical Order
+public int findKthNumber(int n, int k) {
+    int current = 1;
+    k--; // remove the step for current number
+
+    while (k > 0) {
+        int step = countSteps(current, current + 1, n);
+        if (step <= k) { // go to the next parent layer
+            current++;
+            k -= step;
+        }
+        else { // stay in the same parent layer, but go to the next child layer
+            current *= 10; // remove the step for current number
+            k--;
+        }
+    }
+
+    return current;
+}
+
+private int countSteps(long currentLayer, long nextLayer, int n) {
+    int step = 0;
+    while (currentLayer <= n) {
+        step += Math.min(n + 1, nextLayer) - currentLayer; // either the current layer contains n or need to go to the next layer
+        currentLayer *= 10;
+        nextLayer *= 10;
+    }
+    return step;
+}
