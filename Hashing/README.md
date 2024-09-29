@@ -23,7 +23,7 @@ class ListNode {
 
 class MyHashMap {
     static final int size = 19997;
-    static final int mult = 12582917;
+    static final int multiplier = 12582917;
     ListNode[] data;
     
     public MyHashMap() {
@@ -31,7 +31,7 @@ class MyHashMap {
     }
 
     private int hash(int key) {
-        return (int)((long)key * mult % size);
+        return (int)((long)key * multiplier % size);
     }
 
     public void put(int key, int val) {
