@@ -22,8 +22,10 @@ class ListNode {
 }
 
 class MyHashMap {
-    static final int size = 19997;
-    static final int multiplier = 12582917;
+    static final int size = 19997; // something larger than the number of possible operations (10^4),
+                                   // but as small as possible without risking too many collisions,
+                                   // and preferably prime
+    static final int multiplier = 12582917; // a random large multiplier, also preferably prime
     ListNode[] data;
     
     public MyHashMap() {
