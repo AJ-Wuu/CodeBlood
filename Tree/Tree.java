@@ -1,3 +1,28 @@
+// #110 - Balanced Binary Tree
+public static int isBalanced(Node root) {
+    if (root == null) {
+        return 0;
+    }
+
+    int lh = isBalanced(root.left);
+    if (lh == -1) {
+        return -1;
+    }
+    int rh = isBalanced(root.right);
+    if (rh == -1) {
+        return -1;
+    }
+
+    if (Math.abs(lh - rh) > 1) {
+        return -1;
+    }
+    else {
+        return Math.max(lh, rh) + 1; // calculate the height
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // #114 - Flatten Binary Tree to Linked List
 // Reversed flattened tree = Reversed pre-order -> (right, left, root)
 private TreeNode prev = null;
