@@ -293,7 +293,7 @@ public static List<String> findItinerary(List<List<String>> tickets) {
     while (!stack.empty()) {
         while (targets.containsKey(stack.peek()) && !targets.get(stack.peek()).isEmpty()) {
             stack.push(targets.get(stack.peek()).poll());
-	}
+    }
         route.add(0, stack.pop());
     }
     return route;
@@ -396,7 +396,7 @@ private int dfs(int idx, boolean[] visited, int[][] bombs) {
     for (int i = 0; i < bombs.length; i++) {
         if (!visited[i] && inRange(bombs[idx], bombs[i])) {
             count += dfs(i, visited, bombs); // add the possible detonation from bomb B
-	}
+    }
     }
     return (count + 1); // include itself
 }
@@ -407,4 +407,96 @@ public int maximumDetonation(int[][] bombs) {
         ans = Math.max(ans, dfs(i, new boolean[bombs.length], bombs));
     }
     return ans;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// #117 - Populating Next Right Pointers In Each Node II
+// Using BFS
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node next;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right, Node _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
+    }
+}
+
+public static Node getNext(Node root) {
+    if (root == null) {
+        return null;
+    }
+
+    if (root.left != null) {
+        return root.left;
+    }
+    else if (root.right != null) {
+        return root.right;
+    }
+    else if (root.next != null) {
+        return getNext(root.next);
+    }
+    else {
+        return null;
+    }
+}
+
+public static Node connect(Node root) {
+    if (root == null) {
+        return null;
+    }
+
+    if (root.left != null && root.right != null) {
+        root.left.next = root.right;
+        root.right.next = getNext(root.next);
+    }
+    else if (root.left != null) {
+        root.left.next = getNext(root.next);
+    }
+    else if (root.right != null) {
+        root.right.next = getNext(root.next);
+    }
+
+    // Do right first, as to make sure if root.next is null or not
+    connect(root.right);
+    connect(root.left);
+    return root;
+}
+
+private static void printHelper(Node root) {
+    if (root == null) {
+        System.out.print("# ");
+    }
+    else {
+        System.out.print(root.val + " ");
+        printHelper(root.next);
+    }
+}
+
+public static void print(Node root, boolean flag) {
+    if (flag) {
+        printHelper(root);
+    }
+    if (root.left != null) {
+        print(root.left, true);
+    }
+    else if (root.right != null) {
+        print(root.right, true);
+    }
+    else {
+        if (root.next != null) {
+            print(root.next, false);
+        }
+    }
 }
