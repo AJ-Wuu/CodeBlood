@@ -1,3 +1,10 @@
+# Representation
+| Comparison | Pros | Cons |
+|------------|------|------|
+| Adjacency List | saves space, easy to insert and delete with LinkedList, simple and clear to understand | slow when testing whether two vertices are adjacent |
+| Adjacency Matrix | simpler to implement and adhere to | takes a lot of space and time to traverse, as it requires to go through all the vertices |
+| Object-Pointers | easy to insert and delete | hard to get the full reference of the graph |
+
 # BFS & DFS
 | Comparison | Notion       | Data Structure | Backtracking | Edges on the Path | Speed  | Memory      | Optimality  |
 |-----------:|:------------:|---------------:|-------------:|------------------:|-------:|------------:|------------:|
