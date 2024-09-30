@@ -6,20 +6,20 @@ package shortestPath;
 
 public class Dijkstra {
 	
-	//Find shortest path from start vertex to all other vertices in a graph
-	//Fastest, single start, shortest path algorithm for directed and undirected graphs with unbounded, non-negative edge weights
+	// Find shortest path from start vertex to all other vertices in a graph
+	// Fastest, single start, shortest path algorithm for directed and undirected graphs with unbounded, non-negative edge weights
 
-	//Step1: Pick an unvisited vertex u with a minimum distance value. 
-	//Step2: Mark u as visited.
-	//Step3: Update distance value of all adjacent vertices of u.
-	//       To update the distance values, iterate through all adjacent vertices.
-	//       For every adjacent vertex v, 
-	//           if the sum of distance value of u (from source) and weight of edge u-v is less than the distance value of v, 
-	//           then update the distance value of v. 
+	// Step1: Pick an unvisited vertex u with a minimum distance value. 
+	// Step2: Mark u as visited.
+	// Step3: Update distance value of all adjacent vertices of u.
+	//        To update the distance values, iterate through all adjacent vertices.
+	//        For every adjacent vertex v, 
+	//            if the sum of distance value of u (from source) and weight of edge u-v is less than the distance value of v, 
+	//            then update the distance value of v. 
 	
-	//Complexity: O((V+E) * logV)
-	//1. remove vertex from PriorityQueue: logV (once per vertex)
-	//2. update priority value: logV (once per edge)
+	// Complexity: O((V+E) * logV)
+	// 1. remove vertex from PriorityQueue: logV (once per vertex)
+	// 2. update priority value: logV (once per edge)
 	
 	static int V;
 
@@ -48,7 +48,7 @@ public class Dijkstra {
 			visitedSet[i] = false;
 		}
 
-		distance[src] = 0; //distance of source vertex from itself is always 0
+		distance[src] = 0; // distance of source vertex from itself is always 0
 		for (int count=0; count<V-1; count++) {
 			int u = minDistance(distance, visitedSet);
 			visitedSet[u] = true;
