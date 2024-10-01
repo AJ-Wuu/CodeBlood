@@ -4,6 +4,9 @@ return new int[]{};
 // List to Array (for example, `String[]`)
 return list.toArray(new String[0]);
 
+int[] primitiveArray = new int[2]; // the default initialization will be 0
+Integer[] wrapperArray = new Integer[2]; // the default initialization will be null
+
 // Sum of an Array: using `for` loop to add through the array is faster than using `Arrays.stream(arr).sum()`
 
 // Use long (as 64-bit integer) to avoid overflow
