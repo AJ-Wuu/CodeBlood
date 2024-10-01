@@ -25,6 +25,9 @@ str.matches("-?\\d+");             // can contain leading 0
 str.matches("-?(0|[1-9]\\d*)");    // will not accept leading 0
 StringUtils.isNumeric(str);        // will return true for "" and false for "-1", highly unrecommended
 
+// count remainder with both positive and negative input
+int remainder = ((num % k) + k) % k;
+
 // Notice that the sum of decimals may not return to its original value
 double[] count = new double[6];
 for (int i=0; i<count.length; i++) {
