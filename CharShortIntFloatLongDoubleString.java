@@ -1,3 +1,10 @@
+// Wrapper Class Comparison
+Integer x = new Integer(2), y = new Integer(2);
+boolean comp1 = x == y; // will get false, as wrapper class will check for reference equality
+                        // it will be checking if they refer to the same object rather than equal object
+boolean comp2 = x.equals(y); // will get true
+boolean comp3 = (x - y) == 0; // will get true
+
 /* char to int */
 char C;
 Character.isDigit(c); // check if the character is a digit
@@ -25,7 +32,7 @@ str.matches("-?\\d+");             // can contain leading 0
 str.matches("-?(0|[1-9]\\d*)");    // will not accept leading 0
 StringUtils.isNumeric(str);        // will return true for "" and false for "-1", highly unrecommended
 
-// count remainder with both positive and negative input
+// Count remainder with both positive and negative input
 int remainder = ((num % k) + k) % k;
 
 // Notice that the sum of decimals may not return to its original value
