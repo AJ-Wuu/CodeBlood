@@ -12,13 +12,13 @@
 
 ## Tips
 * Always remember to use two pointers moving along the list / queue if needed for elements comparasion / selection / etc.
-* Build an array of LinkedList: ```LinkedList<Integer>[] array = new LinkedList[n];```
-* Build empty List<List<Integer>>: ```List<List<Integer>> result = new LinkedList<>(); OR List<List<Integer>> result = new LinkedList<List<Integer>>();```
-* Build list using Arrays: ```Arrays.asList(x,y,z);```
+* Build an array of LinkedList: `LinkedList<Integer>[] array = new LinkedList[n];`
+* Build empty List<List<Integer>>: `List<List<Integer>> result = new LinkedList<>();` or `List<List<Integer>> result = new LinkedList<List<Integer>>();`
+* Build list using Arrays: `Arrays.asList(x,y,z);`
   * `List.of()` is immutable, meaning its size and elements cannot be modified after creation, and it doesn't allow Null
   * `Arrays.asList()` is fix-sized but modifiable, meaning its element can be changes (and it is **backed by the original array, so any changes to elements of the list will affect the underlying array and vice versa**), and it allows Null
-* Convert LinkedList<int[]> to int[][]: ```list.toArray(new int[list.size()][]);```
-* Convert int[] to LinkedList<Integer>: ```Arrays.asList(array);```
-* Initialize list: ```List<Double> temp = new LinkedList<Double>(Arrays.asList(1.0, 2.0));```
-* Get the index of the max value in a list: ```IntStream.range(0, list.size()).reduce(0, (a, b) -> list.get(a) < list.get(b) ? b : a);```
-* Reverse the list in itself: ```Collections.reverse(list); // return void```
+* Convert LinkedList<int[]> to int[][]: `list.toArray(new int[list.size()][]);`
+* Convert int[] to LinkedList<Integer>: `Arrays.asList(array);`
+* Initialize list: `List<Double> temp = new LinkedList<Double>(Arrays.asList(1.0, 2.0));`
+* Get the index of the max value in a list: `IntStream.range(0, list.size()).reduce(0, (a, b) -> list.get(a) < list.get(b) ? b : a);`
+* Reverse the list in itself: `Collections.reverse(list); // return void`
