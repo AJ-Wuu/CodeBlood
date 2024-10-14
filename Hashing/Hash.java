@@ -88,19 +88,19 @@
  * (5. Use only parts of the key that are distinct from other keys) <- extraction
  */
 
-//Initialization
-HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(); //<K, V>
+// Initialization
+HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(); // <K, V>
 Hashtable<Integer, Integer> table = new Hashtable<Integer, Integer>();
 HashSet<String> set = new HashSet<String>();
 
-//computeIfAbsent()
+// computeIfAbsent()
 public V computeIfAbsent(K key, Function<? super K, ? extends V> remappingFunction);
-targets.computeIfAbsent(ticket.get(0), k -> new PriorityQueue()).add(ticket.get(1)); //See LeetCode/Graph.java #332
+targets.computeIfAbsent(ticket.get(0), k -> new PriorityQueue()).add(ticket.get(1)); // See LeetCode/Graph.java #332
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#954 - Array of Doubled Pairs ????????????????????????????????????????????????????????
-map.put(x, map.getOrDefault(x, 0)); //map.getOrDefault(x, 0) -> hashmap.get(Object key, V defaultValue)
+// #954 - Array of Doubled Pairs
+map.put(x, map.getOrDefault(x, 0)); // map.getOrDefault(x, 0) -> hashmap.get(Object key, V defaultValue)
 
 public boolean canReorderDoubled(int[] arr) {
     var intsLeft = new HashMap();
@@ -131,20 +131,20 @@ public boolean checkMatch(Map intsLeft, int n) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#3 - Longest Substring Without Repeating Characters
-//This is an easy way to: 1. check if c is in the map & 2. move the starting index to the latter possible position
-start = Math.max(start, map.getOrDefault(c, 0)); //map.getOrDefault(c, 0) -> if find c in the map, return its value; else, return 0
+// #3 - Longest Substring Without Repeating Characters
+// This is an easy way to: 1. check if c is in the map & 2. move the starting index to the latter possible position
+start = Math.max(start, map.getOrDefault(c, 0)); // map.getOrDefault(c, 0) -> if find c in the map, return its value; else, return 0
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#17 - Letter Combinations of a Phone Number
-//Convert char to int
+// #17 - Letter Combinations of a Phone Number
+// Convert char to int
 int a = Integer.parseInt(String.valueOf(digits.charAt(i)));
 int b = digits.charAt(i) - '0';
 int c = Character.getNumericValue(i);
 
-//Method 1:
-result.add(""); //so that the add() can work
+// Method 1:
+result.add(""); // so that the add() can work
 for (int i=0; i<digits.length(); i++) {
     result = combine(digitletter[digits.charAt(i)-'0'], result);
 }
@@ -159,7 +159,7 @@ public static List<String> combine(String digit, List<String> l) {
     return result;
 }
 
-//Method 2 - recursive:
+// Method 2 - recursive:
 backtrack(combos, digits.toCharArray(), "", dict);
 
 public void backtrack(List<String> combos, char[] digits, String s, String[] dict) {
@@ -176,18 +176,18 @@ public void backtrack(List<String> combos, char[] digits, String s, String[] dic
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#30 - Substring with Concatenation of All Words
-//Shallow copy a whole HashMap
+// #30 - Substring with Concatenation of All Words
+// Shallow copy a whole HashMap
 map1.putAll(map2);
 
-//Method 1: take advantage of the no-duplicate property of HashMap, and map1.equals(map2) is faster than array comparisons
+// Method 1: take advantage of the no-duplicate property of HashMap, and map1.equals(map2) is faster than array comparisons
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
     if (s == null || words == null || s.length() == 0 || words.length == 0) {
         return new ArrayList<>();
     }
     HashMap<String, Integer> counts = new HashMap<>();
     for (String word : words) {
-        counts.put(word, counts.getOrDefault(word, 0) + 1); //this makes sure that if word exists in count, it has value > 0 -> to distinguish from non-existing
+        counts.put(word, counts.getOrDefault(word, 0) + 1); // this makes sure that if word exists in count, it has value > 0 -> to distinguish from non-existing
     }
     
     ArrayList<Integer> r = new ArrayList<>();
@@ -213,12 +213,12 @@ private static boolean isConcat(String sub, HashMap<String, Integer> counts, int
     return seen.equals(counts);
 }
 
-//Method 2: inner loop matches a word, and uses checkFound() to decide whether all words are found; outer loop makes sure all possible divisions have been traversed
+// Method 2: inner loop matches a word, and uses checkFound() to decide whether all words are found; outer loop makes sure all possible divisions have been traversed
 public static ArrayList<Integer> findSubstring(String s, String[] words) {
     ArrayList<Integer> res = new ArrayList<Integer>();
     int n = s.length(), m = words.length, k;
     if (n == 0 || m == 0 || (k = words[0].length()) == 0) {
-        //assign value to k in if() -> avoid the possibility that words[] == null
+        // assign value to k in if() -> avoid the possibility that words[] == null
         return res;
     }
 
@@ -228,34 +228,34 @@ public static ArrayList<Integer> findSubstring(String s, String[] words) {
             wordDict.put(word, wordDict.get(word) + 1);
 	}
         else {
-            wordDict.put(word, 1); //make sure that if word exists, its value > 0; distinguish from non-existing word
+            wordDict.put(word, 1); // make sure that if word exists, its value > 0; distinguish from non-existing word
 	}
     }
 
     int start, x, wordsLen = m * k;
     HashMap<String, Integer> currDict = new HashMap<String, Integer>();
     String test, temp;
-    for (int i=0; i<k; i++) { //outer loop jump from 0 to word's length
+    for (int i=0; i<k; i++) { // outer loop jump from 0 to word's length
         currDict.clear();
         start = i;
         if (start + wordsLen > n) {
             return res;
         }
 		
-        for (int j=i; j+k<=n; j+=k) { //inner loop skip by word's length
+        for (int j=i; j+k<=n; j+=k) { // inner loop skip by word's length
             test = s.substring(j, j+k);
 
             if (wordDict.containsKey(test)) {
                 x = currDict.getOrDefault(test, 0);
                 if (x < wordDict.get(test)) {
-                    //currDict does not contain test OR currDict contains less times of test than wordDict
+                    // currDict does not contain test OR currDict contains less times of test than wordDict
                     currDict.put(test, x + 1);
                     start = checkFound(res, start, wordsLen, j, k, currDict, s);
                     continue;
                 }
 
-                //currDict.get(test) == wordDict.get(test), 
-                //slide start to the next word of the first same word as test
+                // currDict.get(test) == wordDict.get(test), 
+                // slide start to the next word of the first same word as test
                 while (!(temp = s.substring(start, start + k)).equals(test)) {
                     decreaseCount(currDict, temp);
                     start += k;
@@ -267,7 +267,7 @@ public static ArrayList<Integer> findSubstring(String s, String[] words) {
                 continue;
             }
 
-            //totally failed with index j+k, slide start and reset all
+            // totally failed with index j+k, slide start and reset all
             start = j + k;
             if (start + wordsLen > n) {
                 break;
@@ -279,10 +279,10 @@ public static ArrayList<Integer> findSubstring(String s, String[] words) {
 }
 
 public static int checkFound(ArrayList<Integer> res, int start, int wordsLen, int j, int k, HashMap<String, Integer> currDict, String s) {
-    //if found a substring, return its starting index; else, return the start unchanged
+    // if found a substring, return its starting index; else, return the start unchanged
     if (start + wordsLen == j + k) {
         res.add(start);
-        //slide start to the next word
+        // slide start to the next word
         decreaseCount(currDict, s.substring(start, start + k));
         return start + k;
     }
@@ -290,7 +290,7 @@ public static int checkFound(ArrayList<Integer> res, int start, int wordsLen, in
 }
 
 public static void decreaseCount(HashMap<String, Integer> currDict, String key) {
-    //remove key if currDict.get(key)==1, otherwise decrease it by 1
+    // remove key if currDict.get(key)==1, otherwise decrease it by 1
     int x = currDict.get(key);
     if (x == 1) {
         currDict.remove(key);
@@ -302,8 +302,8 @@ public static void decreaseCount(HashMap<String, Integer> currDict, String key) 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#36 - Valid Sudoku
-//Using some signal words to store a value in different strings in HashSet can save loops.
+// #36 - Valid Sudoku
+// Using some signal words to store a value in different strings in HashSet can save loops.
 public static boolean isValidSudoku(char[][] board) {
     Set<String> seen = new HashSet<String>();
         for (int i=0; i<9; ++i) {
@@ -323,48 +323,48 @@ public static boolean isValidSudoku(char[][] board) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#49 - Group Anagrams
-//Key points:
-    //1. Make the value of the HashMap in a special data structure
-    //2. Sort the characters in the string -> this is super helpful for this kind of sharing similarities question
+// #49 - Group Anagrams
+// Key points:
+    // 1. Make the value of the HashMap in a special data structure
+    // 2. Sort the characters in the string -> this is super helpful for this kind of sharing similarities question
 public List<List<String>> groupAnagrams(String[] strs) {
     if (strs == null || strs.length == 0) {
         return new ArrayList<>();
     }
     HashMap<String, List<String>> map = new HashMap<String, List<String>>();
     for (String s : strs) {
-	//Sort the characters in s in alphabetical order
+	// Sort the characters in s in alphabetical order
         char[] charArray = new char[26];
         for (char c : s.toCharArray()) {
             charArray[c-'a'] = c;
         }
 	
-	//Combine the charArray[] together as a new String, which has all the characters in s and is written in order
-        String keyStr = String.valueOf(charArray); //return the string representation of the char array argument.
+	// Combine the charArray[] together as a new String, which has all the characters in s and is written in order
+        String keyStr = String.valueOf(charArray); // return the string representation of the char array argument.
         if (!map.containsKey(keyStr)) {
             map.put(keyStr, new ArrayList<>());
         }
         map.get(keyStr).add(s);
     }
-    return new ArrayList<>(map.values()); //Convert Map to ArrayList (object could be omitted)
+    return new ArrayList<>(map.values()); // Convert Map to ArrayList (object could be omitted)
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#347 - Top K Frequent Elements
-//Sort HashMap by Values
+// #347 - Top K Frequent Elements
+// Sort HashMap by Values
 @SuppressWarnings({ "rawtypes", "unchecked" })
 private static HashMap sortByValues(HashMap<Integer, Integer> map) { 
     LinkedList list = new LinkedList(map.entrySet());
     Collections.sort(list, new Comparator() {
-        public int compare(Object obj1, Object obj2) { //from the largest to the smallest
+        public int compare(Object obj1, Object obj2) { // from the largest to the smallest
             return ((Comparable) ((Map.Entry) (obj2)).getValue()).compareTo(((Map.Entry) (obj1)).getValue());
         }
     });
 	
-    //Here, the sorted list is copied in HashMap using LinkedHashMap to safeguard the insertion order
+    // Here, the sorted list is copied in HashMap using LinkedHashMap to safeguard the insertion order
     HashMap sortedHashMap = new LinkedHashMap();
-    Iterator iter = list.iterator(); //from java.util.Iterator, not javax.swing.text.html.HTMLDocument.Iterator
+    Iterator iter = list.iterator(); // from java.util.Iterator, not javax.swing.text.html.HTMLDocument.Iterator
     for ( ;iter.hasNext(); ) {
         Map.Entry entry = (Map.Entry)iter.next();
         sortedHashMap.put(entry.getKey(), entry.getValue());
