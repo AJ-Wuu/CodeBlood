@@ -260,6 +260,13 @@ stringbuilder.append("Java"); //now the original string is changed
 * Instants (java.time.Instant), Durations (java.time.Duration), Periods (java.time.Period)
 * Zoned Date and Time (java.time.ZonedDateTime)
 * Locale (java.util.Locale)
+### Time Method Execution
+```java
+long startTime = System.nanoTime();
+methodToTime();
+long endTime = System.nanoTime();
+long duration = (endTime - startTime);
+```
 ## Polymorphyism
 * means many forms, when a method is declared in a superclass and is overridden in a subclass, the subclass method takes precedence without casting reference to a specific subclass type
 ## Overload Methods
