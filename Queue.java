@@ -29,14 +29,13 @@
  * 3. if empty, element() -> NoSuchElementException, peek() -> null
  */
 
-
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Queue using Two Stacks
-//Key: enqueue -> put into Stack1
-//     dequeue -> pop out of Stack1 to Stack2, then pop out of Stack2
-//     print -> pop out of Stack1 to Stack2, then peep Stack2
-//The reason of using two stacks is because there exists a possibility of printing without dequeue, and the current Stack should be the combination of Stack2-Stack1
+// Queue using Two Stacks
+// Key: enqueue -> put into Stack1
+//      dequeue -> pop out of Stack1 to Stack2, then pop out of Stack2
+//      print -> pop out of Stack1 to Stack2, then peep Stack2
+// The reason of using two stacks is because there exists a possibility of printing without dequeue, and the current Stack should be the combination of Stack2-Stack1
 public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     int N = sc.nextInt();
@@ -72,23 +71,23 @@ public static void main(String[] args) {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//#239 - Sliding Window Maximum
+// #239 - Sliding Window Maximum
 public static int[] maxSlidingWindow(int[] nums, int k) {
     int n = nums.length;
     int[] result = new int[n-k+1];
-    int index = 0; //store index
+    int index = 0; // store index
     Deque<Integer> q = new ArrayDeque<Integer>();
     for (int i = 0; i < nums.length; i++) {
-        //remove numbers out of range k (only keep those in [i-(k-1), i])
+        // remove numbers out of range k (only keep those in [i-(k-1), i])
         while (!q.isEmpty() && q.peek() < i - k + 1) {
             q.poll();
         }
-        //discard the elements in k range smaller than a[i] from the tail, as they are useless for the future
-        //if a[x] < a[i] and x < i, then a[x] has no chance to be the "max" in [i-(k-1),i] or any other subsequent window
+        // discard the elements in k range smaller than a[i] from the tail, as they are useless for the future
+        // if a[x] < a[i] and x < i, then a[x] has no chance to be the "max" in [i-(k-1),i] or any other subsequent window
         while (!q.isEmpty() && nums[q.peekLast()] < nums[i]) {
             q.pollLast();
         }
-        //q contains index and result contains content
+        // q contains index and result contains content
         q.offer(i);
         if (i >= k - 1) {
             result[index++] = nums[q.peek()];
