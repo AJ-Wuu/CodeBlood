@@ -34,6 +34,41 @@ public static Object deserialize(byte[] data) throws IOException, ClassNotFoundE
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// #2406 - Divide Intervals Into Minimum Number of Groups
+// Line Sweep: 1. build an array of all possible points of time
+//             2. increment for each entry point
+//             3. decrement for each exit point
+public int minGroups(int[][] intervals) {
+    // find the minimum and maximum value in the intervals
+    int rangeStart = Integer.MAX_VALUE;
+    int rangeEnd = Integer.MIN_VALUE;
+    for (int[] interval : intervals) {
+        rangeStart = Math.min(rangeStart, interval[0]);
+        rangeEnd = Math.max(rangeEnd, interval[1]);
+    }
+
+    // initialize the array with all zeroes
+    int[] pointToCount = new int[rangeEnd + 2];
+    for (int[] interval : intervals) {
+        pointToCount[interval[0]]++;     // increment at the start of the interval
+        pointToCount[interval[1] + 1]--; // decrement right after the end of the interval
+    }
+
+    int concurrentIntervals = 0;
+    int maxConcurrentIntervals = 0;
+    for (int i = rangeStart; i <= rangeEnd; i++) {
+        // Update current active intervals
+        concurrentIntervals += pointToCount[i];
+        maxConcurrentIntervals = Math.max(
+            maxConcurrentIntervals,
+            concurrentIntervals
+        );
+    }
+    return maxConcurrentIntervals;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // #2326 - Spiral Matrix IV
 public int[][] spiralMatrix(int rows, int columns, ListNode head) {
     // create spiral matrix and auto-fill it with default value -1
