@@ -1,7 +1,10 @@
 // Bit Operators: & (and), | (or), ~ (not), ^ (xor), <<< (shift left), >>> (shift right)
+//     OR -> only add bits, never remove them
+//        -> so the maximum OR value will always be the result of OR-ing all the numbers in the array
 // Remove last bit: x & (x-1)
 // Exact last bit: x ^ (x & (x-1))
 // Odd or Even: x & 1
+
 // Number of 1 bits:
 public int hammingWeight(int n) {
     while (n) {
@@ -9,15 +12,18 @@ public int hammingWeight(int n) {
         count++;
     }
 }
+
 // Power of Four: (n & (n-1) == 0) && (n & 0x55555555 != 0)
 //                (n & (n-1) == 0) gets rid of the odd numbers,
 //                (n & 0x55555555 != 0) gets rid of power of 2 but not 4
+
 // Sum of Two Integers:
 public int getSum(int a, int b) {
     return (b == 0) ? a : ((a ^ b) & ((a & b) <<< 1));
     // (a ^ b) adds the bit that contains one 1 and one 0 to be 1
     // (a & b << 1) checks if the bit contains two 1, and then shift 1-bit left to carry up
 }
+
 // Missing Numbers:
 public int missingNumber(int[] arr) {
     int temp = 0;
