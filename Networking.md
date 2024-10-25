@@ -157,4 +157,4 @@ subnet mask = 11111111 11111111 11111111 00000000 = 255.255.255.0 = (abbreviated
     * e.g., Googe name servers for `www.google.com.`
 ### BIND (Berkeley Internet Name Domain)
 * The most commonly used DNS server software on the Internet
-  * round robin allocation
+  * round robin allocation, which may cause one server to get a heavy user
