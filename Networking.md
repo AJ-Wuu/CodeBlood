@@ -155,3 +155,6 @@ subnet mask = 11111111 11111111 11111111 00000000 = 255.255.255.0 = (abbreviated
     * root `.` name servers ---hold info for---> `com.` ---hold info for---> `google.com.` ---hold info for---> `www.google.com.`
   * distributed: servers each hold pieces of information for the zones that they are "authoritative"
     * e.g., Googe name servers for `www.google.com.`
+### BIND (Berkeley Internet Name Domain)
+* The most commonly used DNS server software on the Internet
+  * round robin allocation
