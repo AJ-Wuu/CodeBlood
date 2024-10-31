@@ -182,4 +182,7 @@ ostream &operator<<( ostream &out, const IntList &L ) {
 }
 ```
 ## Friend Class and Function
-
+* A friend class can access private and protected members of other classes in which it is declared as a friend
+  * not the other way around by default
+  * e.g., `class A { friend class B; ... }` -> A is the base class and B is the friend class -> B can access A
+* Friend function has privileges to access all private and protected members of the class
