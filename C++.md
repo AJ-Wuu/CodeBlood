@@ -117,6 +117,7 @@ int main() {
 ```
 ## Destructor Function
 * The main purpose is to free any dynamically allocated storage pointed to only by a data member of that object
+  * a destructor is automatically called when an object goes out of scope
 ```
 IntList::~IntList() {
   delete [] Items; //free the dynamically allocated array pointed to by Items
