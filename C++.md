@@ -14,6 +14,12 @@ main (argv)
 * ```enum type-name { list-of-values };```
 ## Union: only one member can contain a value at any given time
 ## Struct: any member can contain a value at any given time
+## Const Variable and Function
+* A function becomes const when the const keyword is used in the function’s declaration
+  * e.g., `int get_data() const;`
+  * the idea is to NOT allow the function to modify any global (aka class-level) variable
+    * except the `mutable` ones
+  * it is recommended practice to make as many functions const as possible so that accidental changes to objects are avoided
 ## Garbage Collection
 * Allocated memory from the heap (using new) cannot be reused unless it is deallocated explicitly
 * Deallocation is done using the delete operator
@@ -175,3 +181,5 @@ ostream &operator<<( ostream &out, const IntList &L ) {
     out << ']';
 }
 ```
+## Friend Class and Function
+
