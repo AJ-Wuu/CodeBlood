@@ -61,7 +61,14 @@ void f( vector  A );  //A is passed by value
 void f( vector  &B ); //B is passed by reference
 ```
 ## Inheritance
-```
+| type | base public becomes | base protected becomes | base private becomes |
+|------|----------------------|-------------------------|-----------------------|
+| `class derived : public base` | public | protected | no access |
+| `class derived : protected base` | protected | protected | no access |
+| `class derived : private base` | private | private | no access |
+| `class derived : virtual base` | | | |
+
+```cpp
 class Rectangle: public Shape {
     public:
         int getArea() { 
@@ -236,9 +243,3 @@ ostream &operator<<( ostream &out, const IntList &L ) {
   * not the other way around by default
   * e.g., `class A { friend class B; ... }` -> A is the base class and B is the friend class -> B can access A
 * Friend function has privileges to access all private and protected members of the class
-## Derivative
-| type | base public becomes | base protected becomes | base private becomes |
-|------|----------------------|-------------------------|-----------------------|
-| `class derived : public base` | public | protected | no access |
-| `class derived : protected base` | protected | protected | no access |
-| `class derived : private base` | private | private | no access |
