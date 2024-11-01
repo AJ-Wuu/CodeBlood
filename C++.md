@@ -121,13 +121,63 @@ int main() {
     }
 }
 ```
-## Destructor Function
+## Destructor
 * The main purpose is to free any dynamically allocated storage pointed to only by a data member of that object
   * a destructor is automatically called when an object goes out of scope
 ```
 IntList::~IntList() {
   delete [] Items; //free the dynamically allocated array pointed to by Items
 }
+```
+## Constructor
+* Construct order: base -> components -> self
+```cpp
+#include <iostream>
+using namespace std;
+class A {
+public:
+  A() { cout << "Constructing A" << endl; }
+  ~A() { cout << "Destructing A" << endl; }
+};
+
+class B {
+public:
+  B() { cout << "Constructing B" << endl; }
+  ~B() { cout << "Destructing B" << endl; }
+};
+
+class C {
+public:
+  C() { cout << "Constructing C" << endl; }
+  ~C() { cout << "Destructing C" << endl; }
+};
+
+class D : public C {                           # base 
+public:
+  D() { cout << "Constructing D" << endl; }    # self
+  ~D() { cout << "Destructing D" << endl; }
+  B b;                                         # component 1
+  A a;                                         # component 2
+  C c;                                         # component 3
+};
+
+int main() {
+  D d;
+}
+
+/*
+result：
+Constructing C
+Constructing B
+Constructing A
+Constructing C
+Constructing D
+Destructing D
+Destructing C
+Destructing A
+Destructing B
+Destructing C
+*/
 ```
 ## Copy Constructor
 * If no copy constructor, the compiler will provide a shallow copy (just the value of each data member)
