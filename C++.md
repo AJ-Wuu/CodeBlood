@@ -107,10 +107,12 @@ delete p;           //the memory that was pointed to by p has been returned to f
 |  | Pointer | Reference |
 |--|--------|-----------|
 | Definition | a variable that holds the memory address of another variable | an alias for an already existing variable |
-| Usage | needs to be dereferenced with the `*` operator to access the memory location it points to | **must be assigned at initialization and cannot be re-assigned** |
+| Syntax | needs to be dereferenced with the `*` operator to access the memory location it points to | **must be assigned at initialization and cannot be re-assigned** |
 | Memory Address | has its own memory address and size on the stack | shares the same memory address with the original variable and takes up no space on the stack |
 | NULL Value | can be assigned as NULL directly | cannot be assigned as NULL to prevent underlying operations from an exception situation |
 | Direction | offers extra levels of indirection, like a double pointer | only offers one level of indirection |
+| When to Use | if pointer arithmetic or passing a NULL pointer is needed, or to implement data structures like a tree, or **if a function’s parameter or return value needs a "sentinel" reference (which is a reference that does not refer to an object)** | in function parameters and return types |
+| Preference | use pointers when you have to | use references when you can -- **preferred whenever you don’t need "reseating"** |
 
 ### Reference & Dereference
 * Reference: & == "address of" -- it gives you a reference (pointer) to some object
