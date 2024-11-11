@@ -89,6 +89,9 @@ namespace A
   * not a Rvalue reference
   * `auto&& r1 = x;` is valid as `x` is L-value expression
   * `auto&& r2 = x + y;` is valid as `x + y` is PR-value expression
+* `for (auto& thread : threads) { thread.join(); }`: inside the `for`, you need to specify the alias `auto&` in order to avoid creating a copy of the elements inside the vector within the `thread` variable
+  * in this way every operation done on the `thread` var is done on the element inside the `threads` vector
+  * moreover, **in a range-based `for`, you always want to use a reference `&` for performance reasons**
 
 ## Garbage Collection
 * Allocated memory from the heap (using new) cannot be reused unless it is deallocated explicitly
