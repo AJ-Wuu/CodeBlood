@@ -6,6 +6,10 @@ g++ XXX.cpp -Wall -O3 -std=c++17 -o main
 main (argv)
 ```
 ## Optimize -- Compiler Explorer
+## Entry Point
+* Arduino-like platforms: a microcontroller development environment where the primary program entry points are `setup()` and `loop()` functions, instead of the traditional `main()` function
+  * `setup()` runs once at the start to initialize hardware
+  * `loop()` continuously executes the main program logic in a loop
 ## string
 * Change the first character of the string greeting: ```greeting[0] = 'J';```
 ## typedef: ```typedef double Dollars; Dollars hourlyWage = 10.50;```
