@@ -101,14 +101,21 @@ int *p = new int;   //p points to newly allocated memory
 ...
 delete p;           //the memory that was pointed to by p has been returned to free storage
 ```
-## Reference & Dereference
+## Reference and Pointer
 * reference ~= pointer (**both are implemented by storing the address of an object**)
-  * pointer = a variable that holds the memory address of another variable
-    * needs to be dereferenced with the * operator to access the memory location it points to
-  * reference = an alias for an already existing variable
+
+|  | Pointer | Reference |
+|--|--------|-----------|
+| Definition | a variable that holds the memory address of another variable | an alias for an already existing variable |
+| Usage | needs to be dereferenced with the `*` operator to access the memory location it points to | **must be assigned at initialization and cannot be re-assigned** |
+| Memory Address | has its own memory address and size on the stack | shares the same memory address with the original variable and takes up no space on the stack |
+| NULL Value | can be assigned as NULL directly | cannot be assigned as NULL to prevent underlying operations from an exception situation |
+| Direction | offers extra levels of indirection, like a double pointer | only offers one level of indirection |
+
+### Reference & Dereference
 * Reference: & == "address of" -- it gives you a reference (pointer) to some object
 * Dereference: * == "value pointed by" -- it takes a reference (pointer) and gives you back the referred to object
-## Pointer pass by reference
+### Pointer pass by reference
 ```
 void foo(int **array) { //pass a double pointer
     //....
@@ -121,7 +128,7 @@ int main() {
     foo(&arr);
 }
 ```
-## Pointer
+### Pointer
 * Never dereference a dangling pointer (a pointer to a location that was pointed to by another pointer that has been deleted)
   * ```int *p, *q; p = new int; q = p; delete q; //now p is a dangling pointer```
 * If p is the only pointer that points to dynamically allocated memory, and you reassign p without first deleting it, that memory will be lost (your code will have a storage leak)
@@ -136,6 +143,7 @@ int main() {
 void f( vector  A );  //A is passed by value
 void f( vector  &B ); //B is passed by reference
 ```
+
 ## Inheritance
 | type | base public becomes | base protected becomes | base private becomes |
 |------|----------------------|-------------------------|-----------------------|
