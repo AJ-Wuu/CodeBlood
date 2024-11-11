@@ -7,7 +7,12 @@ main (argv)
 ```
 ## Optimize -- Compiler Explorer
 ## Entry Point
-* Arduino-like platforms: a microcontroller development environment where the primary program entry points are `setup()` and `loop()` functions, instead of the traditional `main()` function
+* QuRT (Qualcomm Real-Time Operating System)
+  * can globally schedule the highest-priority runnable software threads and directs interrupts to the lowest-priority hardware thread
+  * manages software and hardware watchdog timers to detect and reset system failures
+  * uses `main()`, but `argc`/`argv` might be unusable
+* Arduino-Like Platforms
+  * a microcontroller development environment where the primary program entry points are `setup()` and `loop()` functions, instead of the traditional `main()` function
   * `setup()` runs once at the start to initialize hardware
   * `loop()` continuously executes the main program logic in a loop
 
