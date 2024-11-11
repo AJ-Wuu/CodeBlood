@@ -102,9 +102,12 @@ int *p = new int;   //p points to newly allocated memory
 delete p;           //the memory that was pointed to by p has been returned to free storage
 ```
 ## Reference & Dereference
-* reference ~= pointer
-* Reference: & == “address of” -- it gives you a reference (pointer) to some object
-* Dereference: * == “value pointed by” -- it takes a reference (pointer) and gives you back the referred to object
+* reference ~= pointer (**both are implemented by storing the address of an object**)
+  * pointer = a variable that holds the memory address of another variable
+    * needs to be dereferenced with the * operator to access the memory location it points to
+  * reference = an alias for an already existing variable
+* Reference: & == "address of" -- it gives you a reference (pointer) to some object
+* Dereference: * == "value pointed by" -- it takes a reference (pointer) and gives you back the referred to object
 ## Pointer pass by reference
 ```
 void foo(int **array) { //pass a double pointer
