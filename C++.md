@@ -59,6 +59,13 @@ namespace A
 }
 ```
 
+## [Value Category](https://learn.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp?view=msvc-170)
+* GL-value = evaluation determines the identity of an object, bit-field, or function
+* PR-value = evaluation initializes an object or a bit-field, or computes the value of the operand of an operator, as specified by the context in which it appears
+* X-value = a GL-value that denotes an object or bit-field whose resources can be reused (usually because it is near the end of its lifetime)
+* L-value = a GL-value that isn't an X-value
+* R-value = a PR-value or an X-value.
+
 ## string
 * Change the first character of the string greeting: ```greeting[0] = 'J';```
 ## typedef: ```typedef double Dollars; Dollars hourlyWage = 10.50;```
@@ -73,6 +80,16 @@ namespace A
   * the idea is to NOT allow the function to modify any global (aka class-level) variable
     * except the `mutable` ones
   * it is recommended practice to make as many functions const as possible so that accidental changes to objects are avoided
+## Auto
+* `auto x = expr;`: no pointer or reference, only variable name; in this case, `const` and reference are ignored
+* `auto& y = expr;` or `auto* y = expr;`: reference or pointer after `auto` keyword
+  * **`const` is not ignored**
+  * **array to pointer conversion (array decay) does not occur**
+* `auto&& z = expr;`: if the type inference is in question and the `&&` token is used, the names introduced like this are called Forwarding Reference (aka Universal Reference)
+  * not a Rvalue reference
+  * `auto&& r1 = x;` is valid as `x` is L-value expression
+  * `auto&& r2 = x + y;` is valid as `x + y` is PR-value expression
+
 ## Garbage Collection
 * Allocated memory from the heap (using new) cannot be reused unless it is deallocated explicitly
 * Deallocation is done using the delete operator
