@@ -10,6 +10,29 @@ main (argv)
 * Arduino-like platforms: a microcontroller development environment where the primary program entry points are `setup()` and `loop()` functions, instead of the traditional `main()` function
   * `setup()` runs once at the start to initialize hardware
   * `loop()` continuously executes the main program logic in a loop
+
+## C Linkage
+* `extern "C"` makes a function-name in C++ have C linkage (compiler does not mangle the name) so that client C code can link to (use) your function using a C compatible header file that contains just the declaration of your function
+  * your function definition is contained in a binary format (that was compiled by your C++ compiler) that the client C linker will then link to using the C name
+* Every compiler is required to provide "C" linkage
+* A linkage specification shall occur only in namespace scope
+* Two function types with distinct language linkages are distinct types even if otherwise identical
+* Linkage specs nest, inner one determines the final linkage
+* At most one function with a particular name can have "C" linkage (regardless of namespace)
+```cpp
+#ifdef GTEST_OS_ESP8266
+extern "C" {
+#endif
+
+void setup() { testing::InitGoogleTest(); }
+
+void loop() { RUN_ALL_TESTS(); }
+
+#ifdef GTEST_OS_ESP8266
+}
+#endif
+```
+
 ## string
 * Change the first character of the string greeting: ```greeting[0] = 'J';```
 ## typedef: ```typedef double Dollars; Dollars hourlyWage = 10.50;```
