@@ -38,6 +38,27 @@ void loop() { RUN_ALL_TESTS(); }
 #endif
 ```
 
+## Macro
+```cpp
+namespace A
+{
+    namespace B
+    {
+         class C;
+    }
+}
+namespace B
+{ 
+    class C;
+}
+namespace A
+{
+    using B::C; // resolves to A::B::C
+    using ::B::C; // resolves to B::C
+    // (note that one of those using declarations has to be commented for making this valid code!)
+}
+```
+
 ## string
 * Change the first character of the string greeting: ```greeting[0] = 'J';```
 ## typedef: ```typedef double Dollars; Dollars hourlyWage = 10.50;```
