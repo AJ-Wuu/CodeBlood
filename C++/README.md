@@ -59,6 +59,17 @@ namespace A
 }
 ```
 
+## Template
+* Templates are expanded at compiler time, like macros
+* The compiler does type-checking before template expansion
+* The goal is that source code contains only function / class, but compiled code may contain multiple copies of the same function / class
+```cpp
+template <typename T>
+T myMax(T x, T y) {
+    return (x > y) ? x : y;
+}
+```
+
 ## [Value Category](https://learn.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp?view=msvc-170)
 * GL-value = evaluation determines the identity of an object, bit-field, or function
 * PR-value = evaluation initializes an object or a bit-field, or computes the value of the operand of an operator, as specified by the context in which it appears
