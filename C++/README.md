@@ -391,8 +391,9 @@ ostream &operator<<( ostream &out, const IntList &L ) {
   * the order of the first and second element is fixed, such as a key-value pair of a map
   * can be assigned, copied, and compared
   * functions: `make_pair`, `swap`, `tie` (unpack the pair values into separate variables)
-* Move Semantics (`std::move`)
+* Move Semantics
   * allows the transfer of resources from one object to another without copying
+  * **`std::move` means no longer need this value**
   * while one can steal the resources, but one must leave the source (original) object in a valid state where it can be correctly destroyed
   * copy uses lvalue reference, but move uses rvalue -- **move is used to convert an lvalue reference into the rvalue reference**
 * Smart Pointers = a wrapper over the raw pointers and helps in avoiding errors associated with pointers
