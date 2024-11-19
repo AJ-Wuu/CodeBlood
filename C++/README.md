@@ -75,7 +75,13 @@ T myMax(T x, T y) {
 * PR-value = evaluation initializes an object or a bit-field, or computes the value of the operand of an operator, as specified by the context in which it appears
 * X-value = a GL-value that denotes an object or bit-field whose resources can be reused (usually because it is near the end of its lifetime)
 * L-value = a GL-value that isn't an X-value
-* R-value = a PR-value or an X-value.
+  * **a variable or object that has a name and memory address**
+  * uses `&`
+  * an expression that will appear on the left-hand side or on the right-hand side of an assignment
+* R-value = a PR-value or an X-value
+  * **variable or object has only a memory address (temporary objects)**
+  * uses `&&`
+  * an expression that will appear **only on the right-hand side of an assignment**
 
 ## string
 * Change the first character of the string greeting: ```greeting[0] = 'J';```
@@ -387,6 +393,8 @@ ostream &operator<<( ostream &out, const IntList &L ) {
   * functions: `make_pair`, `swap`, `tie` (unpack the pair values into separate variables)
 * Move Semantics (`std::move`)
   * allows the transfer of resources from one object to another without copying
+  * while one can steal the resources, but one must leave the source (original) object in a valid state where it can be correctly destroyed
+  * copy uses lvalue reference, but move uses rvalue -- **move is used to convert an lvalue reference into the rvalue reference**
 * Smart Pointers = a wrapper over the raw pointers and helps in avoiding errors associated with pointers
 * Utility Functions = provides important operations like `std::forward` to facilitate efficient, generic and safe code manipulation
 * Integer Sequence = enable compile-time generation of integer sequences, useful in metaprogramming
