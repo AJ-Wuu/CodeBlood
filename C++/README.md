@@ -406,9 +406,7 @@ ostream &operator<<( ostream &out, const IntList &L ) {
     class SmartPtr {
         int* ptr; // Actual pointer
     public:
-        // Constructor: Refer
-        // https://www.geeksforgeeks.org/g-fact-93/ for use of
-        // explicit keyword
+        // Constructor
         explicit SmartPtr(int* p = NULL) { ptr = p; }
     
         // Destructor
@@ -426,5 +424,15 @@ ostream &operator<<( ostream &out, const IntList &L ) {
 | shared_ptr | more than one pointer can point to this one object at a time and it will maintain a Reference Counter using the `use_count()` method | <img src="https://github.com/user-attachments/assets/edd737a2-9ee5-47a5-8e79-afd060aed219" width="600px" /> |
 | weak_ptr | a smart pointer that holds a non-owning reference to an object, similar to shared_ptr except it will not maintain a Reference Counter to **avoid the circular dependency created by two or more object pointing to each other** | <img src="https://github.com/user-attachments/assets/45a2e1ce-9446-4bd6-b8e5-3fbd39c740b9" width="600px" /> |
 
-* Utility Functions = provides important operations like `std::forward` to facilitate efficient, generic and safe code manipulation
-* Integer Sequence = enable compile-time generation of integer sequences, useful in metaprogramming
+* Integer Sequence
+  * enables **compile-time generation of integer sequences**
+    * useful in meta-programming
+    * loops through a range of numbers whose span is unknown
+  * ```cpp
+    // partial specialization for an integer_sequence with at least one element
+    template <typename T, T Head, T... Tail>
+    struct integer_sequence_size<T, Head, Tail...> {
+        static constexpr size_t value 
+            = 1 + integer_sequence_size<T, Tail...>::value;
+    };
+    ```
