@@ -396,6 +396,35 @@ ostream &operator<<( ostream &out, const IntList &L ) {
   * **`std::move` means no longer need this value**
   * while one can steal the resources, but one must leave the source (original) object in a valid state where it can be correctly destroyed
   * copy uses lvalue reference, but move uses rvalue -- **move is used to convert an lvalue reference into the rvalue reference**
-* Smart Pointers = a wrapper over the raw pointers and helps in avoiding errors associated with pointers
+* Smart Pointers
+  * contains a garbage collection mechanism
+    * when the object is destroyed, it frees the memory as well
+    * the destructor is automatically called when an object goes out of scope
+  * a wrapper over the raw pointers with overloaded operators like `*` and `->`
+  * helps in avoiding errors associated with pointers (like memory leaks, dangling pointers, wild pointers, data inconsistency and buffer overflow)
+  * ```cpp
+    class SmartPtr {
+        int* ptr; // Actual pointer
+    public:
+        // Constructor: Refer
+        // https://www.geeksforgeeks.org/g-fact-93/ for use of
+        // explicit keyword
+        explicit SmartPtr(int* p = NULL) { ptr = p; }
+    
+        // Destructor
+        ~SmartPtr() { delete (ptr); }
+    
+        // Overloading dereferencing operator
+        int& operator*() { return *ptr; }
+    };
+    ```
+
+| Types | Usage | Flow |
+|-------|-------|------|
+| auto_ptr | stores a pointer to a single allocated object | <img src="https://github.com/user-attachments/assets/0074b0ce-ff5a-40de-8f2e-edd134ed0230" width="600px" /> |
+| unique_ptr | stores one pointer only, can assign a different object by removing the current object from the pointer | <img src="https://github.com/user-attachments/assets/55e3561b-16bb-4574-8c68-2b4b6203ef5f" width="600px" /> |
+| shared_ptr | more than one pointer can point to this one object at a time and it will maintain a Reference Counter using the `use_count()` method | <img src="https://github.com/user-attachments/assets/edd737a2-9ee5-47a5-8e79-afd060aed219" width="600px" /> |
+| weak_ptr | a smart pointer that holds a non-owning reference to an object, similar to shared_ptr except it will not maintain a Reference Counter to **avoid the circular dependency created by two or more object pointing to each other** | <img src="https://github.com/user-attachments/assets/45a2e1ce-9446-4bd6-b8e5-3fbd39c740b9" width="600px" /> |
+
 * Utility Functions = provides important operations like `std::forward` to facilitate efficient, generic and safe code manipulation
 * Integer Sequence = enable compile-time generation of integer sequences, useful in metaprogramming
