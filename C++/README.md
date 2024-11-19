@@ -340,3 +340,46 @@ ostream &operator<<( ostream &out, const IntList &L ) {
   * not the other way around by default
   * e.g., `class A { friend class B; ... }` -> A is the base class and B is the friend class -> B can access A
 * Friend function has privileges to access all private and protected members of the class
+
+## C++ Standard Template Library (STL)
+* A set of template classes and functions that provides the implementation of common data structures and algorithms
+### Containers
+* Data structures used to store objects and data according to the requirement
+* Each container is implemented as a template class that also contains the methods to perform basic operations on it
+* Every STL container is defined inside its own header file
+* Types
+  * Sequence Containers: array, vector, deque, list, etc.
+  * Container Adaptors: stack, queue, priority queue
+  * Associative Containers: set, map, multiset, multimap
+  * Unordered Associated Containers: unordered set, unordered map, unordered multiset, unordered multimap
+### Algorithms
+* Functions to perform common operations on data
+* Implemented with the most efficient version of the algorithm
+* Defined inside the `<algorithm>` and `<numeric>` header file
+* Types
+  * Manipulative Algorithms: `copy`, `fill`, `transform`, `replace`, `swap`, `reverse`, `rotate`, `remove`, `unique`
+  * Non-Manipulative Algorithms: `max_element`, `min_element`, `accumulate`, `count`, `find`, `is_permutation`, `is_sorted`, `partial_sum`
+### Iterations
+* Pointer-like objects that are used to point to the memory addresses of STL containers
+* One of the most important components that contributes the most in connecting the STL algorithms with the containers
+* Defined inside the `<iterator>` header file
+* Types
+  * Input Iterators: used to read values from a sequence once and only move forward
+  * Output Iterators: used to write values into a sequence once and only move forward
+  * Forward Iterators: combine the features of both input and output iterators
+  * Bidirectional Iterators: support all operations of forward iterators and additionally can move backward
+  * Random Access Iterators: support all operations of bidirectional iterators and additionally provide efficient random access to elements
+### Functors
+* Objects that can be treated as though they are a function
+* Defined inside the `<functional>` header file
+* Types
+  * Arithmetic Functors: plus, minus, multiply, divide, modulus, negate
+  * Relational Functors: equal_to, not_equal_to, greater, greater_equal, less, less_equal
+  * Logical Functors: logical_and, logical_or, logical_not
+  * Bitwise Functors: bit_and, bit_or, bit_xor
+### Utility and Memory Library
+* Pair = container to store and manipulate heterogeneous data
+* Move Semantics = allows the transfer of resources from one object to another without copying
+* Smart Pointers = a wrapper over the raw pointers and helps in avoiding errors associated with pointers
+* Utility Functions = provides important operations like `std::forward` to facilitate efficient, generic and safe code manipulation
+* Integer Sequence = enable compile-time generation of integer sequences, useful in metaprogramming
