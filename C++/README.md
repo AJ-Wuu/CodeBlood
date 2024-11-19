@@ -425,9 +425,9 @@ ostream &operator<<( ostream &out, const IntList &L ) {
 | weak_ptr | a smart pointer that holds a non-owning reference to an object, similar to shared_ptr except it will not maintain a Reference Counter to **avoid the circular dependency created by two or more object pointing to each other** | <img src="https://github.com/user-attachments/assets/45a2e1ce-9446-4bd6-b8e5-3fbd39c740b9" width="600px" /> |
 
 * Integer Sequence
-  * enables **compile-time generation of integer sequences**
-    * useful in meta-programming
-    * loops through a range of numbers whose span is unknown
+  * enables **compile-time generation of integer sequences**, so it can loop through a range of numbers whose span is unknown
+  * useful in meta-programming to simplify template and improve readibility
+  * allows the expansion of parameter packs
   * ```cpp
     // partial specialization for an integer_sequence with at least one element
     template <typename T, T Head, T... Tail>
