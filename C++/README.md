@@ -378,8 +378,15 @@ ostream &operator<<( ostream &out, const IntList &L ) {
   * Logical Functors: logical_and, logical_or, logical_not
   * Bitwise Functors: bit_and, bit_or, bit_xor
 ### Utility and Memory Library
-* Pair = container to store and manipulate heterogeneous data
-* Move Semantics = allows the transfer of resources from one object to another without copying
+* Defined in the `<utility>` header
+* Pair
+  * used to combine together two values that may be of different data types
+  * stores two heterogeneous objects as a single unit
+  * the order of the first and second element is fixed, such as a key-value pair of a map
+  * can be assigned, copied, and compared
+  * functions: `make_pair`, `swap`, `tie` (unpack the pair values into separate variables)
+* Move Semantics (`std::move`)
+  * allows the transfer of resources from one object to another without copying
 * Smart Pointers = a wrapper over the raw pointers and helps in avoiding errors associated with pointers
 * Utility Functions = provides important operations like `std::forward` to facilitate efficient, generic and safe code manipulation
 * Integer Sequence = enable compile-time generation of integer sequences, useful in metaprogramming
