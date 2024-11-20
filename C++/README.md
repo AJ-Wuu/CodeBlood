@@ -194,16 +194,16 @@ class Rectangle: public Shape {
 };
 ```
 
-## Destructor
-* The main purpose is to free any dynamically allocated storage pointed to only by a data member of that object
-  * a destructor is automatically called when an object goes out of scope
-```
-IntList::~IntList() {
-  delete [] Items; //free the dynamically allocated array pointed to by Items
-}
-```
-## Constructor
-* Construct order: base -> components -> self
+### Constructor and Destructor
+<table>
+<tr>
+<td>Type</td> <td>Note</td> <td>Sample Code</td>
+</tr>
+<tr>
+<td>Constructor</td>
+<td>Construct order: base -> components -> self</td>
+<td>
+
 ```cpp
 #include <iostream>
 using namespace std;
@@ -252,9 +252,28 @@ Destructing B
 Destructing C
 */
 ```
-### Constructor and Destructor
 
-### Copy Constructor
+</td>
+</tr>
+<tr>
+<td>Destructor</td>
+<td>
+* free any dynamically allocated storage pointed to only by a data member of that object
+* automatically called when an object goes out of scope
+</td>
+<td>
+
+```cpp
+IntList::~IntList() {
+  delete [] Items; //free the dynamically allocated array pointed to by Items
+}
+```
+
+</td>
+</tr>
+</table>
+
+#### Copy Constructor
 * If no copy constructor, the compiler will provide a shallow copy (just the value of each data member)
 * If some data member is a pointer, this causes aliasing (both the original pointer and the copy point to the same location), and may lead to trouble
 ```
@@ -279,7 +298,7 @@ IntList::IntList(const IntList & L): Items(new int[L.arraySize]), numItems(L.num
 * Must return a value
 * The object being assigned to has already been initialized; therefore, if it has a pointer field, the storage pointed to must be freed to prevent a storage leak
 
-### Operator Overloading
+#### Operator Overloading
 ```
 //Overload +=
 class IntList {
