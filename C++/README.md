@@ -200,7 +200,13 @@ class Rectangle: public Shape {
 </tr>
 <tr>
 <td>Constructor</td>
-<td>Construct order: base -> components -> self</td>
+<td>Construct order:
+<ol>
+<li>base</li>
+<li>components</li>
+<li>self</li>
+</ol>
+</td>
 <td>
 
 ```cpp
@@ -257,8 +263,10 @@ Destructing C
 <tr>
 <td>Destructor</td>
 <td>
-* free any dynamically allocated storage pointed to only by a data member of that object
-* automatically called when an object goes out of scope
+<ul>
+<li>free any dynamically allocated storage pointed to only by a data member of that object</li>
+<li>automatically called when an object goes out of scope</li>
+</ul>
 </td>
 <td>
 
