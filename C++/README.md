@@ -100,13 +100,12 @@
     };
     ```
 
-## Build
-### Run codes
-```
+### Build
+```sh
 g++ XXX.cpp -Wall -O3 -std=c++17 -o main
 main (argv)
 ```
-### Optimize -- Compiler Explorer
+### Optimize -- [Compiler Explorer](https://github.com/compiler-explorer/compiler-explorer)
 
 ## Definition
 ### [Value Category](https://learn.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp?view=msvc-170)
@@ -334,6 +333,28 @@ ostream &operator<<( ostream &out, const IntList &L ) {
   * e.g., `class A { friend class B; ... }` -> A is the base class and B is the friend class -> B can access A
 * Friend function has privileges to access all private and protected members of the class
 
+### C Linkage
+* `extern "C"` makes a function-name in C++ have C linkage (compiler does not mangle the name) so that client C code can link to (use) your function using a C compatible header file that contains just the declaration of your function
+  * your function definition is contained in a binary format (that was compiled by your C++ compiler) that the client C linker will then link to using the C name
+* Every compiler is required to provide "C" linkage
+* A linkage specification shall occur only in namespace scope
+* Two function types with distinct language linkages are distinct types even if otherwise identical
+* Linkage specs nest, inner one determines the final linkage
+* At most one function with a particular name can have "C" linkage (regardless of namespace)
+```cpp
+#ifdef GTEST_OS_ESP8266
+extern "C" {
+#endif
+
+void setup() { testing::InitGoogleTest(); }
+
+void loop() { RUN_ALL_TESTS(); }
+
+#ifdef GTEST_OS_ESP8266
+}
+#endif
+```
+
 ## Syntax
 ### String
 * Change the first character of the string greeting: ```greeting[0] = 'J';```
@@ -359,28 +380,6 @@ ostream &operator<<( ostream &out, const IntList &L ) {
 * `for (auto& thread : threads) { thread.join(); }`: inside the `for`, you need to specify the alias `auto&` in order to avoid creating a copy of the elements inside the vector within the `thread` variable
   * in this way every operation done on the `thread` var is done on the element inside the `threads` vector
   * moreover, **in a range-based `for`, you always want to use a reference `&` for performance reasons**
-
-### C Linkage
-* `extern "C"` makes a function-name in C++ have C linkage (compiler does not mangle the name) so that client C code can link to (use) your function using a C compatible header file that contains just the declaration of your function
-  * your function definition is contained in a binary format (that was compiled by your C++ compiler) that the client C linker will then link to using the C name
-* Every compiler is required to provide "C" linkage
-* A linkage specification shall occur only in namespace scope
-* Two function types with distinct language linkages are distinct types even if otherwise identical
-* Linkage specs nest, inner one determines the final linkage
-* At most one function with a particular name can have "C" linkage (regardless of namespace)
-```cpp
-#ifdef GTEST_OS_ESP8266
-extern "C" {
-#endif
-
-void setup() { testing::InitGoogleTest(); }
-
-void loop() { RUN_ALL_TESTS(); }
-
-#ifdef GTEST_OS_ESP8266
-}
-#endif
-```
 
 ### Macro
 ```cpp
