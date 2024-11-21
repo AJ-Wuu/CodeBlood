@@ -50,6 +50,11 @@ for (char c : allowed.toCharArray()) {
 }
 ```
 
+## Add Delimiter to the Middle of a String
+```java
+String.join(", ", privileges);
+```
+
 ## Split String by Space and Convert to a List
 ```java
 List<String> list1 = Arrays.asList(s1.split(" ", -1));       // faster but only covers ` ` itself
