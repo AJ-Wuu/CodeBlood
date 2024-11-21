@@ -21,6 +21,7 @@
   * Container Adaptors: stack, queue, priority queue
   * Associative Containers: set, map, multiset, multimap
   * Unordered Associated Containers: unordered set, unordered map, unordered multiset, unordered multimap
+* Examples: `priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> minHeap;`
 #### Algorithms
 * Functions to perform common operations on data
 * Implemented with the most efficient version of the algorithm
