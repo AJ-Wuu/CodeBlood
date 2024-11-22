@@ -10,10 +10,12 @@
  * 
  * Deque is the acronym for double ended queue.
  * The Deque is related to the double-ended queue that supports addition or removal of elements from either end of the data structure.
- * It can either be used as a queue(first-in-first-out/FIFO) or as a stack(last-in-first-out/LIFO).
+ * It can either be used as a queue (first-in-first-out/FIFO) or as a stack (last-in-first-out/LIFO).
  *          Deque<Obj> deque = new ArrayDeque<Obj> ();
  * Functions: addFirst(), addLast(), removeFirst(), removeLast(), poll(), pop(), pollFirst(), pollLast(), etc.
  * Iterators: 1. start to end -> Iterator itr = dq.iterator(); 2. end to start -> Iterator itr = dq.descendingIterator();
+ * Advantages: dynamic size, O(1) for insertion and deletion, versatile as queue or stack, no reallocation needed, thread-safe, and cache-friendly
+ * Disadvantages: less memory efficient, not suitable for sorting, and may cause synchronization issue in multi-threaded applications
  *
  * Different Kinds:
  * 1. Linear Queue -> less efficient; insertion and deletion operations are fixed to be done at the rear and front end respectively
