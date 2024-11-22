@@ -81,3 +81,8 @@ public enum Suit {
 // Get Enum value from String
 public enum Blah { A, B, C, D }
 assertEquals(Blah.A, Blah.valueOf("A"));
+
+// Override Enum value without @Getter
+public String getValue() {
+    return CaseUtils.toCamelCase(this.name(), capitalizeFirstLetter: true, '_');
+｝
