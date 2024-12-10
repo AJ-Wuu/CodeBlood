@@ -1,4 +1,4 @@
-# [C++](https://learn.microsoft.com/en-us/cpp/cpp/mutable-data-members-cpp?view=msvc-170&redirectedfrom=MSDN)
+# [C++](https://en.cppreference.com/w/)
 ## [Canonical Project Structure](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p1204r0.html)
 ### Entry Point
 * QuRT (Qualcomm Real-Time Operating System)
