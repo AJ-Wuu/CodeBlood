@@ -194,6 +194,67 @@ class Rectangle: public Shape {
 };
 ```
 
+#### Friend Class and Function
+* A friend class can access private and protected members of other classes in which it is declared as a friend
+  * not the other way around by default
+  * e.g., `class A { friend class B; ... }` -> A is the base class and B is the friend class -> B can access A
+* Friend function has privileges to access all private and protected members of the class
+
+#### Virtual Function
+* A function which may be overridden in derived classes with a function of the same signature
+  * even when an object of the derived class is accessed via a pointer or reference to an ancestor class
+  * base class does NOT have to implement its virtual function
+    * an undefined virtual function is called a **pure virtual function**
+  * implementation class MUST write a function satisfying the signature for each pure virtual function in its ancestor
+* Happy case
+```cpp
+class Base {
+ public:
+  virtual std::string Print() { return "Base"; }
+};
+
+class Derived : public Base {
+ public:
+  virtual std::string Print() { return "Derived"; }
+};
+
+Derived derived;
+Base *base = &derived;
+base->Print();              // returns "Derived"
+```
+* Unhappy case
+```cpp
+class Foo {
+ public:
+  virtual int Bar() const;
+};
+
+class MyFoo1 : public Foo {
+ public:
+  // This doesn't override Foo::Bar because it isn't const
+  // Nonetheless it's legal C++;
+  // the best you can hope for is a compile warning
+  virtual int Bar();
+}
+
+class MyFoo2 : public Foo {
+ public:
+  // This causes a compiler error, pointing out our mistake (missing const)
+  int Bar() override;
+}
+```
+
+#### Explicitly Defaulted and Deleted Functions
+* May wish to prevent some or all of these implicitly generated functions, often to avoid operations that wouldn't make sense for your particular classes
+```cpp
+class Foo {
+ public:
+  Foo();
+  Foo(const Foo&) = delete;             // delete the copy constructor
+  Foo& operator=(const Foo&) = delete;  // delete the copy assignment operator
+};
+```
+
 ### Constructor and Destructor
 <table>
 <tr>
@@ -335,12 +396,6 @@ ostream &operator<<( ostream &out, const IntList &L ) {
     out << ']';
 }
 ```
-
-### Friend Class and Function
-* A friend class can access private and protected members of other classes in which it is declared as a friend
-  * not the other way around by default
-  * e.g., `class A { friend class B; ... }` -> A is the base class and B is the friend class -> B can access A
-* Friend function has privileges to access all private and protected members of the class
 
 ### C Linkage
 * `extern "C"` makes a function-name in C++ have C linkage (compiler does not mangle the name) so that client C code can link to (use) your function using a C compatible header file that contains just the declaration of your function
