@@ -97,7 +97,7 @@ Foo bar = std::move(foo);
         int& operator*() { return *ptr; }
     };
     ```
-  * `std::unique_ptr`: avoids memory leaks and indicates ownership
+  * `std::unique_ptr`: avoids memory leaks and indicates **ownership**
     * an object may be owned by exactly one `unique_ptr`
       * prefer to pass and return by value
     * cannot be copied or copy-assigned, though **can be moved**, and no other entity should destroy the managed object underneath
@@ -398,6 +398,18 @@ IntList::IntList(const IntList & L): Items(new int[L.arraySize]), numItems(L.num
         Items[k] = L.Items[k];
     }
 }
+```
+
+#### `emplace` Functions
+* Construct objects directly within the containers, which avoids unnecessary copies
+```cpp
+// Construct an object of type ManyMembersObject within the vector
+vector<ManyMembersObject> my_vec;
+my_vec.emplace_back(2, "foo", ...);
+
+// Construct a unique_ptr to a ManyMembersObject within the vector
+vector<std::unique_ptr<ManyMembersObject>> another_vec;
+another_vec.emplace_back(new ManyMembersObject(2, "foo", ...));
 ```
 
 ### Operator `=`
