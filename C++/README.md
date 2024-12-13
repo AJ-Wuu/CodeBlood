@@ -59,7 +59,24 @@
   * allows the transfer of resources from one object to another without copying
   * **`std::move` means no longer need this value**
   * while one can steal the resources, but one must leave the source (original) object in a valid state where it can be correctly destroyed
-  * copy uses lvalue reference, but move uses rvalue -- **move is used to convert an lvalue reference into the rvalue reference**
+  * copy uses lvalue reference, but move uses rvalue reference
+    * **move is used to convert an lvalue reference into the rvalue reference**
+```cpp
+// The standard signature for a Copy constructor takes a reference to the object
+Foo(const Foo& original) {}
+
+// The new signature for a Move constructor takes an rvalue reference to the object
+Foo(Foo&& original) {}
+
+// The new signature for a Move-assignment operator, again, takes an rvalue reference to the object
+Foo& operator=(Foo&& original) {}
+
+// Use std::move when the lvalue is no longer needed
+// Move from `foo` to `bar`, if Foo has a move constructor
+// If Foo does not have a move constructor, foo will be copied
+Foo foo(1, 2);
+Foo bar = std::move(foo);
+``` 
 * Smart Pointers
   * contains a garbage collection mechanism
     * when the object is destroyed, it frees the memory as well
@@ -110,17 +127,30 @@ main (argv)
 
 ## Definition
 ### [Value Category](https://learn.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp?view=msvc-170)
-* GL-value = evaluation determines the identity of an object, bit-field, or function
-* PR-value = evaluation initializes an object or a bit-field, or computes the value of the operand of an operator, as specified by the context in which it appears
-* X-value = a GL-value that denotes an object or bit-field whose resources can be reused (usually because it is near the end of its lifetime)
-* L-value = a GL-value that isn't an X-value
-  * **a variable or object that has a name and memory address**
+* GLvalue = evaluation determines the identity of an object, bit-field, or function
+* PRvalue = evaluation initializes an object or a bit-field, or computes the value of the operand of an operator, as specified by the context in which it appears
+* Xvalue = a GLvalue that denotes an object or bit-field whose resources can be reused (usually because it is near the end of its lifetime)
+* Lvalue = a GLvalue that isn't an Xvalue
+  * **a variable or object that has a name and memory address, which persists beyond a single expression, aka things that "can be named"**
   * uses `&`
   * an expression that will appear on the left-hand side or on the right-hand side of an assignment
-* R-value = a PR-value or an X-value
-  * **variable or object has only a memory address (temporary objects)**
+* Rvalue = a PRvalue or an Xvalue
+  * **variable or object has only a memory address (temporary objects), which is identified as temporary**
   * uses `&&`
   * an expression that will appear **only on the right-hand side of an assignment**
+```cpp
+// func(&f) takes an lvalue.
+func(Foo& f) {
+ // Do some stuff with f, the caller to func() can still use f later.
+}
+
+// func(&&g) takes an rvalue. The caller of func() should not
+// need g anymore.
+func(Foo&& g){
+ // Do some stuff with g. When this closes, the caller to func()
+ // should not do anything with g other than destroy it or assign to it.
+}
+```
 
 ### Garbage Collection
 * Allocated memory from the heap (using new) cannot be reused unless it is deallocated explicitly
@@ -439,8 +469,8 @@ void loop() { RUN_ALL_TESTS(); }
   * **array to pointer conversion (array decay) does not occur**
 * `auto&& z = expr;`: if the type inference is in question and the `&&` token is used, the names introduced like this are called Forwarding Reference (aka Universal Reference)
   * not a Rvalue reference
-  * `auto&& r1 = x;` is valid as `x` is L-value expression
-  * `auto&& r2 = x + y;` is valid as `x + y` is PR-value expression
+  * `auto&& r1 = x;` is valid as `x` is Lvalue expression
+  * `auto&& r2 = x + y;` is valid as `x + y` is PRvalue expression
 * `for (auto& thread : threads) { thread.join(); }`: inside the `for`, you need to specify the alias `auto&` in order to avoid creating a copy of the elements inside the vector within the `thread` variable
   * in this way every operation done on the `thread` var is done on the element inside the `threads` vector
   * moreover, **in a range-based `for`, you always want to use a reference `&` for performance reasons**
