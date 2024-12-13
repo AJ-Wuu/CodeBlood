@@ -97,6 +97,16 @@ Foo bar = std::move(foo);
         int& operator*() { return *ptr; }
     };
     ```
+  * `std::unique_ptr`: avoids memory leaks and indicates ownership
+    * an object may be owned by exactly one `unique_ptr`
+      * prefer to pass and return by value
+    * cannot be copied or copy-assigned, though **can be moved**, and no other entity should destroy the managed object underneath
+    * once the `unique_ptr` goes out of scope, the object it has managed will be automatically deleted
+    * **use `std::move` to transfer ownership**
+      * ```cpp
+        auto my_foo = std::make_unique<Foo>(42, "abc");
+        my_container.Add(std::move(my_foo));
+        ```
 
 | Types | Usage | Flow |
 |-------|-------|------|
