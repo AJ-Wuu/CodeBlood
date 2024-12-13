@@ -47,6 +47,41 @@
   * Relational Functors: equal_to, not_equal_to, greater, greater_equal, less, less_equal
   * Logical Functors: logical_and, logical_or, logical_not
   * Bitwise Functors: bit_and, bit_or, bit_xor
+* Lambdas
+  * precise definition: `[capture_variables] (function_arguments) -> return_type { function_logic }`
+    * `[]` prefix indicates that the following expression is a lambda
+    * may specify capture variables from the called scope
+      * `[&]` to capture all variables by reference
+      * `[=]` to capture all variables by value
+  * ```cpp
+    // Before C++11
+    struct MyFunctor {
+      bool operator() (const X& element) const {
+        // function details
+      }
+    };
+    // Use the functor:
+    do_something(a, b, MyFunctor());
+
+    // With C++11
+    do_something(a, b, [](const X& element) {
+      // function details
+    });
+    ```
+  * using `absl::AnyInvocable` or `absl::FunctionRef` to specify the type of an expected lambda function is common
+    * ```cpp
+      // Declare a Func handler
+      MyObject Func(absl::AnyInvocable<int(const Foo*)> func) {
+        // Do something with func
+      }
+      
+      // Use Func within a lambda
+      MyObject DoSomething() {
+        return Func([](const Foo* foo){
+          // Lambda body
+        });
+      }
+      ```
 #### Utility and Memory Library
 * Defined in the `<utility>` header
 * Pair
