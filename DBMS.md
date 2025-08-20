@@ -1,5 +1,5 @@
 # DBMS = Database Management System
-## Types
+## Models
 ### RDBMS (Relational Database Management Systems)
 * Good for structured data
 * Providers: MySQL, PostgreSQL, REDIS
@@ -9,6 +9,16 @@
   * e.g., documents, key-value pairs, graphs, time-series data
 * Providers: MongoDB, Redis, DynamoDB, Cassandra
   * usually have their own special query languages or APIs tailored to their data models and capabilities
+
+## Comparison
+|  | MySQL | PostgreSQL | REDIS | CockroachDB | SQLite / TabDB | Snowflake | MongoDB |
+|--|-------|------------|-------|-------------|-------|-----------|---------|
+| Model | RDBMS | RDBMS | RDBMS | RDBMS | RDBMS | Semi | NoSQL |
+| Schema | predefined | predefined | predefined | predefined | predefined | schema-on-read | flexible |
+| Threading | single-thread | multi-thread | single-thread | multi-thread | single-thread | multi-thread | multi-thread |
+| Scalability (horizontal = sharding) | vertical, hard for horizontal | both but need third-party extensions | REDIS | CockroachDB | TabDB | Snowflake | horizontal, but can be vertical |
+| Implementation Language | C, C++ | C | C with specialized value types (like strings, hashes, lists, sets and sorted sets) | Go | JavaScript (uses [Emscripten](https://emscripten.org/) to convert SQLite's C code into JavaScript) | C++ | Python |
+| Use Cases | Widely used in web apps, content management systems | Well-suited for both simple and complex applications, data warehousing, content management systems, financial apps, web apps, geospatial data, and analytical use cases | Mostly used as an in-memory cache | CockroachDB | Splits the SQLite database file into strings and stores them in browser tabs | Snowflake | Suitable for handling unstructured, evolving, or high-velocity data. Used in IoT applications and content caching |
 
 ## Terminology
 * `VARCHAR(50) & CHAR(50)` -> if the text has only 5 characters, then actual `VARCHAR()` = 5, but `CHAR()` will still be 50 (with auto-filled spaces)
