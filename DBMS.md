@@ -1,9 +1,17 @@
 # DBMS = Database Management System
-1. Relational (RDBMS): store data in tables that are linked to each other using relationships
-2. Non-SQL: no tables or relationships, don't understand SQL
+## Types
+### RDBMS (Relational Database Management Systems)
+* Good for structured data
+* Providers: MySQL, PostgreSQL, REDIS
+  * use SQL and store data in tables that are linked to each other using relationships
+### NoSQL
+* Good for unstructured or semi-structured data
+  * e.g., documents, key-value pairs, graphs, time-series data
+* Providers: MongoDB, Redis, DynamoDB, Cassandra
+  * usually have their own special query languages or APIs tailored to their data models and capabilities
 
 ## Terminology
-* `VARCHAR(50) & CHAR(50)` -> if the text has only 5 characters, then actual VARCHAR() = 5, but CHAR() will still be 50 (with auto-filled spaces)
+* `VARCHAR(50) & CHAR(50)` -> if the text has only 5 characters, then actual `VARCHAR()` = 5, but `CHAR()` will still be 50 (with auto-filled spaces)
 * PK - Primary Key
 * NN - Not Null
 * BIN - BINary (stores data as binary strings; no character is set so sorting and comparison is based on the numeric values of the bytes in the values)
